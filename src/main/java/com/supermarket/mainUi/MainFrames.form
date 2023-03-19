@@ -445,8 +445,8 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblTitleSubSP" max="32767" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="pnlNavRightSP" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="pnlNavRightSP" min="-2" pref="300" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane5" alignment="0" pref="962" max="32767" attributes="0"/>
@@ -608,7 +608,7 @@
                           <Component id="lblTitleCL" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="pnlNorthCL" alignment="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="pnlNorthCL" alignment="0" pref="949" max="32767" attributes="0"/>
                                   <Component id="pnlSouthCL" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace pref="19" max="32767" attributes="0"/>
@@ -1843,7 +1843,7 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="pnlNavRightKH" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane7" alignment="0" pref="946" max="32767" attributes="0"/>
+                              <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
