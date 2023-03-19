@@ -4,6 +4,7 @@ package com.supermarket.mainUi;
 //test pull 234
 //test duy bao 123
 // test nhan pro yttt
+//test lay ne
 public class MainFrames extends javax.swing.JFrame {
 
     public MainFrames() {
