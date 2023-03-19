@@ -1,10 +1,5 @@
-package com.supermarket.mainUi;
-//test
-//test pull - test pull 2
-//test pull 234
-//test duy bao 123
-// test nhan pro yttt
-//test lay ne
+package com.supermarket.UI;
+
 public class MainFrames extends javax.swing.JFrame {
 
     public MainFrames() {
@@ -701,7 +696,7 @@ public class MainFrames extends javax.swing.JFrame {
                     .addComponent(lblTitleCL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlQLCLLayout.createSequentialGroup()
                         .addGroup(pnlQLCLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(pnlNorthCL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 949, Short.MAX_VALUE)
+                            .addComponent(pnlNorthCL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 949, Short.MAX_VALUE)
                             .addComponent(pnlSouthCL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(19, Short.MAX_VALUE))))
         );
@@ -890,7 +885,7 @@ public class MainFrames extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlNorthNVBHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlWestNVBH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlEastNVBH, javax.swing.GroupLayout.PREFERRED_SIZE, 143, Short.MAX_VALUE))
+                    .addComponent(pnlEastNVBH, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(pnlMainBtnNVBH, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1226,12 +1221,13 @@ public class MainFrames extends javax.swing.JFrame {
             .addGroup(pnlSouthKHLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlSouthKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSouthKHLayout.createSequentialGroup()
-                        .addComponent(BtnSuaKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlSouthKHLayout.createSequentialGroup()
+                        .addComponent(BtnSuaKH, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTitleSubKH, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lblTitleSubKH, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(pnlNavRightKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pnlNavRightKH, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46))
                     .addComponent(jScrollPane7))
                 .addContainerGap())
         );
@@ -1659,7 +1655,7 @@ public class MainFrames extends javax.swing.JFrame {
     private void btnFirstTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstTKActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFirstTKActionPerformed
-
+    //
     private void btnPrevTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevTKActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPrevTKActionPerformed

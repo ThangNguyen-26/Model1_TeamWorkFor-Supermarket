@@ -1,5 +1,4 @@
-package com.supermarket.mainUi;
-
+package com.supermarket.UI;
 
 public class ChaoJDialog extends javax.swing.JDialog {
 

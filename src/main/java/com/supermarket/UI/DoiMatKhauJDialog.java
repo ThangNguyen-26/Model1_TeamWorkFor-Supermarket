@@ -1,6 +1,4 @@
-package com.supermarket.AccUi;
-
-import com.supermarket.mainUi.MainFrames;
+package com.supermarket.UI;
 
 public class DoiMatKhauJDialog extends javax.swing.JDialog {
 

@@ -1,4 +1,4 @@
-package com.supermarket.mainUi;
+package com.supermarket.UI;
 
 public class MainFrameNhanVienBanHang extends javax.swing.JFrame {
 
