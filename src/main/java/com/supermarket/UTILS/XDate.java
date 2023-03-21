@@ -37,5 +37,5 @@ public class XDate {
         return now;
     }
 
-    ///Nhân Test 
+    ///Thang Test 
 }
