@@ -16,35 +16,33 @@ public class ChungLoai {
     public ChungLoai() {
     }
 
-    public ChungLoai(String macl, String tencl, String mieuta) {
-        this.maCL = macl;
-        this.tenCL = tencl;
-        this.mieuTa = mieuta;
+    public ChungLoai(String maCL, String tenCL, String mieuTa) {
+        this.maCL = maCL;
+        this.tenCL = tenCL;
+        this.mieuTa = mieuTa;
     }
 
-    public String getMacl() {
+    public String getMaCL() {
         return maCL;
     }
 
-    public void setMacl(String macl) {
-        this.maCL = macl;
+    public void setMaCL(String maCL) {
+        this.maCL = maCL;
     }
 
-    public String getTencl() {
+    public String getTenCL() {
         return tenCL;
     }
 
-    public void setTencl(String tencl) {
-        this.tenCL = tencl;
+    public void setTenCL(String tenCL) {
+        this.tenCL = tenCL;
     }
 
-    public String getMieuta() {
+    public String getMieuTa() {
         return mieuTa;
     }
 
-    public void setMieuta(String mieuta) {
-        this.mieuTa = mieuta;
+    public void setMieuTa(String mieuTa) {
+        this.mieuTa = mieuTa;
     }
-    
-    
 }

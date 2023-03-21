@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.supermarket.ENTITY;
 
 import java.util.Date;
@@ -21,62 +17,60 @@ public class KhachHang {
     public KhachHang() {
     }
 
-    public KhachHang(String makh, String matkhau, String tenkh, boolean gioitinh, Date ngaydangky, Date ngaysinh) {
-        this.maKH = makh;
-        this.matKhau = matkhau;
-        this.tenKH = tenkh;
-        this.gioiTinh = gioitinh;
-        this.ngayDangKy = ngaydangky;
-        this.ngaySinh = ngaysinh;
+    public KhachHang(String maKH, String matKhau, String tenKH, boolean gioiTinh, Date ngayDangKy, Date ngaySinh) {
+        this.maKH = maKH;
+        this.matKhau = matKhau;
+        this.tenKH = tenKH;
+        this.gioiTinh = gioiTinh;
+        this.ngayDangKy = ngayDangKy;
+        this.ngaySinh = ngaySinh;
     }
 
-    public String getMakh() {
+    public String getMaKH() {
         return maKH;
     }
 
-    public void setMakh(String makh) {
-        this.maKH = makh;
+    public void setMaKH(String maKH) {
+        this.maKH = maKH;
     }
 
-    public String getMatkhau() {
+    public String getMatKhau() {
         return matKhau;
     }
 
-    public void setMatkhau(String matkhau) {
-        this.matKhau = matkhau;
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
     }
 
-    public String getTenkh() {
+    public String getTenKH() {
         return tenKH;
     }
 
-    public void setTenkh(String tenkh) {
-        this.tenKH = tenkh;
+    public void setTenKH(String tenKH) {
+        this.tenKH = tenKH;
     }
 
-    public boolean isGioitinh() {
+    public boolean isGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioitinh(boolean gioitinh) {
-        this.gioiTinh = gioitinh;
+    public void setGioiTinh(boolean gioiTinh) {
+        this.gioiTinh = gioiTinh;
     }
 
-    public Date getNgaydangky() {
+    public Date getNgayDangKy() {
         return ngayDangKy;
     }
 
-    public void setNgaydangky(Date ngaydangky) {
-        this.ngayDangKy = ngaydangky;
+    public void setNgayDangKy(Date ngayDangKy) {
+        this.ngayDangKy = ngayDangKy;
     }
 
-    public Date getNgaysinh() {
+    public Date getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaysinh(Date ngaysinh) {
-        this.ngaySinh = ngaysinh;
+    public void setNgaySinh(Date ngaySinh) {
+        this.ngaySinh = ngaySinh;
     }
-    
-    
 }

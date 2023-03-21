@@ -7,75 +7,84 @@ package com.supermarket.ENTITY;
 import java.util.Date;
 
 public class NhanVien {
-    private String MaNV;
-    private String MatKhau;
-    private String HoTenString;
-    private boolean GioiTinh;
-    private Date NgaySinh;
-    private boolean VaiTro;
+    private String maNV;
+    private String matKhau;
+    private String hoTen;
+    private boolean gioiTinh;
+    private Date ngaySinh;
+    private boolean vaiTro;
 
-    public NhanVien(String MaNV, String MatKhau, String HoTenString, boolean GioiTinh, Date NgaySinh, boolean VaiTro) {
-        this.MaNV = MaNV;
-        this.MatKhau = MatKhau;
-        this.HoTenString = HoTenString;
-        this.GioiTinh = GioiTinh;
-        this.NgaySinh = NgaySinh;
-        this.VaiTro = VaiTro;
+    public NhanVien() {
     }
 
-    public NhanVien(String MaNV, String MatKhau, String HoTenString, boolean GioiTinh, Date NgaySinh) {
-        this.MaNV = MaNV;
-        this.MatKhau = MatKhau;
-        this.HoTenString = HoTenString;
-        this.GioiTinh = GioiTinh;
-        this.NgaySinh = NgaySinh;
+    public NhanVien(String maNV, String matKhau, String hoTen, boolean gioiTinh, Date ngaySinh, boolean vaiTro) {
+        this.maNV = maNV;
+        this.matKhau = matKhau;
+        this.hoTen = hoTen;
+        this.gioiTinh = gioiTinh;
+        this.ngaySinh = ngaySinh;
+        this.vaiTro = vaiTro;
+    }
+
+    public NhanVien(String maNV, String matKhau, String hoTen, boolean gioiTinh, Date ngaySinh) {
+        this.maNV = maNV;
+        this.matKhau = matKhau;
+        this.hoTen = hoTen;
+        this.gioiTinh = gioiTinh;
+        this.ngaySinh = ngaySinh;
+    }
+
+    public NhanVien(String maNV, String matKhau, boolean vaiTro) {
+        this.maNV = maNV;
+        this.matKhau = matKhau;
+        this.vaiTro = vaiTro;
     }
 
     public String getMaNV() {
-        return MaNV;
+        return maNV;
     }
 
-    public void setMaNV(String MaNV) {
-        this.MaNV = MaNV;
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
     }
 
     public String getMatKhau() {
-        return MatKhau;
+        return matKhau;
     }
 
-    public void setMatKhau(String MatKhau) {
-        this.MatKhau = MatKhau;
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
     }
 
-    public String getHoTenString() {
-        return HoTenString;
+    public String getHoTen() {
+        return hoTen;
     }
 
-    public void setHoTenString(String HoTenString) {
-        this.HoTenString = HoTenString;
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
     }
 
     public boolean isGioiTinh() {
-        return GioiTinh;
+        return gioiTinh;
     }
 
-    public void setGioiTinh(boolean GioiTinh) {
-        this.GioiTinh = GioiTinh;
+    public void setGioiTinh(boolean gioiTinh) {
+        this.gioiTinh = gioiTinh;
     }
 
     public Date getNgaySinh() {
-        return NgaySinh;
+        return ngaySinh;
     }
 
-    public void setNgaySinh(Date NgaySinh) {
-        this.NgaySinh = NgaySinh;
+    public void setNgaySinh(Date ngaySinh) {
+        this.ngaySinh = ngaySinh;
     }
 
     public boolean isVaiTro() {
-        return VaiTro;
+        return vaiTro;
     }
 
-    public void setVaiTro(boolean VaiTro) {
-        this.VaiTro = VaiTro;
+    public void setVaiTro(boolean vaiTro) {
+        this.vaiTro = vaiTro;
     }
 }

@@ -5,57 +5,60 @@
 package com.supermarket.ENTITY;
 
 public class SanPham {
-    private String MaSP;
-    private String TenSP;
-    private int SoLuong;
-    private float GiaThanh;
-    private String MaCL;
+    private String maSP;
+    private String tenSP;
+    private int soLuong;
+    private float giaThanh;
+    private String maCL;
 
-    public SanPham(String MaSP, String TenSP, int SoLuong, float GiaThanh, String MaCL) {
-        this.MaSP = MaSP;
-        this.TenSP = TenSP;
-        this.SoLuong = SoLuong;
-        this.GiaThanh = GiaThanh;
-        this.MaCL = MaCL;
+    public SanPham() {
+    }
+
+    public SanPham(String maSP, String tenSP, int soLuong, float giaThanh, String maCL) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.soLuong = soLuong;
+        this.giaThanh = giaThanh;
+        this.maCL = maCL;
     }
 
     public String getMaSP() {
-        return MaSP;
+        return maSP;
     }
 
-    public void setMaSP(String MaSP) {
-        this.MaSP = MaSP;
+    public void setMaSP(String maSP) {
+        this.maSP = maSP;
     }
 
     public String getTenSP() {
-        return TenSP;
+        return tenSP;
     }
 
-    public void setTenSP(String TenSP) {
-        this.TenSP = TenSP;
+    public void setTenSP(String tenSP) {
+        this.tenSP = tenSP;
     }
 
     public int getSoLuong() {
-        return SoLuong;
+        return soLuong;
     }
 
-    public void setSoLuong(int SoLuong) {
-        this.SoLuong = SoLuong;
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
 
     public float getGiaThanh() {
-        return GiaThanh;
+        return giaThanh;
     }
 
-    public void setGiaThanh(float GiaThanh) {
-        this.GiaThanh = GiaThanh;
+    public void setGiaThanh(float giaThanh) {
+        this.giaThanh = giaThanh;
     }
 
     public String getMaCL() {
-        return MaCL;
+        return maCL;
     }
 
-    public void setMaCL(String MaCL) {
-        this.MaCL = MaCL;
+    public void setMaCL(String maCL) {
+        this.maCL = maCL;
     }
 }
