@@ -1,5 +1,5 @@
 package com.supermarket.ENTITY;
-
+//sss
 import java.util.Date;
 
 public class HoaDon {
