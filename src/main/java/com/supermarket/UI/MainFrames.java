@@ -169,6 +169,10 @@ public class MainFrames extends javax.swing.JFrame {
         setResizable(false);
 
         tabs.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        tabs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tabs.setFocusable(false);
+
+        pnlQLSP.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblTitleSP.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblTitleSP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -422,9 +426,9 @@ public class MainFrames extends javax.swing.JFrame {
             pnlSouthSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSouthSPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTitleSubSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlNavRightSP, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitleSubSP, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pnlNavRightSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
         );
@@ -465,6 +469,8 @@ public class MainFrames extends javax.swing.JFrame {
         );
 
         tabs.addTab("QUẢN LÍ SẢN PHẨM", pnlQLSP);
+
+        pnlQLCL.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblTitleCL.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitleCL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -667,10 +673,10 @@ public class MainFrames extends javax.swing.JFrame {
         pnlSouthCLLayout.setHorizontalGroup(
             pnlSouthCLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSouthCLLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTitleSubCL, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlNavRightCL, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTitleSubCL, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pnlNavRightCL, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 949, Short.MAX_VALUE)
         );
@@ -696,7 +702,7 @@ public class MainFrames extends javax.swing.JFrame {
                     .addComponent(lblTitleCL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlQLCLLayout.createSequentialGroup()
                         .addGroup(pnlQLCLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(pnlNorthCL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 949, Short.MAX_VALUE)
+                            .addComponent(pnlNorthCL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 949, Short.MAX_VALUE)
                             .addComponent(pnlSouthCL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(19, Short.MAX_VALUE))))
         );
@@ -713,6 +719,8 @@ public class MainFrames extends javax.swing.JFrame {
         );
 
         tabs.addTab("QUẢN LÍ CHỦNG LOẠI", pnlQLCL);
+
+        pnlQLNVBH.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblTitleNVBH.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitleNVBH.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -885,7 +893,7 @@ public class MainFrames extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlNorthNVBHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlWestNVBH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlEastNVBH, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
+                    .addComponent(pnlEastNVBH, javax.swing.GroupLayout.PREFERRED_SIZE, 143, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(pnlMainBtnNVBH, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -972,9 +980,9 @@ public class MainFrames extends javax.swing.JFrame {
             .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
             .addGroup(pnlSouthNVBHLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTitleSubNVBH, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnlNavRightNVBH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitleSubNVBH, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pnlNavRightNVBH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlSouthNVBHLayout.setVerticalGroup(
@@ -1017,7 +1025,7 @@ public class MainFrames extends javax.swing.JFrame {
 
         tabs.addTab("QUẢN LÍ NHÂN VIÊN BÁN HÀNG", pnlQLNVBH);
 
-        pnlDSKH.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnlDSKH.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblTitleKH.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitleKH.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1026,11 +1034,17 @@ public class MainFrames extends javax.swing.JFrame {
         lblMaKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblMaKH.setText("Mã khách hàng");
 
+        txtMaKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
         lblTenKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTenKH.setText("Tên khách hàng");
 
+        txtTenKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
         lblMatKhau1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblMatKhau1.setText("Mật khẩu");
+
+        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout pnlWestKHLayout = new javax.swing.GroupLayout(pnlWestKH);
         pnlWestKH.setLayout(pnlWestKHLayout);
@@ -1071,12 +1085,16 @@ public class MainFrames extends javax.swing.JFrame {
         lblNgaySinh1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNgaySinh1.setText("Ngày sinh");
 
+        txtNgaySinh1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
         lblGioiTinhKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblGioiTinhKH.setText("Giới tính");
 
         bgrGioiTinhKH.add(rdoNamKH);
         rdoNamKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rdoNamKH.setText("Nam");
+        rdoNamKH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rdoNamKH.setFocusable(false);
         rdoNamKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdoNamKHActionPerformed(evt);
@@ -1086,9 +1104,13 @@ public class MainFrames extends javax.swing.JFrame {
         bgrGioiTinhKH.add(rdoNuKH);
         rdoNuKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rdoNuKH.setText("Nữ");
+        rdoNuKH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rdoNuKH.setFocusable(false);
 
         lblNgayDK.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNgayDK.setText("Ngày đăng kí");
+
+        txtNgayDK.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout pnlEastKHLayout = new javax.swing.GroupLayout(pnlEastKH);
         pnlEastKH.setLayout(pnlEastKHLayout);
@@ -1097,18 +1119,18 @@ public class MainFrames extends javax.swing.JFrame {
             .addGroup(pnlEastKHLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlEastKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblGioiTinhKH, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                    .addComponent(lblGioiTinhKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblNgaySinh1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblNgayDK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblNgayDK, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlEastKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNgayDK)
-                    .addComponent(txtNgaySinh1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlEastKHLayout.createSequentialGroup()
                         .addComponent(rdoNamKH)
                         .addGap(18, 18, 18)
-                        .addComponent(rdoNuKH)))
-                .addContainerGap())
+                        .addComponent(rdoNuKH))
+                    .addComponent(txtNgaySinh1, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                    .addComponent(txtNgayDK))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlEastKHLayout.setVerticalGroup(
             pnlEastKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1152,6 +1174,9 @@ public class MainFrames extends javax.swing.JFrame {
 
         BtnSuaKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         BtnSuaKH.setText("Sửa");
+        BtnSuaKH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BtnSuaKH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnSuaKH.setFocusable(false);
 
         lblTitleSubKH.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitleSubKH.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1161,6 +1186,9 @@ public class MainFrames extends javax.swing.JFrame {
 
         btnFirstKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnFirstKH.setText("|<");
+        btnFirstKH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnFirstKH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnFirstKH.setFocusable(false);
         btnFirstKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFirstKHActionPerformed(evt);
@@ -1170,14 +1198,23 @@ public class MainFrames extends javax.swing.JFrame {
 
         btnPrevKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnPrevKH.setText("<<");
+        btnPrevKH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnPrevKH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPrevKH.setFocusable(false);
         pnlNavRightKH.add(btnPrevKH);
 
         btnNextKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNextKH.setText(">>");
+        btnNextKH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnNextKH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNextKH.setFocusable(false);
         pnlNavRightKH.add(btnNextKH);
 
         btnLastKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLastKH.setText(">|");
+        btnLastKH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnLastKH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLastKH.setFocusable(false);
         pnlNavRightKH.add(btnLastKH);
 
         tblKH.setModel(new javax.swing.table.DefaultTableModel(
@@ -1220,16 +1257,15 @@ public class MainFrames extends javax.swing.JFrame {
             pnlSouthKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSouthKHLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlSouthKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlSouthKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlSouthKHLayout.createSequentialGroup()
-                        .addComponent(BtnSuaKH, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTitleSubKH, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnSuaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(pnlNavRightKH, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46))
-                    .addComponent(jScrollPane7))
-                .addContainerGap())
+                        .addComponent(lblTitleSubKH, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(123, 123, 123)
+                        .addComponent(pnlNavRightKH, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 939, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlSouthKHLayout.setVerticalGroup(
             pnlSouthKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1240,7 +1276,7 @@ public class MainFrames extends javax.swing.JFrame {
                     .addComponent(lblTitleSubKH, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlNavRightKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1251,9 +1287,11 @@ public class MainFrames extends javax.swing.JFrame {
             .addGroup(pnlDSKHLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlDSKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitleKH, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlNorthKH, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlSouthKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlDSKHLayout.createSequentialGroup()
+                        .addComponent(lblTitleKH, javax.swing.GroupLayout.PREFERRED_SIZE, 954, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(pnlSouthKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlNorthKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlDSKHLayout.setVerticalGroup(
@@ -1270,20 +1308,31 @@ public class MainFrames extends javax.swing.JFrame {
 
         tabs.addTab("DANH SÁCH KHÁCH HÀNG", pnlDSKH);
 
+        pnlDSHD.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         lblTitleSubHD.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitleSubHD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitleSubHD.setText("DANH SÁCH HÓA ĐƠN");
 
         btnChiTietHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnChiTietHD.setText("Chi tiết hóa đơn");
+        btnChiTietHD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnChiTietHD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnChiTietHD.setFocusable(false);
 
         btnXoaHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoaHD.setText("Xóa");
+        btnXoaHD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnXoaHD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnXoaHD.setFocusable(false);
 
         pnlNavRightHD.setLayout(new java.awt.GridLayout(1, 4, 20, 0));
 
         btnFirstHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnFirstHD.setText("|<");
+        btnFirstHD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnFirstHD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnFirstHD.setFocusable(false);
         btnFirstHD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFirstHDActionPerformed(evt);
@@ -1293,14 +1342,23 @@ public class MainFrames extends javax.swing.JFrame {
 
         btnPrevHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnPrevHD.setText("<<");
+        btnPrevHD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnPrevHD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPrevHD.setFocusable(false);
         pnlNavRightHD.add(btnPrevHD);
 
         btnNextHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNextHD.setText(">>");
+        btnNextHD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnNextHD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNextHD.setFocusable(false);
         pnlNavRightHD.add(btnNextHD);
 
         btnLastHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLastHD.setText(">|");
+        btnLastHD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnLastHD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLastHD.setFocusable(false);
         pnlNavRightHD.add(btnLastHD);
 
         tblHD.setModel(new javax.swing.table.DefaultTableModel(
@@ -1344,17 +1402,15 @@ public class MainFrames extends javax.swing.JFrame {
             .addGroup(pnlDSHDLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlDSHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE)
+                    .addComponent(jScrollPane8)
                     .addGroup(pnlDSHDLayout.createSequentialGroup()
-                        .addGroup(pnlDSHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlDSHDLayout.createSequentialGroup()
-                                .addComponent(btnXoaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnChiTietHD, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(pnlNavRightHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblTitleSubHD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addComponent(btnXoaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnChiTietHD, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                        .addComponent(pnlNavRightHD, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTitleSubHD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnlDSHDLayout.setVerticalGroup(
             pnlDSHDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1373,20 +1429,31 @@ public class MainFrames extends javax.swing.JFrame {
 
         tabs.addTab("DANH SÁCH HÓA ĐƠN", pnlDSHD);
 
+        pnlDSDH.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         lblTitleSubDH.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblTitleSubDH.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitleSubDH.setText("DANH SÁCH ĐƠN HÀNG");
 
         btnXoaDH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoaDH.setText("Xóa");
+        btnXoaDH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnXoaDH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnXoaDH.setFocusable(false);
 
         btnChiTietDH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnChiTietDH.setText("Chi tiết đơn hàng");
+        btnChiTietDH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnChiTietDH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnChiTietDH.setFocusable(false);
 
         pnlNavRightHD1.setLayout(new java.awt.GridLayout(1, 4, 20, 0));
 
         btnFirstDH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnFirstDH.setText("|<");
+        btnFirstDH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnFirstDH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnFirstDH.setFocusable(false);
         btnFirstDH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFirstDHActionPerformed(evt);
@@ -1396,14 +1463,23 @@ public class MainFrames extends javax.swing.JFrame {
 
         btnPrevDH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnPrevDH.setText("<<");
+        btnPrevDH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnPrevDH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPrevDH.setFocusable(false);
         pnlNavRightHD1.add(btnPrevDH);
 
         btnNextDH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNextDH.setText(">>");
+        btnNextDH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnNextDH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNextDH.setFocusable(false);
         pnlNavRightHD1.add(btnNextDH);
 
         btnLastDH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLastDH.setText(">|");
+        btnLastDH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnLastDH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLastDH.setFocusable(false);
         pnlNavRightHD1.add(btnLastDH);
 
         tblDH.setModel(new javax.swing.table.DefaultTableModel(
@@ -1454,7 +1530,7 @@ public class MainFrames extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnChiTietDH, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pnlNavRightHD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(pnlNavRightHD1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnlDSDHLayout.setVerticalGroup(
@@ -1474,6 +1550,8 @@ public class MainFrames extends javax.swing.JFrame {
 
         tabs.addTab("DANH SÁCH ĐƠN HÀNG", pnlDSDH);
 
+        pnlTK.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         lblTitleSubTK.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitleSubTK.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblTitleSubTK.setText("Thống kê");
@@ -1482,6 +1560,9 @@ public class MainFrames extends javax.swing.JFrame {
 
         btnFirstTK.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnFirstTK.setText("|<");
+        btnFirstTK.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnFirstTK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnFirstTK.setFocusable(false);
         btnFirstTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFirstTKActionPerformed(evt);
@@ -1491,6 +1572,9 @@ public class MainFrames extends javax.swing.JFrame {
 
         btnPrevTK.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnPrevTK.setText("<<");
+        btnPrevTK.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnPrevTK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPrevTK.setFocusable(false);
         btnPrevTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrevTKActionPerformed(evt);
@@ -1500,10 +1584,16 @@ public class MainFrames extends javax.swing.JFrame {
 
         btnNextTK.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnNextTK.setText(">>");
+        btnNextTK.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnNextTK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNextTK.setFocusable(false);
         pnlNavRightTK.add(btnNextTK);
 
         btnLastTK.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLastTK.setText(">|");
+        btnLastTK.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnLastTK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLastTK.setFocusable(false);
         pnlNavRightTK.add(btnLastTK);
 
         tblTK.setModel(new javax.swing.table.DefaultTableModel(
@@ -1544,13 +1634,15 @@ public class MainFrames extends javax.swing.JFrame {
         pnlTK.setLayout(pnlTKLayout);
         pnlTKLayout.setHorizontalGroup(
             pnlTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTKLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTitleSubTK, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnlNavRightTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(pnlTKLayout.createSequentialGroup()
+                .addGroup(pnlTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlTKLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblTitleSubTK, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                        .addComponent(pnlNavRightTK, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane10))
                 .addContainerGap())
-            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 974, Short.MAX_VALUE)
         );
         pnlTKLayout.setVerticalGroup(
             pnlTKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
