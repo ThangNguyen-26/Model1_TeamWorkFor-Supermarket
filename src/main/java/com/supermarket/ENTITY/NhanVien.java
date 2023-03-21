@@ -4,6 +4,8 @@
  */
 package com.supermarket.ENTITY;
 
+import java.util.Date;
+
 /**
  *
  * @author TranVanNhan
@@ -13,10 +15,10 @@ public class NhanVien {
     private String MatKhau;
     private String HoTenString;
     private boolean GioiTinh;
-    private String NgaySinh;
+    private Date NgaySinh;
     private boolean VaiTro;
 
-    public NhanVien(String MaNV, String MatKhau, String HoTenString, boolean GioiTinh, String NgaySinh, boolean VaiTro) {
+    public NhanVien(String MaNV, String MatKhau, String HoTenString, boolean GioiTinh, Date NgaySinh, boolean VaiTro) {
         this.MaNV = MaNV;
         this.MatKhau = MatKhau;
         this.HoTenString = HoTenString;
@@ -25,7 +27,7 @@ public class NhanVien {
         this.VaiTro = VaiTro;
     }
 
-    public NhanVien(String MaNV, String MatKhau, String HoTenString, boolean GioiTinh, String NgaySinh) {
+    public NhanVien(String MaNV, String MatKhau, String HoTenString, boolean GioiTinh, Date NgaySinh) {
         this.MaNV = MaNV;
         this.MatKhau = MatKhau;
         this.HoTenString = HoTenString;
@@ -65,11 +67,11 @@ public class NhanVien {
         this.GioiTinh = GioiTinh;
     }
 
-    public String getNgaySinh() {
+    public Date getNgaySinh() {
         return NgaySinh;
     }
 
-    public void setNgaySinh(String NgaySinh) {
+    public void setNgaySinh(Date NgaySinh) {
         this.NgaySinh = NgaySinh;
     }
 
