@@ -6,10 +6,6 @@ package com.supermarket.ENTITY;
 
 import java.util.Date;
 
-/**
- *
- * @author TranVanNhan
- */
 public class NhanVien {
     private String MaNV;
     private String MatKhau;

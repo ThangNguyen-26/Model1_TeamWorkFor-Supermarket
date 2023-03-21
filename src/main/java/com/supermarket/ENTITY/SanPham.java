@@ -4,10 +4,6 @@
  */
 package com.supermarket.ENTITY;
 
-/**
- *
- * @author TranVanNhan
- */
 public class SanPham {
     private String MaSP;
     private String TenSP;
