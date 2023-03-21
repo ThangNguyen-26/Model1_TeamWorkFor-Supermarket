@@ -11,71 +11,71 @@ import java.util.Date;
  * @author trinh duy bao
  */
 public class KhachHang {
-    private String makh;
-    private String matkhau;
-    private String tenkh;
-    private boolean gioitinh;
-    private Date ngaydangky;
-    private Date ngaysinh;
+    private String maKH;
+    private String matKhau;
+    private String tenKH;
+    private boolean gioiTinh;
+    private Date ngayDangKy;
+    private Date ngaySinh;
 
     public KhachHang() {
     }
 
     public KhachHang(String makh, String matkhau, String tenkh, boolean gioitinh, Date ngaydangky, Date ngaysinh) {
-        this.makh = makh;
-        this.matkhau = matkhau;
-        this.tenkh = tenkh;
-        this.gioitinh = gioitinh;
-        this.ngaydangky = ngaydangky;
-        this.ngaysinh = ngaysinh;
+        this.maKH = makh;
+        this.matKhau = matkhau;
+        this.tenKH = tenkh;
+        this.gioiTinh = gioitinh;
+        this.ngayDangKy = ngaydangky;
+        this.ngaySinh = ngaysinh;
     }
 
     public String getMakh() {
-        return makh;
+        return maKH;
     }
 
     public void setMakh(String makh) {
-        this.makh = makh;
+        this.maKH = makh;
     }
 
     public String getMatkhau() {
-        return matkhau;
+        return matKhau;
     }
 
     public void setMatkhau(String matkhau) {
-        this.matkhau = matkhau;
+        this.matKhau = matkhau;
     }
 
     public String getTenkh() {
-        return tenkh;
+        return tenKH;
     }
 
     public void setTenkh(String tenkh) {
-        this.tenkh = tenkh;
+        this.tenKH = tenkh;
     }
 
     public boolean isGioitinh() {
-        return gioitinh;
+        return gioiTinh;
     }
 
     public void setGioitinh(boolean gioitinh) {
-        this.gioitinh = gioitinh;
+        this.gioiTinh = gioitinh;
     }
 
     public Date getNgaydangky() {
-        return ngaydangky;
+        return ngayDangKy;
     }
 
     public void setNgaydangky(Date ngaydangky) {
-        this.ngaydangky = ngaydangky;
+        this.ngayDangKy = ngaydangky;
     }
 
     public Date getNgaysinh() {
-        return ngaysinh;
+        return ngaySinh;
     }
 
     public void setNgaysinh(Date ngaysinh) {
-        this.ngaysinh = ngaysinh;
+        this.ngaySinh = ngaysinh;
     }
     
     

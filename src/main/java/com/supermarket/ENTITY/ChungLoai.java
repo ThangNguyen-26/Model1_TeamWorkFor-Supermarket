@@ -9,41 +9,41 @@ package com.supermarket.ENTITY;
  * @author trinh duy bao
  */
 public class ChungLoai {
-    private String macl;
-    private String tencl;
-    private String mieuta;
+    private String maCL;
+    private String tenCL;
+    private String mieuTa;
 
     public ChungLoai() {
     }
 
     public ChungLoai(String macl, String tencl, String mieuta) {
-        this.macl = macl;
-        this.tencl = tencl;
-        this.mieuta = mieuta;
+        this.maCL = macl;
+        this.tenCL = tencl;
+        this.mieuTa = mieuta;
     }
 
     public String getMacl() {
-        return macl;
+        return maCL;
     }
 
     public void setMacl(String macl) {
-        this.macl = macl;
+        this.maCL = macl;
     }
 
     public String getTencl() {
-        return tencl;
+        return tenCL;
     }
 
     public void setTencl(String tencl) {
-        this.tencl = tencl;
+        this.tenCL = tencl;
     }
 
     public String getMieuta() {
-        return mieuta;
+        return mieuTa;
     }
 
     public void setMieuta(String mieuta) {
-        this.mieuta = mieuta;
+        this.mieuTa = mieuta;
     }
     
     
