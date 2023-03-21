@@ -37,5 +37,5 @@ public class XDate {
         return now;
     }
 
-    ///Hàndjkfkf
+    ///Trần Nhân
 }
