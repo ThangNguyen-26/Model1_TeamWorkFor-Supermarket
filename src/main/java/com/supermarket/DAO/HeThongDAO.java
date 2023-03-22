@@ -2,7 +2,7 @@ package com.supermarket.DAO;
 
 import java.util.List;
 
-public abstract class MainDAO<EntityType, Key> {
+public abstract class HeThongDAO<EntityType, Key> {
 
     public abstract void insert(EntityType entity);
 

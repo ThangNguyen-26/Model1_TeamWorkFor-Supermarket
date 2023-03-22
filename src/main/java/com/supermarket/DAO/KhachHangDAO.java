@@ -3,7 +3,7 @@ package com.supermarket.DAO;
 import com.supermarket.ENTITY.KhachHang;
 import java.util.List;
 
-public class KhachHangDAO extends MainDAO<KhachHang, String> {
+public class KhachHangDAO extends HeThongDAO<KhachHang, String> {
 
     String insert = "insert into KHACHHANG values(?,?,?,?,?,?)";
     String update = "update KHACHHANG set MATKHAU = ?, TENKH = ?, GIOITINH = ?, NGAYSINH = ?, NGAYDANGKY = ?";

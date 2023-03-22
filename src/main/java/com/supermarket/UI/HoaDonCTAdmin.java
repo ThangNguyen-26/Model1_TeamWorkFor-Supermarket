@@ -1,8 +1,9 @@
 package com.supermarket.UI;
 
-public class DonHangChiTietAdmin extends javax.swing.JFrame {
 
-    public DonHangChiTietAdmin() {
+public class HoaDonCTAdmin extends javax.swing.JFrame {
+
+    public HoaDonCTAdmin() {
         initComponents();
         init();
     }
@@ -12,25 +13,25 @@ public class DonHangChiTietAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlMain = new javax.swing.JPanel();
-        lblDHChiTiet = new javax.swing.JLabel();
+        lblHDChiTiet = new javax.swing.JLabel();
         btnFirst = new javax.swing.JButton();
         btnPrev = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDHChiTiet = new javax.swing.JTable();
+        tblHDChiTiet = new javax.swing.JTable();
         btnThoat = new javax.swing.JButton();
         lblClock = new javax.swing.JLabel();
         lblChiTiet = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Đơn hàng chi tiết");
+        setTitle("Hóa đơn chi tiết");
         setResizable(false);
 
         pnlMain.setPreferredSize(new java.awt.Dimension(960, 570));
 
-        lblDHChiTiet.setFont(new java.awt.Font("Barlow Condensed", 1, 25)); // NOI18N
-        lblDHChiTiet.setText("Đơn hàng chi tiết");
+        lblHDChiTiet.setFont(new java.awt.Font("Barlow Condensed", 1, 25)); // NOI18N
+        lblHDChiTiet.setText("Hóa đơn chi tiết");
 
         btnFirst.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnFirst.setText("|<");
@@ -76,7 +77,7 @@ public class DonHangChiTietAdmin extends javax.swing.JFrame {
             }
         });
 
-        tblDHChiTiet.setModel(new javax.swing.table.DefaultTableModel(
+        tblHDChiTiet.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -84,7 +85,7 @@ public class DonHangChiTietAdmin extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Mã đơn hàng", "Mã sản phẩm", "Số lượng ", "Thành tiền"
+                "Mã hóa đơn", "Mã sản phẩm", "Số lượng", "Thành tiền"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -95,7 +96,7 @@ public class DonHangChiTietAdmin extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblDHChiTiet);
+        jScrollPane1.setViewportView(tblHDChiTiet);
 
         btnThoat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnThoat.setText("Thoát");
@@ -124,7 +125,7 @@ public class DonHangChiTietAdmin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
-                        .addComponent(lblDHChiTiet)
+                        .addComponent(lblHDChiTiet)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -135,9 +136,9 @@ public class DonHangChiTietAdmin extends javax.swing.JFrame {
                         .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlMainLayout.createSequentialGroup()
                         .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 461, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 433, Short.MAX_VALUE)
                         .addComponent(lblClock)
-                        .addGap(388, 388, 388)
+                        .addGap(416, 416, 416)
                         .addComponent(lblChiTiet))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
@@ -151,7 +152,7 @@ public class DonHangChiTietAdmin extends javax.swing.JFrame {
                     .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDHChiTiet))
+                    .addComponent(lblHDChiTiet))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -223,7 +224,7 @@ public class DonHangChiTietAdmin extends javax.swing.JFrame {
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DonHangChiTietAdmin().setVisible(true);
+                new HoaDonCTAdmin().setVisible(true);
             }
         });
     }
@@ -237,9 +238,9 @@ public class DonHangChiTietAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblChiTiet;
     private javax.swing.JLabel lblClock;
-    private javax.swing.JLabel lblDHChiTiet;
+    private javax.swing.JLabel lblHDChiTiet;
     private javax.swing.JPanel pnlMain;
-    private javax.swing.JTable tblDHChiTiet;
+    private javax.swing.JTable tblHDChiTiet;
     // End of variables declaration//GEN-END:variables
 
     private void init() {
