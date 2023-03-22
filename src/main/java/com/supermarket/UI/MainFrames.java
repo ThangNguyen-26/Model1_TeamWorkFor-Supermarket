@@ -1231,14 +1231,14 @@ public class MainFrames extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã khách hàng", "Mật khẩu", "Tên khách hàng", "Giới tính", "Ngày đăng kí", "Ngày sinh"
+                "Mã khách hàng", "Mật khẩu", "Tên khách hàng", "Giới tính", "Ngày sinh", "Ngày đăng kí"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false
+                false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1375,7 +1375,7 @@ public class MainFrames extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Mã hóa đơn", "Mã nhân viên", "Ngày lập hóa đơn"
+                "Mã hóa đơn", "Ngày lập hóa đơn", "Mã nhân viên"
             }
         ) {
             Class[] types = new Class [] {
