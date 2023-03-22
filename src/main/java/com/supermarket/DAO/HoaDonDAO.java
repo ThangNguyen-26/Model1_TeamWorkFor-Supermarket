@@ -16,18 +16,11 @@ public class HoaDonDAO extends HeThongDAO<HoaDon, String> {
     public void insert(HoaDon entity) {
         String sql = "INSERT INTO HOADON VALUES(?, ?, ?)";
         int k = JdbcHelper.update(sql, entity.getMaHD(), entity.getNgayLapHD(), entity.getMaNV());
-        if (k != 0) {
-            MsgBox.alert(null, "Thêm hóa đơn thành công");
-        }
     }
 
     @Override
     public void update(HoaDon entity) {
-        String sql = "UPDATE HOADON SET NGAYLAPHD = ?, MANV = ? WHERE MAHD = ?";
-        int k = JdbcHelper.update(sql, entity.getNgayLapHD(), entity.getMaNV(), entity.getMaHD());
-        if (k != 0) {
-            MsgBox.alert(null, "Cập nhật hóa đơn thành công");
-        }
+        //Không có chức năng cập nhật hóa đơn
     }
 
     @Override
