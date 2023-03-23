@@ -9,11 +9,11 @@ INSERT INTO NHANVIEN VALUES
 ,('admin1','admin1', N'Admin', 1, '2003-08-07', 1)
 
 INSERT INTO KHACHHANG VALUES
-('kh1', 'matkhau1', 'Trần Văn Nhân', 0, '2003-12-16', '2023-03-10')
-,('kh2', 'matkhau2', 'Trần Văn Nghĩa', 1, '2003-12-30', '2023-03-15')
-,('kh3', 'matkhau3', 'Nguyễn Lê Hoàng Thắng', 0, '2003-06-10', '2023-02-17')
-,('kh4', 'matkhau4', 'Nguyễn Văn Kim Hoàng', 1, '2003-09-09', '2023-01-09')
-,('kh5', 'matkhau5', 'Trịnh Duy Bảo', 0, '2003-09-30', '2022-09-12')
+('kh1', 'matkhau1', N'Trần Văn Nhân', 0, '2003-12-16', '2023-03-10')
+,('kh2', 'matkhau2', N'Trần Văn Nghĩa', 1, '2003-12-30', '2023-03-15')
+,('kh3', 'matkhau3', N'Nguyễn Lê Hoàng Thắng', 0, '2003-06-10', '2023-02-17')
+,('kh4', 'matkhau4', N'Nguyễn Văn Kim Hoàng', 1, '2003-09-09', '2023-01-09')
+,('kh5', 'matkhau5', N'Trịnh Duy Bảo', 0, '2003-09-30', '2022-09-12')
 
 INSERT INTO CHUNGLOAI VALUES
 ('cl1', N'Sữa', N'Các Sản Phẩm Làm Từ Sữa Tươi Và Sữa Bột')
@@ -39,28 +39,28 @@ INSERT INTO SANPHAM VALUES
 ,('sp14', N'Xoài', 38, 22, 'cl5')
 ,('sp15', N'Lê', 100, 30, 'cl5')
 
-INSERT INTO HOADON VALUES
-('hd1', '2023-02-10', 'nv1')
-,('hd2', '2023-01-30', 'nv2')
-,('hd3', '2023-03-22', 'nv3')
+INSERT INTO HOADON (NGAYLAPHD, MANV) VALUES
+('2023-02-10', 'nv1')
+,('2023-01-30', 'nv2')
+,('2023-03-22', 'nv3')
 
 INSERT INTO CHITIETHOADON VALUES
-(2, 60, 'sp15', 'hd1')
-,(1, 22, 'sp14', 'hd1')
-,(4, 20, 'sp10', 'hd2')
-,(3, 90, 'sp8', 'hd2')
-,(1, 30, 'sp13', 'hd3')
-,(1, 10, 'sp2', 'hd3')
+(2, 60, 'sp15', 'HD001')
+,(1, 22, 'sp14', 'HD001')
+,(4, 20, 'sp10', 'HD002')
+,(3, 90, 'sp8', 'HD002')
+,(1, 30, 'sp13', 'HD003')
+,(1, 10, 'sp2', 'HD003')
 
-INSERT INTO DONHANG VALUES
-('dh1', '2023-02-10', 'kh1')
-,('dh2', '2023-01-30', 'kh2')
-,('dh3', '2023-03-22', 'kh3')
+INSERT INTO DONHANG (NGAYDATHANG, MAKH) VALUES
+('2023-02-10', 'kh1')
+,('2023-01-30', 'kh2')
+,('2023-03-22', 'kh3')
 
 INSERT INTO CHITIETDONHANG VALUES
-(2, 60, 'sp15', 'dh1')
-,(1, 22, 'sp14', 'dh1')
-,(4, 20, 'sp10', 'dh2')
-,(3, 90, 'sp8', 'dh2')
-,(1, 30, 'sp13', 'dh3')
-,(1, 10, 'sp2', 'dh3')
+(2, 60, 'sp15', 'DH001')
+,(1, 22, 'sp14', 'DH001')
+,(4, 20, 'sp10', 'DH002')
+,(3, 90, 'sp8', 'DH002')
+,(1, 30, 'sp13', 'DH003')
+,(1, 10, 'sp2', 'DH003')

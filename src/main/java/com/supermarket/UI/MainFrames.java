@@ -430,7 +430,7 @@ public class MainFrames extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(pnlNavRightSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 959, Short.MAX_VALUE)
         );
         pnlSouthSPLayout.setVerticalGroup(
             pnlSouthSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -474,7 +474,7 @@ public class MainFrames extends javax.swing.JFrame {
 
         lblTitleCL.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitleCL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitleCL.setText("QUẢN LÝ CHỦNG LOẠI");
+        lblTitleCL.setText("CHỦNG LOẠI");
 
         lblMaCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblMaCL.setText("Mã chủng loại");
@@ -704,7 +704,7 @@ public class MainFrames extends javax.swing.JFrame {
                         .addGroup(pnlQLCLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(pnlNorthCL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 949, Short.MAX_VALUE)
                             .addComponent(pnlSouthCL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(19, Short.MAX_VALUE))))
+                        .addContainerGap(16, Short.MAX_VALUE))))
         );
         pnlQLCLLayout.setVerticalGroup(
             pnlQLCLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -718,7 +718,7 @@ public class MainFrames extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        tabs.addTab("QUẢN LÍ CHỦNG LOẠI", pnlQLCL);
+        tabs.addTab("QUẢN LÝ CHỦNG LOẠI", pnlQLCL);
 
         pnlQLNVBH.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -977,7 +977,7 @@ public class MainFrames extends javax.swing.JFrame {
         pnlSouthNVBH.setLayout(pnlSouthNVBHLayout);
         pnlSouthNVBHLayout.setHorizontalGroup(
             pnlSouthNVBHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
+            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 959, Short.MAX_VALUE)
             .addGroup(pnlSouthNVBHLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTitleSubNVBH, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1023,7 +1023,7 @@ public class MainFrames extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        tabs.addTab("QUẢN LÍ NHÂN VIÊN BÁN HÀNG", pnlQLNVBH);
+        tabs.addTab("QUẢN LÝ NHÂN VIÊN BÁN HÀNG", pnlQLNVBH);
 
         pnlDSKH.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -1306,7 +1306,7 @@ public class MainFrames extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        tabs.addTab("DANH SÁCH KHÁCH HÀNG", pnlDSKH);
+        tabs.addTab("QUẢN LÝ KHÁCH HÀNG", pnlDSKH);
 
         pnlDSHD.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -1407,7 +1407,7 @@ public class MainFrames extends javax.swing.JFrame {
                         .addComponent(btnXoaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnChiTietHD, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
                         .addComponent(pnlNavRightHD, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblTitleSubHD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -1427,7 +1427,7 @@ public class MainFrames extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        tabs.addTab("DANH SÁCH HÓA ĐƠN", pnlDSHD);
+        tabs.addTab("QUẢN LÝ HÓA ĐƠN", pnlDSHD);
 
         pnlDSDH.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -1524,7 +1524,7 @@ public class MainFrames extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlDSDHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblTitleSubDH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 959, Short.MAX_VALUE)
                     .addGroup(pnlDSDHLayout.createSequentialGroup()
                         .addComponent(btnXoaDH, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -1548,7 +1548,7 @@ public class MainFrames extends javax.swing.JFrame {
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
-        tabs.addTab("DANH SÁCH ĐƠN HÀNG", pnlDSDH);
+        tabs.addTab("QUẢN LÝ ĐƠN HÀNG", pnlDSDH);
 
         pnlTK.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -1639,7 +1639,7 @@ public class MainFrames extends javax.swing.JFrame {
                     .addGroup(pnlTKLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblTitleSubTK, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                         .addComponent(pnlNavRightTK, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane10))
                 .addContainerGap())
