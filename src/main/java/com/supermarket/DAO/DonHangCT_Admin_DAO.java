@@ -1,9 +1,9 @@
+package com.supermarket.DAO;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.supermarket.DAO;
-
 import com.supermarket.ENTITY.DonHang;
 import com.supermarket.ENTITY.DonHangChiTiet;
 import com.supermarket.UTILS.JdbcHelper;
