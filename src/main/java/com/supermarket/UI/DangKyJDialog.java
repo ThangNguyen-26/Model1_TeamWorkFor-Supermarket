@@ -1,5 +1,14 @@
 package com.supermarket.UI;
 
+import com.supermarket.DAO.KhachHangDAO;
+import com.supermarket.UTILS.MsgBox;
+import com.supermarket.UTILS.XDate;
+import static java.awt.Color.white;
+import static java.awt.Color.yellow;
+import java.util.Date;
+import com.supermarket.ENTITY.KhachHang;
+import static com.supermarket.UTILS.XDate.now;
+
 public class DangKyJDialog extends javax.swing.JDialog {
 
     public DangKyJDialog(java.awt.Frame parent, boolean modal) {
@@ -66,6 +75,7 @@ public class DangKyJDialog extends javax.swing.JDialog {
 
         bgrGioiTinh.add(rdoNam);
         rdoNam.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rdoNam.setSelected(true);
         rdoNam.setText("Nam");
         rdoNam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rdoNam.setFocusable(false);
@@ -89,6 +99,11 @@ public class DangKyJDialog extends javax.swing.JDialog {
         btnDangNhap.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnDangNhap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDangNhap.setFocusable(false);
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangNhapActionPerformed(evt);
+            }
+        });
         pnlBtns.add(btnDangNhap);
 
         btnDangKy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -96,6 +111,11 @@ public class DangKyJDialog extends javax.swing.JDialog {
         btnDangKy.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnDangKy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDangKy.setFocusable(false);
+        btnDangKy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangKyActionPerformed(evt);
+            }
+        });
         pnlBtns.add(btnDangKy);
 
         javax.swing.GroupLayout pnlInforLayout = new javax.swing.GroupLayout(pnlInfor);
@@ -186,6 +206,36 @@ public class DangKyJDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+        this.setVisible(false);
+        new DangNhapJDialog(null, true).setVisible(true);
+    }//GEN-LAST:event_btnDangNhapActionPerformed
+
+    private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
+        boolean check = checkNull();
+        if (check == true) {
+            Date birthDay = XDate.toDate(txtNgaySinh.getText(), "dd/mm/yyyy");
+            if (birthDay != null) {
+                //MsgBox.alert(null, now().toString());
+                KhachHang kh = new KhachHang();
+                kh.setMaKH(txtTenDangNhap.getText());
+                kh.setTenKH(txtHoVaTen.getText());
+                kh.setMatKhau(txtMatKhau.getText());
+                if(rdoNam.isSelected()==true){
+                    kh.setGioiTinh(true);
+                }else{
+                    kh.setGioiTinh(false);
+                }
+                kh.setNgaySinh(birthDay);
+                kh.setNgayDangKy(now());
+                KhachHangDAO dao = new KhachHangDAO();
+                dao.insert(kh);
+                MsgBox.alert(null, "tạo tài khoản thành công");
+            }
+        }
+
+    }//GEN-LAST:event_btnDangKyActionPerformed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -241,5 +291,42 @@ public class DangKyJDialog extends javax.swing.JDialog {
 
     private void init() {
         this.setLocationRelativeTo(null);
+    }
+
+    private boolean checkNull() {
+        boolean check = true;
+
+        if (txtTenDangNhap.getText().trim().length() == 0) {
+            txtTenDangNhap.setBackground(yellow);
+            MsgBox.alert(null, "Bạn chưa nhập tên đăng nhập");
+            check = false;
+        } else {
+            txtTenDangNhap.setBackground(white);
+        }
+
+        if (txtMatKhau.getText().trim().length() == 0) {
+            txtMatKhau.setBackground(yellow);
+            MsgBox.alert(null, "Bạn chưa nhập mật khẩu");
+            check = false;
+        } else {
+            txtMatKhau.setBackground(white);
+        }
+
+        if (txtHoVaTen.getText().trim().length() == 0) {
+            txtHoVaTen.setBackground(yellow);
+            MsgBox.alert(null, "Bạn chưa nhập họ và tên");
+            check = false;
+        } else {
+            txtHoVaTen.setBackground(white);
+        }
+
+        if (txtNgaySinh.getText().trim().length() == 0) {
+            txtNgaySinh.setBackground(yellow);
+            MsgBox.alert(null, "Bạn chưa nhập ngày sinh");
+            check = false;
+        } else {
+            txtNgaySinh.setBackground(white);
+        }
+        return check;
     }
 }
