@@ -61,5 +61,4 @@ public class KhachHangDAO extends HeThongDAO<KhachHang, String> {
         }
         return list;
     }
-
 }

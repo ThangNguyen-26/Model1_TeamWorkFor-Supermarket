@@ -23,6 +23,8 @@ public class HoaDonCTAdmin extends javax.swing.JFrame {
         btnThoat = new javax.swing.JButton();
         lblClock = new javax.swing.JLabel();
         lblChiTiet = new javax.swing.JLabel();
+        lblHDChiTiet1 = new javax.swing.JLabel();
+        lblHDChiTiet2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hóa đơn chi tiết");
@@ -117,6 +119,12 @@ public class HoaDonCTAdmin extends javax.swing.JFrame {
         lblChiTiet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblChiTiet.setFocusable(false);
 
+        lblHDChiTiet1.setFont(new java.awt.Font("Barlow Condensed", 1, 25)); // NOI18N
+        lblHDChiTiet1.setText("000");
+
+        lblHDChiTiet2.setFont(new java.awt.Font("Barlow Condensed", 1, 25)); // NOI18N
+        lblHDChiTiet2.setText("Tổng Tiền :");
+
         javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
         pnlMain.setLayout(pnlMainLayout);
         pnlMainLayout.setHorizontalGroup(
@@ -142,6 +150,12 @@ public class HoaDonCTAdmin extends javax.swing.JFrame {
                         .addComponent(lblChiTiet))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
+            .addGroup(pnlMainLayout.createSequentialGroup()
+                .addGap(357, 357, 357)
+                .addComponent(lblHDChiTiet2)
+                .addGap(18, 18, 18)
+                .addComponent(lblHDChiTiet1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlMainLayout.setVerticalGroup(
             pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,9 +166,14 @@ public class HoaDonCTAdmin extends javax.swing.JFrame {
                     .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblHDChiTiet))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHDChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHDChiTiet1)
+                    .addComponent(lblHDChiTiet2))
+                .addGap(23, 23, 23)
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlMainLayout.createSequentialGroup()
                         .addGap(2, 2, 2)
@@ -239,6 +258,8 @@ public class HoaDonCTAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel lblChiTiet;
     private javax.swing.JLabel lblClock;
     private javax.swing.JLabel lblHDChiTiet;
+    private javax.swing.JLabel lblHDChiTiet1;
+    private javax.swing.JLabel lblHDChiTiet2;
     private javax.swing.JPanel pnlMain;
     private javax.swing.JTable tblHDChiTiet;
     // End of variables declaration//GEN-END:variables
