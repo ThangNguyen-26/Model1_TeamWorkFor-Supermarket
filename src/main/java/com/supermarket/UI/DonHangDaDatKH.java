@@ -103,17 +103,17 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
 
         tblDSDHDD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Mã đơn hàng", "Ngày đặt hàng", "Mã khách hàng"
+                "Mã đơn hàng", "Ngày đặt hàng", "Mã khách hàng", "Tổng tiền"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
