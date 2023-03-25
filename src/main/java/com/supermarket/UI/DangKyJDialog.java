@@ -8,13 +8,19 @@ import static java.awt.Color.yellow;
 import java.util.Date;
 import com.supermarket.ENTITY.KhachHang;
 import static com.supermarket.UTILS.XDate.now;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DangKyJDialog extends javax.swing.JDialog {
+
+    KhachHangDAO dao = new KhachHangDAO();
+    List<KhachHang> khachHangList = new ArrayList();
 
     public DangKyJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         init();
+        khachHangList = dao.selectAll();
     }
 
     @SuppressWarnings("unchecked")
@@ -221,14 +227,13 @@ public class DangKyJDialog extends javax.swing.JDialog {
                 kh.setMaKH(txtTenDangNhap.getText());
                 kh.setTenKH(txtHoVaTen.getText());
                 kh.setMatKhau(txtMatKhau.getText());
-                if(rdoNam.isSelected()==true){
+                if (rdoNam.isSelected() == true) {
                     kh.setGioiTinh(true);
-                }else{
+                } else {
                     kh.setGioiTinh(false);
                 }
                 kh.setNgaySinh(birthDay);
                 kh.setNgayDangKy(now());
-                KhachHangDAO dao = new KhachHangDAO();
                 dao.insert(kh);
                 MsgBox.alert(null, "tạo tài khoản thành công");
             }
@@ -302,6 +307,14 @@ public class DangKyJDialog extends javax.swing.JDialog {
             check = false;
         } else {
             txtTenDangNhap.setBackground(white);
+            for (KhachHang kh : khachHangList) {
+                if (txtTenDangNhap.getText().equals(kh.getMaKH())) {
+                    MsgBox.alert(null, "Tên đăng nhập đã tồn tại");
+                    check = false;
+                    txtTenDangNhap.setBackground(yellow);
+                    break;
+                }
+            }
         }
 
         if (txtMatKhau.getText().trim().length() == 0) {
@@ -310,6 +323,14 @@ public class DangKyJDialog extends javax.swing.JDialog {
             check = false;
         } else {
             txtMatKhau.setBackground(white);
+            for (KhachHang kh : khachHangList) {
+                if (txtMatKhau.getText().equals(kh.getMatKhau())) {
+                    MsgBox.alert(null, "Mật khẩu đã tồn tại");
+                    check = false;
+                    txtMatKhau.setBackground(yellow);
+                    break;
+                }
+            }
         }
 
         if (txtHoVaTen.getText().trim().length() == 0) {
