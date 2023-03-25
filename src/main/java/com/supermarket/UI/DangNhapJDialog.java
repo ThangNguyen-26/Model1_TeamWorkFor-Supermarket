@@ -1,11 +1,21 @@
 package com.supermarket.UI;
 
+import com.supermarket.DAO.NhanVienDAO;
+import com.supermarket.DAO.KhachHangDAO;
+import com.supermarket.ENTITY.NhanVien;
+import com.supermarket.ENTITY.KhachHang;
+import com.supermarket.UTILS.MsgBox;
+
 public class DangNhapJDialog extends javax.swing.JDialog {
+
+    NhanVienDAO nvDAO = new NhanVienDAO();
+    KhachHangDAO khDAO = new KhachHangDAO();
 
     public DangNhapJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         init();
+        initCombox();
     }
 
     @SuppressWarnings("unchecked")
@@ -84,6 +94,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         LblDoiMatKhau.setText("Đổi mật khẩu");
         LblDoiMatKhau.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LblDoiMatKhau.setFocusable(false);
+        LblDoiMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                LblDoiMatKhauMousePressed(evt);
+            }
+        });
 
         pnlBtns.setLayout(new java.awt.GridLayout(1, 2, 20, 0));
 
@@ -92,6 +107,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         btnThoat.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnThoat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThoat.setFocusable(false);
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
         pnlBtns.add(btnThoat);
 
         btnDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -99,6 +119,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         btnDangNhap.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnDangNhap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDangNhap.setFocusable(false);
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangNhapActionPerformed(evt);
+            }
+        });
         pnlBtns.add(btnDangNhap);
 
         javax.swing.GroupLayout pnlInforLayout = new javax.swing.GroupLayout(pnlInfor);
@@ -183,13 +208,29 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         new DangKyJDialog(null, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_lblDangKyMousePressed
 
+    private void LblDoiMatKhauMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblDoiMatKhauMousePressed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new DoiMatKhauJDialog(null, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_LblDoiMatKhauMousePressed
+
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+        // TODO add your handling code here:
+        DangNhap();
+    }//GEN-LAST:event_btnDangNhapActionPerformed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnThoatActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Eclipse".equals(info.getName())) {
+                if ("Window".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -239,7 +280,58 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     private void init() {
         this.setLocationRelativeTo(null);
     }
-    
-    //ass
-    
+
+    private void initCombox() {
+        cbbVaiTro.removeAllItems();
+        String[] vaiTro = {"NhanVien", "Khách Hàng"};
+        for (String vaitro : vaiTro) {
+            cbbVaiTro.addItem(vaitro);
+        }
+    }
+
+    private void DangNhap() {
+        if (cbbVaiTro.getSelectedIndex() == 0) {
+            DangNhapNhanVien();
+        } else {
+            DangNhapKhachHang();
+        }
+    }
+
+    private void DangNhapNhanVien() {
+        String maNV = txtTenDangNhap.getText();
+        String passWord = new String(txtMatKhau.getPassword());
+
+        NhanVien nv = nvDAO.selectById(maNV);
+        if (nv == null) {
+            MsgBox.alert(this, "Sai tên đăng nhập!");
+        } else if (!passWord.equals(nv.getMatKhau())) {
+            MsgBox.alert(this, "Sai mật khẩu!");
+        } else {
+            if (nv.isVaiTro() == false) {
+                this.setVisible(false);
+                NhanVienBanHang b = new NhanVienBanHang();
+                b.setVisible(true);
+            } else {
+                this.setVisible(false);
+                MainFrames a = new MainFrames();
+                a.setVisible(true);
+            }
+        }
+    }
+
+    private void DangNhapKhachHang() {
+        String maKH = txtTenDangNhap.getText();
+        String passWord = new String(txtMatKhau.getPassword());
+
+        KhachHang kh = khDAO.selectById(maKH);
+        if (kh == null) {
+            MsgBox.alert(this, "Sai tên đăng nhập!");
+        } else if (!passWord.equals(kh.getMatKhau())) {
+            MsgBox.alert(this, "Sai mật khẩu!");
+        } else {
+            this.setVisible(false);
+            KhachHangFrame a = new KhachHangFrame();
+            a.setVisible(true);
+        }
+    }
 }
