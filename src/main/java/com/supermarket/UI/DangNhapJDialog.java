@@ -74,6 +74,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         lblDangKy.setText("Đăng ký");
         lblDangKy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblDangKy.setFocusable(false);
+        lblDangKy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                lblDangKyMousePressed(evt);
+            }
+        });
 
         LblDoiMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LblDoiMatKhau.setText("Đổi mật khẩu");
@@ -172,6 +177,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblDangKyMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDangKyMousePressed
+        this.setVisible(false);
+        new DangKyJDialog(null, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_lblDangKyMousePressed
 
     /**
      * @param args the command line arguments

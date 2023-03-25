@@ -214,7 +214,7 @@ public class DangKyJDialog extends javax.swing.JDialog {
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         this.setVisible(false);
-        new DangNhapJDialog(null, true).setVisible(true);
+        new DangNhapJDialog(null, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
@@ -222,7 +222,6 @@ public class DangKyJDialog extends javax.swing.JDialog {
         if (check == true) {
             Date birthDay = XDate.toDate(txtNgaySinh.getText(), "dd/mm/yyyy");
             if (birthDay != null) {
-                //MsgBox.alert(null, now().toString());
                 KhachHang kh = new KhachHang();
                 kh.setMaKH(txtTenDangNhap.getText());
                 kh.setTenKH(txtHoVaTen.getText());
@@ -236,6 +235,8 @@ public class DangKyJDialog extends javax.swing.JDialog {
                 kh.setNgayDangKy(now());
                 dao.insert(kh);
                 MsgBox.alert(null, "tạo tài khoản thành công");
+                this.setVisible(false);
+                new DangNhapJDialog(null, rootPaneCheckingEnabled).setVisible(true);
             }
         }
 
