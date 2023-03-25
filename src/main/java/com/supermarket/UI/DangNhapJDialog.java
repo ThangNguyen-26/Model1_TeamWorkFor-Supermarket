@@ -1,11 +1,18 @@
 package com.supermarket.UI;
 
+import com.supermarket.DAO.NhanVienDAO;
+import com.supermarket.ENTITY.NhanVien;
+import com.supermarket.UTILS.MsgBox;
+
 public class DangNhapJDialog extends javax.swing.JDialog {
+
+    NhanVienDAO nvDAO = new NhanVienDAO();
 
     public DangNhapJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         init();
+        initCombox();
     }
 
     @SuppressWarnings("unchecked")
@@ -84,6 +91,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         LblDoiMatKhau.setText("Đổi mật khẩu");
         LblDoiMatKhau.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LblDoiMatKhau.setFocusable(false);
+        LblDoiMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                LblDoiMatKhauMousePressed(evt);
+            }
+        });
 
         pnlBtns.setLayout(new java.awt.GridLayout(1, 2, 20, 0));
 
@@ -99,6 +111,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         btnDangNhap.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnDangNhap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDangNhap.setFocusable(false);
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangNhapActionPerformed(evt);
+            }
+        });
         pnlBtns.add(btnDangNhap);
 
         javax.swing.GroupLayout pnlInforLayout = new javax.swing.GroupLayout(pnlInfor);
@@ -183,6 +200,17 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         new DangKyJDialog(null, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_lblDangKyMousePressed
 
+    private void LblDoiMatKhauMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblDoiMatKhauMousePressed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new DoiMatKhauJDialog(null, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_LblDoiMatKhauMousePressed
+
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+        // TODO add your handling code here:
+        DangNhap();
+    }//GEN-LAST:event_btnDangNhapActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -238,5 +266,47 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
     private void init() {
         this.setLocationRelativeTo(null);
+    }
+
+    private void initCombox() {
+        cbbVaiTro.removeAllItems();
+        String[] vaiTro = {"NhanVien", "Khách Hàng"};
+        for (String vaitro : vaiTro) {
+            cbbVaiTro.addItem(vaitro);
+        }
+    }
+
+    private void DangNhap() {
+        if (cbbVaiTro.getSelectedIndex() == 0) {
+            DangNhapNhanVien();
+        } else {
+            DangNhapKhachHang();
+        }
+    }
+
+    private void DangNhapNhanVien() {
+        String maNV = txtTenDangNhap.getText();
+        String passWord = new String(txtMatKhau.getPassword());
+
+        NhanVien nv = nvDAO.selectById(maNV);
+        System.out.println(nv.isVaiTro());
+        if (nv == null) {
+            MsgBox.alert(this, "Sai tên đăng nhập!");
+        } else if (!passWord.equals(nv.getMatKhau())) {
+            MsgBox.alert(this, "Sai mật khẩu!");
+        } else {
+            if (nv.isVaiTro() == false) {
+                //this.setVisible(false);
+                System.out.println("NhanVien");
+            }else{
+                this.setVisible(false);
+                //this.setVisible(false);
+                System.out.println("QuanLy");
+            }
+        }
+    }
+
+    private void DangNhapKhachHang() {
+        System.out.println("a");
     }
 }
