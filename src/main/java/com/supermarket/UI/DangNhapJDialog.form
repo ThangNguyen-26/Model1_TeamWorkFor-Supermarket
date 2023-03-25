@@ -261,9 +261,6 @@
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="LblDoiMatKhauMousePressed"/>
-          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="pnlBtns">
 
@@ -306,9 +303,6 @@
                 </Property>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDangNhapActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
