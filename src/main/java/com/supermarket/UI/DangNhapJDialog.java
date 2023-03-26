@@ -4,13 +4,17 @@ import com.supermarket.DAO.NhanVienDAO;
 import com.supermarket.DAO.KhachHangDAO;
 import com.supermarket.ENTITY.NhanVien;
 import com.supermarket.ENTITY.KhachHang;
+import com.supermarket.ENTITY.NhoMK;
 import com.supermarket.UTILS.MsgBox;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DangNhapJDialog extends javax.swing.JDialog {
 
     NhanVienDAO nvDAO = new NhanVienDAO();
     KhachHangDAO khDAO = new KhachHangDAO();
-
+    
     public DangNhapJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -65,12 +69,28 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         txtTenDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtTenDangNhap.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTenDangNhap.setPreferredSize(new java.awt.Dimension(70, 32));
+        txtTenDangNhap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTenDangNhapMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtTenDangNhapMousePressed(evt);
+            }
+        });
 
         lblTenDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTenDangNhap.setText("Tên đăng nhập");
 
         txtMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtMatKhau.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtMatKhauMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtMatKhauMousePressed(evt);
+            }
+        });
 
         lblMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblMatKhau.setText("Mật khẩu");
@@ -209,20 +229,39 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_lblDangKyMousePressed
 
     private void LblDoiMatKhauMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblDoiMatKhauMousePressed
-        // TODO add your handling code here:
         this.setVisible(false);
         new DoiMatKhauJDialog(null, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_LblDoiMatKhauMousePressed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        // TODO add your handling code here:
-        DangNhap();
+        if (check()) {
+            DangNhap();
+        }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void txtTenDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTenDangNhapMouseClicked
+        
+    }//GEN-LAST:event_txtTenDangNhapMouseClicked
+    
+    private void txtMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMatKhauMouseClicked
+        
+    }//GEN-LAST:event_txtMatKhauMouseClicked
+
+    private void txtTenDangNhapMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTenDangNhapMousePressed
+        txtTenDangNhap.setBackground(Color.white);
+        txtTenDangNhap.setFocusable(true);
+        txtTenDangNhap.requestFocus();
+    }//GEN-LAST:event_txtTenDangNhapMousePressed
+
+    private void txtMatKhauMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMatKhauMousePressed
+        txtMatKhau.setBackground(Color.white);
+        txtMatKhau.setFocusable(true);
+        txtMatKhau.requestFocus();
+    }//GEN-LAST:event_txtMatKhauMousePressed
 
     /**
      * @param args the command line arguments
@@ -230,7 +269,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Window".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -284,13 +323,14 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
     private void initCombox() {
         cbbVaiTro.removeAllItems();
-        String[] vaiTro = {"NhanVien", "Khách Hàng"};
+        String[] vaiTro = {"Nhân Viên", "Khách Hàng"};
         for (String vaitro : vaiTro) {
             cbbVaiTro.addItem(vaitro);
         }
     }
 
     private void DangNhap() {
+        System.out.println(chkNhoMatKhau.isSelected());
         if (cbbVaiTro.getSelectedIndex() == 0) {
             DangNhapNhanVien();
         } else {
@@ -326,13 +366,41 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
         KhachHang kh = khDAO.selectById(maKH);
         if (kh == null) {
-            MsgBox.alert(this, "Sai tên đăng nhập!");
+            MsgBox.alert(this, "Sai tên đăng nhập !");
         } else if (!passWord.equals(kh.getMatKhau())) {
-            MsgBox.alert(this, "Sai mật khẩu!");
+            MsgBox.alert(this, "Sai mật khẩu !");
         } else {
             this.setVisible(false);
             KhachHangFrame a = new KhachHangFrame();
             a.setVisible(true);
         }
     }
+    
+    private boolean check(){
+        if (txtTenDangNhap.getText().length()==0) {
+            MsgBox.alert(this, "Vui lòng nhập tên đăng nhập !");
+            txtTenDangNhap.setBackground(Color.yellow);
+            txtTenDangNhap.setFocusable(false);
+            txtMatKhau.setFocusable(false);
+            return false;
+        }
+        if (txtMatKhau.getText().length()==0) {
+            MsgBox.alert(this, "Vui lòng nhập mật khẩu !");
+            txtMatKhau.setBackground(Color.yellow);
+            txtTenDangNhap.setFocusable(false);
+            return false;
+        }
+        return true;
+    }
+    
+    private void NhoMatKhau(){
+        List<NhoMK> nhoMK = new ArrayList();
+        if (chkNhoMatKhau.isSelected()) {
+            
+        }
+        
+    }
+    
+    
+    
 }

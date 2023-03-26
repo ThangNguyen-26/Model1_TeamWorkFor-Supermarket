@@ -1,7 +1,7 @@
 package com.supermarket.UI;
 
 public class KhachHangFrame extends javax.swing.JFrame {
-
+    
     public KhachHangFrame() {
         initComponents();
         init();

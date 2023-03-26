@@ -194,6 +194,10 @@
               <Dimension value="[70, 32]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtTenDangNhapMouseClicked"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtTenDangNhapMousePressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTenDangNhap">
           <Properties>
@@ -214,6 +218,10 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtMatKhauMouseClicked"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtMatKhauMousePressed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblMatKhau">
           <Properties>
