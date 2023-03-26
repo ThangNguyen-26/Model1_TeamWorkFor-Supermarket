@@ -1,20 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.supermarket.UI;
 
-/**
- *
- * @author TranVanNhan
- */
+import com.supermarket.UTILS.JdbcHelper;
+import com.supermarket.UTILS.MsgBox;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 public class DonHangCTKH extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HoaDonChiTietFinal
-     */
+    private String maDh;
+    
     public DonHangCTKH() {
         initComponents();
+    }
+    
+    public DonHangCTKH(String maDh) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.maDh=maDh;
+        MsgBox.alert(null, this.maDh);
     }
 
     /**
@@ -40,7 +44,7 @@ public class DonHangCTKH extends javax.swing.JFrame {
         lblHDChiTiet2 = new javax.swing.JLabel();
         lblHDChiTiet1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
 
         pnlMain.setPreferredSize(new java.awt.Dimension(960, 570));
 
@@ -167,7 +171,7 @@ public class DonHangCTKH extends javax.swing.JFrame {
                     .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDHChiTiet))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -268,6 +272,7 @@ public class DonHangCTKH extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new DonHangCTKH().setVisible(true);
             }
@@ -289,4 +294,24 @@ public class DonHangCTKH extends javax.swing.JFrame {
     private javax.swing.JPanel pnlMain;
     private javax.swing.JTable tblDHChiTiet;
     // End of variables declaration//GEN-END:variables
+    
+    private void loadToTable(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new Object[]{"Tên sản phẩm", "Mã sản phẩm", "Số lượng", "Thành tiền"});
+        double tongTien = 0;
+        try{
+            ResultSet rs = JdbcHelper.query("select tensp, sp.masp, ctdh.soluong, thanhtien from CHITIETDONHANG ctdh inner join SANPHAM sp on ctdh.MASP = sp.MASP where ctdh.MADH like ? ", maDh);
+            while(rs.next()){
+                model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getInt(3),rs.getFloat(4)});
+                tongTien += rs.getFloat(4);
+            }
+            rs.getStatement().getConnection().close();
+            lblHDChiTiet2.setText(Double.toString(tongTien));
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        
+        tblDHChiTiet.setModel(model);
+    }
+
 }

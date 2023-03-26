@@ -1,9 +1,31 @@
 package com.supermarket.UI;
 
+import com.supermarket.ENTITY.DonHang;
+import com.supermarket.UTILS.JdbcHelper;
+import com.supermarket.UTILS.MsgBox;
+import com.supermarket.UTILS.XDate;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 public class DonHangDaDatKH extends javax.swing.JFrame {
+
+    private String maKh;
+    private List<DonHang> listDH = new ArrayList<>();
+    private int rowNumber;
 
     public DonHangDaDatKH() {
         initComponents();
+        init();
+    }
+
+    public DonHangDaDatKH(String maKh) {
+        initComponents();
+        this.maKh = maKh;
         init();
     }
 
@@ -27,6 +49,7 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Danh sách đơn hàng đã đặt");
+        setAlwaysOnTop(true);
         setResizable(false);
         setSize(new java.awt.Dimension(1000, 600));
 
@@ -118,6 +141,11 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblDSDHDD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblDSDHDDMousePressed(evt);
             }
         });
         jScrollPane1.setViewportView(tblDSDHDD);
@@ -240,16 +268,21 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void btnChiTietDHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiTietDHActionPerformed
-        // TODO add your handling code here:
+        new DonHangCTKH(listDH.get(rowNumber).getMaDH()).setVisible(true);
     }//GEN-LAST:event_btnChiTietDHActionPerformed
 
     private void btnMHChinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMHChinhActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new KhachHangFrame(maKh).setVisible(true);
     }//GEN-LAST:event_btnMHChinhActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void tblDSDHDDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSDHDDMousePressed
+        rowNumber = tblDSDHDD.getSelectedRow();
+    }//GEN-LAST:event_tblDSDHDDMousePressed
 
     public static void main(String args[]) {
         try {
@@ -293,5 +326,29 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
 
     private void init() {
         this.setLocationRelativeTo(null);
+        loadToTable();
+    }
+
+    private void loadToTable() {
+        DefaultTableModel model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        model.setColumnIdentifiers(new Object[]{"Mã đơn hàng", "Ngày đặt hàng"});
+        try {
+            ResultSet rs = JdbcHelper.query("select * from DONHANG WHERE MAKH LIKE ?", maKh);
+            while (rs.next()) {
+                DonHang dh = new DonHang(rs.getString(2), rs.getDate(3), maKh);
+                listDH.add(dh);
+                model.addRow(new Object[]{dh.getMaDH(), XDate.toString(dh.getNgayDatHang(), "dd/MM/yyyy")});
+            }
+            rs.getStatement().getConnection().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DonHangDaDatKH.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+        tblDSDHDD.setModel(model);
     }
 }

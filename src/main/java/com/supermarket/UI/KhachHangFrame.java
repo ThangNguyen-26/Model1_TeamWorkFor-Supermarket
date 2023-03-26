@@ -1,10 +1,20 @@
 package com.supermarket.UI;
 
+import com.supermarket.UTILS.MsgBox;
+
 public class KhachHangFrame extends javax.swing.JFrame {
+    
+    private String maKh;
     
     public KhachHangFrame() {
         initComponents();
         init();
+    }
+    
+    public KhachHangFrame(String maKh) {
+        initComponents();
+        init();
+        this.maKh=maKh;
     }
 
     @SuppressWarnings("unchecked")
@@ -99,7 +109,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         });
 
         btnThem.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnThem.setText("Thêm vào hoá đơn");
+        btnThem.setText("Thêm vào đơn hàng");
         btnThem.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnThem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThem.setFocusable(false);
@@ -125,6 +135,11 @@ public class KhachHangFrame extends javax.swing.JFrame {
         btnDSDatHang.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnDSDatHang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDSDatHang.setFocusable(false);
+        btnDSDatHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDSDatHangActionPerformed(evt);
+            }
+        });
 
         btnDangXuat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnDangXuat.setText("Đăng xuất");
@@ -132,7 +147,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         btnDangXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDangXuat.setFocusable(false);
 
-        pnlHoaDon.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Hóa đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        pnlHoaDon.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Đơn hàng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         pnlHoaDon.setToolTipText("");
 
         javax.swing.GroupLayout pnlHoaDonLayout = new javax.swing.GroupLayout(pnlHoaDon);
@@ -171,7 +186,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblDSSP);
 
         lblTongHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        lblTongHoaDon.setText("Tổng hoá đơn");
+        lblTongHoaDon.setText("Tổng đơn hàng");
 
         lblTong.setFont(new java.awt.Font("Segoe UI", 1, 35)); // NOI18N
         lblTong.setForeground(new java.awt.Color(255, 0, 51));
@@ -295,7 +310,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
                         .addGap(1, 1, 1)
                         .addComponent(pnlHoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlMainLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                         .addComponent(lblTongHoaDon)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblTong)
@@ -355,6 +370,11 @@ public class KhachHangFrame extends javax.swing.JFrame {
     private void btnInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnInActionPerformed
+
+    private void btnDSDatHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDSDatHangActionPerformed
+        this.setVisible(false);
+        new DonHangDaDatKH(maKh).setVisible(true);
+    }//GEN-LAST:event_btnDSDatHangActionPerformed
 
     public static void main(String args[]) {
         try {

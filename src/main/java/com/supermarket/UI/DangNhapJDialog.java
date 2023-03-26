@@ -381,7 +381,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         } else {
             nhoMatKhau();
             this.setVisible(false);
-            KhachHangFrame a = new KhachHangFrame();
+            KhachHangFrame a = new KhachHangFrame(kh.getMaKH());
             a.setVisible(true);
         }
     }
