@@ -4,22 +4,26 @@ import com.supermarket.DAO.NhanVienDAO;
 import com.supermarket.DAO.KhachHangDAO;
 import com.supermarket.ENTITY.NhanVien;
 import com.supermarket.ENTITY.KhachHang;
-import com.supermarket.ENTITY.NhoMK;
 import com.supermarket.UTILS.MsgBox;
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class DangNhapJDialog extends javax.swing.JDialog {
 
     NhanVienDAO nvDAO = new NhanVienDAO();
     KhachHangDAO khDAO = new KhachHangDAO();
-    
+    File file = new File("src/main/java/com/supermarket/UTILS/save.txt");
+
     public DangNhapJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        init();
         initCombox();
+        init();
     }
 
     @SuppressWarnings("unchecked")
@@ -30,7 +34,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         lblLogo = new javax.swing.JLabel();
         pnlInfor = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
-        cbbVaiTro = new javax.swing.JComboBox<>();
+        cboVaiTro = new javax.swing.JComboBox<>();
         lblVaiTro = new javax.swing.JLabel();
         txtTenDangNhap = new javax.swing.JTextField();
         lblTenDangNhap = new javax.swing.JLabel();
@@ -56,12 +60,12 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("ĐĂNG NHẬP");
 
-        cbbVaiTro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        cbbVaiTro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbbVaiTro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cbbVaiTro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cbbVaiTro.setFocusable(false);
-        cbbVaiTro.setPreferredSize(new java.awt.Dimension(72, 32));
+        cboVaiTro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cboVaiTro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboVaiTro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cboVaiTro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cboVaiTro.setFocusable(false);
+        cboVaiTro.setPreferredSize(new java.awt.Dimension(72, 32));
 
         lblVaiTro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblVaiTro.setText("Vai trò");
@@ -70,9 +74,6 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         txtTenDangNhap.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTenDangNhap.setPreferredSize(new java.awt.Dimension(70, 32));
         txtTenDangNhap.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtTenDangNhapMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtTenDangNhapMousePressed(evt);
             }
@@ -84,9 +85,6 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         txtMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtMatKhau.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtMatKhauMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtMatKhauMousePressed(evt);
             }
@@ -174,7 +172,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                         .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtMatKhau)
                             .addComponent(txtTenDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbbVaiTro, 0, 245, Short.MAX_VALUE))))
+                            .addComponent(cboVaiTro, 0, 245, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         pnlInforLayout.setVerticalGroup(
@@ -184,7 +182,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                 .addComponent(lblTitle)
                 .addGap(18, 18, 18)
                 .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbbVaiTro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboVaiTro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblVaiTro))
                 .addGap(18, 18, 18)
                 .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -243,14 +241,6 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         System.exit(0);
     }//GEN-LAST:event_btnThoatActionPerformed
 
-    private void txtTenDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTenDangNhapMouseClicked
-        
-    }//GEN-LAST:event_txtTenDangNhapMouseClicked
-    
-    private void txtMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMatKhauMouseClicked
-        
-    }//GEN-LAST:event_txtMatKhauMouseClicked
-
     private void txtTenDangNhapMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTenDangNhapMousePressed
         txtTenDangNhap.setBackground(Color.white);
         txtTenDangNhap.setFocusable(true);
@@ -302,7 +292,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel LblDoiMatKhau;
     private javax.swing.JButton btnDangNhap;
     private javax.swing.JButton btnThoat;
-    private javax.swing.JComboBox<String> cbbVaiTro;
+    private javax.swing.JComboBox<String> cboVaiTro;
     private javax.swing.JCheckBox chkNhoMatKhau;
     private javax.swing.JLabel lblDangKy;
     private javax.swing.JLabel lblLogo;
@@ -319,19 +309,37 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
     private void init() {
         this.setLocationRelativeTo(null);
+        
+        try {
+            if (file.exists()) {
+                Scanner scan = new Scanner(file);
+                String role = scan.nextLine();
+                if (role.equals("Nhân Viên")) {
+                    cboVaiTro.setSelectedItem("Nhân viên");
+                } else {
+                    cboVaiTro.setSelectedItem("Khách Hàng");
+                }
+                txtTenDangNhap.setText(scan.nextLine());
+                txtMatKhau.setText(scan.nextLine());
+                scan.close();
+                chkNhoMatKhau.setSelected(true);
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void initCombox() {
-        cbbVaiTro.removeAllItems();
+        cboVaiTro.removeAllItems();
         String[] vaiTro = {"Nhân Viên", "Khách Hàng"};
         for (String vaitro : vaiTro) {
-            cbbVaiTro.addItem(vaitro);
+            cboVaiTro.addItem(vaitro);
         }
     }
 
     private void DangNhap() {
         System.out.println(chkNhoMatKhau.isSelected());
-        if (cbbVaiTro.getSelectedIndex() == 0) {
+        if (cboVaiTro.getSelectedIndex() == 0) {
             DangNhapNhanVien();
         } else {
             DangNhapKhachHang();
@@ -348,6 +356,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         } else if (!passWord.equals(nv.getMatKhau())) {
             MsgBox.alert(this, "Sai mật khẩu!");
         } else {
+            nhoMatKhau();
             if (nv.isVaiTro() == false) {
                 this.setVisible(false);
                 NhanVienBanHang b = new NhanVienBanHang();
@@ -370,21 +379,22 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         } else if (!passWord.equals(kh.getMatKhau())) {
             MsgBox.alert(this, "Sai mật khẩu !");
         } else {
+            nhoMatKhau();
             this.setVisible(false);
             KhachHangFrame a = new KhachHangFrame();
             a.setVisible(true);
         }
     }
-    
-    private boolean check(){
-        if (txtTenDangNhap.getText().length()==0) {
+
+    private boolean check() {
+        if (txtTenDangNhap.getText().length() == 0) {
             MsgBox.alert(this, "Vui lòng nhập tên đăng nhập !");
             txtTenDangNhap.setBackground(Color.yellow);
             txtTenDangNhap.setFocusable(false);
             txtMatKhau.setFocusable(false);
             return false;
         }
-        if (txtMatKhau.getText().length()==0) {
+        if (txtMatKhau.getText().length() == 0) {
             MsgBox.alert(this, "Vui lòng nhập mật khẩu !");
             txtMatKhau.setBackground(Color.yellow);
             txtTenDangNhap.setFocusable(false);
@@ -392,15 +402,30 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         }
         return true;
     }
-    
-    private void NhoMatKhau(){
-        List<NhoMK> nhoMK = new ArrayList();
+
+    private void nhoMatKhau() {
         if (chkNhoMatKhau.isSelected()) {
-            
+            try {
+                file.delete();
+                file.createNewFile();
+                BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsolutePath()));
+                if(cboVaiTro.getSelectedItem().equals("Nhân Viên")){
+                    bw.write("Nhân Viên");
+                    bw.newLine();
+                }else{
+                    bw.write("Khách Hàng");
+                    bw.newLine();
+                }
+                bw.write(txtTenDangNhap.getText());
+                bw.newLine();
+                bw.write(txtMatKhau.getPassword());
+                bw.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            file.delete();
         }
-        
     }
-    
-    
-    
+
 }
