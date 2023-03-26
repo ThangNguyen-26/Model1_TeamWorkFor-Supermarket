@@ -1,10 +1,18 @@
 package com.supermarket.UI;
 
+import com.supermarket.DAO.KhachHangDAO;
+import com.supermarket.ENTITY.CLockThread;
+import com.supermarket.ENTITY.KhachHang;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 public class MainFrames extends javax.swing.JFrame {
 
     public MainFrames() {
         initComponents();
         setLocationRelativeTo(null);
+        loadToTableKH();
     }
 
     @SuppressWarnings("unchecked")
@@ -1095,11 +1103,6 @@ public class MainFrames extends javax.swing.JFrame {
         rdoNamKH.setText("Nam");
         rdoNamKH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rdoNamKH.setFocusable(false);
-        rdoNamKH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoNamKHActionPerformed(evt);
-            }
-        });
 
         bgrGioiTinhKH.add(rdoNuKH);
         rdoNuKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1728,10 +1731,6 @@ public class MainFrames extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rdoNamNVActionPerformed
 
-    private void rdoNamKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNamKHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rdoNamKHActionPerformed
-
     private void btnFirstKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstKHActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFirstKHActionPerformed
@@ -1931,4 +1930,25 @@ public class MainFrames extends javax.swing.JFrame {
     private javax.swing.JTextField txtTenSP;
     private javax.swing.JTextField txtTimSP;
     // End of variables declaration//GEN-END:variables
+
+    private void loadToTableKH(){
+        DefaultTableModel khTableModel = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        khTableModel.setColumnIdentifiers(new Object[]{"Mã khách hàng", "Mật khẩu", "Tên khách hàng", "Giới tính", "Ngày đăng ký", "Ngày sinh"});
+        KhachHangDAO dao = new KhachHangDAO();
+        List<KhachHang> khList = new ArrayList<>();
+        khList = dao.selectAll();
+        for(KhachHang kh : khList){
+            if(kh.isGioiTinh()==true){
+                khTableModel.addRow(new Object[]{kh.getMaKH(),kh.getMatKhau(),kh.getTenKH(),"Nam",kh.getNgayDangKy(),kh.getNgaySinh()});
+            }else{
+                khTableModel.addRow(new Object[]{kh.getMaKH(),kh.getMatKhau(),kh.getTenKH(),"Nữ",kh.getNgayDangKy(),kh.getNgaySinh()});
+            }
+        }
+        tblKH.setModel(khTableModel);
+    }
 }
