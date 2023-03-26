@@ -3,11 +3,14 @@ package com.supermarket.UI;
 import com.supermarket.DAO.KhachHangDAO;
 import com.supermarket.ENTITY.CLockThread;
 import com.supermarket.ENTITY.KhachHang;
+import com.supermarket.UTILS.XDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class MainFrames extends javax.swing.JFrame {
+
+    List<KhachHang> khList = new ArrayList<>();
 
     public MainFrames() {
         initComponents();
@@ -117,10 +120,10 @@ public class MainFrames extends javax.swing.JFrame {
         lblTenKH = new javax.swing.JLabel();
         txtTenKH = new javax.swing.JTextField();
         lblMatKhau1 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtMatKhauKH = new javax.swing.JPasswordField();
         pnlEastKH = new javax.swing.JPanel();
         lblNgaySinh1 = new javax.swing.JLabel();
-        txtNgaySinh1 = new javax.swing.JTextField();
+        txtNgaySinhKH = new javax.swing.JTextField();
         lblGioiTinhKH = new javax.swing.JLabel();
         rdoNamKH = new javax.swing.JRadioButton();
         rdoNuKH = new javax.swing.JRadioButton();
@@ -1052,7 +1055,7 @@ public class MainFrames extends javax.swing.JFrame {
         lblMatKhau1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblMatKhau1.setText("Mật khẩu");
 
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtMatKhauKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout pnlWestKHLayout = new javax.swing.GroupLayout(pnlWestKH);
         pnlWestKH.setLayout(pnlWestKHLayout);
@@ -1070,7 +1073,7 @@ public class MainFrames extends javax.swing.JFrame {
                     .addGroup(pnlWestKHLayout.createSequentialGroup()
                         .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(txtMatKhauKH, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         pnlWestKHLayout.setVerticalGroup(
@@ -1085,7 +1088,7 @@ public class MainFrames extends javax.swing.JFrame {
                     .addComponent(txtTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlWestKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMatKhauKH, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMatKhau1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1093,7 +1096,7 @@ public class MainFrames extends javax.swing.JFrame {
         lblNgaySinh1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNgaySinh1.setText("Ngày sinh");
 
-        txtNgaySinh1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtNgaySinhKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         lblGioiTinhKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblGioiTinhKH.setText("Giới tính");
@@ -1113,6 +1116,7 @@ public class MainFrames extends javax.swing.JFrame {
         lblNgayDK.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNgayDK.setText("Ngày đăng kí");
 
+        txtNgayDK.setEditable(false);
         txtNgayDK.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout pnlEastKHLayout = new javax.swing.GroupLayout(pnlEastKH);
@@ -1131,7 +1135,7 @@ public class MainFrames extends javax.swing.JFrame {
                         .addComponent(rdoNamKH)
                         .addGap(18, 18, 18)
                         .addComponent(rdoNuKH))
-                    .addComponent(txtNgaySinh1, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                    .addComponent(txtNgaySinhKH, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
                     .addComponent(txtNgayDK))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1140,7 +1144,7 @@ public class MainFrames extends javax.swing.JFrame {
             .addGroup(pnlEastKHLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlEastKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNgaySinh1, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(txtNgaySinhKH, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                     .addComponent(lblNgaySinh1))
                 .addGap(18, 18, 18)
                 .addGroup(pnlEastKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1250,6 +1254,11 @@ public class MainFrames extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblKH.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblKHMousePressed(evt);
             }
         });
         jScrollPane7.setViewportView(tblKH);
@@ -1751,6 +1760,21 @@ public class MainFrames extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPrevTKActionPerformed
 
+    //Khách hàng
+    private void tblKHMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKHMousePressed
+        int row = tblKH.getSelectedRow();
+        txtMaKH.setText(khList.get(row).getMaKH());
+        txtNgaySinhKH.setText(XDate.toString(khList.get(row).getNgaySinh(), "dd/MM/yyyy"));
+        txtTenKH.setText(khList.get(row).getTenKH());
+        txtMatKhauKH.setText(khList.get(row).getMatKhau());
+        txtNgayDK.setText(XDate.toString(khList.get(row).getNgayDangKy(), "dd/MM/yyyy"));
+        if (khList.get(row).isGioiTinh() == true) {
+            rdoNamKH.setSelected(true);
+        } else {
+            rdoNuKH.setSelected(true);
+        }
+    }//GEN-LAST:event_tblKHMousePressed
+
     public static void main(String args[]) {
 
         try {
@@ -1827,7 +1851,6 @@ public class MainFrames extends javax.swing.JFrame {
     private javax.swing.JButton btnXoaNVBH;
     private javax.swing.JButton btnXoaSP;
     private javax.swing.JComboBox<String> cbbChungLoai;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1920,10 +1943,11 @@ public class MainFrames extends javax.swing.JFrame {
     private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtMaSP;
     private javax.swing.JPasswordField txtMatKhau;
+    private javax.swing.JPasswordField txtMatKhauKH;
     private javax.swing.JTextField txtMieuTa;
     private javax.swing.JTextField txtNgayDK;
     private javax.swing.JTextField txtNgaySinh;
-    private javax.swing.JTextField txtNgaySinh1;
+    private javax.swing.JTextField txtNgaySinhKH;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTenCL;
     private javax.swing.JTextField txtTenKH;
@@ -1931,22 +1955,22 @@ public class MainFrames extends javax.swing.JFrame {
     private javax.swing.JTextField txtTimSP;
     // End of variables declaration//GEN-END:variables
 
-    private void loadToTableKH(){
-        DefaultTableModel khTableModel = new DefaultTableModel(){
+    private void loadToTableKH() {
+        DefaultTableModel khTableModel = new DefaultTableModel() {
             @Override
-            public boolean isCellEditable(int row, int column){
+            public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
         khTableModel.setColumnIdentifiers(new Object[]{"Mã khách hàng", "Mật khẩu", "Tên khách hàng", "Giới tính", "Ngày đăng ký", "Ngày sinh"});
         KhachHangDAO dao = new KhachHangDAO();
-        List<KhachHang> khList = new ArrayList<>();
         khList = dao.selectAll();
-        for(KhachHang kh : khList){
-            if(kh.isGioiTinh()==true){
-                khTableModel.addRow(new Object[]{kh.getMaKH(),kh.getMatKhau(),kh.getTenKH(),"Nam",kh.getNgayDangKy(),kh.getNgaySinh()});
-            }else{
-                khTableModel.addRow(new Object[]{kh.getMaKH(),kh.getMatKhau(),kh.getTenKH(),"Nữ",kh.getNgayDangKy(),kh.getNgaySinh()});
+        for (KhachHang kh : khList) {
+            if (kh.isGioiTinh() == true) {
+                khTableModel.addRow(new Object[]{kh.getMaKH(), kh.getMatKhau(), kh.getTenKH(), "Nam", XDate.toString(kh.getNgayDangKy(), "dd/MM/yyyy"), XDate.toString(kh.getNgaySinh(), "dd/MM/yyyy")});
+            } else {
+                khTableModel.addRow(new Object[]{kh.getMaKH(), kh.getMatKhau(), kh.getTenKH(), "Nữ", XDate.toString(kh.getNgayDangKy(), "dd/MM/yyyy"), XDate.toString(kh.getNgaySinh(), "dd/MM/yyyy")});
+
             }
         }
         tblKH.setModel(khTableModel);

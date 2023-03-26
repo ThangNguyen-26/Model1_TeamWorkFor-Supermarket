@@ -1679,7 +1679,7 @@
                                       <Component id="txtMaKH" min="-2" pref="330" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="jPasswordField1" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtMatKhauKH" alignment="1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1699,7 +1699,7 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jPasswordField1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="txtMatKhauKH" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                   <Component id="lblMatKhau1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
@@ -1746,7 +1746,7 @@
                         <Property name="text" type="java.lang.String" value="M&#x1ead;t kh&#x1ea9;u"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+                    <Component class="javax.swing.JPasswordField" name="txtMatKhauKH">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="14" style="1"/>
@@ -1774,7 +1774,7 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="rdoNuKH" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="txtNgaySinh1" alignment="0" pref="320" max="32767" attributes="0"/>
+                                  <Component id="txtNgaySinhKH" alignment="0" pref="320" max="32767" attributes="0"/>
                                   <Component id="txtNgayDK" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
@@ -1786,7 +1786,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtNgaySinh1" alignment="3" pref="43" max="32767" attributes="0"/>
+                                  <Component id="txtNgaySinhKH" alignment="3" pref="43" max="32767" attributes="0"/>
                                   <Component id="lblNgaySinh1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1814,7 +1814,7 @@
                         <Property name="text" type="java.lang.String" value="Ng&#xe0;y sinh"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtNgaySinh1">
+                    <Component class="javax.swing.JTextField" name="txtNgaySinhKH">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="14" style="1"/>
@@ -1869,6 +1869,7 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtNgayDK">
                       <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="14" style="1"/>
                         </Property>
@@ -2080,6 +2081,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblKHMousePressed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

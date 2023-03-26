@@ -218,25 +218,31 @@ public class DangKyJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
-        boolean check = checkNull();
+        boolean check = check();
         if (check == true) {
-            Date birthDay = XDate.toDate(txtNgaySinh.getText(), "dd/mm/yyyy");
+            Date birthDay = XDate.toDate(txtNgaySinh.getText(), "dd/MM/yyyy");
             if (birthDay != null) {
-                KhachHang kh = new KhachHang();
-                kh.setMaKH(txtTenDangNhap.getText());
-                kh.setTenKH(txtHoVaTen.getText());
-                kh.setMatKhau(txtMatKhau.getText());
-                if (rdoNam.isSelected() == true) {
-                    kh.setGioiTinh(true);
-                } else {
-                    kh.setGioiTinh(false);
+                int age = XDate.now().getYear() - birthDay.getYear();
+                if (age >= 18) {
+                    KhachHang kh = new KhachHang();
+                    kh.setMaKH(txtTenDangNhap.getText());
+                    kh.setTenKH(txtHoVaTen.getText());
+                    kh.setMatKhau(txtMatKhau.getText());
+                    if (rdoNam.isSelected() == true) {
+                        kh.setGioiTinh(true);
+                    } else {
+                        kh.setGioiTinh(false);
+                    }
+                    kh.setNgaySinh(birthDay);
+                    kh.setNgayDangKy(now());
+                    dao.insert(kh);
+                    MsgBox.alert(null, "tạo tài khoản thành công");
+                    this.setVisible(false);
+                    new DangNhapJDialog(null, rootPaneCheckingEnabled).setVisible(true);
+                }else{
+                    MsgBox.alert(null, "Bạn chưa đủ 18 tuổi để tạo tài khoản");
                 }
-                kh.setNgaySinh(birthDay);
-                kh.setNgayDangKy(now());
-                dao.insert(kh);
-                MsgBox.alert(null, "tạo tài khoản thành công");
-                this.setVisible(false);
-                new DangNhapJDialog(null, rootPaneCheckingEnabled).setVisible(true);
+
             }
         }
 
@@ -260,6 +266,7 @@ public class DangKyJDialog extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(MainFrames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 DangKyJDialog dialog = new DangKyJDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -299,7 +306,7 @@ public class DangKyJDialog extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
     }
 
-    private boolean checkNull() {
+    private boolean check() {
         boolean check = true;
 
         if (txtTenDangNhap.getText().trim().length() == 0) {
