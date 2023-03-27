@@ -27,6 +27,7 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
         initComponents();
         this.maKh = maKh;
         init();
+        this.setTitle("Đơn hàng đã đặt của khách hàng "+this.maKh);
     }
 
     @SuppressWarnings("unchecked")
@@ -49,7 +50,6 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Danh sách đơn hàng đã đặt");
-        setAlwaysOnTop(true);
         setResizable(false);
         setSize(new java.awt.Dimension(1000, 600));
 
@@ -268,7 +268,7 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void btnChiTietDHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiTietDHActionPerformed
-        new DonHangCTKH(listDH.get(rowNumber).getMaDH()).setVisible(true);
+        new DonHangCTKH(listDH.get(this.rowNumber).getMaDH()).setVisible(true);
     }//GEN-LAST:event_btnChiTietDHActionPerformed
 
     private void btnMHChinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMHChinhActionPerformed
@@ -281,7 +281,7 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void tblDSDHDDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSDHDDMousePressed
-        rowNumber = tblDSDHDD.getSelectedRow();
+        this.rowNumber = tblDSDHDD.getSelectedRow();
     }//GEN-LAST:event_tblDSDHDDMousePressed
 
     public static void main(String args[]) {

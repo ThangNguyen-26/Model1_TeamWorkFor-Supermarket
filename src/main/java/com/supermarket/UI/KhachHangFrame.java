@@ -15,6 +15,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         initComponents();
         init();
         this.maKh=maKh;
+        this.setTitle("Chào mừng khách hàng "+this.maKh);
     }
 
     @SuppressWarnings("unchecked")

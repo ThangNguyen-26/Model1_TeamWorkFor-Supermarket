@@ -12,13 +12,18 @@ public class DonHangCTKH extends javax.swing.JFrame {
     
     public DonHangCTKH() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.maDh="DH001";
+        this.setTitle("Đơn hàng chi tiết của " + this.maDh);
+        loadToTable();
     }
     
     public DonHangCTKH(String maDh) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.maDh=maDh;
-        MsgBox.alert(null, this.maDh);
+        this.setTitle("Đơn hàng chi tiết của "+this.maDh);
+        loadToTable();
     }
 
     /**
@@ -306,7 +311,7 @@ public class DonHangCTKH extends javax.swing.JFrame {
                 tongTien += rs.getFloat(4);
             }
             rs.getStatement().getConnection().close();
-            lblHDChiTiet2.setText(Double.toString(tongTien));
+            lblHDChiTiet1.setText(Double.toString(tongTien));
         }catch(SQLException ex){
             ex.printStackTrace();
         }
