@@ -7,6 +7,7 @@ package com.supermarket.DAO;
 import com.supermarket.ENTITY.SanPham;
 import com.supermarket.UTILS.JdbcHelper;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class SanPhamDAO extends HeThongDAO<SanPham, String> {
 
     @Override
     public void insert(SanPham entity) {
-        JdbcHelper.update(insert, entity.getMaSP(), entity.getTenSP(), entity.getSoLuong(), entity.getGiaThanh());
+        JdbcHelper.update(insert, entity.getMaSP(), entity.getTenSP(), entity.getSoLuong(), entity.getGiaThanh(), entity.getMaCL());
     }
 
     @Override
@@ -55,17 +56,23 @@ public class SanPhamDAO extends HeThongDAO<SanPham, String> {
     public List<SanPham> selectSql(String sql, Object... args) {
         List<SanPham> list = new ArrayList<>();
         try {
-            ResultSet rs = JdbcHelper.query(sql, args);
-            while (rs.next()) {
-                SanPham entity = new SanPham();
-                entity.setMaSP(rs.getString(1));
-                entity.setTenSP(rs.getString(2));
-                entity.setSoLuong(rs.getInt(3));
-                entity.setGiaThanh(rs.getFloat(4));
-                list.add(entity);
+            ResultSet rs = null;
+            try {
+                rs = JdbcHelper.query(sql, args);
+                while (rs.next()) {
+                    SanPham entity = new SanPham();
+                    entity.setMaSP(rs.getString(1));
+                    entity.setTenSP(rs.getString(2));
+                    entity.setSoLuong(rs.getInt(3));
+                    entity.setGiaThanh(rs.getFloat(4));
+                    entity.setMaCL(rs.getString(5));
+                    list.add(entity);
+                }
+            } finally {
+                rs.getStatement().getConnection().close();
             }
-        } catch (Exception e) {
-            e.toString();
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
         }
         return list;
     }

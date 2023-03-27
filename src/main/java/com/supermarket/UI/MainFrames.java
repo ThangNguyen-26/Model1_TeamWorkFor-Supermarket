@@ -1,20 +1,29 @@
 package com.supermarket.UI;
 
+import com.supermarket.DAO.ChungLoaiDAO;
 import com.supermarket.DAO.KhachHangDAO;
-import com.supermarket.ENTITY.CLockThread;
+import com.supermarket.DAO.SanPhamDAO;
+import com.supermarket.ENTITY.ChungLoai;
 import com.supermarket.ENTITY.KhachHang;
+import com.supermarket.ENTITY.SanPham;
+import com.supermarket.UTILS.MsgBox;
 import com.supermarket.UTILS.XDate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 public class MainFrames extends javax.swing.JFrame {
 
+    int index = 0;
     List<KhachHang> khList = new ArrayList<>();
+    SanPhamDAO spDao = new SanPhamDAO();
+    ChungLoaiDAO clDao = new ChungLoaiDAO();
 
     public MainFrames() {
         initComponents();
         setLocationRelativeTo(null);
+        loadToTableSP();
         loadToTableKH();
     }
 
@@ -34,7 +43,7 @@ public class MainFrames extends javax.swing.JFrame {
         lblSoLuong = new javax.swing.JLabel();
         txtSoLuong = new javax.swing.JTextField();
         lblChungLoai = new javax.swing.JLabel();
-        cbbChungLoai = new javax.swing.JComboBox<>();
+        cboChungLoai = new javax.swing.JComboBox<>();
         pnlEastSP = new javax.swing.JPanel();
         lblTenSP = new javax.swing.JLabel();
         txtTenSP = new javax.swing.JTextField();
@@ -202,9 +211,9 @@ public class MainFrames extends javax.swing.JFrame {
         lblChungLoai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblChungLoai.setText("Chủng loại");
 
-        cbbChungLoai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbbChungLoai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cbbChungLoai.setFocusable(false);
+        cboChungLoai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboChungLoai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cboChungLoai.setFocusable(false);
 
         javax.swing.GroupLayout pnlWestSPLayout = new javax.swing.GroupLayout(pnlWestSP);
         pnlWestSP.setLayout(pnlWestSPLayout);
@@ -222,7 +231,7 @@ public class MainFrames extends javax.swing.JFrame {
                     .addGroup(pnlWestSPLayout.createSequentialGroup()
                         .addGroup(pnlWestSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtMaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbbChungLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cboChungLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -238,7 +247,7 @@ public class MainFrames extends javax.swing.JFrame {
                     .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlWestSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbbChungLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboChungLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblChungLoai))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -306,6 +315,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnThemSP.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnThemSP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThemSP.setFocusable(false);
+        btnThemSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemSPActionPerformed(evt);
+            }
+        });
         pnlMainBtnSP.add(btnThemSP);
 
         btnSuaSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -327,6 +341,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnMoiSP.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnMoiSP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMoiSP.setFocusable(false);
+        btnMoiSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoiSPActionPerformed(evt);
+            }
+        });
         pnlMainBtnSP.add(btnMoiSP);
 
         javax.swing.GroupLayout pnlNorthSPLayout = new javax.swing.GroupLayout(pnlNorthSP);
@@ -380,6 +399,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnPrevSP.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnPrevSP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPrevSP.setFocusable(false);
+        btnPrevSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrevSPActionPerformed(evt);
+            }
+        });
         pnlNavRightSP.add(btnPrevSP);
 
         btnNextSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -387,6 +411,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnNextSP.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnNextSP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNextSP.setFocusable(false);
+        btnNextSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextSPActionPerformed(evt);
+            }
+        });
         pnlNavRightSP.add(btnNextSP);
 
         btnLastSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -394,6 +423,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnLastSP.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnLastSP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLastSP.setFocusable(false);
+        btnLastSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLastSPActionPerformed(evt);
+            }
+        });
         pnlNavRightSP.add(btnLastSP);
 
         tblSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -427,6 +461,11 @@ public class MainFrames extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblSP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblSPMousePressed(evt);
             }
         });
         jScrollPane5.setViewportView(tblSP);
@@ -1729,7 +1768,8 @@ public class MainFrames extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFirstSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstSPActionPerformed
-        // TODO add your handling code here:
+        index = 0;
+        edit();
     }//GEN-LAST:event_btnFirstSPActionPerformed
 
     private void btnFirstNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstNVActionPerformed
@@ -1774,6 +1814,51 @@ public class MainFrames extends javax.swing.JFrame {
             rdoNuKH.setSelected(true);
         }
     }//GEN-LAST:event_tblKHMousePressed
+
+    private void tblSPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMousePressed
+        if (evt.getClickCount() == 2) {
+            index = tblSP.rowAtPoint(evt.getPoint());
+            edit();
+            fillCboSP();
+        }
+
+    }//GEN-LAST:event_tblSPMousePressed
+
+    private void btnPrevSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevSPActionPerformed
+        if (index > 0) {
+            index--;
+            edit();
+        } else {
+            edit();
+            MsgBox.alert(this, "Bạn đang ở vị trí đầu tiên!");
+        }
+    }//GEN-LAST:event_btnPrevSPActionPerformed
+
+    private void btnNextSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextSPActionPerformed
+        if (index < tblSP.getRowCount() - 1) {
+            index++;
+            edit();
+        } else {
+            MsgBox.alert(this, "Bạn đang ở vị trí cuối cùng!");
+        }
+    }//GEN-LAST:event_btnNextSPActionPerformed
+
+    private void btnLastSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastSPActionPerformed
+        index = tblSP.getRowCount() - 1;
+        edit();
+    }//GEN-LAST:event_btnLastSPActionPerformed
+
+    private void btnThemSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSPActionPerformed
+        SanPham sp = getForm();
+        spDao.insert(sp);
+        loadToTableSP();
+        clearForm();
+        MsgBox.alert(this, "Thêm sản phẩm thành công");
+    }//GEN-LAST:event_btnThemSPActionPerformed
+
+    private void btnMoiSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiSPActionPerformed
+        clearForm();
+    }//GEN-LAST:event_btnMoiSPActionPerformed
 
     public static void main(String args[]) {
 
@@ -1850,7 +1935,7 @@ public class MainFrames extends javax.swing.JFrame {
     private javax.swing.JButton btnXoaHD;
     private javax.swing.JButton btnXoaNVBH;
     private javax.swing.JButton btnXoaSP;
-    private javax.swing.JComboBox<String> cbbChungLoai;
+    private javax.swing.JComboBox<String> cboChungLoai;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1974,5 +2059,72 @@ public class MainFrames extends javax.swing.JFrame {
             }
         }
         tblKH.setModel(khTableModel);
+    }
+
+    private void loadToTableSP() {
+        DefaultTableModel spTableModel = (DefaultTableModel) tblSP.getModel();
+        spTableModel.setRowCount(0);
+        List<SanPham> spList = spDao.selectAll();
+        for (SanPham sp : spList) {
+            Object[] row = {
+                sp.getMaSP(),
+                sp.getTenSP(),
+                sp.getSoLuong(),
+                sp.getGiaThanh(),
+                sp.getMaCL()
+            };
+            spTableModel.addRow(row);
+        }
+        fillCboSP();
+    }
+
+    private void edit() {
+        String maSP = (String) tblSP.getValueAt(index, 0);
+        SanPham sp = spDao.selectById(maSP);
+        if (sp != null) {
+            setForm(sp);
+            tabs.setSelectedIndex(0);
+        }
+    }
+
+    private void setForm(SanPham sp) {
+        txtMaSP.setText(sp.getMaSP());
+        txtTenSP.setText(sp.getTenSP());
+        txtSoLuong.setText(String.valueOf(sp.getSoLuong()));
+        txtGia.setText(String.valueOf(sp.getGiaThanh()));
+        cboChungLoai.setToolTipText(sp.getMaSP());
+        cboChungLoai.setSelectedItem(clDao.selectById(sp.getMaCL()));
+    }
+
+    private void fillCboSP() {
+        DefaultComboBoxModel spCboModel = (DefaultComboBoxModel) cboChungLoai.getModel();
+        spCboModel.removeAllElements();
+        List<ChungLoai> list = clDao.selectAll();
+        for (ChungLoai cl : list) {
+            spCboModel.addElement(cl);
+        }
+    }
+
+    private SanPham getForm() {
+        SanPham sp = new SanPham();
+        ChungLoai cl = (ChungLoai) cboChungLoai.getSelectedItem();
+        sp.setMaSP(txtMaSP.getText());
+        sp.setTenSP(txtTenSP.getText());
+        sp.setSoLuong(Integer.valueOf(txtSoLuong.getText()));
+        sp.setGiaThanh(Float.valueOf(txtGia.getText()));
+        sp.setMaCL(cboChungLoai.getToolTipText());
+        return sp;
+    }
+
+    private void clearForm() {
+        SanPham sp = new SanPham();
+        ChungLoai cl = (ChungLoai) cboChungLoai.getSelectedItem();
+        sp.setMaSP(sp.getMaSP());
+        sp.setTenSP(sp.getTenSP());
+        sp.setSoLuong(sp.getSoLuong());
+        sp.setGiaThanh(sp.getGiaThanh());
+        sp.setMaCL(cl.getMaCL());
+        setForm(sp);
+        index = -1;
     }
 }
