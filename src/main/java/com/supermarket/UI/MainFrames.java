@@ -2096,7 +2096,7 @@ public class MainFrames extends javax.swing.JFrame {
         spCboModel.removeAllElements();
         List<ChungLoai> list = clDao.selectAll();
         for (ChungLoai cl : list) {
-            spCboModel.addElement(cl);
+            spCboModel.addElement(cl.getMaCL());
         }
     }
 
