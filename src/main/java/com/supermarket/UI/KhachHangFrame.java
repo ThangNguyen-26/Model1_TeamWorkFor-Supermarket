@@ -1,6 +1,12 @@
 package com.supermarket.UI;
 
+import com.supermarket.UTILS.JdbcHelper;
 import com.supermarket.UTILS.MsgBox;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 public class KhachHangFrame extends javax.swing.JFrame {
     
@@ -50,7 +56,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         jLabel9.setText("jLabel9");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Màn Hình Chính(Nhân Viên Bán Hàng)");
+        setTitle("Khách hàng");
         setResizable(false);
         setSize(new java.awt.Dimension(1000, 600));
 
@@ -173,7 +179,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Mã SP", "Tên SP", "Số lượng", "Mã chủng loại"
+                "Mã SP", "Tên SP", "Số lượng", "Tên chủng loại"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -195,7 +201,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         lblTong.setText("000");
 
         btnIn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnIn.setText("In hoá đơn");
+        btnIn.setText("Đặt hàng");
         btnIn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIn.setFocusable(false);
@@ -430,5 +436,28 @@ public class KhachHangFrame extends javax.swing.JFrame {
 
     private void init() {
         this.setLocationRelativeTo(null);
+        loadToTable();
+    }
+    
+    private void loadToTable(){
+        DefaultTableModel model = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        model.setColumnIdentifiers(new Object[]{"Mã SP", "Tên SP", "Số lượng", "Tên chủng loại"});
+        try {
+            ResultSet rs = JdbcHelper.query("select masp, tensp, soluong, cl.tencl from sanpham sp inner join chungloai cl on sp.macl = cl.macl");
+            while(rs.next()){
+                model.addRow(new Object[]{rs.getString(1), rs.getString(2),rs.getInt(3),rs.getString(4)});
+            }
+            rs.getStatement().getConnection().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        tblDSSP.setModel(model);
     }
 }
