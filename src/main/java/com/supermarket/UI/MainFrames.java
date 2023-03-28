@@ -15,10 +15,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class MainFrames extends javax.swing.JFrame {
 
-    int index = 0;
-    List<KhachHang> khList = new ArrayList<>();
-    SanPhamDAO spDao = new SanPhamDAO();
-    ChungLoaiDAO clDao = new ChungLoaiDAO();
+    private int index = 0;
+    private List<KhachHang> khList = new ArrayList<>();
+    private int rowKH = -1;
+    private SanPhamDAO spDao = new SanPhamDAO();
+    private ChungLoaiDAO clDao = new ChungLoaiDAO();
 
     public MainFrames() {
         initComponents();
@@ -1246,6 +1247,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnPrevKH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnPrevKH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPrevKH.setFocusable(false);
+        btnPrevKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrevKHActionPerformed(evt);
+            }
+        });
         pnlNavRightKH.add(btnPrevKH);
 
         btnNextKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1253,6 +1259,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnNextKH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnNextKH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNextKH.setFocusable(false);
+        btnNextKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextKHActionPerformed(evt);
+            }
+        });
         pnlNavRightKH.add(btnNextKH);
 
         btnLastKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1260,6 +1271,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnLastKH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnLastKH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLastKH.setFocusable(false);
+        btnLastKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLastKHActionPerformed(evt);
+            }
+        });
         pnlNavRightKH.add(btnLastKH);
 
         tblKH.setModel(new javax.swing.table.DefaultTableModel(
@@ -1775,10 +1791,6 @@ public class MainFrames extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rdoNamNVActionPerformed
 
-    private void btnFirstKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstKHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnFirstKHActionPerformed
-
     private void btnFirstHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstHDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFirstHDActionPerformed
@@ -1797,17 +1809,8 @@ public class MainFrames extends javax.swing.JFrame {
 
     //Khách hàng
     private void tblKHMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKHMousePressed
-        int row = tblKH.getSelectedRow();
-        txtMaKH.setText(khList.get(row).getMaKH());
-        txtNgaySinhKH.setText(XDate.toString(khList.get(row).getNgaySinh(), "dd/MM/yyyy"));
-        txtTenKH.setText(khList.get(row).getTenKH());
-        txtMatKhauKH.setText(khList.get(row).getMatKhau());
-        txtNgayDK.setText(XDate.toString(khList.get(row).getNgayDangKy(), "dd/MM/yyyy"));
-        if (khList.get(row).isGioiTinh() == true) {
-            rdoNamKH.setSelected(true);
-        } else {
-            rdoNuKH.setSelected(true);
-        }
+        rowKH = tblKH.getSelectedRow();
+        fillFromTableKH();
     }//GEN-LAST:event_tblKHMousePressed
 
     private void tblSPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMousePressed
@@ -1854,6 +1857,43 @@ public class MainFrames extends javax.swing.JFrame {
     private void btnMoiSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiSPActionPerformed
         clearForm();
     }//GEN-LAST:event_btnMoiSPActionPerformed
+
+    private void btnNextKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextKHActionPerformed
+        if (rowKH == khList.size() - 1) {
+            MsgBox.alert(null, "Bạn đang ở cuối danh sách khách hàng");
+            return;
+        }
+        rowKH++;
+        fillFromTableKH();
+        tblKH.setRowSelectionInterval(rowKH, rowKH);
+    }//GEN-LAST:event_btnNextKHActionPerformed
+
+    private void btnPrevKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevKHActionPerformed
+        if (rowKH == 0) {
+            MsgBox.alert(null, "Bạn đang ở đầu danh sách khách hàng");
+            return;
+        } else if (rowKH == -1) {
+            rowKH++;
+            fillFromTableKH();
+            tblKH.setRowSelectionInterval(rowKH, rowKH);
+            return;
+        }
+        rowKH--;
+        fillFromTableKH();
+        tblKH.setRowSelectionInterval(rowKH, rowKH);
+    }//GEN-LAST:event_btnPrevKHActionPerformed
+
+    private void btnFirstKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstKHActionPerformed
+        rowKH = 0;
+        fillFromTableKH();
+        tblKH.setRowSelectionInterval(rowKH, rowKH);
+    }//GEN-LAST:event_btnFirstKHActionPerformed
+
+    private void btnLastKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastKHActionPerformed
+        rowKH = khList.size()-1;
+        fillFromTableKH();
+        tblKH.setRowSelectionInterval(rowKH, rowKH);
+    }//GEN-LAST:event_btnLastKHActionPerformed
 
     public static void main(String args[]) {
 
@@ -2054,6 +2094,19 @@ public class MainFrames extends javax.swing.JFrame {
             }
         }
         tblKH.setModel(khTableModel);
+    }
+
+    private void fillFromTableKH() {
+        txtMaKH.setText(khList.get(rowKH).getMaKH());
+        txtNgaySinhKH.setText(XDate.toString(khList.get(rowKH).getNgaySinh(), "dd/MM/yyyy"));
+        txtTenKH.setText(khList.get(rowKH).getTenKH());
+        txtMatKhauKH.setText(khList.get(rowKH).getMatKhau());
+        txtNgayDK.setText(XDate.toString(khList.get(rowKH).getNgayDangKy(), "dd/MM/yyyy"));
+        if (khList.get(rowKH).isGioiTinh() == true) {
+            rdoNamKH.setSelected(true);
+        } else {
+            rdoNuKH.setSelected(true);
+        }
     }
 
     private void loadToTableSP() {
