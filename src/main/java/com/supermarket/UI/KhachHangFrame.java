@@ -1,27 +1,34 @@
 package com.supermarket.UI;
 
+import com.supermarket.DAO.ChungLoaiDAO;
+import com.supermarket.ENTITY.ChungLoai;
+import com.supermarket.ENTITY.SanPham;
 import com.supermarket.UTILS.JdbcHelper;
 import com.supermarket.UTILS.MsgBox;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 public class KhachHangFrame extends javax.swing.JFrame {
-    
+
     private String maKh;
-    
+    private List<SanPham> spList = new ArrayList<>();
+
     public KhachHangFrame() {
         initComponents();
         init();
     }
-    
+
     public KhachHangFrame(String maKh) {
         initComponents();
         init();
-        this.maKh=maKh;
-        this.setTitle("Chào mừng khách hàng "+this.maKh);
+        this.maKh = maKh;
+        this.setTitle("Chào mừng khách hàng " + this.maKh);
     }
 
     @SuppressWarnings("unchecked")
@@ -37,7 +44,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         lblSoLuong = new javax.swing.JLabel();
         txtSoLuong = new javax.swing.JTextField();
         lblTenCL = new javax.swing.JLabel();
-        cbbCL = new javax.swing.JComboBox<>();
+        cboCL = new javax.swing.JComboBox<>();
         btnLoc = new javax.swing.JButton();
         btnMoi = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
@@ -84,12 +91,12 @@ public class KhachHangFrame extends javax.swing.JFrame {
         lblTenCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTenCL.setText("Tên chủng loại");
 
-        cbbCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        cbbCL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cbbCL.setFocusable(false);
-        cbbCL.addActionListener(new java.awt.event.ActionListener() {
+        cboCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cboCL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cboCL.setFocusable(false);
+        cboCL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbbCLActionPerformed(evt);
+                cboCLActionPerformed(evt);
             }
         });
 
@@ -257,7 +264,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
                                 .addGroup(pnlMainLayout.createSequentialGroup()
                                     .addComponent(lblTenCL)
                                     .addGap(39, 39, 39)
-                                    .addComponent(cbbCL, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cboCL, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(31, 31, 31)
                                     .addComponent(btnLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
@@ -291,7 +298,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblTenCL)
-                            .addComponent(cbbCL, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboCL, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -354,16 +361,29 @@ public class KhachHangFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbbCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbCLActionPerformed
+    private void cboCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCLActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbbCLActionPerformed
+    }//GEN-LAST:event_cboCLActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-        // TODO add your handling code here:
+        loadToTable();
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel fillModel = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        fillModel.setColumnIdentifiers(new Object[]{"Mã SP", "Tên SP", "Số lượng", "Giá thành", "Tên chủng loại"});
+        String tenCl = (String)cboCL.getSelectedItem();
+        for(SanPham sp : spList){
+            if(sp.getMaCL().equals(tenCl)){
+                fillModel.addRow(new Object[]{sp.getMaSP(), sp.getTenSP(),sp.getSoLuong(),sp.getGiaThanh(),sp.getMaCL()});
+            }
+        }
+        tblDSSP.setModel(fillModel);
     }//GEN-LAST:event_btnLocActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
@@ -415,7 +435,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnLoc;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnThem;
-    private javax.swing.JComboBox<String> cbbCL;
+    private javax.swing.JComboBox<String> cboCL;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblChiTiet;
@@ -437,27 +457,43 @@ public class KhachHangFrame extends javax.swing.JFrame {
     private void init() {
         this.setLocationRelativeTo(null);
         loadToTable();
+        loadToCbo();
     }
-    
-    private void loadToTable(){
-        DefaultTableModel model = new DefaultTableModel(){
+
+    private void loadToTable() {
+        DefaultTableModel tblModel = new DefaultTableModel() {
             @Override
-            public boolean isCellEditable(int row, int column){
+            public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-        model.setColumnIdentifiers(new Object[]{"Mã SP", "Tên SP", "Số lượng", "Tên chủng loại"});
+        tblModel.setColumnIdentifiers(new Object[]{"Mã SP", "Tên SP", "Số lượng", "Giá thành", "Tên chủng loại"});
+        spList.removeAll(spList);
         try {
-            ResultSet rs = JdbcHelper.query("select masp, tensp, soluong, cl.tencl from sanpham sp inner join chungloai cl on sp.macl = cl.macl");
-            while(rs.next()){
-                model.addRow(new Object[]{rs.getString(1), rs.getString(2),rs.getInt(3),rs.getString(4)});
+            ResultSet rs = JdbcHelper.query("select masp, tensp, soluong, giathanh,cl.tencl from sanpham sp inner join chungloai cl on sp.macl = cl.macl");
+            while (rs.next()) {
+                SanPham sp = new SanPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getFloat(4), rs.getString(5));
+                spList.add(sp);
+                tblModel.addRow(new Object[]{sp.getMaSP(), sp.getTenSP(), sp.getSoLuong(), sp.getGiaThanh(), sp.getMaCL()});
             }
             rs.getStatement().getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(KhachHangFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        tblDSSP.setModel(model);
+
+        tblDSSP.setModel(tblModel);
     }
+    
+    private void loadToCbo(){
+        DefaultComboBoxModel cboModel = new DefaultComboBoxModel();
+        ChungLoaiDAO dao = new ChungLoaiDAO();
+        List<ChungLoai> clList = new ArrayList<>();
+        clList = dao.selectAll();
+        for(ChungLoai cl : clList){
+            cboModel.addElement(cl.getTenCL());
+        }
+        cboCL.setModel(cboModel);
+    }
+    
+    
 }

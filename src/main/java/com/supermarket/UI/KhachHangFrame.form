@@ -115,7 +115,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="lblTenCL" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                      <Component id="cbbCL" min="-2" pref="174" max="-2" attributes="0"/>
+                                      <Component id="cboCL" min="-2" pref="174" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                       <Component id="btnLoc" min="-2" pref="100" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -163,7 +163,7 @@
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblTenCL" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbbCL" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="cboCL" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                               <Component id="btnLoc" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                               <Component id="btnMoi" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
@@ -283,7 +283,7 @@
             <Property name="text" type="java.lang.String" value="T&#xea;n ch&#x1ee7;ng lo&#x1ea1;i"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cbbCL">
+        <Component class="javax.swing.JComboBox" name="cboCL">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
@@ -297,7 +297,7 @@
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbbCLActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboCLActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
