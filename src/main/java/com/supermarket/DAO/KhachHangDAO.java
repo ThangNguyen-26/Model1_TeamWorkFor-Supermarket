@@ -14,7 +14,7 @@ public class KhachHangDAO extends HeThongDAO<KhachHang, String> {
 
     @Override
     public void insert(KhachHang entity) {
-       JdbcHelper.update(insert, entity.getMaKH(), entity.getMatKhau(), entity.getTenKH(), entity.isGioiTinh(), entity.getNgayDangKy(), entity.getNgaySinh());
+       JdbcHelper.update(insert, entity.getMaKH(), entity.getMatKhau(), entity.getTenKH(), entity.isGioiTinh(), entity.getNgaySinh(),entity.getNgayDangKy());
     }
 
     @Override

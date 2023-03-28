@@ -19,7 +19,7 @@ public class SanPhamDAO extends HeThongDAO<SanPham, String> {
 
     String insert = "INSERT INTO SANPHAM VALUES (?,?,?,?,?)";
     String delete = "DELETE SANPHAM WHERE MASP = ?";
-    String update = "UPDATE SANPHAM SET TENSP = ?, SOLUONG = ?, GIATHANH = ?, MACL = ? WHERE MANV = ?";
+    String update = "UPDATE SANPHAM SET TENSP = ?, SOLUONG = ?, GIATHANH = ?, MACL = ? WHERE MASP = ?";
     String selectAll_SQL = "SELECT * FROM SANPHAM";
     String selectById_SQL = "SELECT * FROM SANPHAM WHERE MASP = ?";
 
