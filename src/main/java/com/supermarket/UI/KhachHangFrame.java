@@ -172,7 +172,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         );
         pnlHoaDonLayout.setVerticalGroup(
             pnlHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 215, Short.MAX_VALUE)
         );
 
         lblDSSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -387,7 +387,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLocActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void BtnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnXoaActionPerformed
@@ -458,6 +458,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         loadToTable();
         loadToCbo();
+        fillToDonHang();
     }
 
     private void loadToTable() {
@@ -495,5 +496,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         cboCL.setModel(cboModel);
     }
     
-    
+    private void fillToDonHang(){
+        
+    }
 }
