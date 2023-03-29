@@ -6,19 +6,21 @@ import com.supermarket.ENTITY.NhanVien;
 import com.supermarket.ENTITY.KhachHang;
 import com.supermarket.UTILS.MsgBox;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import jdk.jfr.Event;
 
 public class DangNhapJDialog extends javax.swing.JDialog {
 
     NhanVienDAO nvDAO = new NhanVienDAO();
     KhachHangDAO khDAO = new KhachHangDAO();
     File file = new File("src/main/java/com/supermarket/UTILS/save.txt");
-
+    
     public DangNhapJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -50,6 +52,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Đăng nhập");
         setResizable(false);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         pnlLogo.setLayout(new java.awt.BorderLayout());
         pnlLogo.add(lblLogo, java.awt.BorderLayout.CENTER);
@@ -66,6 +73,16 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         cboVaiTro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cboVaiTro.setFocusable(false);
         cboVaiTro.setPreferredSize(new java.awt.Dimension(72, 32));
+        cboVaiTro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cboVaiTroMousePressed(evt);
+            }
+        });
+        cboVaiTro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboVaiTroActionPerformed(evt);
+            }
+        });
 
         lblVaiTro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblVaiTro.setText("Vai trò");
@@ -78,6 +95,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                 txtTenDangNhapMousePressed(evt);
             }
         });
+        txtTenDangNhap.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTenDangNhapKeyPressed(evt);
+            }
+        });
 
         lblTenDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTenDangNhap.setText("Tên đăng nhập");
@@ -87,6 +109,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         txtMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtMatKhauMousePressed(evt);
+            }
+        });
+        txtMatKhau.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMatKhauKeyPressed(evt);
             }
         });
 
@@ -140,6 +167,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDangNhapActionPerformed(evt);
+            }
+        });
+        btnDangNhap.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                btnDangNhapKeyTyped(evt);
             }
         });
         pnlBtns.add(btnDangNhap);
@@ -235,9 +267,15 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         if (check()) {
             DangNhap();
         }
+        if (chkNhoMatKhau.isSelected() == false) {
+            file.delete();
+        }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        if (chkNhoMatKhau.isSelected() == false) {
+            file.delete();
+        }
         System.exit(0);
     }//GEN-LAST:event_btnThoatActionPerformed
 
@@ -252,6 +290,39 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         txtMatKhau.setFocusable(true);
         txtMatKhau.requestFocus();
     }//GEN-LAST:event_txtMatKhauMousePressed
+
+    private void cboVaiTroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboVaiTroActionPerformed
+        // TODO add your handling code here:
+        if (cboVaiTro.getSelectedIndex() == 1) {
+            lblDangKy.setVisible(true);
+        } else {
+            lblDangKy.setVisible(false);
+        }
+    }//GEN-LAST:event_cboVaiTroActionPerformed
+
+    private void cboVaiTroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboVaiTroMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboVaiTroMousePressed
+
+    private void btnDangNhapKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDangNhapKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnDangNhapKeyTyped
+
+    private void txtTenDangNhapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenDangNhapKeyPressed
+        // TODO add your handling code here:
+        EnterBtnLogin(evt);
+    }//GEN-LAST:event_txtTenDangNhapKeyPressed
+
+    private void txtMatKhauKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatKhauKeyPressed
+        // TODO add your handling code here:
+        EnterBtnLogin(evt);
+    }//GEN-LAST:event_txtMatKhauKeyPressed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+        EnterBtnLogin(evt);
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
@@ -309,7 +380,9 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
     private void init() {
         this.setLocationRelativeTo(null);
-        
+        lblDangKy.setVisible(false);
+        txtTenDangNhap.setFocusable(false);
+        txtMatKhau.setFocusable(false);
         try {
             if (file.exists()) {
                 Scanner scan = new Scanner(file);
@@ -326,6 +399,12 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
+        }
+    }
+    
+    private void EnterBtnLogin(KeyEvent k){
+        if (k.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.btnDangNhap.doClick();
         }
     }
 
@@ -409,10 +488,10 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                 file.delete();
                 file.createNewFile();
                 BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsolutePath()));
-                if(cboVaiTro.getSelectedItem().equals("Nhân Viên")){
+                if (cboVaiTro.getSelectedItem().equals("Nhân Viên")) {
                     bw.write("Nhân Viên");
                     bw.newLine();
-                }else{
+                } else {
                     bw.write("Khách Hàng");
                     bw.newLine();
                 }
