@@ -5,7 +5,6 @@ import com.supermarket.DAO.DonHangDAO;
 import com.supermarket.DAO.KhachHangDAO;
 import com.supermarket.DAO.SanPhamDAO;
 import com.supermarket.ENTITY.ChungLoai;
-import com.supermarket.ENTITY.DonHang;
 import com.supermarket.ENTITY.KhachHang;
 import com.supermarket.ENTITY.SanPham;
 import com.supermarket.UTILS.MsgBox;
@@ -28,7 +27,9 @@ public class MainFrames extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         loadToTableSP();
+        fillCboSP();
         loadToTableKH();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -191,6 +192,11 @@ public class MainFrames extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hệ thống quản lí siêu thị");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         tabs.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         tabs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -273,6 +279,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnTimSP.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnTimSP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTimSP.setFocusable(false);
+        btnTimSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimSPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlEastSPLayout = new javax.swing.GroupLayout(pnlEastSP);
         pnlEastSP.setLayout(pnlEastSPLayout);
@@ -331,6 +342,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnSuaSP.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnSuaSP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSuaSP.setFocusable(false);
+        btnSuaSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaSPActionPerformed(evt);
+            }
+        });
         pnlMainBtnSP.add(btnSuaSP);
 
         btnXoaSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -338,6 +354,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnXoaSP.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnXoaSP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnXoaSP.setFocusable(false);
+        btnXoaSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaSPActionPerformed(evt);
+            }
+        });
         pnlMainBtnSP.add(btnXoaSP);
 
         btnMoiSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -467,6 +488,7 @@ public class MainFrames extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblSP.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblSP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tblSPMousePressed(evt);
@@ -1226,6 +1248,11 @@ public class MainFrames extends javax.swing.JFrame {
         BtnSuaKH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnSuaKH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnSuaKH.setFocusable(false);
+        BtnSuaKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSuaKHActionPerformed(evt);
+            }
+        });
 
         lblTitleSubKH.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitleSubKH.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1822,12 +1849,8 @@ public class MainFrames extends javax.swing.JFrame {
     }//GEN-LAST:event_tblKHMousePressed
     // Sản phẩm
     private void tblSPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMousePressed
-        if (evt.getClickCount() == 1) {
-            index = tblSP.rowAtPoint(evt.getPoint());
-            editSP();
-            fillCboSP();
-        }
-
+        index = tblSP.rowAtPoint(evt.getPoint());
+        editSP();
     }//GEN-LAST:event_tblSPMousePressed
 
     private void btnPrevSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevSPActionPerformed
@@ -1855,7 +1878,15 @@ public class MainFrames extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLastSPActionPerformed
 
     private void btnThemSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSPActionPerformed
-
+        SanPham model = getFromSP();
+        try {
+            spDao.insert(model);
+            loadToTableSP();
+            clearFormSP();
+            MsgBox.alert(this, "Thêm sản phẩm thành công.");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Sản phẩm đã tồn tại!");
+        }
     }//GEN-LAST:event_btnThemSPActionPerformed
 
     private void btnMoiSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiSPActionPerformed
@@ -1903,6 +1934,47 @@ public class MainFrames extends javax.swing.JFrame {
         new DonHangCTAdmin().setVisible(true);
     }//GEN-LAST:event_btnChiTietDHActionPerformed
 
+    private void BtnSuaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSuaKHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnSuaKHActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnTimSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimSPActionPerformed
+        this.loadToTableSP();
+        this.clearFormSP();
+        this.index = -1;
+    }//GEN-LAST:event_btnTimSPActionPerformed
+
+    private void btnSuaSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaSPActionPerformed
+        SanPham model = getFromSP();
+        try {
+            spDao.update(model);
+            loadToTableSP();
+            MsgBox.alert(this, "Cập nhật sản phẩm thành công.");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Cập nhật sản phẩm thất bại!" + e.toString());
+        }
+    }//GEN-LAST:event_btnSuaSPActionPerformed
+
+    private void btnXoaSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaSPActionPerformed
+
+        if (MsgBox.confirm(this, "Bạn muốn xóa sản phẩm này chứ?")) {
+            String maSP = txtMaSP.getText();
+            String tenSP = txtTenSP.getText();
+            try {
+                spDao.delete(maSP);
+                loadToTableSP();
+                clearFormSP();
+                MsgBox.alert(this, "Xóa sản phẩm \"" + tenSP + "\" thành công.");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Sản phẩm không thể xóa do lỗi \n" + e.toString());
+            }
+        }
+    }//GEN-LAST:event_btnXoaSPActionPerformed
+
     public static void main(String args[]) {
 
         try {
@@ -1910,16 +1982,24 @@ public class MainFrames extends javax.swing.JFrame {
                 if ("Eclipse".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrames.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrames.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrames.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrames.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -2121,10 +2201,11 @@ public class MainFrames extends javax.swing.JFrame {
 
     // Begin SanPham code
     private void loadToTableSP() {
-        DefaultTableModel spTableModel = (DefaultTableModel) tblSP.getModel();
-        spTableModel.setRowCount(0);
-        List<SanPham> spList = spDao.selectAll();
-        for (SanPham sp : spList) {
+        DefaultTableModel model = (DefaultTableModel) tblSP.getModel();
+        model.setRowCount(0);
+        String keyword = txtTimSP.getText();
+        List<SanPham> list = spDao.selectByKeyword(keyword);
+        for (SanPham sp : list) {
             Object[] row = {
                 sp.getMaSP(),
                 sp.getTenSP(),
@@ -2132,12 +2213,12 @@ public class MainFrames extends javax.swing.JFrame {
                 sp.getGiaThanh(),
                 sp.getMaCL()
             };
-            spTableModel.addRow(row);
+            model.addRow(row);
         }
     }
 
     private void editSP() {
-        String maSP = (String) tblSP.getValueAt(index, 0);
+        String maSP = (String) tblSP.getValueAt(this.index, 0);
         SanPham sp = spDao.selectById(maSP);
         if (sp != null) {
             setFormSP(sp);
@@ -2150,28 +2231,40 @@ public class MainFrames extends javax.swing.JFrame {
         txtTenSP.setText(sp.getTenSP());
         txtSoLuong.setText(String.valueOf(sp.getSoLuong()));
         txtGia.setText(String.valueOf(sp.getGiaThanh()));
-//        cboChungLoai.setSelectedItem(clDao.selectById(sp.getMaCL()));
+        cboChungLoai.setToolTipText(sp.getMaCL());
+        cboChungLoai.setSelectedItem(clDao.selectById(sp.getMaCL()));
     }
 
     private void fillCboSP() {
-        DefaultComboBoxModel spCboModel = (DefaultComboBoxModel) cboChungLoai.getModel();
-        spCboModel.removeAllElements();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboChungLoai.getModel();
+        model.removeAllElements();
         List<ChungLoai> list = clDao.selectAll();
         for (ChungLoai cl : list) {
-            spCboModel.addElement(cl.getMaCL());
+            model.addElement(cl);
         }
     }
 
     private void clearFormSP() {
         SanPham sp = new SanPham();
-        ChungLoai cl = (ChungLoai) cboChungLoai.getSelectedItem();
         sp.setMaSP(sp.getMaSP());
         sp.setTenSP(sp.getTenSP());
         sp.setSoLuong(sp.getSoLuong());
         sp.setGiaThanh(sp.getGiaThanh());
+        ChungLoai cl = (ChungLoai) cboChungLoai.getSelectedItem();
         sp.setMaCL(cl.getMaCL());
         setFormSP(sp);
         index = -1;
+    }
+
+    private SanPham getFromSP() {
+        SanPham sp = new SanPham();
+        sp.setMaSP(txtMaSP.getText());
+        sp.setTenSP(txtTenSP.getText());
+        sp.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+        sp.setGiaThanh(Float.parseFloat(txtGia.getText()));
+        ChungLoai cl = (ChungLoai) cboChungLoai.getSelectedItem();
+        sp.setMaCL(cl.getMaCL());
+        return sp;
     }
     // End SanPham code
 

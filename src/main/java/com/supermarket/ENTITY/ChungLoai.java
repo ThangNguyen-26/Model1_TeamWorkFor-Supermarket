@@ -9,11 +9,23 @@ package com.supermarket.ENTITY;
  * @author trinh duy bao
  */
 public class ChungLoai {
+
     private String maCL;
     private String tenCL;
     private String mieuTa;
 
     public ChungLoai() {
+    }
+    
+    @Override
+    public String toString() {
+        return this.tenCL;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        ChungLoai other = (ChungLoai) obj;
+        return other.getMaCL().equals(this.getMaCL());
     }
 
     public ChungLoai(String maCL, String tenCL, String mieuTa) {
