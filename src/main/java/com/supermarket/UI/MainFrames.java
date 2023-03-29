@@ -1,9 +1,11 @@
 package com.supermarket.UI;
 
 import com.supermarket.DAO.ChungLoaiDAO;
+import com.supermarket.DAO.DonHangDAO;
 import com.supermarket.DAO.KhachHangDAO;
 import com.supermarket.DAO.SanPhamDAO;
 import com.supermarket.ENTITY.ChungLoai;
+import com.supermarket.ENTITY.DonHang;
 import com.supermarket.ENTITY.KhachHang;
 import com.supermarket.ENTITY.SanPham;
 import com.supermarket.UTILS.MsgBox;
@@ -20,6 +22,7 @@ public class MainFrames extends javax.swing.JFrame {
     private int rowKH = -1;
     private SanPhamDAO spDao = new SanPhamDAO();
     private ChungLoaiDAO clDao = new ChungLoaiDAO();
+    private DonHangDAO dhDao = new DonHangDAO();
 
     public MainFrames() {
         initComponents();
@@ -1497,7 +1500,7 @@ public class MainFrames extends javax.swing.JFrame {
 
         lblTitleSubDH.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblTitleSubDH.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitleSubDH.setText("DANH SÁCH ĐƠN HÀNG");
+        lblTitleSubDH.setText("QUẢN LÝ ĐƠN HÀNG");
 
         btnXoaDH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoaDH.setText("Xóa");
@@ -1510,6 +1513,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnChiTietDH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnChiTietDH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnChiTietDH.setFocusable(false);
+        btnChiTietDH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChiTietDHActionPerformed(evt);
+            }
+        });
 
         pnlNavRightHD1.setLayout(new java.awt.GridLayout(1, 4, 20, 0));
 
@@ -1780,7 +1788,7 @@ public class MainFrames extends javax.swing.JFrame {
 
     private void btnFirstSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstSPActionPerformed
         index = 0;
-        edit();
+        editSP();
     }//GEN-LAST:event_btnFirstSPActionPerformed
 
     private void btnFirstNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstNVActionPerformed
@@ -1812,11 +1820,11 @@ public class MainFrames extends javax.swing.JFrame {
         rowKH = tblKH.getSelectedRow();
         fillFromTableKH();
     }//GEN-LAST:event_tblKHMousePressed
-
+    // Sản phẩm
     private void tblSPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMousePressed
-        if (evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 1) {
             index = tblSP.rowAtPoint(evt.getPoint());
-            edit();
+            editSP();
             fillCboSP();
         }
 
@@ -1825,9 +1833,9 @@ public class MainFrames extends javax.swing.JFrame {
     private void btnPrevSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevSPActionPerformed
         if (index > 0) {
             index--;
-            edit();
+            editSP();
         } else {
-            edit();
+            editSP();
             MsgBox.alert(this, "Bạn đang ở vị trí đầu tiên!");
         }
     }//GEN-LAST:event_btnPrevSPActionPerformed
@@ -1835,7 +1843,7 @@ public class MainFrames extends javax.swing.JFrame {
     private void btnNextSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextSPActionPerformed
         if (index < tblSP.getRowCount() - 1) {
             index++;
-            edit();
+            editSP();
         } else {
             MsgBox.alert(this, "Bạn đang ở vị trí cuối cùng!");
         }
@@ -1843,19 +1851,15 @@ public class MainFrames extends javax.swing.JFrame {
 
     private void btnLastSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastSPActionPerformed
         index = tblSP.getRowCount() - 1;
-        edit();
+        editSP();
     }//GEN-LAST:event_btnLastSPActionPerformed
 
     private void btnThemSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSPActionPerformed
-        SanPham sp = getForm();
-        spDao.insert(sp);
-        loadToTableSP();
-        clearForm();
-        MsgBox.alert(this, "Thêm sản phẩm thành công");
+
     }//GEN-LAST:event_btnThemSPActionPerformed
 
     private void btnMoiSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiSPActionPerformed
-        clearForm();
+        clearFormSP();
     }//GEN-LAST:event_btnMoiSPActionPerformed
 
     private void btnNextKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextKHActionPerformed
@@ -1890,10 +1894,14 @@ public class MainFrames extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFirstKHActionPerformed
 
     private void btnLastKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastKHActionPerformed
-        rowKH = khList.size()-1;
+        rowKH = khList.size() - 1;
         fillFromTableKH();
         tblKH.setRowSelectionInterval(rowKH, rowKH);
     }//GEN-LAST:event_btnLastKHActionPerformed
+
+    private void btnChiTietDHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiTietDHActionPerformed
+        new DonHangCTAdmin().setVisible(true);
+    }//GEN-LAST:event_btnChiTietDHActionPerformed
 
     public static void main(String args[]) {
 
@@ -2075,6 +2083,7 @@ public class MainFrames extends javax.swing.JFrame {
     private javax.swing.JTextField txtTimSP;
     // End of variables declaration//GEN-END:variables
 
+    // Begin Khach hang code
     private void loadToTableKH() {
         DefaultTableModel khTableModel = new DefaultTableModel() {
             @Override
@@ -2108,7 +2117,9 @@ public class MainFrames extends javax.swing.JFrame {
             rdoNuKH.setSelected(true);
         }
     }
+    // End Khach hang code
 
+    // Begin SanPham code
     private void loadToTableSP() {
         DefaultTableModel spTableModel = (DefaultTableModel) tblSP.getModel();
         spTableModel.setRowCount(0);
@@ -2123,25 +2134,23 @@ public class MainFrames extends javax.swing.JFrame {
             };
             spTableModel.addRow(row);
         }
-        fillCboSP();
     }
 
-    private void edit() {
+    private void editSP() {
         String maSP = (String) tblSP.getValueAt(index, 0);
         SanPham sp = spDao.selectById(maSP);
         if (sp != null) {
-            setForm(sp);
+            setFormSP(sp);
             tabs.setSelectedIndex(0);
         }
     }
 
-    private void setForm(SanPham sp) {
+    private void setFormSP(SanPham sp) {
         txtMaSP.setText(sp.getMaSP());
         txtTenSP.setText(sp.getTenSP());
         txtSoLuong.setText(String.valueOf(sp.getSoLuong()));
         txtGia.setText(String.valueOf(sp.getGiaThanh()));
-        cboChungLoai.setToolTipText(sp.getMaSP());
-        cboChungLoai.setSelectedItem(clDao.selectById(sp.getMaCL()));
+//        cboChungLoai.setSelectedItem(clDao.selectById(sp.getMaCL()));
     }
 
     private void fillCboSP() {
@@ -2153,18 +2162,7 @@ public class MainFrames extends javax.swing.JFrame {
         }
     }
 
-    private SanPham getForm() {
-        SanPham sp = new SanPham();
-        ChungLoai cl = (ChungLoai) cboChungLoai.getSelectedItem();
-        sp.setMaSP(txtMaSP.getText());
-        sp.setTenSP(txtTenSP.getText());
-        sp.setSoLuong(Integer.valueOf(txtSoLuong.getText()));
-        sp.setGiaThanh(Float.valueOf(txtGia.getText()));
-        sp.setMaCL(cboChungLoai.getToolTipText());
-        return sp;
-    }
-
-    private void clearForm() {
+    private void clearFormSP() {
         SanPham sp = new SanPham();
         ChungLoai cl = (ChungLoai) cboChungLoai.getSelectedItem();
         sp.setMaSP(sp.getMaSP());
@@ -2172,7 +2170,9 @@ public class MainFrames extends javax.swing.JFrame {
         sp.setSoLuong(sp.getSoLuong());
         sp.setGiaThanh(sp.getGiaThanh());
         sp.setMaCL(cl.getMaCL());
-        setForm(sp);
+        setFormSP(sp);
         index = -1;
     }
+    // End SanPham code
+
 }

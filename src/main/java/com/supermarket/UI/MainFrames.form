@@ -2393,7 +2393,7 @@
                   <Font name="Arial" size="24" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="DANH S&#xc1;CH &#x110;&#x1a0;N H&#xc0;NG"/>
+                <Property name="text" type="java.lang.String" value="QU&#x1ea2;N L&#xdd; &#x110;&#x1a0;N H&#xc0;NG"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnXoaDH">
@@ -2429,6 +2429,9 @@
                 </Property>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChiTietDHActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="pnlNavRightHD1">
 
