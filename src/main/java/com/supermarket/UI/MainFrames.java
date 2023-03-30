@@ -628,6 +628,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnThemCL.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnThemCL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThemCL.setFocusable(false);
+        btnThemCL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemCLActionPerformed(evt);
+            }
+        });
         pnlMainBtnCL.add(btnThemCL);
 
         btnSuaCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -635,6 +640,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnSuaCL.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnSuaCL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSuaCL.setFocusable(false);
+        btnSuaCL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaCLActionPerformed(evt);
+            }
+        });
         pnlMainBtnCL.add(btnSuaCL);
 
         btnXoaCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -642,6 +652,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnXoaCL.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnXoaCL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnXoaCL.setFocusable(false);
+        btnXoaCL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaCLActionPerformed(evt);
+            }
+        });
         pnlMainBtnCL.add(btnXoaCL);
 
         btnMoiCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1777,6 +1792,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnDangXuat.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnDangXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDangXuat.setFocusable(false);
+        btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangXuatActionPerformed(evt);
+            }
+        });
 
         lblClock.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblClock.setText("00:00:00");
@@ -1997,6 +2017,23 @@ public class MainFrames extends javax.swing.JFrame {
     private void btnMoiCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiCLActionPerformed
         clearCL();
     }//GEN-LAST:event_btnMoiCLActionPerformed
+
+    private void btnSuaCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaCLActionPerformed
+        updateCL();
+    }//GEN-LAST:event_btnSuaCLActionPerformed
+
+    private void btnThemCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemCLActionPerformed
+        insertCL();
+    }//GEN-LAST:event_btnThemCLActionPerformed
+
+    private void btnXoaCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaCLActionPerformed
+        deleteCL();
+    }//GEN-LAST:event_btnXoaCLActionPerformed
+
+    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
+        this.setVisible(false);
+        new DangNhapJDialog(null, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_btnDangXuatActionPerformed
 
     public static void main(String args[]) {
 
@@ -2318,15 +2355,20 @@ public class MainFrames extends javax.swing.JFrame {
     }
 
     private void insertCL() {
-
+        ChungLoai clitem = new ChungLoai(txtMaCL.getText(), txtTenCL.getText(), txtMieuTa.getText());
+        clDao.insert(clitem);
+        loadToTableCL();
     }
 
     private void updateCL() {
-
+        ChungLoai clitem = new ChungLoai(txtMaCL.getText(), txtTenCL.getText(), txtMieuTa.getText());
+        clDao.update(clitem);
+        loadToTableCL();
     }
 
     private void deleteCL() {
-
+        clDao.delete(txtMaCL.getText());
+        loadToTableCL();
     }
     //End Code Chủng Loại
 }

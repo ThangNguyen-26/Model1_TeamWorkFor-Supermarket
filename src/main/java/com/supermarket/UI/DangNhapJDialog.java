@@ -20,7 +20,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     NhanVienDAO nvDAO = new NhanVienDAO();
     KhachHangDAO khDAO = new KhachHangDAO();
     File file = new File("src/main/java/com/supermarket/UTILS/save.txt");
-    
+
     public DangNhapJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -49,8 +49,9 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         btnThoat = new javax.swing.JButton();
         btnDangNhap = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Đăng nhập");
+        setUndecorated(true);
         setResizable(false);
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -292,7 +293,6 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_txtMatKhauMousePressed
 
     private void cboVaiTroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboVaiTroActionPerformed
-        // TODO add your handling code here:
         if (cboVaiTro.getSelectedIndex() == 1) {
             lblDangKy.setVisible(true);
         } else {
@@ -306,7 +306,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
     private void btnDangNhapKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDangNhapKeyTyped
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btnDangNhapKeyTyped
 
     private void txtTenDangNhapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenDangNhapKeyPressed
@@ -401,8 +401,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             ex.printStackTrace();
         }
     }
-    
-    private void EnterBtnLogin(KeyEvent k){
+
+    private void EnterBtnLogin(KeyEvent k) {
         if (k.getKeyCode() == KeyEvent.VK_ENTER) {
             this.btnDangNhap.doClick();
         }
