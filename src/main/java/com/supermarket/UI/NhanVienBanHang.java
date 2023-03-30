@@ -153,7 +153,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         pnlHoaDon.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Hóa đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         pnlHoaDon.setToolTipText("");
 
-        txtDonHang.setText("============================FAMILY POINT===========================\nTên sản phẩm                                    SL                               Giá thành                          Thành tiền");
+        txtDonHang.setText("==============================FAMILY POINT=============================\nTên sản phẩm                                    SL                               Giá thành                          Thành tiền");
         jScrollPane2.setViewportView(txtDonHang);
 
         javax.swing.GroupLayout pnlHoaDonLayout = new javax.swing.GroupLayout(pnlHoaDon);

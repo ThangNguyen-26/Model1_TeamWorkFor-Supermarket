@@ -482,7 +482,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTextPane" name="txtDonHang">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="============================FAMILY POINT===========================&#xa;T&#xea;n s&#x1ea3;n ph&#x1ea9;m                                    SL                               Gi&#xe1; th&#xe0;nh                          Th&#xe0;nh ti&#x1ec1;n"/>
+                    <Property name="text" type="java.lang.String" value="==============================FAMILY POINT=============================&#xa;T&#xea;n s&#x1ea3;n ph&#x1ea9;m                                    SL                               Gi&#xe1; th&#xe0;nh                          Th&#xe0;nh ti&#x1ec1;n"/>
                   </Properties>
                 </Component>
               </SubComponents>
