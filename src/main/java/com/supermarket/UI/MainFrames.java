@@ -17,8 +17,13 @@ import javax.swing.table.DefaultTableModel;
 public class MainFrames extends javax.swing.JFrame {
 
     private int index = 0;
-    private List<KhachHang> khList = new ArrayList<>();
     private int rowKH = -1;
+
+    //Biến LIST
+    private List<KhachHang> khList = new ArrayList<>();
+    private List<ChungLoai> clList = new ArrayList<>();
+
+    //Biến DAO
     private SanPhamDAO spDao = new SanPhamDAO();
     private ChungLoaiDAO clDao = new ChungLoaiDAO();
     private DonHangDAO dhDao = new DonHangDAO();
@@ -29,7 +34,7 @@ public class MainFrames extends javax.swing.JFrame {
         loadToTableSP();
         fillCboSP();
         loadToTableKH();
-
+        loadToTableCL();
     }
 
     @SuppressWarnings("unchecked")
@@ -644,6 +649,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnMoiCL.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnMoiCL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMoiCL.setFocusable(false);
+        btnMoiCL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoiCLActionPerformed(evt);
+            }
+        });
         pnlMainBtnCL.add(btnMoiCL);
 
         javax.swing.GroupLayout pnlNorthCLLayout = new javax.swing.GroupLayout(pnlNorthCL);
@@ -737,6 +747,11 @@ public class MainFrames extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblCL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblCLMousePressed(evt);
             }
         });
         jScrollPane4.setViewportView(tblCL);
@@ -1975,6 +1990,14 @@ public class MainFrames extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnXoaSPActionPerformed
 
+    private void tblCLMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCLMousePressed
+        fillFromTableCL(tblCL.getSelectedRow());
+    }//GEN-LAST:event_tblCLMousePressed
+
+    private void btnMoiCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiCLActionPerformed
+        clearCL();
+    }//GEN-LAST:event_btnMoiCLActionPerformed
+
     public static void main(String args[]) {
 
         try {
@@ -2268,4 +2291,42 @@ public class MainFrames extends javax.swing.JFrame {
     }
     // End SanPham code
 
+    //Start Code Chủng Loại
+    private void loadToTableCL() {
+        DefaultTableModel clTableModel = (DefaultTableModel) tblCL.getModel();
+        clTableModel.setRowCount(0);
+        clList = clDao.selectAll();
+        for (ChungLoai cl : clList) {
+            Object[] row = {
+                cl.getMaCL(),
+                cl.getTenCL(),
+                cl.getMieuTa(),};
+            clTableModel.addRow(row);
+        }
+    }
+
+    private void fillFromTableCL(int index) {
+        txtMaCL.setText(clList.get(index).getMaCL());
+        txtTenCL.setText(clList.get(index).getTenCL());
+        txtMieuTa.setText(clList.get(index).getMieuTa());
+    }
+
+    private void clearCL() {
+        txtMaCL.setText("");
+        txtTenCL.setText("");
+        txtMieuTa.setText("");
+    }
+
+    private void insertCL() {
+
+    }
+
+    private void updateCL() {
+
+    }
+
+    private void deleteCL() {
+
+    }
+    //End Code Chủng Loại
 }
