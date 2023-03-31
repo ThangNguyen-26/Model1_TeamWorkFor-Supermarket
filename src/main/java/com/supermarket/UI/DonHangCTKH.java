@@ -301,11 +301,16 @@ public class DonHangCTKH extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     
     private void loadToTable(){
-        DefaultTableModel model = new DefaultTableModel();
+        DefaultTableModel model = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
         model.setColumnIdentifiers(new Object[]{"Tên sản phẩm", "Mã sản phẩm", "Số lượng", "Thành tiền"});
         double tongTien = 0;
         try{
-            ResultSet rs = JdbcHelper.query("select tensp, sp.masp, ctdh.soluong, thanhtien from CHITIETDONHANG ctdh inner join SANPHAM sp on ctdh.MASP = sp.MASP where ctdh.MADH like ? ", maDh);
+            ResultSet rs = JdbcHelper.query("select tensp, sp.masp, ctdh.soluong, thanhtien from CHITIETDONHANG ctdh left join SANPHAM sp on ctdh.MASP = sp.MASP where ctdh.MADH like ? ", maDh);
             while(rs.next()){
                 model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getInt(3),rs.getFloat(4)});
                 tongTien += rs.getFloat(4);

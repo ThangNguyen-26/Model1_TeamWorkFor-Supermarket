@@ -8,7 +8,7 @@ import java.util.List;
 
 public class KhachHangDAO extends HeThongDAO<KhachHang, String> {
     String insert = "insert into KHACHHANG values(?,?,?,?,?,?)";
-    String update = "update KHACHHANG set MATKHAU = ?, TENKH = ?, GIOITINH = ?, NGAYDANGKI = ?, NGAYSINH = ? where MAKH = ?";
+    String update = "update KHACHHANG set MAKH = ?, MATKHAU = ?, TENKH = ?, GIOITINH = ?, NGAYDANGKI = ?, NGAYSINH = ? where MAKH like ?";
     String selectall = "select * from KHACHHANG";
     String selectid = "select * from KHACHHANG where MAKH = ?";
 
@@ -19,7 +19,7 @@ public class KhachHangDAO extends HeThongDAO<KhachHang, String> {
 
     @Override
     public void update(KhachHang entity) {
-        JdbcHelper.update(update, entity.getMatKhau(), entity.getTenKH(), entity.isGioiTinh(), entity.getNgayDangKy(), entity.getNgaySinh(), entity.getMaKH());
+        JdbcHelper.update(update, entity.getMaKH(),entity.getMatKhau(), entity.getTenKH(), entity.isGioiTinh(), entity.getNgayDangKy(), entity.getNgaySinh(), entity.getMaKH());
     }
 
     @Override

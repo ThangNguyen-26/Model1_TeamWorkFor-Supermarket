@@ -25,6 +25,7 @@ public class MainFrames extends javax.swing.JFrame {
     private List<ChungLoai> clList = new ArrayList<>();
 
     //Biến DAO
+    private KhachHangDAO khDao = new KhachHangDAO();
     private SanPhamDAO spDao = new SanPhamDAO();
     private ChungLoaiDAO clDao = new ChungLoaiDAO();
     private DonHangDAO dhDao = new DonHangDAO();
@@ -141,7 +142,7 @@ public class MainFrames extends javax.swing.JFrame {
         lblTenKH = new javax.swing.JLabel();
         txtTenKH = new javax.swing.JTextField();
         lblMatKhau1 = new javax.swing.JLabel();
-        txtMatKhauKH = new javax.swing.JPasswordField();
+        txtMatKhauKH = new javax.swing.JTextField();
         pnlEastKH = new javax.swing.JPanel();
         lblNgaySinh1 = new javax.swing.JLabel();
         txtNgaySinhKH = new javax.swing.JTextField();
@@ -1172,7 +1173,7 @@ public class MainFrames extends javax.swing.JFrame {
                     .addComponent(lblMaKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlWestKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTenKH, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                    .addComponent(txtTenKH, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
                     .addComponent(txtMaKH)
                     .addComponent(txtMatKhauKH))
                 .addContainerGap())
@@ -1183,15 +1184,15 @@ public class MainFrames extends javax.swing.JFrame {
                 .addGroup(pnlWestKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMaKH))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
                 .addGroup(pnlWestKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTenKH)
                     .addComponent(txtTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlWestKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMatKhauKH, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMatKhauKH, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMatKhau1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         lblNgaySinh1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1271,7 +1272,7 @@ public class MainFrames extends javax.swing.JFrame {
             .addGroup(pnlNorthKHLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlWestKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(pnlEastKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlNorthKHLayout.setVerticalGroup(
@@ -1413,7 +1414,7 @@ public class MainFrames extends javax.swing.JFrame {
                     .addComponent(lblTitleSubKH, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlNavRightKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2072,7 +2073,20 @@ public class MainFrames extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChiTietDHActionPerformed
 
     private void BtnSuaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSuaKHActionPerformed
-        // TODO add your handling code here:
+        KhachHang kh = new KhachHang();
+        kh.setMaKH(txtMaKH.getText());
+        kh.setMatKhau(txtMatKhauKH.getText());
+        kh.setNgaySinh(XDate.toDate(txtNgaySinhKH.getText(), "dd/MM/yyyy"));
+        kh.setNgayDangKy(XDate.toDate(txtNgayDK.getText(), "dd/MM/yyyy"));
+        kh.setTenKH(txtTenKH.getText());
+        if(rdoNamKH.isSelected()){
+            kh.setGioiTinh(true);
+        }else{
+            kh.setGioiTinh(false);
+        }
+        khDao.update(kh);
+        MsgBox.alert(null, "Sửa thông tin khách hàng thành công");
+        loadToTableKH();
     }//GEN-LAST:event_BtnSuaKHActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -2357,7 +2371,7 @@ public class MainFrames extends javax.swing.JFrame {
     private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtMaSP;
     private javax.swing.JPasswordField txtMatKhau;
-    private javax.swing.JPasswordField txtMatKhauKH;
+    private javax.swing.JTextField txtMatKhauKH;
     private javax.swing.JTextField txtMieuTa;
     private javax.swing.JTextField txtNgayDK;
     private javax.swing.JTextField txtNgayDatHang;
@@ -2380,8 +2394,7 @@ public class MainFrames extends javax.swing.JFrame {
             }
         };
         khTableModel.setColumnIdentifiers(new Object[]{"Mã khách hàng", "Mật khẩu", "Tên khách hàng", "Giới tính", "Ngày đăng ký", "Ngày sinh"});
-        KhachHangDAO dao = new KhachHangDAO();
-        khList = dao.selectAll();
+        khList = khDao.selectAll();
         for (KhachHang kh : khList) {
             if (kh.isGioiTinh() == true) {
                 khTableModel.addRow(new Object[]{kh.getMaKH(), kh.getMatKhau(), kh.getTenKH(), "Nam", XDate.toString(kh.getNgayDangKy(), "dd/MM/yyyy"), XDate.toString(kh.getNgaySinh(), "dd/MM/yyyy")});
