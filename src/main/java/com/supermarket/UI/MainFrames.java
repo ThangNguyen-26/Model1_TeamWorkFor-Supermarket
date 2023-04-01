@@ -720,6 +720,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnFirstCL.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnFirstCL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnFirstCL.setFocusable(false);
+        btnFirstCL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirstCLActionPerformed(evt);
+            }
+        });
         pnlNavRightCL.add(btnFirstCL);
 
         btnPrevCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -727,6 +732,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnPrevCL.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnPrevCL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPrevCL.setFocusable(false);
+        btnPrevCL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrevCLActionPerformed(evt);
+            }
+        });
         pnlNavRightCL.add(btnPrevCL);
 
         btnNextCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -734,6 +744,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnNextCL.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnNextCL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNextCL.setFocusable(false);
+        btnNextCL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextCLActionPerformed(evt);
+            }
+        });
         pnlNavRightCL.add(btnNextCL);
 
         btnLastCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -741,6 +756,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnLastCL.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnLastCL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLastCL.setFocusable(false);
+        btnLastCL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLastCLActionPerformed(evt);
+            }
+        });
         pnlNavRightCL.add(btnLastCL);
 
         tblCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1455,6 +1475,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnChiTietHD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnChiTietHD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnChiTietHD.setFocusable(false);
+        btnChiTietHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChiTietHDActionPerformed(evt);
+            }
+        });
 
         btnXoaHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoaHD.setText("Xóa");
@@ -2079,9 +2104,9 @@ public class MainFrames extends javax.swing.JFrame {
         kh.setNgaySinh(XDate.toDate(txtNgaySinhKH.getText(), "dd/MM/yyyy"));
         kh.setNgayDangKy(XDate.toDate(txtNgayDK.getText(), "dd/MM/yyyy"));
         kh.setTenKH(txtTenKH.getText());
-        if(rdoNamKH.isSelected()){
+        if (rdoNamKH.isSelected()) {
             kh.setGioiTinh(true);
-        }else{
+        } else {
             kh.setGioiTinh(false);
         }
         khDao.update(kh);
@@ -2187,6 +2212,26 @@ public class MainFrames extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnXoaDHActionPerformed
+
+    private void btnChiTietHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiTietHDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnChiTietHDActionPerformed
+
+    private void btnFirstCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstCLActionPerformed
+        firstCL();
+    }//GEN-LAST:event_btnFirstCLActionPerformed
+
+    private void btnPrevCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevCLActionPerformed
+        previousCL();
+    }//GEN-LAST:event_btnPrevCLActionPerformed
+
+    private void btnNextCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextCLActionPerformed
+        nextCL();
+    }//GEN-LAST:event_btnNextCLActionPerformed
+
+    private void btnLastCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastCLActionPerformed
+        lastCL();
+    }//GEN-LAST:event_btnLastCLActionPerformed
 
     public static void main(String args[]) {
 
@@ -2501,35 +2546,76 @@ public class MainFrames extends javax.swing.JFrame {
                 cl.getMieuTa(),};
             clTableModel.addRow(row);
         }
+        btnThemCL.setEnabled(false);
     }
 
     private void fillFromTableCL(int index) {
         txtMaCL.setText(clList.get(index).getMaCL());
         txtTenCL.setText(clList.get(index).getTenCL());
         txtMieuTa.setText(clList.get(index).getMieuTa());
+        tblCL.setRowSelectionInterval(index, index);
+        btnThemCL.setEnabled(false);
     }
 
     private void clearCL() {
         txtMaCL.setText("");
         txtTenCL.setText("");
         txtMieuTa.setText("");
+        btnThemCL.setEnabled(true);
+        btnSuaCL.setEnabled(false);
+        btnXoaCL.setEnabled(false);
     }
 
     private void insertCL() {
         ChungLoai clitem = new ChungLoai(txtMaCL.getText(), txtTenCL.getText(), txtMieuTa.getText());
         clDao.insert(clitem);
         loadToTableCL();
+        btnSuaCL.setEnabled(true);
+        btnXoaCL.setEnabled(true);
     }
 
     private void updateCL() {
         ChungLoai clitem = new ChungLoai(txtMaCL.getText(), txtTenCL.getText(), txtMieuTa.getText());
         clDao.update(clitem);
         loadToTableCL();
+        fillCboSP();
     }
 
     private void deleteCL() {
         clDao.delete(txtMaCL.getText());
         loadToTableCL();
+    }
+
+    private void firstCL() {
+        fillFromTableCL(0);
+    }
+
+    private void nextCL() {
+        index++;
+        if (index > clList.size() - 1) {
+            index = 0;
+        }
+        fillFromTableCL(index);
+    }
+
+    private void previousCL() {
+        index--;
+        if (index < 0) {
+            index = clList.size() - 1;
+        }
+        fillFromTableCL(index);
+    }
+
+    private void lastCL() {
+        index = clList.size() - 1;
+        fillFromTableCL(index);
+    }
+
+    private boolean check() {
+        if (0 < 1) {
+            return false;
+        }
+        return true;
     }
 
     //End Code Chủng Loại
@@ -2562,7 +2648,7 @@ public class MainFrames extends javax.swing.JFrame {
     }
 
     private void clearFormDH() {
-        DonHang dh =  new DonHang();
+        DonHang dh = new DonHang();
         dh.setMaDH(dh.getMaDH());
         dh.setNgayDatHang(dh.getNgayDatHang());
         dh.setMaKH(dh.getMaKH());
