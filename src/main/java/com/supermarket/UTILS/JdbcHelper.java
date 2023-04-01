@@ -10,8 +10,8 @@ public class JdbcHelper {
 
     static String driver = "com.microsoft.sqlserver.SQLServerDriver";
     static String dbUrl = "jdbc:sqlserver://localhost:1433;databaseName=QUAN_LY_SIEU_THI_G5";
-    static String user = "sa";
-    static String pass = "songlong";
+    static String user = "Edusys";
+    static String pass = "123";
 
     static {
         try {

@@ -8,21 +8,21 @@ import java.util.List;
 
 public class NhanVienDAO extends HeThongDAO<NhanVien, String> {
 
-    String insert = "INSERT INTO NHANVIEN VALUES (?,?,?,?,?,?)";
+    String insert = "INSERT INTO NHANVIEN VALUES (?,?,?,?,?,0)";
     String delete = "DELETE NHANVIEN WHERE MANV = ?";
-    String update = "UPDATE  SET MATKHAU = ?, HOTEN = ?, GIOITINH = ?, NGAYSINH = ?, VAITRO = ? WHERE MANV = ?";
+    String update = "UPDATE NHANVIEN SET MATKHAU = ?, HOTEN = ?, GIOITINH = ?, NGAYSINH = ? WHERE MANV = ?";
     String updatemk = "UPDATE NHANVIEN  SET MATKHAU = ? WHERE MANV = ?";
     String selectAll = "SELECT * FROM NHANVIEN";
     String selectById = "SELECT * FROM NHANVIEN WHERE MANV = ?";
 
     @Override
     public void insert(NhanVien entity) {
-        JdbcHelper.update(insert, entity.getMaNV(), entity.getMatKhau(), entity.getHoTen(), entity.isGioiTinh(), entity.getNgaySinh(), entity.isVaiTro());
+        JdbcHelper.update(insert, entity.getMaNV(), entity.getMatKhau(), entity.getHoTen(), entity.isGioiTinh(), entity.getNgaySinh());
     }
 
     @Override
     public void update(NhanVien entity) {
-        JdbcHelper.update(update, entity.getMatKhau(), entity.getHoTen(), entity.isGioiTinh(), entity.getNgaySinh(), entity.isVaiTro(), entity.getMaNV());
+        JdbcHelper.update(update, entity.getMatKhau(), entity.getHoTen(), entity.isGioiTinh(), entity.getNgaySinh(), entity.getMaNV());
     }
     
     public void updatemk(String mknew, NhanVien entity){

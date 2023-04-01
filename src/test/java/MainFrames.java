@@ -1,5 +1,6 @@
-package com.supermarket.UI;
 
+
+import com.supermarket.UI.*;
 import com.supermarket.DAO.ChungLoaiDAO;
 import com.supermarket.DAO.DonHangDAO;
 import com.supermarket.DAO.KhachHangDAO;
@@ -43,7 +44,7 @@ public class MainFrames extends javax.swing.JFrame {
         loadToTableKH();
         loadToTableCL();
         loadToTableDH();
-        loadToTableNV();
+        fillTableNhanVien();
     }
 
     @SuppressWarnings("unchecked")
@@ -1055,7 +1056,7 @@ public class MainFrames extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlNorthNVBHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlWestNVBH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlEastNVBH, javax.swing.GroupLayout.PREFERRED_SIZE, 143, Short.MAX_VALUE))
+                    .addComponent(pnlEastNVBH, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(pnlMainBtnNVBH, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -2267,6 +2268,7 @@ public class MainFrames extends javax.swing.JFrame {
 
     private void tblNVBHMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNVBHMousePressed
         //index = tblNVBH.rowAtPoint(evt.getPoint());
+        System.out.println(index);
         editNV();
         btnThemNVBH.setEnabled(false);
         btnSuaNVBH.setEnabled(true);
@@ -2712,7 +2714,7 @@ public class MainFrames extends javax.swing.JFrame {
     }
 
     //BEGIN NHANVIEN
-    private void loadToTableNV() {
+    private void fillTableNhanVien() {
         DefaultTableModel model = (DefaultTableModel) tblNVBH.getModel();
         model.setRowCount(0);
         try {
@@ -2757,11 +2759,10 @@ public class MainFrames extends javax.swing.JFrame {
 
     private void editNV() {
         try {
-            String manv = (String) tblNVBH.getValueAt( this.tblNVBH.getSelectedRow(), 0);
+            String manv = (String) tblNVBH.getValueAt(tblNVBH.getSelectedRow(), 0);
             NhanVien model = nvDao.selectById(manv);
             if (model != null) {
                 setNhanVien(model);
-                System.out.println(model.getNgaySinh());
             }
         } catch (Exception e) {
             System.out.println("Lỗi truy vấn" + e.toString());
@@ -2784,7 +2785,7 @@ public class MainFrames extends javax.swing.JFrame {
         try {
             nvDao.insert(model);
             newNhanVien();
-            loadToTableNV();
+            fillTableNhanVien();
             MsgBox.alert(this, "Thêm thành công");
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -2796,7 +2797,7 @@ public class MainFrames extends javax.swing.JFrame {
         NhanVien model = getNhanVien();
         try {
             nvDao.update(model);
-            loadToTableNV();
+            fillTableNhanVien();
             MsgBox.alert(this, "Cập nhật thành công");
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -2810,7 +2811,7 @@ public class MainFrames extends javax.swing.JFrame {
             try {
                 nvDao.delete(manv);
                 newNhanVien();
-                loadToTableNV();
+                fillTableNhanVien();
                 MsgBox.alert(this, "Xoá thành công");
             } catch (Exception e) {
                 System.out.println(e.toString());
