@@ -1,12 +1,78 @@
 package com.supermarket.UI;
+import com.supermarket.DAO.NhanVienDAO;
+import com.supermarket.DAO.KhachHangDAO;
+import com.supermarket.ENTITY.NhanVien;
+import com.supermarket.ENTITY.KhachHang;
+import com.supermarket.UTILS.MsgBox;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 public class DoiMatKhauJDialog extends javax.swing.JDialog {
+    NhanVienDAO nvDao = new NhanVienDAO();
+    KhachHangDAO khDao = new KhachHangDAO();
 
     public DoiMatKhauJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         init();
+        initCombox();
     }
+    
+    private void initCombox() {
+        cbbVaiTro.removeAllItems();
+        String[] vaiTro = {"Nhân Viên", "Khách Hàng"};
+        for (String vaitro : vaiTro) {
+            cbbVaiTro.addItem(vaitro);
+        }
+    }
+
+    private void doiMatKhau() {
+        if (cbbVaiTro.getSelectedIndex() == 0) {
+            DoiMatKhauNhanVien();
+        } else {
+            DoiMatKhauKhachHang();
+        }
+    }
+
+    private void DoiMatKhauNhanVien() {
+        String taikhoan = txtTenDangNhap.getText();
+        String matkhau = new String(txtMatKhauCu.getPassword());
+        String matkhaunew = new String(txtMatKhauMoi.getPassword());
+        String matkhaucf = new String(txtNhapLaiMKM.getPassword());
+
+        NhanVien nv = nvDao.selectById(taikhoan);
+        if (nv == null) {
+            JOptionPane.showMessageDialog(this, "Tài khoản không tồn tại", "", 0);
+        } else if (!matkhau.equalsIgnoreCase(nv.getMatKhau())) {
+            JOptionPane.showMessageDialog(this, "Sai mật khẩu", "", 0);
+        } else if (!matkhaucf.equalsIgnoreCase(matkhaunew)) {
+            JOptionPane.showMessageDialog(this, "Xác nhận mật khẩu không đúng", "", 0);
+        } else {
+            nvDao.updatemk(matkhaunew, nv);
+            MsgBox.alert(this, "Đổi mật khẩu thành công");
+        }
+    }
+
+    private void DoiMatKhauKhachHang() {
+        String taikhoan = txtTenDangNhap.getText();
+        String matkhau = new String(txtMatKhauCu.getPassword());
+        String matkhaunew = new String(txtMatKhauMoi.getPassword());
+        String matkhaucf = new String(txtNhapLaiMKM.getPassword());
+
+        KhachHang kh = khDao.selectById(taikhoan);
+        if (kh == null) {
+            JOptionPane.showMessageDialog(this, "Tài khoản không tồn tại", "", 0);
+        } else if (!matkhau.equalsIgnoreCase(kh.getMatKhau())) {
+            JOptionPane.showMessageDialog(this, "Sai mật khẩu", "", 0);
+        } else if (!matkhaucf.equalsIgnoreCase(matkhaunew)) {
+            JOptionPane.showMessageDialog(this, "Xác nhận mật khẩu không đúng", "", 0);
+        } else {
+            khDao.updatemk(matkhaunew, kh);
+            MsgBox.alert(this, "Đổi mật khẩu thành công");
+        }
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -87,6 +153,11 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
         btnDoiMK.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnDoiMK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDoiMK.setFocusable(false);
+        btnDoiMK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoiMKActionPerformed(evt);
+            }
+        });
         pnlBtns.add(btnDoiMK);
 
         javax.swing.GroupLayout pnlInforLayout = new javax.swing.GroupLayout(pnlInfor);
@@ -172,6 +243,10 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDoiMKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMKActionPerformed
+        doiMatKhau();
+    }//GEN-LAST:event_btnDoiMKActionPerformed
 
     public static void main(String args[]) {
         try {

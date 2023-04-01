@@ -11,6 +11,7 @@ public class NhanVienDAO extends HeThongDAO<NhanVien, String> {
     String insert = "INSERT INTO NHANVIEN VALUES (?,?,?,?,?,?)";
     String delete = "DELETE NHANVIEN WHERE MANV = ?";
     String update = "UPDATE  SET MATKHAU = ?, HOTEN = ?, GIOITINH = ?, NGAYSINH = ?, VAITRO = ? WHERE MANV = ?";
+    String updatemk = "UPDATE NHANVIEN  SET MATKHAU = ? WHERE MANV = ?";
     String selectAll = "SELECT * FROM NHANVIEN";
     String selectById = "SELECT * FROM NHANVIEN WHERE MANV = ?";
 
@@ -22,6 +23,10 @@ public class NhanVienDAO extends HeThongDAO<NhanVien, String> {
     @Override
     public void update(NhanVien entity) {
         JdbcHelper.update(update, entity.getMatKhau(), entity.getHoTen(), entity.isGioiTinh(), entity.getNgaySinh(), entity.isVaiTro(), entity.getMaNV());
+    }
+    
+    public void updatemk(String mknew, NhanVien entity){
+        JdbcHelper.update(updatemk, mknew, entity.getMatKhau());
     }
 
     @Override
