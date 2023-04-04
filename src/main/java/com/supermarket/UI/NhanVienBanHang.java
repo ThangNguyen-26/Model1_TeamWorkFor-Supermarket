@@ -154,6 +154,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         pnlHoaDon.setToolTipText("");
 
         txtDonHang.setText("==============================FAMILY POINT=============================\nTên sản phẩm                                    SL                               Giá thành                          Thành tiền");
+        txtDonHang.setFocusable(false);
         jScrollPane2.setViewportView(txtDonHang);
 
         javax.swing.GroupLayout pnlHoaDonLayout = new javax.swing.GroupLayout(pnlHoaDon);
