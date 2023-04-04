@@ -1,10 +1,8 @@
 package com.supermarket.UI;
 
 import com.supermarket.DAO.ChungLoaiDAO;
-import com.supermarket.DAO.SanPhamExtendDao;
 import com.supermarket.ENTITY.ChungLoai;
 import com.supermarket.ENTITY.SanPham;
-import com.supermarket.ENTITY.SanPhamExtend;
 import com.supermarket.UTILS.JdbcHelper;
 import com.supermarket.UTILS.MsgBox;
 import java.sql.ResultSet;
@@ -19,8 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class KhachHangFrame extends javax.swing.JFrame {
 
     private String maKh;
-    private List<SanPhamExtend> spList = new ArrayList<>();
-    private SanPhamExtendDao spDao = new SanPhamExtendDao();
+    private List<SanPham> spList = new ArrayList<>();
 
     public KhachHangFrame() {
         initComponents();
@@ -381,9 +378,9 @@ public class KhachHangFrame extends javax.swing.JFrame {
         };
         fillModel.setColumnIdentifiers(new Object[]{"Mã SP", "Tên SP", "Số lượng", "Giá thành", "Tên chủng loại"});
         String tenCl = (String)cboCL.getSelectedItem();
-        for(SanPhamExtend sp : spList){
-            if(sp.getTenCl().equals(tenCl)){
-                fillModel.addRow(new Object[]{sp.getMaSP(), sp.getTenSP(),sp.getSoLuong(),sp.getGiaThanh(),sp.getTenCl()});
+        for(SanPham sp : spList){
+            if(sp.getMaCL().equals(tenCl)){
+                fillModel.addRow(new Object[]{sp.getMaSP(), sp.getTenSP(),sp.getSoLuong(),sp.getGiaThanh(),sp.getMaCL()});
             }
         }
         tblDSSP.setModel(fillModel);
@@ -473,10 +470,18 @@ public class KhachHangFrame extends javax.swing.JFrame {
         };
         tblModel.setColumnIdentifiers(new Object[]{"Mã SP", "Tên SP", "Số lượng", "Giá thành", "Tên chủng loại"});
         spList.removeAll(spList);
-        spList = spDao.selectAll();
-        for(SanPhamExtend sp:spList){
-            tblModel.addRow(new Object[]{sp.getMaSP(),sp.getTenSP(),sp.getSoLuong(),sp.getGiaThanh(),sp.getTenCl()});
+        try {
+            ResultSet rs = JdbcHelper.query("select masp, tensp, soluong, giathanh,cl.tencl from sanpham sp inner join chungloai cl on sp.macl = cl.macl");
+            while (rs.next()) {
+                SanPham sp = new SanPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getFloat(4), rs.getString(5));
+                spList.add(sp);
+                tblModel.addRow(new Object[]{sp.getMaSP(), sp.getTenSP(), sp.getSoLuong(), sp.getGiaThanh(), sp.getMaCL()});
+            }
+            rs.getStatement().getConnection().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         tblDSSP.setModel(tblModel);
     }
     
