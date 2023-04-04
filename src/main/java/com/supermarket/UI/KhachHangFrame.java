@@ -7,6 +7,7 @@ import com.supermarket.ENTITY.SanPham;
 import com.supermarket.ENTITY.SanPhamExtend;
 import com.supermarket.UTILS.JdbcHelper;
 import com.supermarket.UTILS.MsgBox;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
     private String maKh;
     private List<SanPhamExtend> spList = new ArrayList<>();
     private SanPhamExtendDao spDao = new SanPhamExtendDao();
+    private int index;
 
     public KhachHangFrame() {
         initComponents();
@@ -48,7 +50,6 @@ public class KhachHangFrame extends javax.swing.JFrame {
         txtSoLuong = new javax.swing.JTextField();
         lblTenCL = new javax.swing.JLabel();
         cboCL = new javax.swing.JComboBox<>();
-        btnLoc = new javax.swing.JButton();
         btnMoi = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
         BtnXoa = new javax.swing.JButton();
@@ -84,12 +85,18 @@ public class KhachHangFrame extends javax.swing.JFrame {
 
         txtTenSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtTenSP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtTenSP.setFocusable(false);
 
         lblSoLuong.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblSoLuong.setText("Số lượng");
 
         txtSoLuong.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtSoLuong.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtSoLuong.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSoLuongKeyReleased(evt);
+            }
+        });
 
         lblTenCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTenCL.setText("Tên chủng loại");
@@ -100,17 +107,6 @@ public class KhachHangFrame extends javax.swing.JFrame {
         cboCL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboCLActionPerformed(evt);
-            }
-        });
-
-        btnLoc.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnLoc.setText("Lọc");
-        btnLoc.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnLoc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLoc.setFocusable(false);
-        btnLoc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLocActionPerformed(evt);
             }
         });
 
@@ -129,6 +125,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         btnThem.setText("Thêm vào đơn hàng");
         btnThem.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnThem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnThem.setEnabled(false);
         btnThem.setFocusable(false);
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,21 +180,27 @@ public class KhachHangFrame extends javax.swing.JFrame {
 
         tblDSSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã SP", "Tên SP", "Số lượng", "Tên chủng loại"
+                "Mã SP", "Tên SP", "Số lượng", "Giá thành", "Tên chủng loại"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblDSSP.getTableHeader().setReorderingAllowed(false);
+        tblDSSP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblDSSPMousePressed(evt);
             }
         });
         jScrollPane1.setViewportView(tblDSSP);
@@ -267,9 +270,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
                                 .addGroup(pnlMainLayout.createSequentialGroup()
                                     .addComponent(lblTenCL)
                                     .addGap(39, 39, 39)
-                                    .addComponent(cboCL, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(31, 31, 31)
-                                    .addComponent(btnLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cboCL, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(16, 16, 16))
@@ -302,7 +303,6 @@ public class KhachHangFrame extends javax.swing.JFrame {
                         .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblTenCL)
                             .addComponent(cboCL, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblDSSP)
@@ -365,29 +365,13 @@ public class KhachHangFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cboCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCLActionPerformed
-        // TODO add your handling code here:
+        filter();
     }//GEN-LAST:event_cboCLActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
         loadToTable();
+        cboCL.setSelectedIndex(0);
     }//GEN-LAST:event_btnMoiActionPerformed
-
-    private void btnLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocActionPerformed
-        DefaultTableModel fillModel = new DefaultTableModel(){
-            @Override
-            public boolean isCellEditable(int row, int column){
-                return false;
-            }
-        };
-        fillModel.setColumnIdentifiers(new Object[]{"Mã SP", "Tên SP", "Số lượng", "Giá thành", "Tên chủng loại"});
-        String tenCl = (String)cboCL.getSelectedItem();
-        for(SanPhamExtend sp : spList){
-            if(sp.getTenCl().equals(tenCl)){
-                fillModel.addRow(new Object[]{sp.getMaSP(), sp.getTenSP(),sp.getSoLuong(),sp.getGiaThanh(),sp.getTenCl()});
-            }
-        }
-        tblDSSP.setModel(fillModel);
-    }//GEN-LAST:event_btnLocActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
 
@@ -405,6 +389,28 @@ public class KhachHangFrame extends javax.swing.JFrame {
         this.setVisible(false);
         new DonHangDaDatKH(maKh).setVisible(true);
     }//GEN-LAST:event_btnDSDatHangActionPerformed
+
+    private void tblDSSPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSSPMousePressed
+        fillFromTable();
+    }//GEN-LAST:event_tblDSSPMousePressed
+
+    private void txtSoLuongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSoLuongKeyReleased
+        String soLuong = txtSoLuong.getText();
+        if(soLuong.trim().length()>0){
+            try{
+                int soLuongNumber = Integer.parseInt(soLuong);
+            }catch(NumberFormatException ex){
+                MsgBox.alert(null, "Bạn phải nhập số lượng là số nguyên");
+                txtSoLuong.setBackground(Color.yellow);
+                btnThem.setEnabled(false);
+                return;
+            }
+            txtSoLuong.setBackground(Color.white);
+            btnThem.setEnabled(true);
+        }else{
+            btnThem.setEnabled(false);
+        }
+    }//GEN-LAST:event_txtSoLuongKeyReleased
 
     public static void main(String args[]) {
         try {
@@ -435,7 +441,6 @@ public class KhachHangFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnDSDatHang;
     private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnIn;
-    private javax.swing.JButton btnLoc;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnThem;
     private javax.swing.JComboBox<String> cboCL;
@@ -461,7 +466,6 @@ public class KhachHangFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         loadToTable();
         loadToCbo();
-        fillToDonHang();
     }
 
     private void loadToTable() {
@@ -474,24 +478,49 @@ public class KhachHangFrame extends javax.swing.JFrame {
         tblModel.setColumnIdentifiers(new Object[]{"Mã SP", "Tên SP", "Số lượng", "Giá thành", "Tên chủng loại"});
         spList.removeAll(spList);
         spList = spDao.selectAll();
-        for(SanPhamExtend sp:spList){
-            tblModel.addRow(new Object[]{sp.getMaSP(),sp.getTenSP(),sp.getSoLuong(),sp.getGiaThanh(),sp.getTenCl()});
+        for (SanPhamExtend sp : spList) {
+            tblModel.addRow(new Object[]{sp.getMaSP(), sp.getTenSP(), sp.getSoLuong(), sp.getGiaThanh(), sp.getTenCl()});
         }
         tblDSSP.setModel(tblModel);
     }
-    
-    private void loadToCbo(){
+
+    private void loadToCbo() {
         DefaultComboBoxModel cboModel = new DefaultComboBoxModel();
         ChungLoaiDAO dao = new ChungLoaiDAO();
         List<ChungLoai> clList = new ArrayList<>();
         clList = dao.selectAll();
-        for(ChungLoai cl : clList){
+        cboModel.addElement("Tất cả");
+        for (ChungLoai cl : clList) {
             cboModel.addElement(cl.getTenCL());
         }
         cboCL.setModel(cboModel);
     }
-    
-    private void fillToDonHang(){
-        
+
+    private void filter() {
+        DefaultTableModel fillModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        fillModel.setColumnIdentifiers(new Object[]{"Mã SP", "Tên SP", "Số lượng", "Giá thành", "Tên chủng loại"});
+        String tenCl = (String) cboCL.getSelectedItem();
+        if (tenCl.equals("Tất cả")) {
+            loadToTable();
+        } else {
+            for (SanPhamExtend sp : spList) {
+                if (sp.getTenCl().equals(tenCl)) {
+                    fillModel.addRow(new Object[]{sp.getMaSP(), sp.getTenSP(), sp.getSoLuong(), sp.getGiaThanh(), sp.getTenCl()});
+                }
+            }
+            tblDSSP.setModel(fillModel);
+        }
     }
+
+    private void fillFromTable() {
+        index = tblDSSP.getSelectedRow();
+        String tenSp = spList.get(index).getTenSP();
+        txtTenSP.setText(tenSp);
+    }
+    
 }
