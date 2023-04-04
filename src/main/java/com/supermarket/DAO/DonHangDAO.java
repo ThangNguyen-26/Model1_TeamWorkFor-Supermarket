@@ -19,6 +19,7 @@ public class DonHangDAO extends HeThongDAO<DonHang, String> {
 
     String delete = "DELETE DONHANG WHERE MADH = ?";
     String selectAll_SQL = "SELECT * FROM DONHANG";
+    String selectById_SQL = "SELECT * FROM DONHANG WHERE MADH = ?";
 
     @Override
     public void insert(DonHang entity) {
@@ -42,7 +43,13 @@ public class DonHangDAO extends HeThongDAO<DonHang, String> {
 
     @Override
     public DonHang selectById(String key) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        List<DonHang> list = selectSql(selectById_SQL, key);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+        
     }
 
     @Override
@@ -52,9 +59,9 @@ public class DonHangDAO extends HeThongDAO<DonHang, String> {
             ResultSet rs = JdbcHelper.query(sql, args);
             while (rs.next()) {
                 DonHang entity = new DonHang();
-                entity.setMaDH(rs.getString(1));
-                entity.setNgayDatHang(rs.getDate(2));
-                entity.setMaKH(rs.getString(3));
+                entity.setMaDH(rs.getString("madh"));
+                entity.setNgayDatHang(rs.getDate("ngaydathang"));
+                entity.setMaKH(rs.getString("makh"));
                 list.add(entity);
             }
         } catch (Exception e) {

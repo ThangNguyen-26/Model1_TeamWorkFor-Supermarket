@@ -268,7 +268,7 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void btnChiTietDHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiTietDHActionPerformed
-        new DonHangCTKH(listDH.get(this.rowNumber).getMaDH()).setVisible(true);
+        new DonHangCT(listDH.get(this.rowNumber).getMaDH()).setVisible(true);
     }//GEN-LAST:event_btnChiTietDHActionPerformed
 
     private void btnMHChinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMHChinhActionPerformed

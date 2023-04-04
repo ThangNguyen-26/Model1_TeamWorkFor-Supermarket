@@ -18,6 +18,7 @@ import java.util.List;
 public class DonHangCT_Admin_DAO extends HeThongDAO<DonHangChiTiet, String> {
 
     String selectAll_SQL = "SELECT * FROM CHITIETDONHANG";
+    String selectById_SQL = "SELECT * FROM CHITIETDONHANG WHERE MADH = ?";
 
     @Override
     public void insert(DonHangChiTiet entity) {
@@ -41,7 +42,11 @@ public class DonHangCT_Admin_DAO extends HeThongDAO<DonHangChiTiet, String> {
 
     @Override
     public DonHangChiTiet selectById(String key) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<DonHangChiTiet> list = selectSql(selectById_SQL, key);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
     }
 
     @Override
@@ -51,9 +56,10 @@ public class DonHangCT_Admin_DAO extends HeThongDAO<DonHangChiTiet, String> {
             ResultSet rs = JdbcHelper.query(sql, args);
             while (rs.next()) {
                 DonHangChiTiet entity = new DonHangChiTiet();
-                entity.setThanhTien(rs.getFloat(1));
-                entity.setMaSP(rs.getString(2));
-                entity.setMaDH(rs.getString(3));
+                entity.setMaDH(rs.getString("madh"));
+                entity.setMaSP(rs.getString("masp"));
+                entity.setSoLuong(rs.getInt("soluong"));
+                entity.setThanhTien(rs.getFloat("thanhtien"));
                 list.add(entity);
             }
         } catch (Exception e) {
@@ -62,4 +68,10 @@ public class DonHangCT_Admin_DAO extends HeThongDAO<DonHangChiTiet, String> {
         return list;
     }
 
+    public List<DonHangChiTiet> selectByKeyword(String keyword) {
+        
+        return this.selectSql("SELECT * FROM CHITIETDONHANG WHERE MADH LIKE ?",  keyword );
+        
+    }
+    
 }

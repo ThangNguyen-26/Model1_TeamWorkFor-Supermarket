@@ -1,6 +1,7 @@
 package com.supermarket.UI;
 
 import com.supermarket.DAO.ChungLoaiDAO;
+import com.supermarket.DAO.DonHangCT_Admin_DAO;
 import com.supermarket.DAO.DonHangDAO;
 import com.supermarket.DAO.KhachHangDAO;
 import com.supermarket.DAO.SanPhamDAO;
@@ -8,6 +9,7 @@ import com.supermarket.DAO.NhanVienDAO;
 import com.supermarket.ENTITY.NhanVien;
 import com.supermarket.ENTITY.ChungLoai;
 import com.supermarket.ENTITY.DonHang;
+import com.supermarket.ENTITY.DonHangChiTiet;
 import com.supermarket.ENTITY.KhachHang;
 import com.supermarket.ENTITY.SanPham;
 import com.supermarket.UTILS.MsgBox;
@@ -33,6 +35,7 @@ public class MainFrames extends javax.swing.JFrame {
     private SanPhamDAO spDao = new SanPhamDAO();
     private ChungLoaiDAO clDao = new ChungLoaiDAO();
     private DonHangDAO dhDao = new DonHangDAO();
+    private DonHangCT_Admin_DAO dhctDao = new DonHangCT_Admin_DAO();
     private NhanVienDAO nvDao = new NhanVienDAO();
 
     public MainFrames() {
@@ -194,7 +197,7 @@ public class MainFrames extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtMaDH = new javax.swing.JTextField();
-        txtMaKH_DHFr = new javax.swing.JTextField();
+        txtMaKh = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtTongTien = new javax.swing.JTextField();
@@ -1743,17 +1746,9 @@ public class MainFrames extends javax.swing.JFrame {
 
         jLabel2.setText("jLabel1");
 
-        txtMaDH.setText("jTextField1");
-
-        txtMaKH_DHFr.setText("jTextField1");
-
         jLabel3.setText("jLabel1");
 
         jLabel4.setText("jLabel1");
-
-        txtTongTien.setText("jTextField1");
-
-        txtNgayDatHang.setText("jTextField1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1771,7 +1766,7 @@ public class MainFrames extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtMaKH_DHFr, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtMaKh, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
@@ -1794,7 +1789,7 @@ public class MainFrames extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtMaKH_DHFr, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtMaKh, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(46, Short.MAX_VALUE))
@@ -2126,7 +2121,11 @@ public class MainFrames extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLastKHActionPerformed
 
     private void btnChiTietDHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiTietDHActionPerformed
-        new DonHangCTAdmin().setVisible(true);
+        String madh = txtMaDH.getText();
+        DonHangChiTiet dhct = dhctDao.selectById(madh);
+        this.setVisible(false);
+        DonHangCT frameDHCT = new DonHangCT(dhct.getMaDH());
+        frameDHCT.setVisible(true);
     }//GEN-LAST:event_btnChiTietDHActionPerformed
 
     private void BtnSuaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSuaKHActionPerformed
@@ -2469,7 +2468,7 @@ public class MainFrames extends javax.swing.JFrame {
     private javax.swing.JTextField txtMaCL;
     private javax.swing.JTextField txtMaDH;
     private javax.swing.JTextField txtMaKH;
-    private javax.swing.JTextField txtMaKH_DHFr;
+    private javax.swing.JTextField txtMaKh;
     private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtMaSP;
     private javax.swing.JPasswordField txtMatKhau;
@@ -2700,7 +2699,7 @@ public class MainFrames extends javax.swing.JFrame {
 
     private void setFormDH(DonHang dh) {
         txtMaDH.setText(dh.getMaDH());
-        txtMaKH_DHFr.setText(dh.getMaKH());
+        txtMaKh.setText(dh.getMaKH());
         txtNgayDatHang.setText(String.valueOf(dh.getNgayDatHang()));
     }
 
