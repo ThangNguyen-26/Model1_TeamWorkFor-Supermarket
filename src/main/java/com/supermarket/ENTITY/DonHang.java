@@ -15,6 +15,7 @@ public class DonHang {
     private String maDH;
     private Date ngayDatHang;
     private String maKH;
+    private float tongTien;
 
     public DonHang() {
     }
@@ -23,6 +24,13 @@ public class DonHang {
         this.maDH = maDH;
         this.ngayDatHang = ngayDatHang;
         this.maKH = maKH;
+    }
+
+    public DonHang(String maDH, Date ngayDatHang, String maKH, float tongTien) {
+        this.maDH = maDH;
+        this.ngayDatHang = ngayDatHang;
+        this.maKH = maKH;
+        this.tongTien = tongTien;
     }
 
     public String getMaDH() {
@@ -47,6 +55,14 @@ public class DonHang {
 
     public void setMaKH(String maKH) {
         this.maKH = maKH;
+    }
+
+    public float getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(float tongTien) {
+        this.tongTien = tongTien;
     }
 
 }

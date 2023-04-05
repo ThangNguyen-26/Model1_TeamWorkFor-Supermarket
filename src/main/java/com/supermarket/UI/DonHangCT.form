@@ -57,7 +57,7 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="lblHDChiTiet2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="lblHDChiTiet1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTongTien" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="510" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
@@ -148,10 +148,10 @@
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="251" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="255" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblHDChiTiet1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblTongTien" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblHDChiTiet2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
@@ -355,7 +355,7 @@
             <Property name="text" type="java.lang.String" value="T&#x1ed5;ng Ti&#x1ec1;n :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblHDChiTiet1">
+        <Component class="javax.swing.JLabel" name="lblTongTien">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Barlow Condensed" size="25" style="1"/>

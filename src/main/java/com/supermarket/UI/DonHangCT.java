@@ -43,7 +43,7 @@ public class DonHangCT extends javax.swing.JFrame {
         lblClock = new javax.swing.JLabel();
         lblChiTiet = new javax.swing.JLabel();
         lblHDChiTiet2 = new javax.swing.JLabel();
-        lblHDChiTiet1 = new javax.swing.JLabel();
+        lblTongTien = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtMaDH = new javax.swing.JTextField();
@@ -149,8 +149,8 @@ public class DonHangCT extends javax.swing.JFrame {
         lblHDChiTiet2.setFont(new java.awt.Font("Barlow Condensed", 1, 25)); // NOI18N
         lblHDChiTiet2.setText("Tổng Tiền :");
 
-        lblHDChiTiet1.setFont(new java.awt.Font("Barlow Condensed", 1, 25)); // NOI18N
-        lblHDChiTiet1.setText("000");
+        lblTongTien.setFont(new java.awt.Font("Barlow Condensed", 1, 25)); // NOI18N
+        lblTongTien.setText("000");
 
         jLabel1.setText("Mã đơn hàng");
 
@@ -168,7 +168,7 @@ public class DonHangCT extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblHDChiTiet2)
                 .addGap(18, 18, 18)
-                .addComponent(lblHDChiTiet1)
+                .addComponent(lblTongTien)
                 .addGap(510, 510, 510))
             .addGroup(pnlMainLayout.createSequentialGroup()
                 .addContainerGap()
@@ -239,10 +239,10 @@ public class DonHangCT extends javax.swing.JFrame {
                         .addComponent(txtThanhTien)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHDChiTiet1)
+                    .addComponent(lblTongTien)
                     .addComponent(lblHDChiTiet2))
                 .addGap(28, 28, 28)
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -333,8 +333,8 @@ public class DonHangCT extends javax.swing.JFrame {
     private javax.swing.JLabel lblChiTiet;
     private javax.swing.JLabel lblClock;
     private javax.swing.JLabel lblDHChiTiet;
-    private javax.swing.JLabel lblHDChiTiet1;
     private javax.swing.JLabel lblHDChiTiet2;
+    private javax.swing.JLabel lblTongTien;
     private javax.swing.JPanel pnlMain;
     private javax.swing.JTable tblDHChiTiet;
     private javax.swing.JTextField txtMaDH;
@@ -353,6 +353,7 @@ public class DonHangCT extends javax.swing.JFrame {
         model.setRowCount(0);
         String madh = this.maDh;
         List<DonHangChiTiet> list = dhctDao.selectByKeyword(madh);
+        float tongTien = 0;
         for (DonHangChiTiet dhct : list) {
             Object[] row = {
                 dhct.getMaDH(),
@@ -361,6 +362,8 @@ public class DonHangCT extends javax.swing.JFrame {
                 dhct.getThanhTien()
             };
             model.addRow(row);
+            tongTien += dhct.getThanhTien();
         }
+        lblTongTien.setText(String.valueOf(tongTien));
     }
 }

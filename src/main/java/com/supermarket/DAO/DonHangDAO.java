@@ -19,6 +19,10 @@ public class DonHangDAO extends HeThongDAO<DonHang, String> {
 
     String delete = "DELETE DONHANG WHERE MADH = ?";
     String selectAll_SQL = "SELECT * FROM DONHANG";
+    String selectAllCoTongTienSQL = "SELECT DONHANG.MADH, DONHANG.NGAYDATHANG, DONHANG.MAKH, SUM(CHITIETDONHANG.THANHTIEN)\n"
+            + "FROM DONHANG INNER JOIN CHITIETDONHANG\n"
+            + "ON DONHANG.MADH = CHITIETDONHANG.MADH\n"
+            + "GROUP BY DONHANG.MADH, DONHANG.NGAYDATHANG, DONHANG.MAKH";
     String selectById_SQL = "SELECT * FROM DONHANG WHERE MADH = ?";
 
     @Override
@@ -38,18 +42,18 @@ public class DonHangDAO extends HeThongDAO<DonHang, String> {
 
     @Override
     public List<DonHang> selectAll() {
-        return selectSql(selectAll_SQL);
+        return selectSql(selectAllCoTongTienSQL);
     }
 
     @Override
     public DonHang selectById(String key) {
-        
+
         List<DonHang> list = selectSql(selectById_SQL, key);
         if (list.isEmpty()) {
             return null;
         }
         return list.get(0);
-        
+
     }
 
     @Override
@@ -62,6 +66,7 @@ public class DonHangDAO extends HeThongDAO<DonHang, String> {
                 entity.setMaDH(rs.getString("madh"));
                 entity.setNgayDatHang(rs.getDate("ngaydathang"));
                 entity.setMaKH(rs.getString("makh"));
+                entity.setTongTien(rs.getFloat(4));
                 list.add(entity);
             }
         } catch (Exception e) {

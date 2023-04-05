@@ -1,7 +1,7 @@
 package com.supermarket.UI;
 
 import com.supermarket.DAO.ChungLoaiDAO;
-import com.supermarket.DAO.DonHangCT_Admin_DAO;
+import com.supermarket.DAO.ChiTietDonHangDAO;
 import com.supermarket.DAO.DonHangDAO;
 import com.supermarket.DAO.KhachHangDAO;
 import com.supermarket.DAO.SanPhamDAO;
@@ -14,6 +14,7 @@ import com.supermarket.ENTITY.KhachHang;
 import com.supermarket.ENTITY.SanPham;
 import com.supermarket.UTILS.MsgBox;
 import com.supermarket.UTILS.XDate;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -24,6 +25,7 @@ public class MainFrames extends javax.swing.JFrame {
 
     private int index = 0;
     private int rowKH = -1;
+    private int indexcl = -1;
 
     //Biến LIST
     private List<KhachHang> khList = new ArrayList<>();
@@ -35,7 +37,7 @@ public class MainFrames extends javax.swing.JFrame {
     private SanPhamDAO spDao = new SanPhamDAO();
     private ChungLoaiDAO clDao = new ChungLoaiDAO();
     private DonHangDAO dhDao = new DonHangDAO();
-    private DonHangCT_Admin_DAO dhctDao = new DonHangCT_Admin_DAO();
+    private ChiTietDonHangDAO dhctDao = new ChiTietDonHangDAO();
     private NhanVienDAO nvDao = new NhanVienDAO();
 
     public MainFrames() {
@@ -583,11 +585,26 @@ public class MainFrames extends javax.swing.JFrame {
         lblMaCL.setText("Mã chủng loại");
 
         txtMaCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtMaCL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtMaCLMousePressed(evt);
+            }
+        });
+        txtMaCL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaCLActionPerformed(evt);
+            }
+        });
 
         lblTenCl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTenCl.setText("Tên chủng loại");
 
         txtTenCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtTenCL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtTenCLMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlWestCLLayout = new javax.swing.GroupLayout(pnlWestCL);
         pnlWestCL.setLayout(pnlWestCLLayout);
@@ -622,6 +639,11 @@ public class MainFrames extends javax.swing.JFrame {
         lblMieuTa.setText("Miêu tả");
 
         txtMieuTa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtMieuTa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtMieuTaMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlEastCLLayout = new javax.swing.GroupLayout(pnlEastCL);
         pnlEastCL.setLayout(pnlEastCLLayout);
@@ -2184,6 +2206,7 @@ public class MainFrames extends javax.swing.JFrame {
 
     private void tblCLMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCLMousePressed
         fillFromTableCL(tblCL.getSelectedRow());
+        indexcl = tblCL.getSelectedRow();
     }//GEN-LAST:event_tblCLMousePressed
 
     private void btnMoiCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiCLActionPerformed
@@ -2191,15 +2214,21 @@ public class MainFrames extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMoiCLActionPerformed
 
     private void btnSuaCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaCLActionPerformed
-        updateCL();
+        if (checkCL()) {
+            updateCL();
+        }
     }//GEN-LAST:event_btnSuaCLActionPerformed
 
     private void btnThemCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemCLActionPerformed
-        insertCL();
+        if (checkCL()) {
+            insertCL();
+        }
     }//GEN-LAST:event_btnThemCLActionPerformed
 
     private void btnXoaCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaCLActionPerformed
-        deleteCL();
+        if (checkCL()) {
+            deleteCL();
+        }
     }//GEN-LAST:event_btnXoaCLActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
@@ -2287,6 +2316,28 @@ public class MainFrames extends javax.swing.JFrame {
     private void btnMoiNVBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiNVBHActionPerformed
         newNhanVien();
     }//GEN-LAST:event_btnMoiNVBHActionPerformed
+
+    private void txtMaCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaCLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaCLActionPerformed
+
+    private void txtMaCLMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMaCLMousePressed
+        txtMaCL.setBackground(Color.white);
+        txtMaCL.setFocusable(true);
+        txtMaCL.requestFocus();
+    }//GEN-LAST:event_txtMaCLMousePressed
+
+    private void txtTenCLMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTenCLMousePressed
+        txtTenCL.setBackground(Color.white);
+        txtTenCL.setFocusable(true);
+        txtTenCL.requestFocus();
+    }//GEN-LAST:event_txtTenCLMousePressed
+
+    private void txtMieuTaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMieuTaMousePressed
+        txtMieuTa.setBackground(Color.white);
+        txtMieuTa.setFocusable(true);
+        txtMieuTa.requestFocus();
+    }//GEN-LAST:event_txtMieuTaMousePressed
 
     public static void main(String args[]) {
 
@@ -2606,6 +2657,7 @@ public class MainFrames extends javax.swing.JFrame {
     }
 
     private void fillFromTableCL(int index) {
+        tblCL.setRowSelectionAllowed(true);
         txtMaCL.setText(clList.get(index).getMaCL());
         txtTenCL.setText(clList.get(index).getTenCL());
         txtMieuTa.setText(clList.get(index).getMieuTa());
@@ -2620,12 +2672,21 @@ public class MainFrames extends javax.swing.JFrame {
         btnThemCL.setEnabled(true);
         btnSuaCL.setEnabled(false);
         btnXoaCL.setEnabled(false);
+        tblCL.setRowSelectionAllowed(false);
+        indexcl = -1;
     }
 
     private void insertCL() {
         ChungLoai clitem = new ChungLoai(txtMaCL.getText(), txtTenCL.getText(), txtMieuTa.getText());
         clDao.insert(clitem);
         loadToTableCL();
+        for (ChungLoai cl : clList) {
+            if (txtMaCL.getText().equals(cl.getMaCL())) {
+                indexcl = clList.indexOf(cl);
+                fillFromTableCL(indexcl);
+                break;
+            }
+        }
         btnSuaCL.setEnabled(true);
         btnXoaCL.setEnabled(true);
     }
@@ -2634,6 +2695,13 @@ public class MainFrames extends javax.swing.JFrame {
         ChungLoai clitem = new ChungLoai(txtMaCL.getText(), txtTenCL.getText(), txtMieuTa.getText());
         clDao.update(clitem);
         loadToTableCL();
+        for (ChungLoai cl : clList) {
+            if (txtMaCL.getText().equals(cl.getMaCL())) {
+                indexcl = clList.indexOf(cl);
+                fillFromTableCL(indexcl);
+                break;
+            }
+        }
         fillCboSP();
     }
 
@@ -2643,33 +2711,59 @@ public class MainFrames extends javax.swing.JFrame {
     }
 
     private void firstCL() {
+        tblCL.setRowSelectionAllowed(true);
         fillFromTableCL(0);
     }
 
     private void nextCL() {
-        index++;
-        if (index > clList.size() - 1) {
-            index = 0;
+        tblCL.setRowSelectionAllowed(true);
+        indexcl++;
+        if (indexcl > clList.size() - 1) {
+            indexcl = 0;
         }
-        fillFromTableCL(index);
+        fillFromTableCL(indexcl);
     }
 
     private void previousCL() {
-        index--;
-        if (index < 0) {
-            index = clList.size() - 1;
+        tblCL.setRowSelectionAllowed(true);
+        indexcl--;
+        if (indexcl < 0) {
+            indexcl = clList.size() - 1;
         }
-        fillFromTableCL(index);
+        fillFromTableCL(indexcl);
     }
 
     private void lastCL() {
-        index = clList.size() - 1;
-        fillFromTableCL(index);
+        tblCL.setRowSelectionAllowed(true);
+        indexcl = clList.size() - 1;
+        fillFromTableCL(indexcl);
     }
 
-    private boolean check() {
-        if (0 < 1) {
+    private boolean checkCL() {
+        if (txtMaCL.getText().length() == 0 || txtMaCL.getText().length() > 10) {
+            txtMaCL.setBackground(Color.yellow);
+            txtMaCL.setFocusable(false);
+            txtTenCL.setFocusable(false);
+            txtMieuTa.setFocusable(false);
             return false;
+        }else{
+            txtMaCL.setBackground(Color.white);
+        }
+        
+        if (txtTenCL.getText().length() == 0 || txtTenCL.getText().length() > 50) {
+            txtTenCL.setBackground(Color.yellow);
+            txtTenCL.setFocusable(false);
+            return false;
+        }else{
+            txtTenCL.setBackground(Color.white);
+        }
+        
+        if (txtMieuTa.getText().length() == 0 || txtMieuTa.getText().length() > 100) {
+            txtMieuTa.setBackground(Color.yellow);
+            txtMieuTa.setFocusable(false);
+            return false;
+        }else{
+            txtMieuTa.setBackground(Color.white);
         }
         return true;
     }
@@ -2683,7 +2777,8 @@ public class MainFrames extends javax.swing.JFrame {
             Object[] row = {
                 dh.getMaDH(),
                 dh.getNgayDatHang(),
-                dh.getMaKH()
+                dh.getMaKH(),
+                dh.getTongTien()
             };
             model.addRow(row);
         }
