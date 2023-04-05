@@ -31,7 +31,8 @@ public class DonHangDAO extends HeThongDAO<DonHang, String> {
 
     @Override
     public void insert(DonHang entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String str = "INSERT INTO DONHANG (NGAYDATHANG, MAKH) VALUES (?,?)";
+        JdbcHelper.update(str, entity.getNgayDatHang(),entity.getMaKH());
     }
 
     @Override

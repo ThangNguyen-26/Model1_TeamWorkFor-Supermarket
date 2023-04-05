@@ -7,12 +7,18 @@ import com.supermarket.DAO.SanPhamExtendDao;
 import com.supermarket.ENTITY.CLockThread;
 import com.supermarket.ENTITY.ChungLoai;
 import com.supermarket.ENTITY.DonHang;
+import com.supermarket.ENTITY.DonHangChiTiet;
 import com.supermarket.ENTITY.SanPhamExtend;
+import com.supermarket.UTILS.JdbcHelper;
 import com.supermarket.UTILS.MsgBox;
 import com.supermarket.UTILS.XDate;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -185,7 +191,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.String.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Float.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -227,7 +233,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -308,31 +314,32 @@ public class KhachHangFrame extends javax.swing.JFrame {
                                     .addComponent(txtTenSP)))
                             .addComponent(btnLamMoiDH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
                         .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(pnlMainLayout.createSequentialGroup()
-                                    .addComponent(lblTenCL)
-                                    .addGap(39, 39, 39)
-                                    .addComponent(cboCL, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnLamMoiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(16, 16, 16))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
-                                    .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lblChiTiet)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(17, 17, 17)))
+                            .addGroup(pnlMainLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(pnlMainLayout.createSequentialGroup()
+                                            .addComponent(lblTenCL)
+                                            .addGap(39, 39, 39)
+                                            .addComponent(cboCL, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnLamMoiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(16, 16, 16))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
+                                            .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(lblChiTiet)
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(17, 17, 17)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
+                                        .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(btnDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblTong, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(116, 116, 116))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
-                                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(pnlMainLayout.createSequentialGroup()
-                                        .addComponent(lblTongHoaDon)
-                                        .addGap(31, 31, 31))
-                                    .addGroup(pnlMainLayout.createSequentialGroup()
-                                        .addComponent(lblTong)
-                                        .addGap(70, 70, 70))
-                                    .addComponent(btnDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(116, 116, 116))))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTongHoaDon)
+                                .addGap(141, 141, 141))))))
         );
         pnlMainLayout.setVerticalGroup(
             pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,15 +433,11 @@ public class KhachHangFrame extends javax.swing.JFrame {
 
     private void btnLamMoiDHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiDHActionPerformed
         clearTextField();
-        donHangModel.setRowCount(0);
-        spBrought.removeAll(spBrought);
-        resetSp();
-        tongTien = 0;
-        lblTong.setText("000");
+        resetDh();
     }//GEN-LAST:event_btnLamMoiDHActionPerformed
 
     private void btnDatHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatHangActionPerformed
-        
+        order();
     }//GEN-LAST:event_btnDatHangActionPerformed
 
     private void btnDSDatHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDSDatHangActionPerformed
@@ -509,10 +512,13 @@ public class KhachHangFrame extends javax.swing.JFrame {
         loadToCbo();
         loadToTableSP();
         loadToTableDH();
+        CLockThread cl = new CLockThread(lblClock);
+        Thread t = new Thread(cl);
+        t.start();
     }
 
     private void loadToTableSP() {
-        DefaultTableModel tblModel = (DefaultTableModel) tblDSSP.getModel(); 
+        DefaultTableModel tblModel = (DefaultTableModel) tblDSSP.getModel();
         tblModel.setRowCount(0);
         List<SanPhamExtend> spAll = new ArrayList<>();
         spAll = spDao.selectAll();
@@ -588,7 +594,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
                 try {
                     int soLuongNumber = Integer.parseInt(soLuong);
                     if (soLuongNumber > 0) {
-                        if (soLuongNumber > (Integer)tblDSSP.getValueAt(index, 2)) {
+                        if (soLuongNumber > (Integer) tblDSSP.getValueAt(index, 2)) {
                             MsgBox.alert(null, "Số lượng bạn nhập lớn hơn số lượng hàng còn hại trong kho của sản phẩm");
                             txtSoLuong.setBackground(Color.yellow);
                             return false;
@@ -622,7 +628,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
 
     private void add() {
         String tenSp = (String) tblDSSP.getValueAt(index, 1);
-        float giaThanh = (float)tblDSSP.getValueAt(index, 3);
+        float giaThanh = (float) tblDSSP.getValueAt(index, 3);
         String soLuong = txtSoLuong.getText();
         float thanhTien = giaThanh * Float.parseFloat(soLuong);
         donHangModel.addRow(new Object[]{tenSp, giaThanh, txtSoLuong.getText(), thanhTien});
@@ -633,14 +639,54 @@ public class KhachHangFrame extends javax.swing.JFrame {
         lblTong.setText(Float.toString(tongTien));
     }
 
-    private void clearTextField(){
+    private void clearTextField() {
         txtSoLuong.setText("");
         txtTenSP.setText("");
         txtSoLuong.setBackground(Color.white);
     }
-    
-    private void resetSp(){
+
+    private void resetSp() {
         loadToTableSP();
         cboCL.setSelectedIndex(0);
+    }
+
+    private void resetDh() {
+        donHangModel.setRowCount(0);
+        spBrought.removeAll(spBrought);
+        resetSp();
+        tongTien = 0;
+        lblTong.setText("000");
+    }
+
+    private void order() {
+        if (tblDonHang.getRowCount() == 0) {
+            MsgBox.alert(null, "Bạn chưa có sản phẩm nào trong giỏ hàng");
+        } else {
+            DonHang dh = new DonHang();
+            this.maKh = "kh1";
+            dh.setNgayDatHang(XDate.now());
+            dh.setMaKH(maKh);
+            dhDao.insert(dh);
+            String maDh = (String) JdbcHelper.value("SELECT TOP 1  MADH FROM DONHANG ORDER BY MADH DESC ");
+            //MsgBox.alert(null,maDh );
+            dh.setMaDH(maDh);
+            for (int i = 0; i < tblDonHang.getRowCount(); i++) {
+                DonHangChiTiet dhct = new DonHangChiTiet();
+                int soLuong = Integer.parseInt((String) tblDonHang.getValueAt(i, 2));
+                //float thanhTien = Float.parseFloat((String)tblDonHang.getValueAt(i, 3));
+                float thanhTien = (Float) tblDonHang.getValueAt(i, 3);
+                String tenSp = (String) tblDonHang.getValueAt(i, 0);
+                /*MsgBox.alert(null, Integer.toString(soLuong));
+                MsgBox.alert(null, Float.toString(thanhTien));*/
+                dhct.setSoLuong(soLuong);
+                dhct.setMaDH(maDh);
+                dhct.setMaSP((String) JdbcHelper.value("SELECT MASP FROM SANPHAM WHERE TENSP LIKE ? ", tenSp));
+                dhct.setThanhTien(thanhTien);
+                ctdhDAO.insert(dhct);
+                JdbcHelper.update("UPDATE SANPHAM SET SOLUONG -= ? WHERE TENSP = ?", soLuong, tenSp);
+            }
+            MsgBox.alert(null, "Đặt hàng thành công");
+            resetDh();
+        }
     }
 }
