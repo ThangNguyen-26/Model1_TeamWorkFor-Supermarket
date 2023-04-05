@@ -98,8 +98,8 @@
                       <Component id="btnFirst" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="lblHDChiTiet" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="49" max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="374" max="-2" attributes="0"/>
+                  <EmptySpace pref="184" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="239" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblHDChiTiet1" alignment="3" min="-2" max="-2" attributes="0"/>

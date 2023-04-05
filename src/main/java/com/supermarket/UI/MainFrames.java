@@ -29,6 +29,7 @@ public class MainFrames extends javax.swing.JFrame {
     private int index = 0;
     private int rowKH = -1;
     private int indexcl = -1;
+    private int indexhd = -1;
 
     //Biến LIST
     private List<KhachHang> khList = new ArrayList<>();
@@ -1600,6 +1601,11 @@ public class MainFrames extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblHD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblHDMousePressed(evt);
+            }
+        });
         jScrollPane8.setViewportView(tblHD);
 
         btnNextHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1607,18 +1613,33 @@ public class MainFrames extends javax.swing.JFrame {
         btnNextHD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnNextHD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNextHD.setFocusable(false);
+        btnNextHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextHDActionPerformed(evt);
+            }
+        });
 
         btnLastHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLastHD.setText(">|");
         btnLastHD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnLastHD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLastHD.setFocusable(false);
+        btnLastHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLastHDActionPerformed(evt);
+            }
+        });
 
         btnPrevHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnPrevHD.setText("<<");
         btnPrevHD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnPrevHD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPrevHD.setFocusable(false);
+        btnPrevHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrevHDActionPerformed(evt);
+            }
+        });
 
         btnFirstHD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnFirstHD.setText("|<");
@@ -2135,7 +2156,7 @@ public class MainFrames extends javax.swing.JFrame {
     }//GEN-LAST:event_rdoNamNVActionPerformed
 
     private void btnFirstHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstHDActionPerformed
-        // TODO add your handling code here:
+        firstHD();
     }//GEN-LAST:event_btnFirstHDActionPerformed
 
     private void btnFirstDHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstDHActionPerformed
@@ -2439,8 +2460,25 @@ public class MainFrames extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMieuTaMousePressed
 
     private void btnXoaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaHDActionPerformed
-        // TODO add your handling code here:
+        deleteHD();
     }//GEN-LAST:event_btnXoaHDActionPerformed
+
+    private void tblHDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHDMousePressed
+        fillFromTableHD(tblHD.getSelectedRow());
+        indexhd = tblHD.getSelectedRow();
+    }//GEN-LAST:event_tblHDMousePressed
+
+    private void btnPrevHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevHDActionPerformed
+        previousHD();
+    }//GEN-LAST:event_btnPrevHDActionPerformed
+
+    private void btnNextHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextHDActionPerformed
+        nextHD();
+    }//GEN-LAST:event_btnNextHDActionPerformed
+
+    private void btnLastHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastHDActionPerformed
+        lastHD();
+    }//GEN-LAST:event_btnLastHDActionPerformed
 
     public static void main(String args[]) {
 
@@ -2822,6 +2860,7 @@ public class MainFrames extends javax.swing.JFrame {
     }
 
     private void firstCL() {
+        indexcl = 0;
         tblCL.setRowSelectionAllowed(true);
         fillFromTableCL(0);
     }
@@ -3054,6 +3093,48 @@ public class MainFrames extends javax.swing.JFrame {
             hdTableModel.addRow(row);
         }
     }
+    
+    private void fillFromTableHD(int index) {
+        txtMaHD.setText(hdList.get(index).getMaHD());
+        txtMaNVpnlDSHD.setText(hdList.get(index).getMaNV());
+        txtNgayLapHDpnlDSHD.setText(String.valueOf(hdList.get(index).getNgayLapHD()));
+        txtTongTienpnlDSHD.setText(String.valueOf(hdList.get(index).getTongTien()));
+        tblHD.setRowSelectionInterval(index, index);
+    }
+    
+    private void deleteHD(){
+        hdDao.delete(txtMaHD.getText());
+        loadToTableHD();
+    }
+    
+    private void firstHD() {
+        indexhd = 0;
+        fillFromTableHD(0);
+    }
 
+    private void nextHD() {
+        indexhd++;
+        if (indexhd > hdList.size() - 1) {
+            indexhd = 0;
+        }
+        fillFromTableHD(indexhd);
+    }
+
+    private void previousHD() {
+        indexhd--;
+        if (indexhd < 0) {
+            indexhd = hdList.size() - 1;
+        }
+        fillFromTableHD(indexhd);
+    }
+
+    private void lastHD() {
+        indexhd = hdList.size() - 1;
+        fillFromTableHD(indexhd);
+    }
+
+    private void openFrameCTHD(){
+        
+    }
     //end HoaDon
 }

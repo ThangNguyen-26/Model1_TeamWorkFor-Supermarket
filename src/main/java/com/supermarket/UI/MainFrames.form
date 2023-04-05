@@ -1991,7 +1991,7 @@
                               <Component id="pnlNavRightKH" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane7" pref="254" max="32767" attributes="0"/>
+                          <Component id="jScrollPane7" pref="255" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -2414,6 +2414,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblHDMousePressed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -2433,6 +2436,9 @@
                 </Property>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNextHDActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnLastHD">
               <Properties>
@@ -2450,6 +2456,9 @@
                 </Property>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLastHDActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnPrevHD">
               <Properties>
@@ -2467,6 +2476,9 @@
                 </Property>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrevHDActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnFirstHD">
               <Properties>
