@@ -6,6 +6,17 @@ public class HoaDon {
     private String maHD;
     private Date ngayLapHD;
     private String maNV;
+    private float tongTien;
+
+    public HoaDon() {
+    }
+
+    public HoaDon(String maHD, Date ngayLapHD, String maNV, float tongTien) {
+        this.maHD = maHD;
+        this.ngayLapHD = ngayLapHD;
+        this.maNV = maNV;
+        this.tongTien = tongTien;
+    }
 
     public HoaDon(String maHD, Date ngayLapHD, String maNV) {
         this.maHD = maHD;
@@ -36,6 +47,13 @@ public class HoaDon {
     public void setMaNV(String maNV) {
         this.maNV = maNV;
     }
-    
-    
+
+    public float getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(float tongTien) {
+        this.tongTien = tongTien;
+    }
+
 }

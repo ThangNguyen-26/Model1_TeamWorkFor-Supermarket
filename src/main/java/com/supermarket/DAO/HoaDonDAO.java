@@ -34,7 +34,10 @@ public class HoaDonDAO extends HeThongDAO<HoaDon, String> {
 
     @Override
     public List<HoaDon> selectAll() {
-        String sql = "SELECT * FROM HOADON";
+        String sql = "SELECT HOADON.MAHD, HOADON.NGAYLAPHD, HOADON.MANV, SUM(CHITIETHOADON.THANHTIEN)\n"
+                + "FROM HOADON INNER JOIN CHITIETHOADON\n"
+                + "ON HOADON.MAHD = CHITIETHOADON.MAHD\n"
+                + "GROUP BY HOADON.MAHD, HOADON.NGAYLAPHD, HOADON.MANV";
         return selectSql(sql);
     }
 
@@ -43,10 +46,10 @@ public class HoaDonDAO extends HeThongDAO<HoaDon, String> {
         String sql = "SELECT * FROM HOADON WHERE MAHD = ?";
         try {
             ResultSet rs = JdbcHelper.query(sql, MaHD);
-            if(rs.next()){
+            if (rs.next()) {
                 HoaDon hd = new HoaDon(rs.getString(1), rs.getDate(2), rs.getString(3));
                 return hd;
-            }  
+            }
             rs.getStatement().getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(HoaDonDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,7 +63,7 @@ public class HoaDonDAO extends HeThongDAO<HoaDon, String> {
         try {
             ResultSet rs = JdbcHelper.query(sql, args);
             while (rs.next()) {
-                HoaDon hd = new HoaDon(rs.getString(1), rs.getDate(2), rs.getString(3));
+                HoaDon hd = new HoaDon(rs.getString(1), rs.getDate(2), rs.getString(3), rs.getFloat(4));
                 hoaDonList.add(hd);
             }
             rs.getStatement().getConnection().close();
