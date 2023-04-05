@@ -1,6 +1,6 @@
 package com.supermarket.UI;
 
-import com.supermarket.DAO.DonHangCT_Admin_DAO;
+import com.supermarket.DAO.ChiTietDonHangDAO;
 import com.supermarket.ENTITY.DonHangChiTiet;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 public class DonHangCT extends javax.swing.JFrame {
 
     private String maDh;
-    private DonHangCT_Admin_DAO dhctDao = new DonHangCT_Admin_DAO();
+    private ChiTietDonHangDAO dhctDao = new ChiTietDonHangDAO();
 
     public DonHangCT() {
         initComponents();

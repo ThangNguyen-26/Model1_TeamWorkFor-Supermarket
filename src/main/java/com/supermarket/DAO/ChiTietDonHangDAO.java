@@ -1,9 +1,5 @@
 package com.supermarket.DAO;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 import com.supermarket.ENTITY.DonHang;
 import com.supermarket.ENTITY.DonHangChiTiet;
 import com.supermarket.UTILS.JdbcHelper;
@@ -11,18 +7,15 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author hoang
- */
-public class DonHangCT_Admin_DAO extends HeThongDAO<DonHangChiTiet, String> {
+public class ChiTietDonHangDAO extends HeThongDAO<DonHangChiTiet, String> {
 
     String selectAll_SQL = "SELECT * FROM CHITIETDONHANG";
     String selectById_SQL = "SELECT * FROM CHITIETDONHANG WHERE MADH = ?";
 
     @Override
     public void insert(DonHangChiTiet entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String str = "INSERT INTO CHITIETDONHANG VALUES(?,?,?,?)";
+        JdbcHelper.update(str, entity.getSoLuong(),entity.getThanhTien(),entity.getMaSP(),entity.getMaDH());
     }
 
     @Override

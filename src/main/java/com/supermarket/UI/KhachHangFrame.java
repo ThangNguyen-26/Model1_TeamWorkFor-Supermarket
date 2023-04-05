@@ -1,19 +1,15 @@
 package com.supermarket.UI;
 
+import com.supermarket.DAO.ChiTietDonHangDAO;
 import com.supermarket.DAO.ChungLoaiDAO;
+import com.supermarket.DAO.DonHangDAO;
 import com.supermarket.DAO.SanPhamExtendDao;
 import com.supermarket.ENTITY.ChungLoai;
-import com.supermarket.ENTITY.SanPham;
 import com.supermarket.ENTITY.SanPhamExtend;
-import com.supermarket.UTILS.JdbcHelper;
 import com.supermarket.UTILS.MsgBox;
 import java.awt.Color;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,6 +19,9 @@ public class KhachHangFrame extends javax.swing.JFrame {
     private List<SanPhamExtend> spList = new ArrayList<>();
     private SanPhamExtendDao spDao = new SanPhamExtendDao();
     private int index;
+    private DonHangDAO dhDao = new DonHangDAO();
+    private ChiTietDonHangDAO ctdhDAO = new ChiTietDonHangDAO();
+    private DefaultTableModel donHangModel = new DefaultTableModel(new Object[]{"Sản phẩm", "Giá", "Số lượng", "Thành tiền"}, 0);
 
     public KhachHangFrame() {
         initComponents();
@@ -56,6 +55,8 @@ public class KhachHangFrame extends javax.swing.JFrame {
         btnDSDatHang = new javax.swing.JButton();
         btnDangXuat = new javax.swing.JButton();
         pnlHoaDon = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblDonHang = new javax.swing.JTable();
         lblDSSP = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDSSP = new javax.swing.JTable();
@@ -134,7 +135,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         });
 
         BtnXoa.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        BtnXoa.setText("Làm mới");
+        BtnXoa.setText("Làm mới đơn hàng");
         BtnXoa.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnXoa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnXoa.setFocusable(false);
@@ -164,15 +165,35 @@ public class KhachHangFrame extends javax.swing.JFrame {
         pnlHoaDon.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Đơn hàng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         pnlHoaDon.setToolTipText("");
 
+        tblDonHang.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Sản phẩm", "Giá", "Số lượng", "Thành tiền"
+            }
+        ));
+        tblDonHang.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tblDonHang);
+
         javax.swing.GroupLayout pnlHoaDonLayout = new javax.swing.GroupLayout(pnlHoaDon);
         pnlHoaDon.setLayout(pnlHoaDonLayout);
         pnlHoaDonLayout.setHorizontalGroup(
             pnlHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 391, Short.MAX_VALUE)
+            .addGroup(pnlHoaDonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlHoaDonLayout.setVerticalGroup(
             pnlHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 215, Short.MAX_VALUE)
+            .addGroup(pnlHoaDonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         lblDSSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -369,12 +390,18 @@ public class KhachHangFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cboCLActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-        loadToTable();
+        loadToTableSP();
         cboCL.setSelectedIndex(0);
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-
+        MsgBox.alert(null, "lmao");
+        float thanhTien = spList.get(index).getGiaThanh()*Float.parseFloat(txtSoLuong.getText());
+        donHangModel.addRow(new Object[]{spList.get(index).getTenSP(), spList.get(index).getGiaThanh(),txtSoLuong.getText(),thanhTien});
+        spList.remove(index);
+        loadToTableSP();
+        txtTenSP.setText("");
+        txtSoLuong.setText("");
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void BtnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnXoaActionPerformed
@@ -395,21 +422,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tblDSSPMousePressed
 
     private void txtSoLuongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSoLuongKeyReleased
-        String soLuong = txtSoLuong.getText();
-        if(soLuong.trim().length()>0){
-            try{
-                int soLuongNumber = Integer.parseInt(soLuong);
-            }catch(NumberFormatException ex){
-                MsgBox.alert(null, "Bạn phải nhập số lượng là số nguyên");
-                txtSoLuong.setBackground(Color.yellow);
-                btnThem.setEnabled(false);
-                return;
-            }
-            txtSoLuong.setBackground(Color.white);
-            btnThem.setEnabled(true);
-        }else{
-            btnThem.setEnabled(false);
-        }
+        check();
     }//GEN-LAST:event_txtSoLuongKeyReleased
 
     public static void main(String args[]) {
@@ -446,6 +459,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboCL;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblChiTiet;
     private javax.swing.JLabel lblClock;
     private javax.swing.JLabel lblDSSP;
@@ -458,17 +472,19 @@ public class KhachHangFrame extends javax.swing.JFrame {
     private javax.swing.JPanel pnlHoaDon;
     private javax.swing.JPanel pnlMain;
     private javax.swing.JTable tblDSSP;
+    private javax.swing.JTable tblDonHang;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTenSP;
     // End of variables declaration//GEN-END:variables
 
     private void init() {
         this.setLocationRelativeTo(null);
-        loadToTable();
+        loadToTableSP();
         loadToCbo();
+        loadToTableDH();
     }
 
-    private void loadToTable() {
+    private void loadToTableSP() {
         DefaultTableModel tblModel = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -506,7 +522,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         fillModel.setColumnIdentifiers(new Object[]{"Mã SP", "Tên SP", "Số lượng", "Giá thành", "Tên chủng loại"});
         String tenCl = (String) cboCL.getSelectedItem();
         if (tenCl.equals("Tất cả")) {
-            loadToTable();
+            loadToTableSP();
         } else {
             for (SanPhamExtend sp : spList) {
                 if (sp.getTenCl().equals(tenCl)) {
@@ -522,5 +538,40 @@ public class KhachHangFrame extends javax.swing.JFrame {
         String tenSp = spList.get(index).getTenSP();
         txtTenSP.setText(tenSp);
     }
+
+    private void check() {
+        String soLuong = txtSoLuong.getText();
+        if (soLuong.trim().length() > 0) {
+            try {
+                int soLuongNumber = Integer.parseInt(soLuong);
+                if (soLuongNumber > 0) {
+                    if (soLuongNumber > spList.get(index).getSoLuong()) {
+                        MsgBox.alert(null, "Số lượng bạn nhập lớn hơn số lượng hàng còn hại trong kho của sản phẩm");
+                        txtSoLuong.setBackground(Color.yellow);
+                        btnThem.setEnabled(false);
+                        return;
+                    }
+                } else {
+                    MsgBox.alert(null, "Bạn phải nhập số lượng là số nguyên lớn hơn 0");
+                    txtSoLuong.setBackground(Color.yellow);
+                    btnThem.setEnabled(false);
+                    return;
+                }
+            } catch (NumberFormatException ex) {
+                MsgBox.alert(null, "Bạn phải nhập số lượng là số nguyên");
+                txtSoLuong.setBackground(Color.yellow);
+                btnThem.setEnabled(false);
+                ex.printStackTrace();
+                return;
+            }
+            txtSoLuong.setBackground(Color.white);
+            btnThem.setEnabled(true);
+        } else {
+            btnThem.setEnabled(false);
+        }
+    }
     
+    private void loadToTableDH(){
+        tblDonHang.setModel(donHangModel);
+    }
 }
