@@ -23,7 +23,11 @@ public class DonHangDAO extends HeThongDAO<DonHang, String> {
             + "FROM DONHANG INNER JOIN CHITIETDONHANG\n"
             + "ON DONHANG.MADH = CHITIETDONHANG.MADH\n"
             + "GROUP BY DONHANG.MADH, DONHANG.NGAYDATHANG, DONHANG.MAKH";
-    String selectById_SQL = "SELECT * FROM DONHANG WHERE MADH = ?";
+    String selectById_SQL = "SELECT DONHANG.MADH, DONHANG.NGAYDATHANG, DONHANG.MAKH, SUM(CHITIETDONHANG.THANHTIEN)\n"
+            + "FROM DONHANG INNER JOIN CHITIETDONHANG\n"
+            + "ON DONHANG.MADH = CHITIETDONHANG.MADH\n"
+            + "WHERE DONHANG.MADH = ?\n"
+            + "GROUP BY DONHANG.MADH, DONHANG.NGAYDATHANG, DONHANG.MAKH";
 
     @Override
     public void insert(DonHang entity) {

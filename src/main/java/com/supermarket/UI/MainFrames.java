@@ -2796,6 +2796,7 @@ public class MainFrames extends javax.swing.JFrame {
         txtMaDH.setText(dh.getMaDH());
         txtMaKh.setText(dh.getMaKH());
         txtNgayDatHang.setText(String.valueOf(dh.getNgayDatHang()));
+        txtTongTien.setText(String.valueOf(dh.getTongTien()));
     }
 
     private void clearFormDH() {
