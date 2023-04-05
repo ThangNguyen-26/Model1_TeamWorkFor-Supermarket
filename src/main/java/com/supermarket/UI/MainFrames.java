@@ -6,6 +6,7 @@ import com.supermarket.DAO.DonHangDAO;
 import com.supermarket.DAO.KhachHangDAO;
 import com.supermarket.DAO.SanPhamDAO;
 import com.supermarket.DAO.NhanVienDAO;
+import com.supermarket.ENTITY.CLockThread;
 import com.supermarket.ENTITY.NhanVien;
 import com.supermarket.ENTITY.ChungLoai;
 import com.supermarket.ENTITY.DonHang;
@@ -43,6 +44,9 @@ public class MainFrames extends javax.swing.JFrame {
     public MainFrames() {
         initComponents();
         setLocationRelativeTo(null);
+        new ChaoJDialog(this, true).setVisible(true);
+        new DangNhapJDialog(this, true).setVisible(true);
+        clockRun();
         loadToTableSP();
         fillCboSP();
         loadToTableKH();
@@ -2920,5 +2924,11 @@ public class MainFrames extends javax.swing.JFrame {
             return false;
         }
         return true;
+    }
+
+    private void clockRun() {
+        CLockThread cl = new CLockThread(lblClock);
+        Thread t = new Thread(cl);
+        t.start();
     }
 }
