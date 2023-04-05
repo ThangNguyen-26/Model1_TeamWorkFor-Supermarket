@@ -1,11 +1,113 @@
 package com.supermarket.UI;
 
+import com.supermarket.ENTITY.SanPham;
+import com.supermarket.DAO.ChungLoaiDAO;
+import com.supermarket.DAO.SanPhamDAO;
+import com.supermarket.DAO.SanPhamExtendDao;
+import com.supermarket.ENTITY.SanPhamExtend;
+import com.supermarket.ENTITY.ChungLoai;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 public class NhanVienBanHang extends javax.swing.JFrame {
+
+    SanPhamExtendDao spDao = new SanPhamExtendDao();
+    ChungLoaiDAO clDao = new ChungLoaiDAO();
+    List<SanPhamExtend> tenSP = new ArrayList<>();
+    int index;
 
     public NhanVienBanHang() {
         initComponents();
         init();
+        fillComboSP();
+        loadTableSP();
     }
+
+    private void fillComboSP() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbbCL.getModel();
+        model.addElement("Tất cả");
+        List<ChungLoai> clmodel = clDao.selectAll();
+        try {
+            for (ChungLoai cl : clmodel) {
+                model.addElement(cl.getTenCL());
+            }
+
+        } catch (Exception e) {
+            System.out.println("Truy Vấn thất bại" + e.toString());
+        }
+
+    }
+
+    private void loadTableSP() {
+        DefaultTableModel model = (DefaultTableModel) tblDSSP.getModel();
+        model.setRowCount(0);
+        
+        try {
+            tenSP = spDao.selectAll();
+            for (SanPhamExtend sp : tenSP) {
+                Object[] row = {
+                    sp.getMaSP(),
+                    sp.getTenSP(),
+                    sp.getSoLuong(),
+                    sp.getGiaThanh(),
+                    sp.getTenCl()
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            System.out.println("Truy vấn thất bại" + e.toString());
+        }
+    }
+
+    private void loadTheocombo() {
+        DefaultTableModel model = (DefaultTableModel) tblDSSP.getModel();
+        model.setRowCount(0);
+        String tencl = (String) cbbCL.getSelectedItem();
+        try {
+            tenSP = spDao.selectAll();
+            for (SanPhamExtend sp : tenSP) {
+                if (sp.getTenCl().equalsIgnoreCase(tencl)) {
+                    Object[] row = {
+                        sp.getMaSP(),
+                        sp.getTenSP(),
+                        sp.getSoLuong(),
+                        sp.getGiaThanh(),
+                        sp.getTenCl()
+                    };
+                    model.addRow(row);
+                } else if (tencl.equalsIgnoreCase("Tất cả")) {
+                    loadTableSP();
+                }
+                tblDSSP.setModel(model);
+            }
+        } catch (Exception e) {
+            System.out.println("Truy vấn thất bại"+e.toString());
+        }
+    }
+    
+    private void fillFromtable(){
+        index = tblDSSP.getSelectedRow();
+        String tensp = tenSP.get(index).getTenSP();
+        txtTenSP.setText(tensp);
+    }
+    
+//    public void kiemtraSoLuong(){
+//        if (txtSoLuong.getText().trim().length() > 0) {
+//            try {
+//            int soluong = Integer.parseInt(txtSoLuong.getText());
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng!", "",0);
+//            btnThemHD.setEnabled(false);
+//            return;
+//        }
+//            btnThemHD.setEnabled(true);
+//        } else {
+//            btnThemHD.setEnabled(false);
+//        }
+//    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -24,7 +126,6 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         btnXoa = new javax.swing.JButton();
         lblTenCL = new javax.swing.JLabel();
         cbbCL = new javax.swing.JComboBox<>();
-        btnLoc = new javax.swing.JButton();
         btnMoi = new javax.swing.JButton();
         lblDSSP = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -64,6 +165,13 @@ public class NhanVienBanHang extends javax.swing.JFrame {
 
         txtTenSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtTenSP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtTenSP.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtTenSP.setEnabled(false);
+        txtTenSP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTenSPKeyReleased(evt);
+            }
+        });
 
         lblSoLuong.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblSoLuong.setText("Số lượng");
@@ -104,17 +212,6 @@ public class NhanVienBanHang extends javax.swing.JFrame {
             }
         });
 
-        btnLoc.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnLoc.setText("Lọc");
-        btnLoc.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnLoc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLoc.setFocusable(false);
-        btnLoc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLocActionPerformed(evt);
-            }
-        });
-
         btnMoi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnMoi.setText("Làm mới");
         btnMoi.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -131,21 +228,26 @@ public class NhanVienBanHang extends javax.swing.JFrame {
 
         tblDSSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã SP", "Tên SP", "Giá thành", "Mã chủng loại"
+                "Mã SP", "Tên SP", "Số lượng", "Giá thành", "Tên chủng loại"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblDSSP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblDSSPMousePressed(evt);
             }
         });
         jScrollPane1.setViewportView(tblDSSP);
@@ -230,10 +332,8 @@ public class NhanVienBanHang extends javax.swing.JFrame {
                         .addGroup(pnlMainLayout.createSequentialGroup()
                             .addComponent(lblTenCL)
                             .addGap(39, 39, 39)
-                            .addComponent(cbbCL, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(31, 31, 31)
-                            .addComponent(btnLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
+                            .addComponent(cbbCL, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(16, 16, 16))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
@@ -268,15 +368,14 @@ public class NhanVienBanHang extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblTenCL)
-                            .addComponent(cbbCL, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbbCL, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblDSSP)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(pnlMainLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblTenSP))
@@ -326,16 +425,13 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbbCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbCLActionPerformed
-        // TODO add your handling code here:
+        loadTheocombo();
     }//GEN-LAST:event_cbbCLActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-        // TODO add your handling code here:
+        loadTableSP();
+        cbbCL.setSelectedIndex(0);
     }//GEN-LAST:event_btnMoiActionPerformed
-
-    private void btnLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLocActionPerformed
 
     private void btnThemHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemHDActionPerformed
         // TODO add your handling code here:
@@ -348,6 +444,14 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     private void btnInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnInActionPerformed
+
+    private void tblDSSPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSSPMousePressed
+        fillFromtable();
+    }//GEN-LAST:event_tblDSSPMousePressed
+
+    private void txtTenSPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenSPKeyReleased
+//        kiemtraSoLuong();
+    }//GEN-LAST:event_txtTenSPKeyReleased
 
     public static void main(String args[]) {
         try {
@@ -376,7 +480,6 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnIn;
-    private javax.swing.JButton btnLoc;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnThemHD;
     private javax.swing.JButton btnXoa;

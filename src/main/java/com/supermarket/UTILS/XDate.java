@@ -13,11 +13,12 @@ public class XDate {
 
     public static Date toDate(String date, String pattern) {
         try {
+            
             formater.applyPattern(pattern);
             return formater.parse(date);
         }catch(ParseException ex){    
             ex.printStackTrace();
-            MsgBox.alert(null, "Bạn phải nhập đúng định dạng ngày/tháng/năm");
+            //MsgBox.alert(null, "Bạn phải nhập đúng định dạng ngày/tháng/năm");
         } catch (Exception e) {
             throw new RuntimeException(e);
         } 
