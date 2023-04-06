@@ -3244,6 +3244,7 @@ public class MainFrames extends javax.swing.JFrame {
 
     //start HoaDon
     private void loadToTableHD() {
+        initHD();
         DefaultTableModel hdTableModel = (DefaultTableModel) tblHD.getModel();
         hdTableModel.setRowCount(0);
         hdList = hdDao.selectAll();
@@ -3256,6 +3257,13 @@ public class MainFrames extends javax.swing.JFrame {
             };
             hdTableModel.addRow(row);
         }
+    }
+    
+    private void initHD(){
+        txtMaHD.setFocusable(false);
+        txtMaNVpnlDSHD.setFocusable(false);
+        txtNgayLapHDpnlDSHD.setFocusable(false);
+        txtTongTienpnlDSHD.setFocusable(false);
     }
 
     private void fillFromTableHD(int index) {
