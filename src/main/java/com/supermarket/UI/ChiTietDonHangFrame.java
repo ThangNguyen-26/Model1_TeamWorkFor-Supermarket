@@ -1,7 +1,7 @@
 package com.supermarket.UI;
 
 import com.supermarket.DAO.ChiTietDonHangDAO;
-import com.supermarket.ENTITY.DonHangChiTiet;
+import com.supermarket.ENTITY.ChiTietDonHang;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,20 +10,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
-public class DonHangCT extends javax.swing.JFrame {
+public class ChiTietDonHangFrame extends javax.swing.JFrame {
 
-    private String maDh;
-    private ChiTietDonHangDAO dhctDao = new ChiTietDonHangDAO();
+    private int index = -1;
+    private String maDH;
+    private ChiTietDonHangDAO ctdhDao = new ChiTietDonHangDAO();
+    private List<ChiTietDonHang> ctdhList = new ArrayList<>();
 
-    public DonHangCT() {
+    public ChiTietDonHangFrame() {
         initComponents();
 //        init();
     }
 
-    public DonHangCT(String madh) {
+    public ChiTietDonHangFrame(String madh) {
         initComponents();
-        this.maDh = madh;
-        this.setTitle("Don hang cua " + this.maDh);
+        this.maDH = madh;
+        this.setTitle("Chi Tiết Đơn Hàng Của Mã DH "+"'" + this.maDH + "'");
         init();
     }
 
@@ -38,7 +40,7 @@ public class DonHangCT extends javax.swing.JFrame {
         btnNext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDHChiTiet = new javax.swing.JTable();
+        tblChiTietHD = new javax.swing.JTable();
         btnThoat = new javax.swing.JButton();
         lblClock = new javax.swing.JLabel();
         lblChiTiet = new javax.swing.JLabel();
@@ -105,7 +107,7 @@ public class DonHangCT extends javax.swing.JFrame {
             }
         });
 
-        tblDHChiTiet.setModel(new javax.swing.table.DefaultTableModel(
+        tblChiTietHD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -124,7 +126,7 @@ public class DonHangCT extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblDHChiTiet);
+        jScrollPane1.setViewportView(tblChiTietHD);
 
         btnThoat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnThoat.setText("Thoát");
@@ -238,7 +240,7 @@ public class DonHangCT extends javax.swing.JFrame {
                         .addComponent(txtThanhTien)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTongTien)
@@ -275,23 +277,25 @@ public class DonHangCT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
-        // TODO add your handling code here:
+        first();
     }//GEN-LAST:event_btnFirstActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
-        // TODO add your handling code here:
+        previous();
     }//GEN-LAST:event_btnPrevActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        // TODO add your handling code here:
+        next();
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
-        // TODO add your handling code here:
+        last();
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        AdminFrame a = new AdminFrame();
+        a.setVisible(true);
     }//GEN-LAST:event_btnThoatActionPerformed
 
     public static void main(String args[]) {
@@ -303,17 +307,17 @@ public class DonHangCT extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DonHangCT().setVisible(true);
+                new ChiTietDonHangFrame().setVisible(true);
             }
         });
     }
@@ -335,7 +339,7 @@ public class DonHangCT extends javax.swing.JFrame {
     private javax.swing.JLabel lblHDChiTiet2;
     private javax.swing.JLabel lblTongTien;
     private javax.swing.JPanel pnlMain;
-    private javax.swing.JTable tblDHChiTiet;
+    private javax.swing.JTable tblChiTietHD;
     private javax.swing.JTextField txtMaDH;
     private javax.swing.JTextField txtMaSP;
     private javax.swing.JTextField txtSoLuong;
@@ -348,23 +352,56 @@ public class DonHangCT extends javax.swing.JFrame {
     }
 
     private void loadToTable() {
-        DefaultTableModel model = (DefaultTableModel) tblDHChiTiet.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblChiTietHD.getModel();
         model.setRowCount(0);
-        String madh = this.maDh;
-        List<DonHangChiTiet> list = dhctDao.selectByKeyword(madh);
+        String madh = this.maDH;
+        ctdhList = ctdhDao.selectByKeyword(madh);
         float tongTien = 0;
-        for (DonHangChiTiet dhct : list) {
+        for (ChiTietDonHang ctdh : ctdhList) {
             Object[] row = {
-                dhct.getMaDH(),
-                dhct.getMaSP(),
-                dhct.getSoLuong(),
-                dhct.getThanhTien()
+                ctdh.getMaDH(),
+                ctdh.getMaSP(),
+                ctdh.getSoLuong(),
+                ctdh.getThanhTien()
             };
             model.addRow(row);
-            tongTien += dhct.getThanhTien();
+            tongTien += ctdh.getThanhTien();
         }
         lblTongTien.setText(String.valueOf(tongTien));
     }
     
+    private void fillToForm(int index){
+        txtMaDH.setText(ctdhList.get(index).getMaDH());
+        txtMaSP.setText(ctdhList.get(index).getMaSP());
+        txtSoLuong.setText(String.valueOf(ctdhList.get(index).getSoLuong()));
+        txtThanhTien.setText(String.valueOf(ctdhList.get(index).getThanhTien()));
+        tblChiTietHD.setRowSelectionInterval(index, index);
+    }
+    
+    private void first() {
+        index = 0;
+        fillToForm(0);
+    }
+
+    private void next() {
+        index++;
+        if (index > ctdhList.size() - 1) {
+            index = 0;
+        }
+        fillToForm(index);
+    }
+
+    private void previous() {
+        index--;
+        if (index < 0) {
+            index = ctdhList.size() - 1;
+        }
+        fillToForm(index);
+    }
+
+    private void last() {
+        index = ctdhList.size() - 1;
+        fillToForm(index);
+    }
     
 }

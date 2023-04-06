@@ -7,7 +7,7 @@ import com.supermarket.DAO.SanPhamExtendDao;
 import com.supermarket.ENTITY.CLockThread;
 import com.supermarket.ENTITY.ChungLoai;
 import com.supermarket.ENTITY.DonHang;
-import com.supermarket.ENTITY.DonHangChiTiet;
+import com.supermarket.ENTITY.ChiTietDonHang;
 import com.supermarket.ENTITY.SanPhamExtend;
 import com.supermarket.UTILS.JdbcHelper;
 import com.supermarket.UTILS.MsgBox;
@@ -464,13 +464,13 @@ public class KhachHangFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrames.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -670,7 +670,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
             //MsgBox.alert(null,maDh );
             dh.setMaDH(maDh);
             for (int i = 0; i < tblDonHang.getRowCount(); i++) {
-                DonHangChiTiet dhct = new DonHangChiTiet();
+                ChiTietDonHang dhct = new ChiTietDonHang();
                 int soLuong = Integer.parseInt((String) tblDonHang.getValueAt(i, 2));
                 //float thanhTien = Float.parseFloat((String)tblDonHang.getValueAt(i, 3));
                 float thanhTien = (Float) tblDonHang.getValueAt(i, 3);

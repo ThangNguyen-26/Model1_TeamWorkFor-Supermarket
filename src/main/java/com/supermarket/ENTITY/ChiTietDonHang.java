@@ -1,16 +1,16 @@
 package com.supermarket.ENTITY;
 
-public class DonHangChiTiet {
+public class ChiTietDonHang {
 
     private int soLuong;
     private float thanhTien;
     private String maSP;
     private String maDH;
 
-    public DonHangChiTiet() {
+    public ChiTietDonHang() {
     }
 
-    public DonHangChiTiet(int soLuong, float thanhTien, String maSP, String maDH) {
+    public ChiTietDonHang(int soLuong, float thanhTien, String maSP, String maDH) {
         this.soLuong = soLuong;
         this.thanhTien = thanhTien;
         this.maSP = maSP;

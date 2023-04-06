@@ -13,7 +13,7 @@ import com.supermarket.ENTITY.NhanVien;
 import com.supermarket.ENTITY.ChungLoai;
 import com.supermarket.ENTITY.DonHang;
 import com.supermarket.ENTITY.HoaDon;
-import com.supermarket.ENTITY.DonHangChiTiet;
+import com.supermarket.ENTITY.ChiTietDonHang;
 import com.supermarket.ENTITY.KhachHang;
 import com.supermarket.ENTITY.ChiTietHoaDon;
 import com.supermarket.ENTITY.SanPham;
@@ -26,7 +26,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class MainFrames extends javax.swing.JFrame {
+public class AdminFrame extends javax.swing.JFrame {
 
     private int index = 0;
     private int indexSP = -1;
@@ -51,7 +51,7 @@ public class MainFrames extends javax.swing.JFrame {
     private ChiTietDonHangDAO dhctDao = new ChiTietDonHangDAO();
     private NhanVienDAO nvDao = new NhanVienDAO();
 
-    public MainFrames() {
+    public AdminFrame() {
         initComponents();
         setLocationRelativeTo(null);
 //        new ChaoJDialog(this, true).setVisible(true);
@@ -1114,7 +1114,7 @@ public class MainFrames extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlNorthNVBHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlWestNVBH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlEastNVBH, javax.swing.GroupLayout.PREFERRED_SIZE, 143, Short.MAX_VALUE))
+                    .addComponent(pnlEastNVBH, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(pnlMainBtnNVBH, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -2385,9 +2385,9 @@ public class MainFrames extends javax.swing.JFrame {
 
     private void btnChiTietDHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiTietDHActionPerformed
         String madh = txtMaDH.getText();
-        DonHangChiTiet dhct = dhctDao.selectById(madh);
+        ChiTietDonHang dhct = dhctDao.selectById(madh);
         this.setVisible(false);
-        DonHangCT frameDHCT = new DonHangCT(dhct.getMaDH());
+        ChiTietDonHangFrame frameDHCT = new ChiTietDonHangFrame(dhct.getMaDH());
         frameDHCT.setVisible(true);
     }//GEN-LAST:event_btnChiTietDHActionPerformed
 
@@ -2634,24 +2634,24 @@ public class MainFrames extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrames.class
+            java.util.logging.Logger.getLogger(AdminFrame.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrames.class
+            java.util.logging.Logger.getLogger(AdminFrame.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrames.class
+            java.util.logging.Logger.getLogger(AdminFrame.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrames.class
+            java.util.logging.Logger.getLogger(AdminFrame.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrames().setVisible(true);
+                new AdminFrame().setVisible(true);
             }
         });
     }
