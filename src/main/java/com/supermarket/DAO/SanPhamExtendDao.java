@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SanPhamExtendDao extends HeThongDAO<SanPhamExtend, String>{
+    String update = "UPDATE SANPHAM SET SOLUONG -= ? WHERE TENSP = ?";
 
     @Override
     public void insert(SanPhamExtend entity) {
@@ -19,7 +20,7 @@ public class SanPhamExtendDao extends HeThongDAO<SanPhamExtend, String>{
 
     @Override
     public void update(SanPhamExtend entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 
     @Override

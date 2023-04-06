@@ -1,13 +1,18 @@
 package com.supermarket.UI;
 
+import com.supermarket.DAO.ChiTietDonHangDAO;
 import com.supermarket.ENTITY.SanPham;
 import com.supermarket.DAO.ChungLoaiDAO;
+import com.supermarket.DAO.DonHangDAO;
 import com.supermarket.DAO.SanPhamDAO;
 import com.supermarket.DAO.SanPhamExtendDao;
+import com.supermarket.ENTITY.CLockThread;
 import com.supermarket.ENTITY.SanPhamExtend;
 import com.supermarket.ENTITY.ChungLoai;
+import com.supermarket.UTILS.JdbcHelper;
 import java.util.ArrayList;
 import java.util.List;
+import javax.security.sasl.Sasl;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -16,13 +21,20 @@ public class NhanVienBanHang extends javax.swing.JFrame {
 
     SanPhamExtendDao spDao = new SanPhamExtendDao();
     ChungLoaiDAO clDao = new ChungLoaiDAO();
+    DonHangDAO dhDao = new DonHangDAO();
+    ChiTietDonHangDAO ctdhDAO = new ChiTietDonHangDAO();
     List<SanPhamExtend> SPlist = new ArrayList<>();
+    List<String> spbought = new ArrayList<>();
     DefaultTableModel model = new DefaultTableModel(new Object[]{"Tên sản phẩm", "Giá", "Số lượng", "Thành tiền"}, 0);
     int index;
+    float tongTien;
 
     public NhanVienBanHang() {
         initComponents();
         init();
+        CLockThread cl = new CLockThread(lblClock);
+        Thread t = new Thread(cl);
+        t.start();
         fillComboSP();
         loadTableSP();
         loadToTableDH();
@@ -126,7 +138,34 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         tblDonHang.setModel(model);
     }
     
+    private void add(){
+        String tensp = (String) tblDSSP.getValueAt(index, 1);
+        float giathanh = (float) tblDSSP.getValueAt(index, 3);
+        String soluong = txtSoLuong.getText();
+        float thanhtien = giathanh * Float.parseFloat(soluong);
+        model.addRow(new Object[]{tensp,giathanh,soluong,thanhtien});
+        spbought.add(tensp);
+        loadTableSP();
+        cbbCL.setSelectedIndex(0);
+        tongTien += thanhtien;
+        lblTong.setText(Float.toString(tongTien));
+    }
     
+    private void loadSoLuongSP(){
+        for (int i = 0; i < tblDonHang.getRowCount(); i++) {
+            try {
+//            SanPham spe = new SanPham();
+            String tensp = (String) tblDonHang.getValueAt(i, 0);
+            int soluong = Integer.parseInt((String) tblDonHang.getValueAt(i, 2));
+//            float thanhtien = Float.parseFloat((String) tblDonHang.getValueAt(index, 3));
+//            spe.setSoLuong(soluong);
+//            spe.setTenSP(tensp);
+            JdbcHelper.update("UPDATE SANPHAM SET SOLUONG -= ? WHERE TENSP = ?", soluong, tensp);
+        } catch (Exception e) {
+            System.out.println("lỗi" + e.toString());
+        }
+        } 
+    }
     
 
     @SuppressWarnings("unchecked")
@@ -475,6 +514,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
 
     private void btnThemHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemHDActionPerformed
         kiemtraSoLuong();
+        add();
     }//GEN-LAST:event_btnThemHDActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -483,7 +523,16 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInActionPerformed
-        
+        loadSoLuongSP();
+        loadTableSP();
+        cbbCL.setSelectedIndex(0);
+        txtTenSP.setText(null);
+        txtSoLuong.setText(null);
+        model.setRowCount(0);
+//        spbought.removeAll(spbought);
+        tongTien = 0;
+        lblTong.setText("000");
+        JOptionPane.showMessageDialog(this, "In hoá đơn thành công");
     }//GEN-LAST:event_btnInActionPerformed
 
     private void tblDSSPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSSPMousePressed
