@@ -39,8 +39,8 @@ public class KhachHangFrame extends javax.swing.JFrame {
     };
 
     public KhachHangFrame() {
-        initComponents();
-        init();
+        MsgBox.alert(null, "Bạn phải đăng nhập trước");
+        System.exit(0);
     }
 
     public KhachHangFrame(String maKh) {
@@ -378,7 +378,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
                         .addGap(1, 1, 1)
                         .addComponent(pnlHoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlMainLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                         .addComponent(lblTongHoaDon)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblTong)
@@ -663,7 +663,6 @@ public class KhachHangFrame extends javax.swing.JFrame {
             MsgBox.alert(null, "Bạn chưa có sản phẩm nào trong giỏ hàng");
         } else {
             DonHang dh = new DonHang();
-            this.maKh = "kh1";
             dh.setNgayDatHang(XDate.now());
             dh.setMaKH(maKh);
             dhDao.insert(dh);

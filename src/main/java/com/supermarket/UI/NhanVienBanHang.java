@@ -16,7 +16,8 @@ public class NhanVienBanHang extends javax.swing.JFrame {
 
     SanPhamExtendDao spDao = new SanPhamExtendDao();
     ChungLoaiDAO clDao = new ChungLoaiDAO();
-    List<SanPhamExtend> tenSP = new ArrayList<>();
+    List<SanPhamExtend> SPlist = new ArrayList<>();
+    DefaultTableModel model = new DefaultTableModel(new Object[]{"Tên sản phẩm", "Giá", "Số lượng", "Thành tiền"}, 0);
     int index;
 
     public NhanVienBanHang() {
@@ -24,6 +25,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         init();
         fillComboSP();
         loadTableSP();
+        loadToTableDH();
     }
 
     private void fillComboSP() {
@@ -44,10 +46,10 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     private void loadTableSP() {
         DefaultTableModel model = (DefaultTableModel) tblDSSP.getModel();
         model.setRowCount(0);
-        
+
         try {
-            tenSP = spDao.selectAll();
-            for (SanPhamExtend sp : tenSP) {
+            SPlist = spDao.selectAll();
+            for (SanPhamExtend sp : SPlist) {
                 Object[] row = {
                     sp.getMaSP(),
                     sp.getTenSP(),
@@ -67,8 +69,8 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         model.setRowCount(0);
         String tencl = (String) cbbCL.getSelectedItem();
         try {
-            tenSP = spDao.selectAll();
-            for (SanPhamExtend sp : tenSP) {
+            SPlist = spDao.selectAll();
+            for (SanPhamExtend sp : SPlist) {
                 if (sp.getTenCl().equalsIgnoreCase(tencl)) {
                     Object[] row = {
                         sp.getMaSP(),
@@ -84,30 +86,48 @@ public class NhanVienBanHang extends javax.swing.JFrame {
                 tblDSSP.setModel(model);
             }
         } catch (Exception e) {
-            System.out.println("Truy vấn thất bại"+e.toString());
+            System.out.println("Truy vấn thất bại" + e.toString());
+        }
+    }
+
+    private void fillFromtable() {
+        index = tblDSSP.getSelectedRow();
+        String tensp = SPlist.get(index).getTenSP();
+        txtTenSP.setText(tensp);
+    }
+
+    public void kiemtraSoLuong() {
+        if (txtTenSP.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm trước", "", 0);
+            return;
+        }
+        if (txtSoLuong.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng trước khi thêm đơn hàng!", "", 0);
+            return;
+        }
+        try {
+            int soluong = Integer.parseInt(txtSoLuong.getText());
+            if (soluong > 0) {
+                if (soluong > SPlist.get(index).getSoLuong()) {
+                    JOptionPane.showMessageDialog(this, "Số lượng bán ra không được lớn hơn số lượng có trong kho!", "", 0);
+                    return;
+                }
+            } else{
+                JOptionPane.showMessageDialog(this, "Số lượng không được nhập số âm!", "",0);
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng!", "", 0);
+            return;
         }
     }
     
-    private void fillFromtable(){
-        index = tblDSSP.getSelectedRow();
-        String tensp = tenSP.get(index).getTenSP();
-        txtTenSP.setText(tensp);
+    private void loadToTableDH(){
+        tblDonHang.setModel(model);
     }
     
-//    public void kiemtraSoLuong(){
-//        if (txtSoLuong.getText().trim().length() > 0) {
-//            try {
-//            int soluong = Integer.parseInt(txtSoLuong.getText());
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng!", "",0);
-//            btnThemHD.setEnabled(false);
-//            return;
-//        }
-//            btnThemHD.setEnabled(true);
-//        } else {
-//            btnThemHD.setEnabled(false);
-//        }
-//    }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -132,7 +152,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         tblDSSP = new javax.swing.JTable();
         pnlHoaDon = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtDonHang = new javax.swing.JTextPane();
+        tblDonHang = new javax.swing.JTable();
         lblTongHoaDon = new javax.swing.JLabel();
         lblTong = new javax.swing.JLabel();
         btnIn = new javax.swing.JButton();
@@ -255,8 +275,27 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         pnlHoaDon.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Hóa đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         pnlHoaDon.setToolTipText("");
 
-        txtDonHang.setText("==============================FAMILY POINT=============================\nTên sản phẩm                                    SL                               Giá thành                          Thành tiền");
-        jScrollPane2.setViewportView(txtDonHang);
+        tblDonHang.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Sản phẩm", "Giá", "Số lượng", "Thành tiền"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Float.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tblDonHang.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tblDonHang);
 
         javax.swing.GroupLayout pnlHoaDonLayout = new javax.swing.GroupLayout(pnlHoaDon);
         pnlHoaDon.setLayout(pnlHoaDonLayout);
@@ -270,7 +309,8 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         pnlHoaDonLayout.setVerticalGroup(
             pnlHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHoaDonLayout.createSequentialGroup()
-                .addComponent(jScrollPane2)
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -434,15 +474,16 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnThemHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemHDActionPerformed
-        // TODO add your handling code here:
+        kiemtraSoLuong();
     }//GEN-LAST:event_btnThemHDActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // TODO add your handling code here:
+        txtTenSP.setText(null);
+        txtSoLuong.setText(null);
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnInActionPerformed
 
     private void tblDSSPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSSPMousePressed
@@ -450,7 +491,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_tblDSSPMousePressed
 
     private void txtTenSPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenSPKeyReleased
-//        kiemtraSoLuong();
+
     }//GEN-LAST:event_txtTenSPKeyReleased
 
     public static void main(String args[]) {
@@ -499,7 +540,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     private javax.swing.JPanel pnlHoaDon;
     private javax.swing.JPanel pnlMain;
     private javax.swing.JTable tblDSSP;
-    private javax.swing.JTextPane txtDonHang;
+    private javax.swing.JTable tblDonHang;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTenSP;
     // End of variables declaration//GEN-END:variables

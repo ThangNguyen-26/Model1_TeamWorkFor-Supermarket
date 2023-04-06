@@ -36,12 +36,12 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         lblLogo = new javax.swing.JLabel();
         pnlInfor = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
-        cboVaiTro = new javax.swing.JComboBox<>();
         lblVaiTro = new javax.swing.JLabel();
-        txtTenDangNhap = new javax.swing.JTextField();
+        cboVaiTro = new javax.swing.JComboBox<>();
         lblTenDangNhap = new javax.swing.JLabel();
-        txtMatKhau = new javax.swing.JPasswordField();
+        txtTenDangNhap = new javax.swing.JTextField();
         lblMatKhau = new javax.swing.JLabel();
+        txtMatKhau = new javax.swing.JPasswordField();
         chkNhoMatKhau = new javax.swing.JCheckBox();
         lblDangKy = new javax.swing.JLabel();
         LblDoiMatKhau = new javax.swing.JLabel();
@@ -60,6 +60,9 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         });
 
         pnlLogo.setLayout(new java.awt.BorderLayout());
+
+        lblLogo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pnlLogo.add(lblLogo, java.awt.BorderLayout.CENTER);
 
         pnlInfor.setRequestFocusEnabled(false);
@@ -67,6 +70,9 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         lblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("ĐĂNG NHẬP");
+
+        lblVaiTro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblVaiTro.setText("Vai trò");
 
         cboVaiTro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cboVaiTro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -85,8 +91,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         });
 
-        lblVaiTro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblVaiTro.setText("Vai trò");
+        lblTenDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTenDangNhap.setText("Tên đăng nhập");
 
         txtTenDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtTenDangNhap.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -102,8 +108,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         });
 
-        lblTenDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblTenDangNhap.setText("Tên đăng nhập");
+        lblMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblMatKhau.setText("Mật khẩu");
 
         txtMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtMatKhau.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -117,9 +123,6 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                 txtMatKhauKeyPressed(evt);
             }
         });
-
-        lblMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblMatKhau.setText("Mật khẩu");
 
         chkNhoMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         chkNhoMatKhau.setText("Nhớ mật khẩu");

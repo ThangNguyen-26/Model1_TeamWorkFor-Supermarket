@@ -6,18 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-public class HoaDonCTAdmin extends javax.swing.JFrame {
+public class HoaDonCT extends javax.swing.JFrame {
     
     private String maHD;
     private ChiTietHoaDonDAO cthdDao = new ChiTietHoaDonDAO();
     private List<ChiTietHoaDon> cthdList = new ArrayList<>();
             
-    public HoaDonCTAdmin() {
+    public HoaDonCT() {
         initComponents();
         //init();
     }
     
-    public HoaDonCTAdmin(String mahd) {
+    public HoaDonCT(String mahd) {
         initComponents();
         this.maHD = mahd;
         this.setTitle("Don hang cua " + this.maHD);
@@ -42,7 +42,6 @@ public class HoaDonCTAdmin extends javax.swing.JFrame {
         lblHDChiTiet1 = new javax.swing.JLabel();
         lblHDChiTiet2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hóa đơn chi tiết");
         setResizable(false);
 
@@ -183,7 +182,7 @@ public class HoaDonCTAdmin extends javax.swing.JFrame {
                     .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHDChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -259,7 +258,7 @@ public class HoaDonCTAdmin extends javax.swing.JFrame {
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HoaDonCTAdmin().setVisible(true);
+                new HoaDonCT().setVisible(true);
             }
         });
     }

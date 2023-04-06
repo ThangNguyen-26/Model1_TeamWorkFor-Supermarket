@@ -31,6 +31,7 @@ public class MainFrames extends javax.swing.JFrame {
     private int indexKH = -1;
     private int indexCL = -1;
     private int indexHD = -1;
+    private int indexNV = -1;
 
     //Biến LIST
     private List<SanPham> spList = new ArrayList<>();
@@ -1100,7 +1101,7 @@ public class MainFrames extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlNorthNVBHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlWestNVBH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlEastNVBH, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
+                    .addComponent(pnlEastNVBH, javax.swing.GroupLayout.PREFERRED_SIZE, 143, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(pnlMainBtnNVBH, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1169,6 +1170,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnPrevNV.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnPrevNV.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPrevNV.setFocusable(false);
+        btnPrevNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrevNVActionPerformed(evt);
+            }
+        });
         pnlNavRightNVBH.add(btnPrevNV);
 
         btnNextNV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1176,6 +1182,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnNextNV.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnNextNV.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNextNV.setFocusable(false);
+        btnNextNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextNVActionPerformed(evt);
+            }
+        });
         pnlNavRightNVBH.add(btnNextNV);
 
         btnLastNV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1183,6 +1194,11 @@ public class MainFrames extends javax.swing.JFrame {
         btnLastNV.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnLastNV.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLastNV.setFocusable(false);
+        btnLastNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLastNVActionPerformed(evt);
+            }
+        });
         pnlNavRightNVBH.add(btnLastNV);
 
         javax.swing.GroupLayout pnlSouthNVBHLayout = new javax.swing.GroupLayout(pnlSouthNVBH);
@@ -1511,7 +1527,7 @@ public class MainFrames extends javax.swing.JFrame {
                     .addComponent(lblTitleSubKH, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlNavRightKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2150,7 +2166,8 @@ public class MainFrames extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFirstSPActionPerformed
 
     private void btnFirstNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstNVActionPerformed
-        // TODO add your handling code here:
+        indexNV = 0;
+        editNV();
     }//GEN-LAST:event_btnFirstNVActionPerformed
 
     private void rdoNamNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoNamNVActionPerformed
@@ -2414,7 +2431,7 @@ public class MainFrames extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLastCLActionPerformed
 
     private void tblNVBHMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNVBHMousePressed
-        //index = tblNVBH.rowAtPoint(evt.getPoint());
+        indexNV = tblNVBH.rowAtPoint(evt.getPoint());
         editNV();
         btnThemNVBH.setEnabled(false);
         btnSuaNVBH.setEnabled(true);
@@ -2480,6 +2497,27 @@ public class MainFrames extends javax.swing.JFrame {
     private void btnLastHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastHDActionPerformed
         lastHD();
     }//GEN-LAST:event_btnLastHDActionPerformed
+
+    private void btnLastNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastNVActionPerformed
+        indexNV = tblNVBH.getRowCount() - 1;
+        editNV();
+    }//GEN-LAST:event_btnLastNVActionPerformed
+
+    private void btnPrevNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevNVActionPerformed
+        indexNV--;
+        if (indexNV < 0) {
+            indexNV = tblNVBH.getRowCount() - 1;
+        }
+        editNV();
+    }//GEN-LAST:event_btnPrevNVActionPerformed
+
+    private void btnNextNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextNVActionPerformed
+        indexNV++;
+        if (indexNV > tblNVBH.getRowCount() - 1) {
+            indexNV = 0;
+        }
+        editNV();
+    }//GEN-LAST:event_btnNextNVActionPerformed
 
     public static void main(String args[]) {
 
@@ -3014,11 +3052,11 @@ public class MainFrames extends javax.swing.JFrame {
 
     private void editNV() {
         try {
-            String manv = (String) tblNVBH.getValueAt(this.tblNVBH.getSelectedRow(), 0);
+            String manv = (String) tblNVBH.getValueAt(this.indexNV, 0);
             NhanVien model = nvDao.selectById(manv);
             if (model != null) {
                 setNhanVien(model);
-                System.out.println(model.getNgaySinh());
+                //System.out.println(model.getNgaySinh());
             }
         } catch (Exception e) {
             System.out.println("Lỗi truy vấn" + e.toString());
