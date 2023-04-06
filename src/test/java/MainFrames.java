@@ -1,5 +1,6 @@
-package com.supermarket.UI;
 
+
+import com.supermarket.UI.*;
 import com.supermarket.DAO.ChungLoaiDAO;
 import com.supermarket.DAO.ChiTietDonHangDAO;
 import com.supermarket.DAO.DonHangDAO;
@@ -1511,7 +1512,7 @@ public class MainFrames extends javax.swing.JFrame {
                     .addComponent(lblTitleSubKH, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlNavRightKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2191,17 +2192,15 @@ public class MainFrames extends javax.swing.JFrame {
         if (indexSP < 0) {
             indexSP = spList.size() - 1;
         }
-        tblSP.setRowSelectionInterval(indexSP, indexSP);
-        fillFromTableSP(indexSP);
     }//GEN-LAST:event_btnPrevSPActionPerformed
 
     private void btnNextSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextSPActionPerformed
-        indexSP++;
-        if (indexSP > spList.size() - 1) {
-            indexSP = 0;
+        if (index < tblSP.getRowCount() - 1) {
+            index++;
+            editSP();
+        } else {
+            MsgBox.alert(this, "Bạn đang ở vị trí cuối cùng!");
         }
-        tblSP.setRowSelectionInterval(indexSP, indexSP);
-        fillFromTableSP(indexSP);
     }//GEN-LAST:event_btnNextSPActionPerformed
 
     private void btnLastSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastSPActionPerformed
@@ -2746,6 +2745,7 @@ public class MainFrames extends javax.swing.JFrame {
         SanPham sp = spDao.selectById(maSP);
         if (sp != null) {
             setFormSP(sp);
+            tabs.setSelectedIndex(0);
         }
     }
 
@@ -2756,17 +2756,6 @@ public class MainFrames extends javax.swing.JFrame {
         txtGia.setText(String.valueOf(sp.getGiaThanh()));
         cboChungLoai.setToolTipText(sp.getMaCL());
         cboChungLoai.setSelectedItem(clDao.selectById(sp.getMaCL()));
-    }
-
-    private void fillFromTableSP(int index) {
-        tblCL.setRowSelectionAllowed(true);
-        txtMaSP.setText(spList.get(index).getMaSP());
-        txtTenSP.setText(spList.get(index).getTenSP());
-        txtSoLuong.setText(String.valueOf(spList.get(index).getSoLuong()));
-        txtGia.setText(String.valueOf(spList.get(index).getGiaThanh()));
-        cboChungLoai.setToolTipText(spList.get(index).getMaCL());
-        cboChungLoai.setSelectedItem(clDao.selectById(spList.get(index).getMaCL()));
-        tblSP.setRowSelectionInterval(indexSP, indexSP);
     }
 
     private void fillCboSP() {
