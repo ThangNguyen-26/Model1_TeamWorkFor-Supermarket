@@ -39,8 +39,8 @@ public class KhachHangFrame extends javax.swing.JFrame {
     };
 
     public KhachHangFrame() {
-        initComponents();
-        init();
+        MsgBox.alert(null, "Bạn phải đăng nhập trước");
+        System.exit(0);
     }
 
     public KhachHangFrame(String maKh) {
@@ -663,7 +663,6 @@ public class KhachHangFrame extends javax.swing.JFrame {
             MsgBox.alert(null, "Bạn chưa có sản phẩm nào trong giỏ hàng");
         } else {
             DonHang dh = new DonHang();
-            this.maKh = "kh1";
             dh.setNgayDatHang(XDate.now());
             dh.setMaKH(maKh);
             dhDao.insert(dh);
