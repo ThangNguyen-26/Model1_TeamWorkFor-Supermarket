@@ -2,6 +2,7 @@ package com.supermarket.UI;
 
 import com.supermarket.DAO.ChungLoaiDAO;
 import com.supermarket.DAO.ChiTietDonHangDAO;
+import com.supermarket.DAO.ChiTietHoaDonDAO;
 import com.supermarket.DAO.DonHangDAO;
 import com.supermarket.DAO.HoaDonDAO;
 import com.supermarket.DAO.KhachHangDAO;
@@ -14,6 +15,7 @@ import com.supermarket.ENTITY.DonHang;
 import com.supermarket.ENTITY.HoaDon;
 import com.supermarket.ENTITY.DonHangChiTiet;
 import com.supermarket.ENTITY.KhachHang;
+import com.supermarket.ENTITY.ChiTietHoaDon;
 import com.supermarket.ENTITY.SanPham;
 import com.supermarket.UTILS.MsgBox;
 import com.supermarket.UTILS.XDate;
@@ -2513,7 +2515,7 @@ public class MainFrames extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoaDHActionPerformed
 
     private void btnChiTietHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiTietHDActionPerformed
-        // TODO add your handling code here:
+        openFrameCTHD();
     }//GEN-LAST:event_btnChiTietHDActionPerformed
 
     private void btnFirstCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstCLActionPerformed
@@ -3296,7 +3298,15 @@ public class MainFrames extends javax.swing.JFrame {
     }
 
     private void openFrameCTHD() {
-
+        String mahd = txtMaHD.getText();
+        if (!(mahd.length() == 0)) {
+            ChiTietHoaDon cthd = new ChiTietHoaDonDAO().selectById(mahd);
+            ChiTietHoaDonFrame CTHDFrame = new ChiTietHoaDonFrame(cthd.getMaHD());
+            this.setVisible(false);
+            CTHDFrame.setVisible(true);
+        } else {
+            MsgBox.alert(this, "Vui Lòng Chọn 1 HD Để Xem Chi Tiết !");
+        }
     }
     //end HoaDon
 }

@@ -3,7 +3,6 @@ package com.supermarket.DAO;
 import java.util.List;
 import com.supermarket.ENTITY.ChiTietHoaDon;
 import com.supermarket.UTILS.JdbcHelper;
-import com.supermarket.UTILS.MsgBox;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -63,6 +62,10 @@ public class ChiTietHoaDonDAO extends HeThongDAO<ChiTietHoaDon, String>{
         } catch (SQLException ex) {
             Logger.getLogger(ChiTietHoaDonDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return chiTietHoaDonList;
+    }
+    
+    public List<ChiTietHoaDon> SelectByMaHD(String mahd){
+        return selectSql("SELECT * FROM CHITIETHOADON WHERE MAHD LIKE ?", mahd);
     }
 }
