@@ -14,8 +14,8 @@ public class HoaDonDAO extends HeThongDAO<HoaDon, String> {
 
     @Override
     public void insert(HoaDon entity) {
-        String sql = "INSERT INTO HOADON VALUES(?, ?, ?)";
-        int k = JdbcHelper.update(sql, entity.getMaHD(), entity.getNgayLapHD(), entity.getMaNV());
+        String sql = "INSERT INTO HOADON (NGAYLAPHD,MANV) VALUES(?, ?)";
+        int k = JdbcHelper.update(sql, entity.getNgayLapHD(), entity.getMaNV());
     }
 
     @Override

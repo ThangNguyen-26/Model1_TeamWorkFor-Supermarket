@@ -43,6 +43,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
 //        System.exit(0);
         initComponents();
         init();
+        this.maKh="KH001";
     }
 
     public KhachHangFrame(String maKh) {

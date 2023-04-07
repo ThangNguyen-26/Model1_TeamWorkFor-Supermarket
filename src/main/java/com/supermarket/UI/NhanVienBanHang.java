@@ -43,15 +43,14 @@ public class NhanVienBanHang extends javax.swing.JFrame {
 //        System.exit(0);
         initComponents();
         init();
-        
+        this.manv = "LoneWolf";
+
     }
 
     public NhanVienBanHang(String manv) {
         this.manv = manv;
         this.setTitle("Chào mừng khách hàng " + this.manv);
     }
-    
-    
 
     private void fillComboSP() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cbbCL.getModel();
@@ -164,22 +163,28 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         lblTong.setText(Float.toString(tongTien));
     }
 
-    private void loadSoLuongSP() {
+    private boolean loadSoLuongSP() {
         if (tblDonHang.getRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "Bạn chưa có sản phẩm nào!", "", 0);
+            return false;
         } else {
             HoaDon hd = new HoaDon();
             hd.setNgayLapHD(XDate.now());
             hd.setMaNV(manv);
             String maHD = (String) JdbcHelper.value("select MAHD from HOADON order by MAHD desc");
-            hdDao.insert(hd);
             hd.setMaHD(maHD);
+            //MsgBox.alert(null, maHD);
+            hdDao.insert(hd);
+            //MsgBox.alert(null, "Test thêm hóa đơn");
             for (int i = 0; i < tblDonHang.getRowCount(); i++) {
                 try {
-                    ChiTietHoaDon hdct = new ChiTietHoaDon();                   
+                    ChiTietHoaDon hdct = new ChiTietHoaDon();
                     String tensp = (String) tblDonHang.getValueAt(i, 0);
+                    //MsgBox.alert(null, "tensp");
                     int soluong = Integer.parseInt((String) tblDonHang.getValueAt(i, 2));
-                    float thanhtien = Float.parseFloat((String) tblDonHang.getValueAt(index, 3));
+                    //MsgBox.alert(null, "soluong");
+                    float thanhtien = (Float) tblDonHang.getValueAt(i, 3);
+                    //MsgBox.alert(null, "Thành tiền");
                     hdct.setMaHD(maHD);
                     hdct.setSoLuong(soluong);
                     hdct.setThanhTien(thanhtien);
@@ -188,9 +193,11 @@ public class NhanVienBanHang extends javax.swing.JFrame {
                     JdbcHelper.update("UPDATE SANPHAM SET SOLUONG -= ? WHERE TENSP = ?", soluong, tensp);
                 } catch (Exception e) {
                     System.out.println("lỗi" + e.toString());
+                    return false;
                 }
             }
             MsgBox.alert(this, "Thêm hoá đơn thành công");
+            return true;
         }
 
     }
@@ -379,7 +386,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         );
         pnlHoaDonLayout.setVerticalGroup(
             pnlHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHoaDonLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlHoaDonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
@@ -510,7 +517,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
                         .addComponent(lblTong)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnIn, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                         .addComponent(lblChiTiet)))
                 .addContainerGap())
         );
@@ -555,16 +562,18 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInActionPerformed
-        loadSoLuongSP();
-        loadTableSP();
-        cbbCL.setSelectedIndex(0);
-        txtTenSP.setText(null);
-        txtSoLuong.setText(null);
-        model.setRowCount(0);
-//        spbought.removeAll(spbought);
-        tongTien = 0;
-        lblTong.setText("000");
-        JOptionPane.showMessageDialog(this, "In hoá đơn thành công");
+        if (loadSoLuongSP()) {
+            cbbCL.setSelectedIndex(0);
+            txtTenSP.setText(null);
+            txtSoLuong.setText(null);
+            model.setRowCount(0);
+            //spbought.removeAll(spbought);
+            tongTien = 0;
+            lblTong.setText("000");
+            loadTableSP();
+            JOptionPane.showMessageDialog(this, "In hoá đơn thành công");
+        };
+
     }//GEN-LAST:event_btnInActionPerformed
 
     private void tblDSSPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSSPMousePressed
