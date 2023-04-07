@@ -6,6 +6,11 @@ public class ChiTietHoaDon {
     private String maHD;
     private String maSP;
 
+    public ChiTietHoaDon() {
+    }
+    
+    
+
     public ChiTietHoaDon(int soLuong, double thanhTien, String maHD, String maSP) {
         this.soLuong = soLuong;
         this.thanhTien = thanhTien;

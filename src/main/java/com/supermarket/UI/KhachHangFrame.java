@@ -39,8 +39,10 @@ public class KhachHangFrame extends javax.swing.JFrame {
     };
 
     public KhachHangFrame() {
-        MsgBox.alert(null, "Bạn phải đăng nhập trước");
-        System.exit(0);
+//        MsgBox.alert(null, "Bạn phải đăng nhập trước");
+//        System.exit(0);
+        initComponents();
+        init();
     }
 
     public KhachHangFrame(String maKh) {

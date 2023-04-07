@@ -1,15 +1,21 @@
 package com.supermarket.UI;
 
 import com.supermarket.DAO.ChiTietDonHangDAO;
+import com.supermarket.DAO.ChiTietHoaDonDAO;
 import com.supermarket.ENTITY.SanPham;
 import com.supermarket.DAO.ChungLoaiDAO;
 import com.supermarket.DAO.DonHangDAO;
+import com.supermarket.DAO.HoaDonDAO;
 import com.supermarket.DAO.SanPhamDAO;
 import com.supermarket.DAO.SanPhamExtendDao;
 import com.supermarket.ENTITY.CLockThread;
 import com.supermarket.ENTITY.SanPhamExtend;
 import com.supermarket.ENTITY.ChungLoai;
+import com.supermarket.ENTITY.HoaDon;
+import com.supermarket.ENTITY.ChiTietHoaDon;
 import com.supermarket.UTILS.JdbcHelper;
+import com.supermarket.UTILS.MsgBox;
+import com.supermarket.UTILS.XDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.security.sasl.Sasl;
@@ -23,22 +29,29 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     ChungLoaiDAO clDao = new ChungLoaiDAO();
     DonHangDAO dhDao = new DonHangDAO();
     ChiTietDonHangDAO ctdhDAO = new ChiTietDonHangDAO();
+    ChiTietHoaDonDAO cthdDAO = new ChiTietHoaDonDAO();
+    HoaDonDAO hdDao = new HoaDonDAO();
     List<SanPhamExtend> SPlist = new ArrayList<>();
     List<String> spbought = new ArrayList<>();
     DefaultTableModel model = new DefaultTableModel(new Object[]{"Tên sản phẩm", "Giá", "Số lượng", "Thành tiền"}, 0);
     int index;
     float tongTien;
+    String manv;
 
     public NhanVienBanHang() {
+//        MsgBox.alert(null, "Bạn phải đăng nhập trước");
+//        System.exit(0);
         initComponents();
         init();
-        CLockThread cl = new CLockThread(lblClock);
-        Thread t = new Thread(cl);
-        t.start();
-        fillComboSP();
-        loadTableSP();
-        loadToTableDH();
+        
     }
+
+    public NhanVienBanHang(String manv) {
+        this.manv = manv;
+        this.setTitle("Chào mừng khách hàng " + this.manv);
+    }
+    
+    
 
     private void fillComboSP() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cbbCL.getModel();
@@ -124,8 +137,8 @@ public class NhanVienBanHang extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Số lượng bán ra không được lớn hơn số lượng có trong kho!", "", 0);
                     return;
                 }
-            } else{
-                JOptionPane.showMessageDialog(this, "Số lượng không được nhập số âm!", "",0);
+            } else {
+                JOptionPane.showMessageDialog(this, "Số lượng không được nhập số âm!", "", 0);
                 return;
             }
         } catch (Exception e) {
@@ -133,40 +146,54 @@ public class NhanVienBanHang extends javax.swing.JFrame {
             return;
         }
     }
-    
-    private void loadToTableDH(){
+
+    private void loadToTableDH() {
         tblDonHang.setModel(model);
     }
-    
-    private void add(){
+
+    private void add() {
         String tensp = (String) tblDSSP.getValueAt(index, 1);
         float giathanh = (float) tblDSSP.getValueAt(index, 3);
         String soluong = txtSoLuong.getText();
         float thanhtien = giathanh * Float.parseFloat(soluong);
-        model.addRow(new Object[]{tensp,giathanh,soluong,thanhtien});
+        model.addRow(new Object[]{tensp, giathanh, soluong, thanhtien});
         spbought.add(tensp);
         loadTableSP();
         cbbCL.setSelectedIndex(0);
         tongTien += thanhtien;
         lblTong.setText(Float.toString(tongTien));
     }
-    
-    private void loadSoLuongSP(){
-        for (int i = 0; i < tblDonHang.getRowCount(); i++) {
-            try {
-//            SanPham spe = new SanPham();
-            String tensp = (String) tblDonHang.getValueAt(i, 0);
-            int soluong = Integer.parseInt((String) tblDonHang.getValueAt(i, 2));
-//            float thanhtien = Float.parseFloat((String) tblDonHang.getValueAt(index, 3));
-//            spe.setSoLuong(soluong);
-//            spe.setTenSP(tensp);
-            JdbcHelper.update("UPDATE SANPHAM SET SOLUONG -= ? WHERE TENSP = ?", soluong, tensp);
-        } catch (Exception e) {
-            System.out.println("lỗi" + e.toString());
+
+    private void loadSoLuongSP() {
+        if (tblDonHang.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Bạn chưa có sản phẩm nào!", "", 0);
+        } else {
+            HoaDon hd = new HoaDon();
+            hd.setNgayLapHD(XDate.now());
+            hd.setMaNV(manv);
+            String maHD = (String) JdbcHelper.value("select MAHD from HOADON order by MAHD desc");
+            hdDao.insert(hd);
+            hd.setMaHD(maHD);
+            for (int i = 0; i < tblDonHang.getRowCount(); i++) {
+                try {
+                    ChiTietHoaDon hdct = new ChiTietHoaDon();                   
+                    String tensp = (String) tblDonHang.getValueAt(i, 0);
+                    int soluong = Integer.parseInt((String) tblDonHang.getValueAt(i, 2));
+                    float thanhtien = Float.parseFloat((String) tblDonHang.getValueAt(index, 3));
+                    hdct.setMaHD(maHD);
+                    hdct.setSoLuong(soluong);
+                    hdct.setThanhTien(thanhtien);
+                    hdct.setMaSP((String) JdbcHelper.value("select MASP from SANPHAM where TENSP = ?", tensp));
+                    cthdDAO.insert(hdct);
+                    JdbcHelper.update("UPDATE SANPHAM SET SOLUONG -= ? WHERE TENSP = ?", soluong, tensp);
+                } catch (Exception e) {
+                    System.out.println("lỗi" + e.toString());
+                }
+            }
+            MsgBox.alert(this, "Thêm hoá đơn thành công");
         }
-        } 
+
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -606,5 +633,11 @@ public class NhanVienBanHang extends javax.swing.JFrame {
 
     private void init() {
         this.setLocationRelativeTo(null);
+        CLockThread cl = new CLockThread(lblClock);
+        Thread t = new Thread(cl);
+        t.start();
+        fillComboSP();
+        loadTableSP();
+        loadToTableDH();
     }
 }
