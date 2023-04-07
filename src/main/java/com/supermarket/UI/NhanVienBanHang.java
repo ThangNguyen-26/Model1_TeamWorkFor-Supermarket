@@ -48,6 +48,8 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     }
 
     public NhanVienBanHang(String manv) {
+        initComponents();
+        init();
         this.manv = manv;
         this.setTitle("Chào mừng khách hàng " + this.manv);
     }
