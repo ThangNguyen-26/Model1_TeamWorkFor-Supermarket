@@ -2,6 +2,7 @@ package com.supermarket.UI;
 
 import com.supermarket.DAO.ChiTietDonHangDAO;
 import com.supermarket.ENTITY.ChiTietDonHang;
+import com.supermarket.UTILS.MsgBox;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
     private String maDH;
     private ChiTietDonHangDAO ctdhDao = new ChiTietDonHangDAO();
     private List<ChiTietDonHang> ctdhList = new ArrayList<>();
+    private float tongTien;
 
     public ChiTietDonHangFrame() {
         initComponents();
@@ -60,13 +62,18 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
         tblCT = new javax.swing.JTable();
 
         setTitle("Đơn hàng chi tiết");
+        setAlwaysOnTop(true);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1150, 509));
         setResizable(false);
 
         pnl_Sub.setBackground(new java.awt.Color(61, 61, 61));
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnBackMousePressed(evt);
+            }
+        });
 
         pnlMaDH.setBackground(new java.awt.Color(61, 61, 61));
 
@@ -129,7 +136,7 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
         txtMaSP.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtMaSP.setForeground(new java.awt.Color(255, 146, 64));
         txtMaSP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtMaSP.setText("SP0005");
+        txtMaSP.setText("SPxxxx");
 
         lblSoLuong.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblSoLuong.setForeground(new java.awt.Color(255, 255, 169));
@@ -139,7 +146,7 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
         txtSoLuong.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtSoLuong.setForeground(new java.awt.Color(255, 146, 64));
         txtSoLuong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtSoLuong.setText("157");
+        txtSoLuong.setText("0");
 
         lblThanhTien.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblThanhTien.setForeground(new java.awt.Color(255, 255, 169));
@@ -149,7 +156,7 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
         txtThanhTien.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtThanhTien.setForeground(new java.awt.Color(255, 146, 64));
         txtThanhTien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtThanhTien.setText("57470.000");
+        txtThanhTien.setText("000");
 
         lblTongTien.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         lblTongTien.setForeground(new java.awt.Color(255, 255, 169));
@@ -158,7 +165,7 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
         txtTongTien.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtTongTien.setForeground(new java.awt.Color(255, 146, 64));
         txtTongTien.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        txtTongTien.setText("57470.000");
+        txtTongTien.setText("000");
 
         lblDonViGia.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDonViGia.setForeground(new java.awt.Color(255, 146, 64));
@@ -366,24 +373,29 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
-        // TODO add your handling code here:
+        first();
     }//GEN-LAST:event_btnFirstActionPerformed
 
     private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
-        // TODO add your handling code here:
+        prev();
     }//GEN-LAST:event_btnPreviousActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        // TODO add your handling code here:
+        next();
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
-        // TODO add your handling code here:
+        last();
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void tblCTMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCTMousePressed
-
+        index = tblCT.getSelectedRow();
+        fillFromTable();
     }//GEN-LAST:event_tblCTMousePressed
+
+    private void btnBackMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMousePressed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnBackMousePressed
 
     public static void main(String args[]) {
         try {
@@ -439,6 +451,11 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
     private void init() {
         this.setLocationRelativeTo(null);
         loadToTable();
+        txtMaDH.setText(maDH);
+        for(int i = 0; i<tblCT.getSelectedRow();i++){
+            tongTien+= (Float)tblCT.getValueAt(i, 2);
+        }
+        lblThanhTien.setText(Float.toString(tongTien));
     }
 
     private void loadToTable() {
@@ -457,5 +474,51 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
             tongTien += ctdh.getThanhTien();
         }
         txtTongTien.setText(String.valueOf(tongTien));
+    }
+    
+    private void fillFromTable(){
+        txtMaSP.setText((String) tblCT.getValueAt(index, 0));
+        txtSoLuong.setText(Integer.toString((Integer)tblCT.getValueAt(index, 1)));
+        txtThanhTien.setText((Float.toString((Float)tblCT.getValueAt(index, 2))));
+    }
+    
+    private void next(){
+        if(index == tblCT.getRowCount()-1){
+            first();
+            return;
+        }
+        index++;
+        tblCT.setRowSelectionInterval(index, index);
+        fillFromTable();
+    }
+    
+    private void first(){
+        index = 0;
+        tblCT.setRowSelectionInterval(index, index);
+        fillFromTable();
+    }
+    
+    private void last(){
+        index = tblCT.getRowCount()-1;
+        tblCT.setRowSelectionInterval(index, index);
+        fillFromTable();
+    }
+    
+    private void prev(){
+        switch (index) {
+            case -1:
+                index =0;
+                tblCT.setRowSelectionInterval(index, index);
+                fillFromTable();
+                break;
+            case 0:
+                last();
+                break;
+            default:
+                index --;
+                tblCT.setRowSelectionInterval(index, index);
+                fillFromTable();
+                break;
+        }
     }
 }

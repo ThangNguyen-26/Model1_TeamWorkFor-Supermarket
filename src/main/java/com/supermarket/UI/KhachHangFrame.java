@@ -631,24 +631,19 @@ public class KhachHangFrame extends javax.swing.JFrame {
                     if (soLuongNumber > 0) {
                         if (soLuongNumber > (Integer) tblDSSP.getValueAt(index, 2)) {
                             MsgBox.alert(null, "Số lượng bạn nhập lớn hơn số lượng hàng còn hại trong kho của sản phẩm");
-                            txtSoLuong.setBackground(Color.yellow);
                             return false;
                         }
                     } else {
                         MsgBox.alert(null, "Bạn phải nhập số lượng là số nguyên lớn hơn 0");
-                        txtSoLuong.setBackground(Color.yellow);
                         return false;
                     }
                 } catch (NumberFormatException ex) {
                     MsgBox.alert(null, "Bạn phải nhập số lượng là số nguyên");
-                    txtSoLuong.setBackground(Color.yellow);
                     return false;
                 }
-                txtSoLuong.setBackground(Color.white);
                 return true;
             } else {
                 MsgBox.alert(null, "Bạn chưa nhập số lượng");
-                txtSoLuong.setBackground(Color.yellow);
                 return false;
             }
         } else {
@@ -677,7 +672,6 @@ public class KhachHangFrame extends javax.swing.JFrame {
     private void clearTextField() {
         txtSoLuong.setText("");
         txtTenSP.setText("");
-        txtSoLuong.setBackground(Color.white);
     }
 
     private void resetSp() {
