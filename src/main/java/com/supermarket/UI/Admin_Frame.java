@@ -3668,7 +3668,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         rdoNam_NV.setSelected(!nv.isGioiTinh());
 //        rdoAdmin.setSelected(nv.isVaiTro());
 //        rdoNhanvien.setSelected(!nv.isVaiTro());
-        txtNgaySinh_KH.setText(XDate.toString(nv.getNgaySinh(), "dd/MM/YYYY"));
+        txtNgaySinh_NV.setText(XDate.toString(nv.getNgaySinh(), "dd/MM/yyyy"));
     }
 
     private NhanVien getNhanVien() {
@@ -3676,7 +3676,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         model.setMaNV(txtMa_NV.getText());
         model.setMatKhau(new String(txtMatKhau_NV.getText()));
         model.setHoTen(txtHoTen_NV.getText());
-        model.setNgaySinh(XDate.toDate(txtNgaySinh_NV.getText(), "dd/MM/YYYY"));
+        model.setNgaySinh(XDate.toDate(txtNgaySinh_NV.getText(), "dd/MM/yyyy"));
         model.setGioiTinh(rdoNu_NV.isSelected());
         //model.setVaiTro(rdoAdmin.isSelected());
         return model;

@@ -13,19 +13,34 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-import jdk.jfr.Event;
 
 public class DangNhapJDialog extends javax.swing.JDialog {
 
-    NhanVienDAO nvDAO = new NhanVienDAO();
-    KhachHangDAO khDAO = new KhachHangDAO();
-    File file = new File("src/main/java/com/supermarket/UTILS/save.txt");
+    private String tk = null;
+    private String mk = null;
+    private NhanVienDAO nvDAO = new NhanVienDAO();
+    private KhachHangDAO khDAO = new KhachHangDAO();
+    private File file = new File("src/main/java/com/supermarket/UTILS/save.txt");
 
     public DangNhapJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        MsgBox.alert(null, "1");
         initCombox();
+        MsgBox.alert(null, "2");
         init();
+        MsgBox.alert(null, "3");
+    }
+
+    public DangNhapJDialog(java.awt.Frame parent, boolean modal, String tk, String mk) {
+        file.delete();
+        this.tk = tk;
+        this.mk = mk;
+        initComponents();
+        initCombox();
+        cboVaiTro.setSelectedIndex(1);
+        txtTenDangNhap.setText(tk);
+        txtMatKhau.setText(mk);
     }
 
     @SuppressWarnings("unchecked")
@@ -389,7 +404,9 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         try {
             if (file.exists()) {
                 Scanner scan = new Scanner(file);
+                MsgBox.alert(null, "test 1");
                 String role = scan.nextLine();
+                MsgBox.alert(null, "test 2");
                 if (role.equals("Nhân Viên")) {
                     cboVaiTro.setSelectedItem("Nhân viên");
                 } else {

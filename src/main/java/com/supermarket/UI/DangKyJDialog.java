@@ -111,6 +111,7 @@ public class DangKyJDialog extends javax.swing.JDialog {
         bgrGioiTinh.add(rdoNam);
         rdoNam.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         rdoNam.setForeground(new java.awt.Color(255, 255, 169));
+        rdoNam.setSelected(true);
         rdoNam.setText("Nam");
         rdoNam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rdoNam.setFocusable(false);
@@ -278,7 +279,7 @@ public class DangKyJDialog extends javax.swing.JDialog {
                     dao.insert(kh);
                     MsgBox.alert(null, "tạo tài khoản thành công");
                     this.setVisible(false);
-                    new DangNhapJDialog(null, rootPaneCheckingEnabled).setVisible(true);
+                    new DangNhapJDialog(null, rootPaneCheckingEnabled, kh.getTenKH(),kh.getMatKhau()).setVisible(true);
                 }else{
                     MsgBox.alert(null, "Bạn chưa đủ 18 tuổi để tạo tài khoản");
                 }
@@ -349,52 +350,40 @@ public class DangKyJDialog extends javax.swing.JDialog {
         boolean check = true;
 
         if (txtTenDangNhap.getText().trim().length() == 0) {
-            txtTenDangNhap.setBackground(yellow);
             MsgBox.alert(null, "Bạn chưa nhập tên đăng nhập");
             check = false;
         } else {
-            txtTenDangNhap.setBackground(white);
             for (KhachHang kh : khachHangList) {
                 if (txtTenDangNhap.getText().equals(kh.getMaKH())) {
                     MsgBox.alert(null, "Tên đăng nhập đã tồn tại");
                     check = false;
-                    txtTenDangNhap.setBackground(yellow);
                     break;
                 }
             }
         }
 
         if (txtMatKhau.getText().trim().length() == 0) {
-            txtMatKhau.setBackground(yellow);
             MsgBox.alert(null, "Bạn chưa nhập mật khẩu");
             check = false;
         } else {
-            txtMatKhau.setBackground(white);
             for (KhachHang kh : khachHangList) {
                 if (txtMatKhau.getText().equals(kh.getMatKhau())) {
                     MsgBox.alert(null, "Mật khẩu đã tồn tại");
                     check = false;
-                    txtMatKhau.setBackground(yellow);
                     break;
                 }
             }
         }
 
         if (txtHoVaTen.getText().trim().length() == 0) {
-            txtHoVaTen.setBackground(yellow);
             MsgBox.alert(null, "Bạn chưa nhập họ và tên");
             check = false;
-        } else {
-            txtHoVaTen.setBackground(white);
         }
 
         if (txtNgaySinh.getText().trim().length() == 0) {
-            txtNgaySinh.setBackground(yellow);
             MsgBox.alert(null, "Bạn chưa nhập ngày sinh");
             check = false;
-        } else {
-            txtNgaySinh.setBackground(white);
-        }
+        } 
         return check;
     }
 }
