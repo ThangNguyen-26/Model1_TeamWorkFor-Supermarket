@@ -45,12 +45,12 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlLogo = new javax.swing.JPanel();
-        lblLogo = new javax.swing.JLabel();
-        pnlInfor = new javax.swing.JPanel();
-        lblTitle = new javax.swing.JLabel();
-        lblVaiTro = new javax.swing.JLabel();
-        cboVaiTro = new javax.swing.JComboBox<>();
+        pnlDangNhap3 = new javax.swing.JPanel();
+        pnlLogo3 = new javax.swing.JPanel();
+        lblLogo3 = new javax.swing.JLabel();
+        pnlInfor3 = new javax.swing.JPanel();
+        lblVaiTro3 = new javax.swing.JLabel();
+        cboVaiTro3 = new javax.swing.JComboBox<>();
         lblTenDangNhap = new javax.swing.JLabel();
         txtTenDangNhap = new javax.swing.JTextField();
         lblMatKhau = new javax.swing.JLabel();
@@ -72,42 +72,53 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         });
 
-        pnlLogo.setLayout(new java.awt.BorderLayout());
+        pnlDangNhap3.setBackground(new java.awt.Color(61, 61, 61));
 
-        lblLogo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        pnlLogo.add(lblLogo, java.awt.BorderLayout.CENTER);
+        pnlLogo3.setBackground(new java.awt.Color(61, 61, 61));
+        pnlLogo3.setLayout(new java.awt.BorderLayout());
 
-        pnlInfor.setRequestFocusEnabled(false);
+        lblLogo3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblLogo3.setForeground(new java.awt.Color(255, 255, 169));
+        lblLogo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/log-in.png"))); // NOI18N
+        lblLogo3.setText("ĐĂNG NHẬP");
+        lblLogo3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblLogo3.setIconTextGap(30);
+        lblLogo3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        pnlLogo3.add(lblLogo3, java.awt.BorderLayout.CENTER);
 
-        lblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("ĐĂNG NHẬP");
+        pnlInfor3.setBackground(new java.awt.Color(61, 61, 61));
 
-        lblVaiTro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblVaiTro.setText("Vai trò");
+        lblVaiTro3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblVaiTro3.setForeground(new java.awt.Color(255, 255, 169));
+        lblVaiTro3.setText("Vai trò");
 
-        cboVaiTro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        cboVaiTro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboVaiTro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cboVaiTro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        cboVaiTro.setFocusable(false);
-        cboVaiTro.setPreferredSize(new java.awt.Dimension(72, 32));
-        cboVaiTro.addMouseListener(new java.awt.event.MouseAdapter() {
+        cboVaiTro3.setBackground(new java.awt.Color(255, 146, 64));
+        cboVaiTro3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        cboVaiTro3.setForeground(new java.awt.Color(255, 255, 169));
+        cboVaiTro3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboVaiTro3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cboVaiTro3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cboVaiTro3.setFocusable(false);
+        cboVaiTro3.setPreferredSize(new java.awt.Dimension(72, 32));
+        cboVaiTro3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                cboVaiTroMousePressed(evt);
+                cboVaiTro3MousePressed(evt);
             }
         });
-        cboVaiTro.addActionListener(new java.awt.event.ActionListener() {
+        cboVaiTro3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboVaiTroActionPerformed(evt);
+                cboVaiTro3ActionPerformed(evt);
             }
         });
 
-        lblTenDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTenDangNhap.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblTenDangNhap.setForeground(new java.awt.Color(255, 255, 169));
         lblTenDangNhap.setText("Tên đăng nhập");
 
-        txtTenDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtTenDangNhap.setBackground(new java.awt.Color(255, 146, 64));
+        txtTenDangNhap.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtTenDangNhap.setForeground(new java.awt.Color(255, 255, 169));
         txtTenDangNhap.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTenDangNhap.setPreferredSize(new java.awt.Dimension(70, 32));
         txtTenDangNhap.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -121,10 +132,13 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         });
 
-        lblMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblMatKhau.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblMatKhau.setForeground(new java.awt.Color(255, 255, 169));
         lblMatKhau.setText("Mật khẩu");
 
-        txtMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtMatKhau.setBackground(new java.awt.Color(255, 146, 64));
+        txtMatKhau.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtMatKhau.setForeground(new java.awt.Color(255, 255, 169));
         txtMatKhau.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -137,12 +151,15 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         });
 
-        chkNhoMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        chkNhoMatKhau.setBackground(new java.awt.Color(61, 61, 61));
+        chkNhoMatKhau.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        chkNhoMatKhau.setForeground(new java.awt.Color(255, 255, 169));
         chkNhoMatKhau.setText("Nhớ mật khẩu");
         chkNhoMatKhau.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         chkNhoMatKhau.setFocusable(false);
 
-        lblDangKy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDangKy.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblDangKy.setForeground(new java.awt.Color(255, 255, 169));
         lblDangKy.setText("Đăng ký");
         lblDangKy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblDangKy.setFocusable(false);
@@ -152,7 +169,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         });
 
-        LblDoiMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        LblDoiMatKhau.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        LblDoiMatKhau.setForeground(new java.awt.Color(255, 255, 169));
         LblDoiMatKhau.setText("Đổi mật khẩu");
         LblDoiMatKhau.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LblDoiMatKhau.setFocusable(false);
@@ -162,12 +180,14 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         });
 
+        pnlBtns.setBackground(new java.awt.Color(61, 61, 61));
         pnlBtns.setLayout(new java.awt.GridLayout(1, 2, 20, 0));
 
-        btnThoat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnThoat.setBackground(new java.awt.Color(255, 255, 169));
+        btnThoat.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnThoat.setForeground(new java.awt.Color(255, 146, 64));
         btnThoat.setText("Thoát");
-        btnThoat.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnThoat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnThoat.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnThoat.setFocusable(false);
         btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,10 +196,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         });
         pnlBtns.add(btnThoat);
 
+        btnDangNhap.setBackground(new java.awt.Color(255, 146, 64));
         btnDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnDangNhap.setForeground(new java.awt.Color(255, 255, 169));
         btnDangNhap.setText("Đăng nhập");
-        btnDangNhap.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnDangNhap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDangNhap.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnDangNhap.setFocusable(false);
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,82 +214,132 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         });
         pnlBtns.add(btnDangNhap);
 
-        javax.swing.GroupLayout pnlInforLayout = new javax.swing.GroupLayout(pnlInfor);
-        pnlInfor.setLayout(pnlInforLayout);
-        pnlInforLayout.setHorizontalGroup(
-            pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInforLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlInfor3Layout = new javax.swing.GroupLayout(pnlInfor3);
+        pnlInfor3.setLayout(pnlInfor3Layout);
+        pnlInfor3Layout.setHorizontalGroup(
+            pnlInfor3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInfor3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pnlInfor3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pnlBtns, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInforLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInfor3Layout.createSequentialGroup()
                         .addComponent(chkNhoMatKhau)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                         .addComponent(lblDangKy)
                         .addGap(18, 18, 18)
                         .addComponent(LblDoiMatKhau))
-                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlInforLayout.createSequentialGroup()
-                        .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(pnlInforLayout.createSequentialGroup()
-                                .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(pnlInfor3Layout.createSequentialGroup()
+                        .addGroup(pnlInfor3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlInfor3Layout.createSequentialGroup()
+                                .addGroup(pnlInfor3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(lblTenDangNhap, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
                                     .addComponent(lblMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(24, 24, 24))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInforLayout.createSequentialGroup()
-                                .addComponent(lblVaiTro, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInfor3Layout.createSequentialGroup()
+                                .addComponent(lblVaiTro3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlInfor3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtMatKhau)
                             .addComponent(txtTenDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cboVaiTro, 0, 245, Short.MAX_VALUE))))
+                            .addComponent(cboVaiTro3, 0, 245, Short.MAX_VALUE))))
                 .addContainerGap())
         );
-        pnlInforLayout.setVerticalGroup(
-            pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInforLayout.createSequentialGroup()
+        pnlInfor3Layout.setVerticalGroup(
+            pnlInfor3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInfor3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTitle)
-                .addGap(18, 18, 18)
-                .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboVaiTro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblVaiTro))
-                .addGap(18, 18, 18)
-                .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlInfor3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboVaiTro3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblVaiTro3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlInfor3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTenDangNhap))
                 .addGap(18, 18, 18)
-                .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlInfor3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMatKhau))
                 .addGap(20, 20, 20)
-                .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlInfor3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkNhoMatKhau)
                     .addComponent(LblDoiMatKhau)
                     .addComponent(lblDangKy))
                 .addGap(18, 18, 18)
                 .addComponent(pnlBtns, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout pnlDangNhap3Layout = new javax.swing.GroupLayout(pnlDangNhap3);
+        pnlDangNhap3.setLayout(pnlDangNhap3Layout);
+        pnlDangNhap3Layout.setHorizontalGroup(
+            pnlDangNhap3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDangNhap3Layout.createSequentialGroup()
+                .addComponent(pnlLogo3, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlInfor3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlDangNhap3Layout.setVerticalGroup(
+            pnlDangNhap3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDangNhap3Layout.createSequentialGroup()
+                .addGroup(pnlDangNhap3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(pnlLogo3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlInfor3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlInfor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(pnlDangNhap3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlInfor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlDangNhap3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+        EnterBtnLogin(evt);
+    }//GEN-LAST:event_formKeyPressed
+
+    private void cboVaiTro3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboVaiTro3MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboVaiTro3MousePressed
+
+    private void cboVaiTro3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboVaiTro3ActionPerformed
+        if (cboVaiTro.getSelectedIndex() == 1) {
+            lblDangKy.setVisible(true);
+        } else {
+            lblDangKy.setVisible(false);
+        }
+    }//GEN-LAST:event_cboVaiTro3ActionPerformed
+
+    private void txtTenDangNhapMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTenDangNhapMousePressed
+        txtTenDangNhap.setBackground(Color.white);
+        txtTenDangNhap.setFocusable(true);
+        txtTenDangNhap.requestFocus();
+    }//GEN-LAST:event_txtTenDangNhapMousePressed
+
+    private void txtTenDangNhapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenDangNhapKeyPressed
+        // TODO add your handling code here:
+        EnterBtnLogin(evt);
+    }//GEN-LAST:event_txtTenDangNhapKeyPressed
+
+    private void txtMatKhauMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMatKhauMousePressed
+        txtMatKhau.setBackground(Color.white);
+        txtMatKhau.setFocusable(true);
+        txtMatKhau.requestFocus();
+    }//GEN-LAST:event_txtMatKhauMousePressed
+
+    private void txtMatKhauKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatKhauKeyPressed
+        // TODO add your handling code here:
+        EnterBtnLogin(evt);
+    }//GEN-LAST:event_txtMatKhauKeyPressed
 
     private void lblDangKyMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDangKyMousePressed
         this.setVisible(false);
@@ -280,6 +351,13 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         new DoiMatKhauJDialog(null, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_LblDoiMatKhauMousePressed
 
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        if (chkNhoMatKhau.isSelected() == false) {
+            file.delete();
+        }
+        System.exit(0);
+    }//GEN-LAST:event_btnThoatActionPerformed
+
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         if (check()) {
             DangNhap();
@@ -289,56 +367,9 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
-    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        if (chkNhoMatKhau.isSelected() == false) {
-            file.delete();
-        }
-        System.exit(0);
-    }//GEN-LAST:event_btnThoatActionPerformed
-
-    private void txtTenDangNhapMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTenDangNhapMousePressed
-        txtTenDangNhap.setBackground(Color.white);
-        txtTenDangNhap.setFocusable(true);
-        txtTenDangNhap.requestFocus();
-    }//GEN-LAST:event_txtTenDangNhapMousePressed
-
-    private void txtMatKhauMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMatKhauMousePressed
-        txtMatKhau.setBackground(Color.white);
-        txtMatKhau.setFocusable(true);
-        txtMatKhau.requestFocus();
-    }//GEN-LAST:event_txtMatKhauMousePressed
-
-    private void cboVaiTroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboVaiTroActionPerformed
-        if (cboVaiTro.getSelectedIndex() == 1) {
-            lblDangKy.setVisible(true);
-        } else {
-            lblDangKy.setVisible(false);
-        }
-    }//GEN-LAST:event_cboVaiTroActionPerformed
-
-    private void cboVaiTroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboVaiTroMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboVaiTroMousePressed
-
     private void btnDangNhapKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDangNhapKeyTyped
         // TODO add your handling code here:
-
     }//GEN-LAST:event_btnDangNhapKeyTyped
-
-    private void txtTenDangNhapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenDangNhapKeyPressed
-        // TODO add your handling code here:
-        EnterBtnLogin(evt);
-    }//GEN-LAST:event_txtTenDangNhapKeyPressed
-
-    private void txtMatKhauKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatKhauKeyPressed
-        // TODO add your handling code here:
-        EnterBtnLogin(evt);
-    }//GEN-LAST:event_txtMatKhauKeyPressed
-
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        // TODO add your handling code here:
-        EnterBtnLogin(evt);
-    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
@@ -346,7 +377,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -380,16 +411,34 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnDangNhap;
     private javax.swing.JButton btnThoat;
     private javax.swing.JComboBox<String> cboVaiTro;
+    private javax.swing.JComboBox<String> cboVaiTro1;
+    private javax.swing.JComboBox<String> cboVaiTro2;
+    private javax.swing.JComboBox<String> cboVaiTro3;
     private javax.swing.JCheckBox chkNhoMatKhau;
     private javax.swing.JLabel lblDangKy;
     private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblLogo1;
+    private javax.swing.JLabel lblLogo2;
+    private javax.swing.JLabel lblLogo3;
     private javax.swing.JLabel lblMatKhau;
     private javax.swing.JLabel lblTenDangNhap;
-    private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblVaiTro;
+    private javax.swing.JLabel lblVaiTro1;
+    private javax.swing.JLabel lblVaiTro2;
+    private javax.swing.JLabel lblVaiTro3;
     private javax.swing.JPanel pnlBtns;
+    private javax.swing.JPanel pnlDangNhap;
+    private javax.swing.JPanel pnlDangNhap1;
+    private javax.swing.JPanel pnlDangNhap2;
+    private javax.swing.JPanel pnlDangNhap3;
     private javax.swing.JPanel pnlInfor;
+    private javax.swing.JPanel pnlInfor1;
+    private javax.swing.JPanel pnlInfor2;
+    private javax.swing.JPanel pnlInfor3;
     private javax.swing.JPanel pnlLogo;
+    private javax.swing.JPanel pnlLogo1;
+    private javax.swing.JPanel pnlLogo2;
+    private javax.swing.JPanel pnlLogo3;
     private javax.swing.JPasswordField txtMatKhau;
     private javax.swing.JTextField txtTenDangNhap;
     // End of variables declaration//GEN-END:variables
