@@ -2081,6 +2081,9 @@
                               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_NVMousePressed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>

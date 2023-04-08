@@ -63,7 +63,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         loadToTableKH();
         loadToTableCL();
         loadToTableDH();
-//        loadToTableNV();
+        loadToTableNV();
         loadToTableHD();
     }
 
@@ -1335,6 +1335,11 @@ public class Admin_Frame extends javax.swing.JFrame {
         });
         tbl_NV.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_NV.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_NV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbl_NVMousePressed(evt);
+            }
+        });
         scroll_NV.setViewportView(tbl_NV);
 
         javax.swing.GroupLayout pnl_Sub_NVLayout = new javax.swing.GroupLayout(pnl_Sub_NV);
@@ -2818,35 +2823,35 @@ public class Admin_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLast_CLActionPerformed
 
     private void btnThem_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem_NVActionPerformed
-
+        savẹNhanvien();
     }//GEN-LAST:event_btnThem_NVActionPerformed
 
     private void btnSua_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua_NVActionPerformed
-
+        updateNhanvien();
     }//GEN-LAST:event_btnSua_NVActionPerformed
 
     private void btnXoa_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa_NVActionPerformed
-
+        deleteNhanvien();
     }//GEN-LAST:event_btnXoa_NVActionPerformed
 
     private void btnMoi_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoi_NVActionPerformed
-
+        newNhanVien();
     }//GEN-LAST:event_btnMoi_NVActionPerformed
 
     private void btnFirst_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst_NVActionPerformed
-        // TODO add your handling code here:
+        FirstNV();
     }//GEN-LAST:event_btnFirst_NVActionPerformed
 
     private void btnPrevious_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevious_NVActionPerformed
-        // TODO add your handling code here:
+        PrevNV();
     }//GEN-LAST:event_btnPrevious_NVActionPerformed
 
     private void btnNext_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext_NVActionPerformed
-        // TODO add your handling code here:
+        NextNV();
     }//GEN-LAST:event_btnNext_NVActionPerformed
 
     private void btnLast_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast_NVActionPerformed
-        // TODO add your handling code here:
+        LastNV();
     }//GEN-LAST:event_btnLast_NVActionPerformed
 
     private void btnFirst_KHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst_KHActionPerformed
@@ -2971,6 +2976,14 @@ public class Admin_Frame extends javax.swing.JFrame {
             frameDHCT.setVisible(true);
         }
     }//GEN-LAST:event_tbl_DHMousePressed
+
+    private void tbl_NVMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_NVMousePressed
+        indexNV = tbl_NV.rowAtPoint(evt.getPoint());
+        editNV();
+        btnThem_NV.setEnabled(false);
+        btnSua_NV.setEnabled(true);
+        btnXoa_NV.setEnabled(true);
+    }//GEN-LAST:event_tbl_NVMousePressed
 
     /**
      * @param args the command line arguments
@@ -3226,7 +3239,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         txtMa_KH.setText(khList.get(indexKH).getMaKH());
         txtNgaySinh_KH.setText(XDate.toString(khList.get(indexKH).getNgaySinh(), "dd/MM/yyyy"));
         txtTen_KH.setText(khList.get(indexKH).getTenKH());
-        txtMatKhau_NV_KH.setText(khList.get(indexKH).getMatKhau());
+        txtMatKhau_KH.setText(khList.get(indexKH).getMatKhau());
         txtNgayDangKy_KH.setText(XDate.toString(khList.get(indexKH).getNgayDangKy(), "dd/MM/yyyy"));
         if (khList.get(indexKH).isGioiTinh() == true) {
             rdoNam_KH.setSelected(true);
@@ -3238,7 +3251,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     private void updateKH() {
         KhachHang kh = new KhachHang();
         kh.setMaKH(txtMa_KH.getText());
-        kh.setMatKhau(txtMatKhau_NV_KH.getText());
+        kh.setMatKhau(txtMatKhau_KH.getText());
         kh.setNgaySinh(XDate.toDate(txtNgaySinh_KH.getText(), "dd/MM/yyyy"));
         kh.setNgayDangKy(XDate.toDate(txtNgayDangKy_KH.getText(), "dd/MM/yyyy"));
         kh.setTenKH(txtTen_KH.getText());
@@ -3654,7 +3667,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     private NhanVien getNhanVien() {
         NhanVien model = new NhanVien();
         model.setMaNV(txtMa_NV.getText());
-        model.setMatKhau(new String(txtMatKhau_NV.getPassword()));
+        model.setMatKhau(new String(txtMatKhau_NV.getText()));
         model.setHoTen(txtHoTen_NV.getText());
         model.setNgaySinh(XDate.toDate(txtNgaySinh_NV.getText(), "dd/MM/YYYY"));
         model.setGioiTinh(rdoNu_NV.isSelected());
@@ -3668,7 +3681,7 @@ public class Admin_Frame extends javax.swing.JFrame {
             NhanVien model = nvDao.selectById(manv);
             if (model != null) {
                 setNhanVien(model);
-                //System.out.println(model.getNgaySinh());
+                tbl_NV.setRowSelectionInterval(indexNV, indexNV);
             }
         } catch (Exception e) {
             System.out.println("Lỗi truy vấn" + e.toString());
@@ -3679,11 +3692,11 @@ public class Admin_Frame extends javax.swing.JFrame {
         txtMa_NV.setText(null);
         txtMatKhau_NV.setText(null);
         txtHoTen_NV.setText(null);
-        txtNgaySinh.setText(null);
-        index = -1;
-        btnThemNVBH.setEnabled(true);
-        btnSuaNVBH.setEnabled(false);
-        btnXoaNVBH.setEnabled(false);
+        txtNgaySinh_NV.setText(null);
+        indexNV = -1;
+        btnThem_NV.setEnabled(true);
+        btnSua_NV.setEnabled(false);
+        btnXoa_NV.setEnabled(false);
     }
 
     private void savẹNhanvien() {
@@ -3727,7 +3740,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     }
 
     private boolean admin() {
-        if (nvList.get(index).isVaiTro() == true) {
+        if (nvList.get(indexNV).isVaiTro() == true) {
             JOptionPane.showMessageDialog(this, "Không được xoá Admin!", "", 0);
             return false;
         }
@@ -3739,6 +3752,30 @@ public class Admin_Frame extends javax.swing.JFrame {
         Thread t = new Thread(cl);
         t.start();
     }
+    
+    private void FirstNV(){
+        indexNV = 0;
+        editNV();
+    }
+    private void LastNV(){
+        indexNV = tbl_NV.getRowCount() - 1;
+        editNV();
+    }
+    private void PrevNV(){
+        indexNV--;
+        if (indexNV < 0) {
+            indexNV = tbl_NV.getRowCount() - 1;
+        }
+        editNV();
+    }
+    private void NextNV(){
+        indexNV++;
+        if (indexNV > tbl_NV.getRowCount() - 1) {
+            indexNV = 0;
+        }
+        editNV();
+    }
+    
 
     //start HoaDon
     private void loadToTableHD() {
