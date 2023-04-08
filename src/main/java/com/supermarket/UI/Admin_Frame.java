@@ -160,7 +160,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         btnNext_NV = new javax.swing.JButton();
         btnLast_NV = new javax.swing.JButton();
         scroll_NV = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tbl_NV = new javax.swing.JTable();
         pnl_KhachHang = new javax.swing.JPanel();
         pnl_Sub_KH = new javax.swing.JPanel();
         pnlTitle_KH = new javax.swing.JPanel();
@@ -1296,10 +1296,10 @@ public class Admin_Frame extends javax.swing.JFrame {
         });
         pnlNavigation_NV.add(btnLast_NV);
 
-        jTable3.setBackground(new java.awt.Color(255, 146, 64));
-        jTable3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTable3.setForeground(new java.awt.Color(61, 61, 61));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_NV.setBackground(new java.awt.Color(255, 146, 64));
+        tbl_NV.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tbl_NV.setForeground(new java.awt.Color(61, 61, 61));
+        tbl_NV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -1326,9 +1326,9 @@ public class Admin_Frame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable3.setSelectionBackground(new java.awt.Color(255, 255, 169));
-        jTable3.setSelectionForeground(new java.awt.Color(61, 61, 61));
-        scroll_NV.setViewportView(jTable3);
+        tbl_NV.setSelectionBackground(new java.awt.Color(255, 255, 169));
+        tbl_NV.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        scroll_NV.setViewportView(tbl_NV);
 
         javax.swing.GroupLayout pnl_Sub_NVLayout = new javax.swing.GroupLayout(pnl_Sub_NV);
         pnl_Sub_NV.setLayout(pnl_Sub_NVLayout);
@@ -3019,7 +3019,6 @@ public class Admin_Frame extends javax.swing.JFrame {
     private javax.swing.JButton btnXoa_SP;
     private javax.swing.JComboBox<String> cboChungLoai_SP;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JTable jTable3;
     private javax.swing.JLabel lblBanItNhat_TK;
     private javax.swing.JLabel lblBanNhieuNhat_TK;
     private javax.swing.JLabel lblChungLoai_SP;
@@ -3139,6 +3138,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     private javax.swing.JTable tbl_DH;
     private javax.swing.JTable tbl_HD;
     private javax.swing.JTable tbl_KH;
+    private javax.swing.JTable tbl_NV;
     private javax.swing.JTable tbl_SP;
     private javax.swing.JTable tbl_TK;
     private javax.swing.JLabel txtBanItNhat_TK;
@@ -3197,7 +3197,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         txtMa_KH.setText(khList.get(indexKH).getMaKH());
         txtNgaySinh_KH.setText(XDate.toString(khList.get(indexKH).getNgaySinh(), "dd/MM/yyyy"));
         txtTen_KH.setText(khList.get(indexKH).getTenKH());
-        txtMatKhau_KH.setText(khList.get(indexKH).getMatKhau());
+        txtMatKhau_NV_KH.setText(khList.get(indexKH).getMatKhau());
         txtNgayDangKy_KH.setText(XDate.toString(khList.get(indexKH).getNgayDangKy(), "dd/MM/yyyy"));
         if (khList.get(indexKH).isGioiTinh() == true) {
             rdoNam_KH.setSelected(true);
@@ -3209,7 +3209,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     private void updateKH() {
         KhachHang kh = new KhachHang();
         kh.setMaKH(txtMa_KH.getText());
-        kh.setMatKhau(txtMatKhau_KH.getText());
+        kh.setMatKhau(txtMatKhau_NV_KH.getText());
         kh.setNgaySinh(XDate.toDate(txtNgaySinh_KH.getText(), "dd/MM/yyyy"));
         kh.setNgayDangKy(XDate.toDate(txtNgayDangKy_KH.getText(), "dd/MM/yyyy"));
         kh.setTenKH(txtTen_KH.getText());
@@ -3517,7 +3517,7 @@ public class Admin_Frame extends javax.swing.JFrame {
 
     //BEGIN NHANVIEN
     private void loadToTableNV() {
-        DefaultTableModel model = (DefaultTableModel) tblNVBH.getModel();
+        DefaultTableModel model = (DefaultTableModel) tbl_NV.getModel();
         model.setRowCount(0);
         try {
             nvList = nvDao.selectAll();
@@ -3538,30 +3538,30 @@ public class Admin_Frame extends javax.swing.JFrame {
     }
 
     private void setNhanVien(NhanVien nv) {
-        txtMaNV.setText(nv.getMaNV());
-        txtMatKhau.setText(nv.getMatKhau());
-        txtHoTen.setText(nv.getHoTen());
-        rdoNuNV.setSelected(nv.isGioiTinh());
-        rdoNamNV.setSelected(!nv.isGioiTinh());
+        txtMa_NV.setText(nv.getMaNV());
+        txtMatKhau_NV.setText(nv.getMatKhau());
+        txtHoTen_NV.setText(nv.getHoTen());
+        rdoNu_NV.setSelected(nv.isGioiTinh());
+        rdoNam_NV.setSelected(!nv.isGioiTinh());
 //        rdoAdmin.setSelected(nv.isVaiTro());
 //        rdoNhanvien.setSelected(!nv.isVaiTro());
-        txtNgaySinh.setText(XDate.toString(nv.getNgaySinh(), "dd/MM/YYYY"));
+        txtNgaySinh_KH.setText(XDate.toString(nv.getNgaySinh(), "dd/MM/YYYY"));
     }
 
     private NhanVien getNhanVien() {
         NhanVien model = new NhanVien();
-        model.setMaNV(txtMaNV.getText());
-        model.setMatKhau(new String(txtMatKhau.getPassword()));
-        model.setHoTen(txtHoTen.getText());
-        model.setNgaySinh(XDate.toDate(txtNgaySinh.getText(), "dd/MM/YYYY"));
-        model.setGioiTinh(rdoNuNV.isSelected());
+        model.setMaNV(txtMa_NV.getText());
+        model.setMatKhau(new String(txtMatKhau_NV.getPassword()));
+        model.setHoTen(txtHoTen_NV.getText());
+        model.setNgaySinh(XDate.toDate(txtNgaySinh_NV.getText(), "dd/MM/YYYY"));
+        model.setGioiTinh(rdoNu_NV.isSelected());
         //model.setVaiTro(rdoAdmin.isSelected());
         return model;
     }
 
     private void editNV() {
         try {
-            String manv = (String) tblNVBH.getValueAt(this.indexNV, 0);
+            String manv = (String) tbl_NV.getValueAt(this.indexNV, 0);
             NhanVien model = nvDao.selectById(manv);
             if (model != null) {
                 setNhanVien(model);
@@ -3573,9 +3573,9 @@ public class Admin_Frame extends javax.swing.JFrame {
     }
 
     private void newNhanVien() {
-        txtMaNV.setText(null);
-        txtMatKhau.setText(null);
-        txtHoTen.setText(null);
+        txtMa_NV.setText(null);
+        txtMatKhau_NV.setText(null);
+        txtHoTen_NV.setText(null);
         txtNgaySinh.setText(null);
         index = -1;
         btnThemNVBH.setEnabled(true);
@@ -3610,7 +3610,7 @@ public class Admin_Frame extends javax.swing.JFrame {
 
     private void deleteNhanvien() {
         if (MsgBox.confirm(this, "Bạn thực sự muốn xoá người này")) {
-            String manv = txtMaNV.getText();
+            String manv = txtMa_NV.getText();
             try {
                 nvDao.delete(manv);
                 newNhanVien();
@@ -3656,14 +3656,14 @@ public class Admin_Frame extends javax.swing.JFrame {
 
     private void initHD() {
         txtMa_HD.setFocusable(false);
-        txtMaNV_HD.setFocusable(false);
+        txtMa_NV_HD.setFocusable(false);
         txtNgayLap_HD.setFocusable(false);
         txtTongTien_HD.setFocusable(false);
     }
 
     private void fillFromTableHD(int index) {
         txtMa_HD.setText(hdList.get(index).getMaHD());
-        txtMaNV_HD.setText(hdList.get(index).getMaNV());
+        txtMa_NV_HD.setText(hdList.get(index).getMaNV());
         txtNgayLap_HD.setText(String.valueOf(hdList.get(index).getNgayLapHD()));
         txtTongTien_HD.setText(String.valueOf(hdList.get(index).getTongTien()));
         tbl_HD.setRowSelectionInterval(index, index);
