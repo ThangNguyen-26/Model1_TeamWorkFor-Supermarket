@@ -20,12 +20,10 @@ public class ChiTietDonHangDAO extends HeThongDAO<ChiTietDonHang, String> {
 
     @Override
     public void update(ChiTietDonHang entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void delete(String entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -62,9 +60,7 @@ public class ChiTietDonHangDAO extends HeThongDAO<ChiTietDonHang, String> {
     }
 
     public List<ChiTietDonHang> selectByKeyword(String keyword) {
-        
         return this.selectSql("SELECT * FROM CHITIETDONHANG WHERE MADH LIKE ?",  keyword );
-        
     }
     
 }

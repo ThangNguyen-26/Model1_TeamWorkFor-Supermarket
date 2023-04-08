@@ -4225,7 +4225,6 @@
                               <Color blue="40" green="92" red="ff" type="rgb"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="2023"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblDoanhThu_TK">
@@ -4251,7 +4250,6 @@
                               <Color blue="40" green="92" red="ff" type="rgb"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="153900.000"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblBanNhieuNhat_TK">
@@ -4277,7 +4275,6 @@
                               <Color blue="40" green="92" red="ff" type="rgb"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="SP0004"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblBanItNhat_TK">

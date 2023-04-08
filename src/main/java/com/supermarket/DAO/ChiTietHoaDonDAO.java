@@ -9,22 +9,20 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ChiTietHoaDonDAO extends HeThongDAO<ChiTietHoaDon, String>{
+public class ChiTietHoaDonDAO extends HeThongDAO<ChiTietHoaDon, String> {
 
     @Override
     public void insert(ChiTietHoaDon entity) {
         String sql = "INSERT INTO CHITIETHOADON VALUES (?, ?, ?, ?)";
-        int k = JdbcHelper.update(sql, entity.getSoLuong(), entity.getThanhTien(), entity.getMaSP(),entity.getMaHD());
+        int k = JdbcHelper.update(sql, entity.getSoLuong(), entity.getThanhTien(), entity.getMaSP(), entity.getMaHD());
     }
 
     @Override
     public void update(ChiTietHoaDon entity) {
-        //Không có chức năng cập nhật hóa đơn chi tiết
     }
 
     @Override
     public void delete(String entity) {
-        //Không có chức năng xóa hóa đơn chi tiết
     }
 
     @Override
@@ -38,7 +36,7 @@ public class ChiTietHoaDonDAO extends HeThongDAO<ChiTietHoaDon, String>{
         String sql = "SELECT * FROM CHITIETHOADON WHERE MAHD = ?";
         try {
             ResultSet rs = JdbcHelper.query(sql, MaHD);
-            if(rs.next()){
+            if (rs.next()) {
                 ChiTietHoaDon cthd = new ChiTietHoaDon(rs.getInt(1), rs.getFloat(2), rs.getString(4), rs.getString(3));
                 return cthd;
             }
@@ -54,7 +52,7 @@ public class ChiTietHoaDonDAO extends HeThongDAO<ChiTietHoaDon, String>{
         List<ChiTietHoaDon> chiTietHoaDonList = new ArrayList<>();
         try {
             ResultSet rs = JdbcHelper.query(sql, args);
-            while(rs.next()){
+            while (rs.next()) {
                 ChiTietHoaDon cthd = new ChiTietHoaDon(rs.getInt(1), rs.getFloat(2), rs.getString(4), rs.getString(3));
                 chiTietHoaDonList.add(cthd);
             }
@@ -64,8 +62,8 @@ public class ChiTietHoaDonDAO extends HeThongDAO<ChiTietHoaDon, String>{
         }
         return chiTietHoaDonList;
     }
-    
-    public List<ChiTietHoaDon> SelectByMaHD(String mahd){
+
+    public List<ChiTietHoaDon> SelectByMaHD(String mahd) {
         return selectSql("SELECT * FROM CHITIETHOADON WHERE MAHD LIKE ?", mahd);
     }
 }

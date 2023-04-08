@@ -2474,7 +2474,6 @@ public class Admin_Frame extends javax.swing.JFrame {
         txtNam_TK.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtNam_TK.setForeground(new java.awt.Color(255, 146, 64));
         txtNam_TK.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtNam_TK.setText("2023");
 
         lblDoanhThu_TK.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDoanhThu_TK.setForeground(new java.awt.Color(255, 255, 169));
@@ -2484,7 +2483,6 @@ public class Admin_Frame extends javax.swing.JFrame {
         txtDoanhThu_TK.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtDoanhThu_TK.setForeground(new java.awt.Color(255, 146, 64));
         txtDoanhThu_TK.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtDoanhThu_TK.setText("153900.000");
 
         lblBanNhieuNhat_TK.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblBanNhieuNhat_TK.setForeground(new java.awt.Color(255, 255, 169));
@@ -2494,7 +2492,6 @@ public class Admin_Frame extends javax.swing.JFrame {
         txtBanNhieuNhat_TK.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtBanNhieuNhat_TK.setForeground(new java.awt.Color(255, 146, 64));
         txtBanNhieuNhat_TK.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtBanNhieuNhat_TK.setText("SP0004");
 
         lblBanItNhat_TK.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblBanItNhat_TK.setForeground(new java.awt.Color(255, 255, 169));
@@ -2929,19 +2926,19 @@ public class Admin_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoa_DHActionPerformed
 
     private void btnFirst_TKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst_TKActionPerformed
-        // TODO add your handling code here:
+        FirstTK();
     }//GEN-LAST:event_btnFirst_TKActionPerformed
 
     private void btnPrevious_TKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevious_TKActionPerformed
-        // TODO add your handling code here:
+        PrevTK();
     }//GEN-LAST:event_btnPrevious_TKActionPerformed
 
     private void btnNext_TKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext_TKActionPerformed
-        // TODO add your handling code here:
+        NextTK();
     }//GEN-LAST:event_btnNext_TKActionPerformed
 
     private void btnLast_TKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast_TKActionPerformed
-        // TODO add your handling code here:
+        LastTK();
     }//GEN-LAST:event_btnLast_TKActionPerformed
 
     private void tabsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabsMouseEntered
@@ -3894,9 +3891,32 @@ public class Admin_Frame extends javax.swing.JFrame {
         txtDoanhThu_TK.setText(Double.toString((Double)tbl_TK.getValueAt(indexTK, 1)));
         txtBanNhieuNhat_TK.setText(Integer.toString((Integer)tbl_TK.getValueAt(indexTK, 2)));
         txtBanItNhat_TK.setText(Integer.toString((Integer)tbl_TK.getValueAt(indexTK, 3)));
-//        txtNam_TK.setText(XDate.toString(tkList.get(indexTK).getNam(), "yyyy"));
-//        txtDoanhThu_TK.setText(String.valueOf(tkList.get(indexTK).getTongtien()));
-//        txtBanNhieuNhat_TK.setText(tkList.get(indexTK).getNhieunhat());
-//        txtBanNhieuNhat_TK.setText(tkList.get(indexTK).getItnhat());
+        tbl_TK.setRowSelectionInterval(indexTK, indexTK);
+    }
+    
+    private void FirstTK(){
+        indexTK = 0;
+        fillFromThongKe();
+    }
+    
+    private void LastTK(){
+        indexTK = tbl_TK.getRowCount() - 1;
+        fillFromThongKe();
+    }
+    
+    private void NextTK(){
+        indexTK++;
+        if (indexTK > tbl_TK.getRowCount() - 1) {
+            indexTK = 0;
+        }
+        fillFromThongKe();
+    }
+    
+    private void PrevTK(){
+        indexTK--;
+        if (indexTK < 0) {
+            indexTK = tbl_NV.getRowCount() - 1;
+        }
+        fillFromThongKe();
     }
 }
