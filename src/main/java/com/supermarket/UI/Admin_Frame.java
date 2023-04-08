@@ -8,6 +8,7 @@ import com.supermarket.DAO.HoaDonDAO;
 import com.supermarket.DAO.KhachHangDAO;
 import com.supermarket.DAO.NhanVienDAO;
 import com.supermarket.DAO.SanPhamDAO;
+import com.supermarket.DAO.ThongKeDAO;
 import com.supermarket.ENTITY.CLockThread;
 import com.supermarket.ENTITY.ChiTietDonHang;
 import com.supermarket.ENTITY.ChiTietHoaDon;
@@ -35,6 +36,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     private int indexHD = -1;
     private int indexDH = -1;
     private int indexNV = -1;
+    private int indexTK = -1;
 
     //Biến LIST
     private List<SanPham> spList = new ArrayList<>();
@@ -42,6 +44,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     private List<ChungLoai> clList = new ArrayList<>();
     private List<NhanVien> nvList = new ArrayList<>();
     private List<HoaDon> hdList = new ArrayList<>();
+    
 
     //Biến DAO
     private KhachHangDAO khDao = new KhachHangDAO();
@@ -51,6 +54,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     private HoaDonDAO hdDao = new HoaDonDAO();
     private ChiTietDonHangDAO dhctDao = new ChiTietDonHangDAO();
     private NhanVienDAO nvDao = new NhanVienDAO();
+    private ThongKeDAO tkDao = new ThongKeDAO();
 
     public Admin_Frame() {
         initComponents();
@@ -65,6 +69,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         loadToTableDH();
         loadToTableNV();
         loadToTableHD();
+        loadToTableTK();
     }
 
     @SuppressWarnings("unchecked")
@@ -2630,6 +2635,11 @@ public class Admin_Frame extends javax.swing.JFrame {
         tbl_TK.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_TK.setSelectionForeground(new java.awt.Color(61, 61, 61));
         tbl_TK.getTableHeader().setReorderingAllowed(false);
+        tbl_TK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbl_TKMousePressed(evt);
+            }
+        });
         scroll_TK.setViewportView(tbl_TK);
 
         javax.swing.GroupLayout pnl_Sub_TKLayout = new javax.swing.GroupLayout(pnl_Sub_TK);
@@ -2992,6 +3002,11 @@ public class Admin_Frame extends javax.swing.JFrame {
         btnSua_NV.setEnabled(true);
         btnXoa_NV.setEnabled(true);
     }//GEN-LAST:event_tbl_NVMousePressed
+
+    private void tbl_TKMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_TKMousePressed
+        indexTK = tbl_TK.getSelectedRow();
+        fillFromThongKe();
+    }//GEN-LAST:event_tbl_TKMousePressed
 
     /**
      * @param args the command line arguments
@@ -3860,5 +3875,28 @@ public class Admin_Frame extends javax.swing.JFrame {
         }
     }
     //end HoaDon
-
+    //Begin Thống kê
+    private void loadToTableTK() {
+        DefaultTableModel model = (DefaultTableModel) tbl_TK.getModel();
+        model.setRowCount(0);
+        try {
+            List<Object[]> list = tkDao.getThongKe();
+            for (Object[] objects : list) {
+                model.addRow(objects);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+    
+    private void fillFromThongKe(){
+        txtNam_TK.setText((String) tbl_TK.getValueAt(indexTK, 0));
+        txtDoanhThu_TK.setText((String) tbl_TK.getValueAt(indexTK, 1));
+        txtBanNhieuNhat_TK.setText((String) tbl_TK.getValueAt(indexTK, 2));
+        txtBanItNhat_TK.setText((String) tbl_TK.getValueAt(indexTK, 3));
+//        txtNam_TK.setText(XDate.toString(tkList.get(indexTK).getNam(), "yyyy"));
+//        txtDoanhThu_TK.setText(String.valueOf(tkList.get(indexTK).getTongtien()));
+//        txtBanNhieuNhat_TK.setText(tkList.get(indexTK).getNhieunhat());
+//        txtBanNhieuNhat_TK.setText(tkList.get(indexTK).getItnhat());
+    }
 }
