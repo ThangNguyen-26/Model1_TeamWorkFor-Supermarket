@@ -2854,19 +2854,19 @@ public class Admin_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLast_KHActionPerformed
 
     private void btnFirst_HDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst_HDActionPerformed
-        // TODO add your handling code here:
+        firstHD();
     }//GEN-LAST:event_btnFirst_HDActionPerformed
 
     private void btnPrevioust_HDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevioust_HDActionPerformed
-        // TODO add your handling code here:
+        previousHD();
     }//GEN-LAST:event_btnPrevioust_HDActionPerformed
 
     private void btnNext_HDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext_HDActionPerformed
-        // TODO add your handling code here:
+        nextHD();
     }//GEN-LAST:event_btnNext_HDActionPerformed
 
     private void btnLast_HDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast_HDActionPerformed
-        // TODO add your handling code here:
+        lastHD();
     }//GEN-LAST:event_btnLast_HDActionPerformed
 
     private void btnXoa_HDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa_HDActionPerformed
@@ -3656,14 +3656,14 @@ public class Admin_Frame extends javax.swing.JFrame {
 
     private void initHD() {
         txtMa_HD.setFocusable(false);
-        txtMa_NV_HD.setFocusable(false);
+        txtMaNV_HD.setFocusable(false);
         txtNgayLap_HD.setFocusable(false);
         txtTongTien_HD.setFocusable(false);
     }
 
     private void fillFromTableHD(int index) {
         txtMa_HD.setText(hdList.get(index).getMaHD());
-        txtMa_NV_HD.setText(hdList.get(index).getMaNV());
+        txtMaNV_HD.setText(hdList.get(index).getMaNV());
         txtNgayLap_HD.setText(String.valueOf(hdList.get(index).getNgayLapHD()));
         txtTongTien_HD.setText(String.valueOf(hdList.get(index).getTongTien()));
         tbl_HD.setRowSelectionInterval(index, index);
