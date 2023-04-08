@@ -25,11 +25,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     public DangNhapJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        //MsgBox.alert(null, "1");
         initCombox();
-        //MsgBox.alert(null, "2");
         init();
-        //MsgBox.alert(null, "3");
     }
 
     public DangNhapJDialog(java.awt.Frame parent, boolean modal, String tk, String mk) {
@@ -459,7 +456,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             nhoMatKhau();
             if (nv.isVaiTro() == false) {
                 this.setVisible(false);
-                NhanVienBanHang b = new NhanVienBanHang();
+                NhanVienBanHang b = new NhanVienBanHang(nv.getMaNV());
                 b.setVisible(true);
             } else {
                 this.setVisible(false);

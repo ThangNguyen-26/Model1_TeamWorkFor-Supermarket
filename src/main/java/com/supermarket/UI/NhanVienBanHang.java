@@ -48,7 +48,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         initComponents();
         init();
         this.manv = manv;
-        this.setTitle("Chào mừng khách hàng " + this.manv);
+        this.setTitle("Màn Hình Nhân Viên " + this.manv);
     }
 
     private void fillComboSP() {
