@@ -20,27 +20,28 @@ public class ChaoJDialog extends javax.swing.JDialog {
         progressBar = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setFocusable(false);
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(594, 247));
         setResizable(false);
 
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Artboard 1.png"))); // NOI18N
+        lblLogo.setBackground(new java.awt.Color(255, 146, 64));
+        lblLogo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblLogo.setForeground(new java.awt.Color(61, 61, 61));
+        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logo 128px.png"))); // NOI18N
+        lblLogo.setText("Group 5 | HỆ THỐNG QUẢN LÝ SIÊU THỊ");
+        lblLogo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblLogo.setIconTextGap(30);
+        lblLogo.setOpaque(true);
+        lblLogo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        getContentPane().add(lblLogo, java.awt.BorderLayout.CENTER);
 
+        progressBar.setBackground(new java.awt.Color(255, 255, 169));
+        progressBar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        progressBar.setForeground(new java.awt.Color(61, 61, 61));
+        progressBar.setBorder(null);
         progressBar.setStringPainted(true);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblLogo)
-            .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(lblLogo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        getContentPane().add(progressBar, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
