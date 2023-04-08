@@ -1324,7 +1324,7 @@
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFirst_CLActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JButton" name="btnPrevious_Cl">
+                        <Component class="javax.swing.JButton" name="btnPrevious_CL">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="40" green="92" red="ff" type="rgb"/>
@@ -1341,7 +1341,7 @@
                             <Property name="focusable" type="boolean" value="false"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrevious_ClActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrevious_CLActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnNext_CL">
@@ -1421,6 +1421,9 @@
                               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_CLMousePressed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -2245,7 +2248,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lblMa_KH" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtMaKH" pref="98" max="32767" attributes="0"/>
+                                  <Component id="txtMa_KH" pref="98" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -2256,7 +2259,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblMa_KH" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtMaKH" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtMa_KH" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -2274,7 +2277,7 @@
                             <Property name="text" type="java.lang.String" value="M&#xe3; kh&#xe1;ch h&#xe0;ng:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="txtMaKH">
+                        <Component class="javax.swing.JLabel" name="txtMa_KH">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Arial" size="24" style="1"/>
@@ -2311,14 +2314,14 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtTenKH" pref="286" max="32767" attributes="0"/>
-                                      <Component id="txtMatKhauKH" pref="286" max="32767" attributes="0"/>
-                                      <Component id="txtNgaySinhKH" max="32767" attributes="0"/>
-                                      <Component id="txtNgayDK" max="32767" attributes="0"/>
+                                      <Component id="txtTen_KH" pref="286" max="32767" attributes="0"/>
+                                      <Component id="txtMatKhau_KH" pref="286" max="32767" attributes="0"/>
+                                      <Component id="txtNgaySinh_KH" max="32767" attributes="0"/>
+                                      <Component id="txtNgayDangKy_KH" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
-                                          <Component id="rdoNamKH" min="-2" pref="98" max="-2" attributes="0"/>
+                                          <Component id="rdoNam_KH" min="-2" pref="98" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="rdoNuKH" min="-2" pref="98" max="-2" attributes="0"/>
+                                          <Component id="rdoNu_KH" min="-2" pref="98" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -2331,28 +2334,28 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblTen_KH" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Component id="txtTenKH" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Component id="txtTen_KH" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblMatKhau_KH" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Component id="txtMatKhauKH" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Component id="txtMatKhau_KH" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblNgaySinh_KH" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Component id="txtNgaySinhKH" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Component id="txtNgaySinh_KH" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblGioiTinh_KH" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Component id="rdoNamKH" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="rdoNuKH" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rdoNam_KH" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rdoNu_KH" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblNgayDangKy_KH" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Component id="txtNgayDK" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Component id="txtNgayDangKy_KH" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
@@ -2371,7 +2374,7 @@
                             <Property name="text" type="java.lang.String" value="T&#xea;n kh&#xe1;ch h&#xe0;ng:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="txtTenKH">
+                        <Component class="javax.swing.JTextField" name="txtTen_KH">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="40" green="92" red="ff" type="rgb"/>
@@ -2395,7 +2398,7 @@
                             <Property name="text" type="java.lang.String" value="M&#x1ead;t kh&#x1ea9;u:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="txtMatKhauKH">
+                        <Component class="javax.swing.JTextField" name="txtMatKhau_KH">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="40" green="92" red="ff" type="rgb"/>
@@ -2419,7 +2422,7 @@
                             <Property name="text" type="java.lang.String" value="Ng&#xe0;y sinh:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="txtNgaySinhKH">
+                        <Component class="javax.swing.JTextField" name="txtNgaySinh_KH">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="40" green="92" red="ff" type="rgb"/>
@@ -2443,7 +2446,7 @@
                             <Property name="text" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JRadioButton" name="rdoNamKH">
+                        <Component class="javax.swing.JRadioButton" name="rdoNam_KH">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="3d" green="3d" red="3d" type="rgb"/>
@@ -2457,7 +2460,7 @@
                             <Property name="text" type="java.lang.String" value="Nam"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JRadioButton" name="rdoNuKH">
+                        <Component class="javax.swing.JRadioButton" name="rdoNu_KH">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="3d" green="3d" red="3d" type="rgb"/>
@@ -2482,7 +2485,7 @@
                             <Property name="text" type="java.lang.String" value="Ng&#xe0;y &#x111;&#x103;ng k&#xfd;:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="txtNgayDK">
+                        <Component class="javax.swing.JTextField" name="txtNgayDangKy_KH">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="40" green="92" red="ff" type="rgb"/>
@@ -2661,7 +2664,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="tblKH">
+                        <Component class="javax.swing.JTable" name="tbl_KH">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="40" green="92" red="ff" type="rgb"/>
@@ -2693,7 +2696,7 @@
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblKHMousePressed"/>
+                            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_KHMousePressed"/>
                           </Events>
                         </Component>
                       </SubComponents>
@@ -4380,6 +4383,9 @@
                 <Property name="text" type="java.lang.String" value="&#x110;&#x102;NG XU&#x1ea4;T"/>
                 <Property name="horizontalTextPosition" type="int" value="2"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDangXuatActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblInfor">
               <Properties>

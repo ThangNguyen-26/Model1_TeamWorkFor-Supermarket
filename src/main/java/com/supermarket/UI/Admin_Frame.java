@@ -57,11 +57,11 @@ public class Admin_Frame extends javax.swing.JFrame {
 //        new DangNhapJDialog(this, true).setVisible(true);
         clockRun();
         loadToTableSP();
-        fillCboSP();
+//        fillCboSP();
         loadToTableKH();
         loadToTableCL();
-        loadToTableDH();
-        loadToTableNV();
+//        loadToTableDH();
+//        loadToTableNV();
         loadToTableHD();
     }
 
@@ -126,7 +126,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         btnMoi_CL = new javax.swing.JButton();
         pnlNavigation_CL = new javax.swing.JPanel();
         btnFirst_CL = new javax.swing.JButton();
-        btnPrevious_Cl = new javax.swing.JButton();
+        btnPrevious_CL = new javax.swing.JButton();
         btnNext_CL = new javax.swing.JButton();
         btnLast_CL = new javax.swing.JButton();
         scroll_CL = new javax.swing.JScrollPane();
@@ -167,19 +167,19 @@ public class Admin_Frame extends javax.swing.JFrame {
         lblTitle_KH = new javax.swing.JLabel();
         pnlMa_KH = new javax.swing.JPanel();
         lblMa_KH = new javax.swing.JLabel();
-        txtMaKH = new javax.swing.JLabel();
+        txtMa_KH = new javax.swing.JLabel();
         pnlInfor_KH = new javax.swing.JPanel();
         lblTen_KH = new javax.swing.JLabel();
-        txtTenKH = new javax.swing.JTextField();
+        txtTen_KH = new javax.swing.JTextField();
         lblMatKhau_KH = new javax.swing.JLabel();
-        txtMatKhauKH = new javax.swing.JTextField();
+        txtMatKhau_KH = new javax.swing.JTextField();
         lblNgaySinh_KH = new javax.swing.JLabel();
-        txtNgaySinhKH = new javax.swing.JTextField();
+        txtNgaySinh_KH = new javax.swing.JTextField();
         lblGioiTinh_KH = new javax.swing.JLabel();
-        rdoNamKH = new javax.swing.JRadioButton();
-        rdoNuKH = new javax.swing.JRadioButton();
+        rdoNam_KH = new javax.swing.JRadioButton();
+        rdoNu_KH = new javax.swing.JRadioButton();
         lblNgayDangKy_KH = new javax.swing.JLabel();
-        txtNgayDK = new javax.swing.JTextField();
+        txtNgayDangKy_KH = new javax.swing.JTextField();
         pnlPic_KH = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         btnSua_KH = new javax.swing.JButton();
@@ -189,7 +189,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         btnNext_KH = new javax.swing.JButton();
         btnLast_KH = new javax.swing.JButton();
         scroll_KH = new javax.swing.JScrollPane();
-        tblKH = new javax.swing.JTable();
+        tbl_KH = new javax.swing.JTable();
         pnl_HoaDon = new javax.swing.JPanel();
         pnl_Sub_HD = new javax.swing.JPanel();
         pnlTitle_HD = new javax.swing.JPanel();
@@ -893,17 +893,17 @@ public class Admin_Frame extends javax.swing.JFrame {
         });
         pnlNavigation_CL.add(btnFirst_CL);
 
-        btnPrevious_Cl.setBackground(new java.awt.Color(255, 146, 64));
-        btnPrevious_Cl.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnPrevious_Cl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/previous.png"))); // NOI18N
-        btnPrevious_Cl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnPrevious_Cl.setFocusable(false);
-        btnPrevious_Cl.addActionListener(new java.awt.event.ActionListener() {
+        btnPrevious_CL.setBackground(new java.awt.Color(255, 146, 64));
+        btnPrevious_CL.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnPrevious_CL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/previous.png"))); // NOI18N
+        btnPrevious_CL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPrevious_CL.setFocusable(false);
+        btnPrevious_CL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrevious_ClActionPerformed(evt);
+                btnPrevious_CLActionPerformed(evt);
             }
         });
-        pnlNavigation_CL.add(btnPrevious_Cl);
+        pnlNavigation_CL.add(btnPrevious_CL);
 
         btnNext_CL.setBackground(new java.awt.Color(255, 146, 64));
         btnNext_CL.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -961,6 +961,11 @@ public class Admin_Frame extends javax.swing.JFrame {
         });
         tbl_CL.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_CL.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_CL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbl_CLMousePressed(evt);
+            }
+        });
         scroll_CL.setViewportView(tbl_CL);
 
         javax.swing.GroupLayout pnl_Sub_CLLayout = new javax.swing.GroupLayout(pnl_Sub_CL);
@@ -1423,9 +1428,9 @@ public class Admin_Frame extends javax.swing.JFrame {
         lblMa_KH.setForeground(new java.awt.Color(255, 255, 169));
         lblMa_KH.setText("Mã khách hàng:");
 
-        txtMaKH.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        txtMaKH.setForeground(new java.awt.Color(255, 146, 64));
-        txtMaKH.setText("KH001");
+        txtMa_KH.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        txtMa_KH.setForeground(new java.awt.Color(255, 146, 64));
+        txtMa_KH.setText("KH001");
 
         javax.swing.GroupLayout pnlMa_KHLayout = new javax.swing.GroupLayout(pnlMa_KH);
         pnlMa_KH.setLayout(pnlMa_KHLayout);
@@ -1435,7 +1440,7 @@ public class Admin_Frame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblMa_KH)
                 .addGap(18, 18, 18)
-                .addComponent(txtMaKH, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addComponent(txtMa_KH, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlMa_KHLayout.setVerticalGroup(
@@ -1444,7 +1449,7 @@ public class Admin_Frame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(pnlMa_KHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMa_KH)
-                    .addComponent(txtMaKH)))
+                    .addComponent(txtMa_KH)))
         );
 
         pnlInfor_KH.setBackground(new java.awt.Color(61, 61, 61));
@@ -1453,47 +1458,47 @@ public class Admin_Frame extends javax.swing.JFrame {
         lblTen_KH.setForeground(new java.awt.Color(255, 255, 169));
         lblTen_KH.setText("Tên khách hàng:");
 
-        txtTenKH.setBackground(new java.awt.Color(255, 146, 64));
-        txtTenKH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txtTenKH.setForeground(new java.awt.Color(255, 255, 169));
+        txtTen_KH.setBackground(new java.awt.Color(255, 146, 64));
+        txtTen_KH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtTen_KH.setForeground(new java.awt.Color(255, 255, 169));
 
         lblMatKhau_KH.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblMatKhau_KH.setForeground(new java.awt.Color(255, 255, 169));
         lblMatKhau_KH.setText("Mật khẩu:");
 
-        txtMatKhauKH.setBackground(new java.awt.Color(255, 146, 64));
-        txtMatKhauKH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txtMatKhauKH.setForeground(new java.awt.Color(255, 255, 169));
+        txtMatKhau_KH.setBackground(new java.awt.Color(255, 146, 64));
+        txtMatKhau_KH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtMatKhau_KH.setForeground(new java.awt.Color(255, 255, 169));
 
         lblNgaySinh_KH.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblNgaySinh_KH.setForeground(new java.awt.Color(255, 255, 169));
         lblNgaySinh_KH.setText("Ngày sinh:");
 
-        txtNgaySinhKH.setBackground(new java.awt.Color(255, 146, 64));
-        txtNgaySinhKH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txtNgaySinhKH.setForeground(new java.awt.Color(255, 255, 169));
+        txtNgaySinh_KH.setBackground(new java.awt.Color(255, 146, 64));
+        txtNgaySinh_KH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtNgaySinh_KH.setForeground(new java.awt.Color(255, 255, 169));
 
         lblGioiTinh_KH.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblGioiTinh_KH.setForeground(new java.awt.Color(255, 255, 169));
         lblGioiTinh_KH.setText("Giới tính:");
 
-        rdoNamKH.setBackground(new java.awt.Color(61, 61, 61));
-        rdoGioiTinh_KH.add(rdoNamKH);
-        rdoNamKH.setForeground(new java.awt.Color(255, 255, 169));
-        rdoNamKH.setText("Nam");
+        rdoNam_KH.setBackground(new java.awt.Color(61, 61, 61));
+        rdoGioiTinh_KH.add(rdoNam_KH);
+        rdoNam_KH.setForeground(new java.awt.Color(255, 255, 169));
+        rdoNam_KH.setText("Nam");
 
-        rdoNuKH.setBackground(new java.awt.Color(61, 61, 61));
-        rdoGioiTinh_KH.add(rdoNuKH);
-        rdoNuKH.setForeground(new java.awt.Color(255, 255, 169));
-        rdoNuKH.setText("Nữ");
+        rdoNu_KH.setBackground(new java.awt.Color(61, 61, 61));
+        rdoGioiTinh_KH.add(rdoNu_KH);
+        rdoNu_KH.setForeground(new java.awt.Color(255, 255, 169));
+        rdoNu_KH.setText("Nữ");
 
         lblNgayDangKy_KH.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblNgayDangKy_KH.setForeground(new java.awt.Color(255, 255, 169));
         lblNgayDangKy_KH.setText("Ngày đăng ký:");
 
-        txtNgayDK.setBackground(new java.awt.Color(255, 146, 64));
-        txtNgayDK.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txtNgayDK.setForeground(new java.awt.Color(255, 255, 169));
+        txtNgayDangKy_KH.setBackground(new java.awt.Color(255, 146, 64));
+        txtNgayDangKy_KH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtNgayDangKy_KH.setForeground(new java.awt.Color(255, 255, 169));
 
         javax.swing.GroupLayout pnlInfor_KHLayout = new javax.swing.GroupLayout(pnlInfor_KH);
         pnlInfor_KH.setLayout(pnlInfor_KHLayout);
@@ -1511,14 +1516,14 @@ public class Admin_Frame extends javax.swing.JFrame {
                     .addComponent(lblTen_KH, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfor_KHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtTenKH, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
-                    .addComponent(txtMatKhauKH, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
-                    .addComponent(txtNgaySinhKH)
-                    .addComponent(txtNgayDK)
+                    .addComponent(txtTen_KH, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                    .addComponent(txtMatKhau_KH, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                    .addComponent(txtNgaySinh_KH)
+                    .addComponent(txtNgayDangKy_KH)
                     .addGroup(pnlInfor_KHLayout.createSequentialGroup()
-                        .addComponent(rdoNamKH, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rdoNam_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rdoNuKH, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(rdoNu_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnlInfor_KHLayout.setVerticalGroup(
@@ -1527,24 +1532,24 @@ public class Admin_Frame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlInfor_KHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTen_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTen_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfor_KHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMatKhau_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMatKhauKH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMatKhau_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfor_KHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNgaySinh_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNgaySinhKH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNgaySinh_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfor_KHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblGioiTinh_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rdoNamKH)
-                    .addComponent(rdoNuKH))
+                    .addComponent(rdoNam_KH)
+                    .addComponent(rdoNu_KH))
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfor_KHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNgayDangKy_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNgayDK, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNgayDangKy_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1634,10 +1639,10 @@ public class Admin_Frame extends javax.swing.JFrame {
         });
         pnlNavigation_KH.add(btnLast_KH);
 
-        tblKH.setBackground(new java.awt.Color(255, 146, 64));
-        tblKH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tblKH.setForeground(new java.awt.Color(61, 61, 61));
-        tblKH.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_KH.setBackground(new java.awt.Color(255, 146, 64));
+        tbl_KH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tbl_KH.setForeground(new java.awt.Color(61, 61, 61));
+        tbl_KH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -1664,14 +1669,14 @@ public class Admin_Frame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblKH.setSelectionBackground(new java.awt.Color(255, 255, 169));
-        tblKH.setSelectionForeground(new java.awt.Color(61, 61, 61));
-        tblKH.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbl_KH.setSelectionBackground(new java.awt.Color(255, 255, 169));
+        tbl_KH.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_KH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                tblKHMousePressed(evt);
+                tbl_KHMousePressed(evt);
             }
         });
-        scroll_KH.setViewportView(tblKH);
+        scroll_KH.setViewportView(tbl_KH);
 
         javax.swing.GroupLayout pnl_Sub_KHLayout = new javax.swing.GroupLayout(pnl_Sub_KH);
         pnl_Sub_KH.setLayout(pnl_Sub_KHLayout);
@@ -2657,6 +2662,11 @@ public class Admin_Frame extends javax.swing.JFrame {
         btnDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/log-out.png"))); // NOI18N
         btnDangXuat.setText("ĐĂNG XUẤT");
         btnDangXuat.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangXuatActionPerformed(evt);
+            }
+        });
 
         lblInfor.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblInfor.setForeground(new java.awt.Color(217, 217, 217));
@@ -2758,36 +2768,41 @@ public class Admin_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLast_SpActionPerformed
 
     private void btnThem_CLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem_CLActionPerformed
-
+        if (checkCL() && checkTenChungLoai()) {
+            insertCL();
+        }
     }//GEN-LAST:event_btnThem_CLActionPerformed
 
     private void btnSua_CLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua_CLActionPerformed
-
+        if (checkCL() && checkTenChungLoai()) {
+            updateCL();
+        }
     }//GEN-LAST:event_btnSua_CLActionPerformed
 
     private void btnXoa_CLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa_CLActionPerformed
-
-
+        if (checkCL()) {
+            deleteCL();
+        }
     }//GEN-LAST:event_btnXoa_CLActionPerformed
 
     private void btnMoi_CLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoi_CLActionPerformed
-
+        clearCL();
     }//GEN-LAST:event_btnMoi_CLActionPerformed
 
     private void btnFirst_CLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst_CLActionPerformed
-
+        firstCL();
     }//GEN-LAST:event_btnFirst_CLActionPerformed
 
-    private void btnPrevious_ClActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevious_ClActionPerformed
-
-    }//GEN-LAST:event_btnPrevious_ClActionPerformed
+    private void btnPrevious_CLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevious_CLActionPerformed
+        previousCL();
+    }//GEN-LAST:event_btnPrevious_CLActionPerformed
 
     private void btnNext_CLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext_CLActionPerformed
-
+        nextCL();
     }//GEN-LAST:event_btnNext_CLActionPerformed
 
     private void btnLast_CLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast_CLActionPerformed
-        // TODO add your handling code here:
+        lastCL();
     }//GEN-LAST:event_btnLast_CLActionPerformed
 
     private void btnThem_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem_NVActionPerformed
@@ -2910,10 +2925,23 @@ public class Admin_Frame extends javax.swing.JFrame {
         updateKH();
     }//GEN-LAST:event_btnSua_KHActionPerformed
 
-    private void tblKHMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKHMousePressed
-        indexKH = tblKH.getSelectedRow();
+    private void tbl_KHMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_KHMousePressed
+        indexKH = tbl_KH.getSelectedRow();
         fillFromTableKH();
-    }//GEN-LAST:event_tblKHMousePressed
+    }//GEN-LAST:event_tbl_KHMousePressed
+
+    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
+        this.setVisible(false);
+        new DangNhapJDialog(null, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_btnDangXuatActionPerformed
+
+    private void tbl_CLMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_CLMousePressed
+        indexCL = tbl_CL.getSelectedRow();
+        fillFromTableCL(indexCL);
+        btnSua_CL.setEnabled(true);
+        btnXoa_CL.setEnabled(true);
+        btnThem_CL.setEnabled(false);
+    }//GEN-LAST:event_tbl_CLMousePressed
 
     /**
      * @param args the command line arguments
@@ -2969,7 +2997,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     private javax.swing.JButton btnNext_NV;
     private javax.swing.JButton btnNext_SP;
     private javax.swing.JButton btnNext_TK;
-    private javax.swing.JButton btnPrevious_Cl;
+    private javax.swing.JButton btnPrevious_CL;
     private javax.swing.JButton btnPrevious_DH;
     private javax.swing.JButton btnPrevious_NV;
     private javax.swing.JButton btnPrevious_SP;
@@ -3094,9 +3122,9 @@ public class Admin_Frame extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_ThongKe;
     private javax.swing.ButtonGroup rdoGioiTinh_KH;
     private javax.swing.ButtonGroup rdoGioiTinh_NV;
-    private javax.swing.JRadioButton rdoNamKH;
+    private javax.swing.JRadioButton rdoNam_KH;
     private javax.swing.JRadioButton rdoNam_NV;
-    private javax.swing.JRadioButton rdoNuKH;
+    private javax.swing.JRadioButton rdoNu_KH;
     private javax.swing.JRadioButton rdoNu_NV;
     private javax.swing.JScrollPane scrollMieuTa_CL;
     private javax.swing.JScrollPane scroll_CL;
@@ -3107,10 +3135,10 @@ public class Admin_Frame extends javax.swing.JFrame {
     private javax.swing.JScrollPane scroll_TK;
     private javax.swing.JScrollPane sroll_DH;
     private javax.swing.JTabbedPane tabs;
-    private javax.swing.JTable tblKH;
     private javax.swing.JTable tbl_CL;
     private javax.swing.JTable tbl_DH;
     private javax.swing.JTable tbl_HD;
+    private javax.swing.JTable tbl_KH;
     private javax.swing.JTable tbl_SP;
     private javax.swing.JTable tbl_TK;
     private javax.swing.JLabel txtBanItNhat_TK;
@@ -3118,26 +3146,26 @@ public class Admin_Frame extends javax.swing.JFrame {
     private javax.swing.JLabel txtDoanhThu_TK;
     private javax.swing.JTextField txtGia_SP;
     private javax.swing.JTextField txtHoTen_NV;
-    private javax.swing.JLabel txtMaKH;
     private javax.swing.JTextField txtMaKH_DH;
     private javax.swing.JTextField txtMaNV_HD;
     private javax.swing.JTextField txtMa_CL;
     private javax.swing.JLabel txtMa_DH;
     private javax.swing.JLabel txtMa_HD;
+    private javax.swing.JLabel txtMa_KH;
     private javax.swing.JTextField txtMa_NV;
     private javax.swing.JTextField txtMa_SP;
-    private javax.swing.JTextField txtMatKhauKH;
+    private javax.swing.JTextField txtMatKhau_KH;
     private javax.swing.JTextField txtMatKhau_NV;
     private javax.swing.JTextArea txtMieuTa_CL;
     private javax.swing.JLabel txtNam_TK;
-    private javax.swing.JTextField txtNgayDK;
+    private javax.swing.JTextField txtNgayDangKy_KH;
     private javax.swing.JTextField txtNgayDatHang_DH;
     private javax.swing.JTextField txtNgayLap_HD;
-    private javax.swing.JTextField txtNgaySinhKH;
+    private javax.swing.JTextField txtNgaySinh_KH;
     private javax.swing.JTextField txtNgaySinh_NV;
     private javax.swing.JTextField txtSoLuong_SP;
-    private javax.swing.JTextField txtTenKH;
     private javax.swing.JTextField txtTen_CL;
+    private javax.swing.JTextField txtTen_KH;
     private javax.swing.JTextField txtTen_SP;
     private javax.swing.JTextField txtTim_SP;
     private javax.swing.JLabel txtTongTien_DH;
@@ -3162,30 +3190,30 @@ public class Admin_Frame extends javax.swing.JFrame {
 
             }
         }
-        tblKH.setModel(khTableModel);
+        tbl_KH.setModel(khTableModel);
     }
 
     private void fillFromTableKH() {
-        txtMaKH.setText(khList.get(indexKH).getMaKH());
-        txtNgaySinhKH.setText(XDate.toString(khList.get(indexKH).getNgaySinh(), "dd/MM/yyyy"));
-        txtTenKH.setText(khList.get(indexKH).getTenKH());
-        txtMatKhauKH.setText(khList.get(indexKH).getMatKhau());
-        txtNgayDK.setText(XDate.toString(khList.get(indexKH).getNgayDangKy(), "dd/MM/yyyy"));
+        txtMa_KH.setText(khList.get(indexKH).getMaKH());
+        txtNgaySinh_KH.setText(XDate.toString(khList.get(indexKH).getNgaySinh(), "dd/MM/yyyy"));
+        txtTen_KH.setText(khList.get(indexKH).getTenKH());
+        txtMatKhau_KH.setText(khList.get(indexKH).getMatKhau());
+        txtNgayDangKy_KH.setText(XDate.toString(khList.get(indexKH).getNgayDangKy(), "dd/MM/yyyy"));
         if (khList.get(indexKH).isGioiTinh() == true) {
-            rdoNamKH.setSelected(true);
+            rdoNam_KH.setSelected(true);
         } else {
-            rdoNuKH.setSelected(true);
+            rdoNu_KH.setSelected(true);
         }
     }
 
     private void updateKH() {
         KhachHang kh = new KhachHang();
-        kh.setMaKH(txtMaKH.getText());
-        kh.setMatKhau(txtMatKhauKH.getText());
-        kh.setNgaySinh(XDate.toDate(txtNgaySinhKH.getText(), "dd/MM/yyyy"));
-        kh.setNgayDangKy(XDate.toDate(txtNgayDK.getText(), "dd/MM/yyyy"));
-        kh.setTenKH(txtTenKH.getText());
-        if (rdoNamKH.isSelected()) {
+        kh.setMaKH(txtMa_KH.getText());
+        kh.setMatKhau(txtMatKhau_KH.getText());
+        kh.setNgaySinh(XDate.toDate(txtNgaySinh_KH.getText(), "dd/MM/yyyy"));
+        kh.setNgayDangKy(XDate.toDate(txtNgayDangKy_KH.getText(), "dd/MM/yyyy"));
+        kh.setTenKH(txtTen_KH.getText());
+        if (rdoNam_KH.isSelected()) {
             kh.setGioiTinh(true);
         } else {
             kh.setGioiTinh(false);
@@ -3202,7 +3230,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         }
         indexKH++;
         fillFromTableKH();
-        tblKH.setRowSelectionInterval(indexKH, indexKH);
+        tbl_KH.setRowSelectionInterval(indexKH, indexKH);
     }
 
     private void prevKH() {
@@ -3212,32 +3240,32 @@ public class Admin_Frame extends javax.swing.JFrame {
         } else if (indexKH == -1) {
             indexKH++;
             fillFromTableKH();
-            tblKH.setRowSelectionInterval(indexKH, indexKH);
+            tbl_KH.setRowSelectionInterval(indexKH, indexKH);
             return;
         }
         indexKH--;
         fillFromTableKH();
-        tblKH.setRowSelectionInterval(indexKH, indexKH);
+        tbl_KH.setRowSelectionInterval(indexKH, indexKH);
     }
 
     private void firstKH() {
         indexKH = 0;
         fillFromTableKH();
-        tblKH.setRowSelectionInterval(indexKH, indexKH);
+        tbl_KH.setRowSelectionInterval(indexKH, indexKH);
     }
 
     private void lastKH() {
         indexKH = khList.size() - 1;
         fillFromTableKH();
-        tblKH.setRowSelectionInterval(indexKH, indexKH);
+        tbl_KH.setRowSelectionInterval(indexKH, indexKH);
     }
     // End Khach hang code
 
     // Begin SanPham code
     private void loadToTableSP() {
-        DefaultTableModel model = (DefaultTableModel) tblSP.getModel();
+        DefaultTableModel model = (DefaultTableModel) tbl_SP.getModel();
         model.setRowCount(0);
-        String keyword = txtTimSP.getText();
+        String keyword = txtTim_SP.getText();
         spList = spDao.selectByKeyword(keyword);
         for (SanPham sp : spList) {
             Object[] row = {
@@ -3252,8 +3280,8 @@ public class Admin_Frame extends javax.swing.JFrame {
     }
 
     private void editSP() {
-        String maSP = (String) tblSP.getValueAt(this.index, 0);
-        tblSP.setRowSelectionInterval(index, index);
+        String maSP = (String) tbl_SP.getValueAt(this.index, 0);
+        tbl_SP.setRowSelectionInterval(index, index);
         SanPham sp = spDao.selectById(maSP);
         if (sp != null) {
             setFormSP(sp);
@@ -3261,27 +3289,27 @@ public class Admin_Frame extends javax.swing.JFrame {
     }
 
     private void setFormSP(SanPham sp) {
-        txtMaSP.setText(sp.getMaSP());
-        txtTenSP.setText(sp.getTenSP());
-        txtSoLuong.setText(String.valueOf(sp.getSoLuong()));
-        txtGia.setText(String.valueOf(sp.getGiaThanh()));
-        cboChungLoai.setToolTipText(sp.getMaCL());
-        cboChungLoai.setSelectedItem(clDao.selectById(sp.getMaCL()));
+        txtMa_SP.setText(sp.getMaSP());
+        txtTen_SP.setText(sp.getTenSP());
+        txtSoLuong_SP.setText(String.valueOf(sp.getSoLuong()));
+        txtGia_SP.setText(String.valueOf(sp.getGiaThanh()));
+        cboChungLoai_SP.setToolTipText(sp.getMaCL());
+        cboChungLoai_SP.setSelectedItem(clDao.selectById(sp.getMaCL()));
     }
 
     private void fillFromTableSP(int index) {
-        tblCL.setRowSelectionAllowed(true);
-        txtMaSP.setText(spList.get(index).getMaSP());
-        txtTenSP.setText(spList.get(index).getTenSP());
-        txtSoLuong.setText(String.valueOf(spList.get(index).getSoLuong()));
-        txtGia.setText(String.valueOf(spList.get(index).getGiaThanh()));
-        cboChungLoai.setToolTipText(spList.get(index).getMaCL());
-        cboChungLoai.setSelectedItem(clDao.selectById(spList.get(index).getMaCL()));
-        tblSP.setRowSelectionInterval(indexSP, indexSP);
+        tbl_CL.setRowSelectionAllowed(true);
+        txtMa_SP.setText(spList.get(index).getMaSP());
+        txtTen_SP.setText(spList.get(index).getTenSP());
+        txtSoLuong_SP.setText(String.valueOf(spList.get(index).getSoLuong()));
+        txtGia_SP.setText(String.valueOf(spList.get(index).getGiaThanh()));
+        cboChungLoai_SP.setToolTipText(spList.get(index).getMaCL());
+        cboChungLoai_SP.setSelectedItem(clDao.selectById(spList.get(index).getMaCL()));
+        tbl_SP.setRowSelectionInterval(indexSP, indexSP);
     }
 
     private void fillCboSP() {
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cboChungLoai.getModel();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboChungLoai_SP.getModel();
         model.removeAllElements();
         List<ChungLoai> list = clDao.selectAll();
         for (ChungLoai cl : list) {
@@ -3295,7 +3323,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         sp.setTenSP(sp.getTenSP());
         sp.setSoLuong(sp.getSoLuong());
         sp.setGiaThanh(sp.getGiaThanh());
-        ChungLoai cl = (ChungLoai) cboChungLoai.getSelectedItem();
+        ChungLoai cl = (ChungLoai) cboChungLoai_SP.getSelectedItem();
         sp.setMaCL(cl.getMaCL());
         setFormSP(sp);
         index = -1;
@@ -3303,19 +3331,25 @@ public class Admin_Frame extends javax.swing.JFrame {
 
     private SanPham getFromSP() {
         SanPham sp = new SanPham();
-        sp.setMaSP(txtMaSP.getText());
-        sp.setTenSP(txtTenSP.getText());
-        sp.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
-        sp.setGiaThanh(Float.parseFloat(txtGia.getText()));
-        ChungLoai cl = (ChungLoai) cboChungLoai.getSelectedItem();
+        sp.setMaSP(txtMa_SP.getText());
+        sp.setTenSP(txtTen_SP.getText());
+        sp.setSoLuong(Integer.parseInt(txtSoLuong_SP.getText()));
+        sp.setGiaThanh(Float.parseFloat(txtGia_SP.getText()));
+        ChungLoai cl = (ChungLoai) cboChungLoai_SP.getSelectedItem();
         sp.setMaCL(cl.getMaCL());
         return sp;
     }
-    // End SanPham code
 
+    private void resetFormSP() {
+        clearFormSP();
+        loadToTableSP();
+        fillCboSP();
+    }
+
+    // End SanPham code
     //Start Code Chủng Loại
     private void loadToTableCL() {
-        DefaultTableModel clTableModel = (DefaultTableModel) tblCL.getModel();
+        DefaultTableModel clTableModel = (DefaultTableModel) tbl_CL.getModel();
         clTableModel.setRowCount(0);
         clList = clDao.selectAll();
         for (ChungLoai cl : clList) {
@@ -3325,71 +3359,74 @@ public class Admin_Frame extends javax.swing.JFrame {
                 cl.getMieuTa(),};
             clTableModel.addRow(row);
         }
-        btnThemCL.setEnabled(false);
+        btnThem_CL.setEnabled(false);
+        btnSua_CL.setEnabled(false);
+        btnXoa_CL.setEnabled(false);
     }
 
     private void fillFromTableCL(int index) {
-        tblCL.setRowSelectionAllowed(true);
-        txtMaCL.setText(clList.get(index).getMaCL());
-        txtTenCL.setText(clList.get(index).getTenCL());
-        txtMieuTa.setText(clList.get(index).getMieuTa());
-        tblCL.setRowSelectionInterval(index, index);
-        btnThemCL.setEnabled(false);
+        tbl_CL.setRowSelectionAllowed(true);
+        txtMa_CL.setText(clList.get(index).getMaCL());
+        txtTen_CL.setText(clList.get(index).getTenCL());
+        txtMieuTa_CL.setText(clList.get(index).getMieuTa());
+        tbl_CL.setRowSelectionInterval(index, index);
     }
 
     private void clearCL() {
-        txtMaCL.setText("");
-        txtTenCL.setText("");
-        txtMieuTa.setText("");
-        btnThemCL.setEnabled(true);
-        btnSuaCL.setEnabled(false);
-        btnXoaCL.setEnabled(false);
-        tblCL.setRowSelectionAllowed(false);
+        txtMa_CL.setText("");
+        txtTen_CL.setText("");
+        txtMieuTa_CL.setText("");
+        btnThem_CL.setEnabled(true);
+        btnSua_CL.setEnabled(false);
+        btnXoa_CL.setEnabled(false);
+        tbl_CL.setRowSelectionAllowed(false);
         indexCL = -1;
     }
 
     private void insertCL() {
-        ChungLoai clitem = new ChungLoai(txtMaCL.getText(), txtTenCL.getText(), txtMieuTa.getText());
+        ChungLoai clitem = new ChungLoai(txtMa_CL.getText(), txtTen_CL.getText(), txtMieuTa_CL.getText());
         clDao.insert(clitem);
         loadToTableCL();
         for (ChungLoai cl : clList) {
-            if (txtMaCL.getText().equals(cl.getMaCL())) {
+            if (txtMa_CL.getText().equals(cl.getMaCL())) {
                 indexCL = clList.indexOf(cl);
                 fillFromTableCL(indexCL);
                 break;
             }
         }
-        btnSuaCL.setEnabled(true);
-        btnXoaCL.setEnabled(true);
+        btnSua_CL.setEnabled(true);
+        btnXoa_CL.setEnabled(true);
+        resetFormSP();
     }
 
     private void updateCL() {
-        ChungLoai clitem = new ChungLoai(txtMaCL.getText(), txtTenCL.getText(), txtMieuTa.getText());
+        ChungLoai clitem = new ChungLoai(txtMa_CL.getText(), txtTen_CL.getText(), txtMieuTa_CL.getText());
         clDao.update(clitem);
         loadToTableCL();
         for (ChungLoai cl : clList) {
-            if (txtMaCL.getText().equals(cl.getMaCL())) {
+            if (txtMa_CL.getText().equals(cl.getMaCL())) {
                 indexCL = clList.indexOf(cl);
                 fillFromTableCL(indexCL);
                 break;
             }
         }
-        fillCboSP();
+        resetFormSP();
     }
 
     private void deleteCL() {
-        clDao.delete(txtMaCL.getText());
+        clDao.delete(txtMa_CL.getText());
         loadToTableCL();
+        resetFormSP();
     }
 
     private void firstCL() {
         indexCL = 0;
-        tblCL.setRowSelectionAllowed(true);
+        tbl_CL.setRowSelectionAllowed(true);
         fillFromTableCL(0);
     }
 
     private void nextCL() {
-        tblCL.setRowSelectionAllowed(true);
+        tbl_CL.setRowSelectionAllowed(true);
         indexCL++;
         if (indexCL > clList.size() - 1) {
             indexCL = 0;
@@ -3398,7 +3435,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     }
 
     private void previousCL() {
-        tblCL.setRowSelectionAllowed(true);
+        tbl_CL.setRowSelectionAllowed(true);
         indexCL--;
         if (indexCL < 0) {
             indexCL = clList.size() - 1;
@@ -3407,36 +3444,35 @@ public class Admin_Frame extends javax.swing.JFrame {
     }
 
     private void lastCL() {
-        tblCL.setRowSelectionAllowed(true);
+        tbl_CL.setRowSelectionAllowed(true);
         indexCL = clList.size() - 1;
         fillFromTableCL(indexCL);
     }
 
+    private boolean checkTenChungLoai() {
+        for (ChungLoai cl : clList) {
+            if (txtTen_CL.getText().equals(cl.getTenCL())) {
+                MsgBox.alert(this, "Trùng Tên Chủng Loại !");
+                return false;
+            }
+        }
+        return true;
+    }
+
     private boolean checkCL() {
-        if (txtMaCL.getText().length() == 0 || txtMaCL.getText().length() > 10) {
-            txtMaCL.setBackground(Color.yellow);
-            txtMaCL.setFocusable(false);
-            txtTenCL.setFocusable(false);
-            txtMieuTa.setFocusable(false);
+        if (txtMa_CL.getText().length() == 0 || txtMa_CL.getText().length() > 10) {
+            MsgBox.alert(this, "Không Được Để Trống Mã CL");
             return false;
-        } else {
-            txtMaCL.setBackground(Color.white);
         }
 
-        if (txtTenCL.getText().length() == 0 || txtTenCL.getText().length() > 50) {
-            txtTenCL.setBackground(Color.yellow);
-            txtTenCL.setFocusable(false);
+        if (txtTen_CL.getText().length() == 0 || txtTen_CL.getText().length() > 50) {
+            MsgBox.alert(this, "Không Được Để Trống Tên CL");
             return false;
-        } else {
-            txtTenCL.setBackground(Color.white);
         }
 
-        if (txtMieuTa.getText().length() == 0 || txtMieuTa.getText().length() > 100) {
-            txtMieuTa.setBackground(Color.yellow);
-            txtMieuTa.setFocusable(false);
+        if (txtMieuTa_CL.getText().length() == 0 || txtMieuTa_CL.getText().length() > 100) {
+            MsgBox.alert(this, "Không Được Để Trống Miêu Tả CL");
             return false;
-        } else {
-            txtMieuTa.setBackground(Color.white);
         }
         return true;
     }
@@ -3467,7 +3503,7 @@ public class Admin_Frame extends javax.swing.JFrame {
 
     private void setFormDH(DonHang dh) {
         txtMaDH.setText(dh.getMaDH());
-        txtMaKH.setText(dh.getMaKH());
+        txtMa_KH.setText(dh.getMaKH());
         txtNgayDatHang.setText(String.valueOf(dh.getNgayDatHang()));
         txtTongTien.setText(String.valueOf(dh.getTongTien()));
     }
@@ -3604,7 +3640,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     //start HoaDon
     private void loadToTableHD() {
         initHD();
-        DefaultTableModel hdTableModel = (DefaultTableModel) tblHD.getModel();
+        DefaultTableModel hdTableModel = (DefaultTableModel) tbl_HD.getModel();
         hdTableModel.setRowCount(0);
         hdList = hdDao.selectAll();
         for (HoaDon hd : hdList) {
@@ -3619,22 +3655,22 @@ public class Admin_Frame extends javax.swing.JFrame {
     }
 
     private void initHD() {
-        txtMaHD.setFocusable(false);
-        txtMaNVpnlDSHD.setFocusable(false);
-        txtNgayLapHDpnlDSHD.setFocusable(false);
-        txtTongTienpnlDSHD.setFocusable(false);
+        txtMa_HD.setFocusable(false);
+        txtMaNV_HD.setFocusable(false);
+        txtNgayLap_HD.setFocusable(false);
+        txtTongTien_HD.setFocusable(false);
     }
 
     private void fillFromTableHD(int index) {
-        txtMaHD.setText(hdList.get(index).getMaHD());
-        txtMaNVpnlDSHD.setText(hdList.get(index).getMaNV());
-        txtNgayLapHDpnlDSHD.setText(String.valueOf(hdList.get(index).getNgayLapHD()));
-        txtTongTienpnlDSHD.setText(String.valueOf(hdList.get(index).getTongTien()));
-        tblHD.setRowSelectionInterval(index, index);
+        txtMa_HD.setText(hdList.get(index).getMaHD());
+        txtMaNV_HD.setText(hdList.get(index).getMaNV());
+        txtNgayLap_HD.setText(String.valueOf(hdList.get(index).getNgayLapHD()));
+        txtTongTien_HD.setText(String.valueOf(hdList.get(index).getTongTien()));
+        tbl_HD.setRowSelectionInterval(index, index);
     }
 
     private void deleteHD() {
-        hdDao.delete(txtMaHD.getText());
+        hdDao.delete(txtMa_HD.getText());
         loadToTableHD();
     }
 
@@ -3665,7 +3701,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     }
 
     private void openFrameCTHD() {
-        String mahd = txtMaHD.getText();
+        String mahd = txtMa_HD.getText();
         if (!(mahd.length() == 0)) {
             ChiTietHoaDon cthd = new ChiTietHoaDonDAO().selectById(mahd);
             ChiTietHoaDonFrame CTHDFrame = new ChiTietHoaDonFrame(cthd.getMaHD());
@@ -3676,5 +3712,4 @@ public class Admin_Frame extends javax.swing.JFrame {
         }
     }
     //end HoaDon
-}
 }

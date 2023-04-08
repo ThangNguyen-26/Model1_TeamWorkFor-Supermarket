@@ -3072,6 +3072,14 @@ public class AdminFrame extends javax.swing.JFrame {
         indexCL = clList.size() - 1;
         fillFromTableCL(indexCL);
     }
+    
+//    private boolean checkTenChungLoai(){
+//        for (ChungLoai cl : clList) {
+//            if (txtTen) {
+//                
+//            }
+//        }
+//    }
 
     private boolean checkCL() {
         if (txtMaCL.getText().length() == 0 || txtMaCL.getText().length() > 10) {
