@@ -2347,40 +2347,19 @@ public class AdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMoiSPActionPerformed
 
     private void btnNextKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextKHActionPerformed
-        if (indexKH == khList.size() - 1) {
-            MsgBox.alert(null, "Bạn đang ở cuối danh sách khách hàng");
-            return;
-        }
-        indexKH++;
-        fillFromTableKH();
-        tblKH.setRowSelectionInterval(indexKH, indexKH);
+        nextKH();
     }//GEN-LAST:event_btnNextKHActionPerformed
 
     private void btnPrevKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevKHActionPerformed
-        if (indexKH == 0) {
-            MsgBox.alert(null, "Bạn đang ở đầu danh sách khách hàng");
-            return;
-        } else if (indexKH == -1) {
-            indexKH++;
-            fillFromTableKH();
-            tblKH.setRowSelectionInterval(indexKH, indexKH);
-            return;
-        }
-        indexKH--;
-        fillFromTableKH();
-        tblKH.setRowSelectionInterval(indexKH, indexKH);
+        prevKH();
     }//GEN-LAST:event_btnPrevKHActionPerformed
 
     private void btnFirstKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstKHActionPerformed
-        indexKH = 0;
-        fillFromTableKH();
-        tblKH.setRowSelectionInterval(indexKH, indexKH);
+        firstKH();
     }//GEN-LAST:event_btnFirstKHActionPerformed
 
     private void btnLastKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastKHActionPerformed
-        indexKH = khList.size() - 1;
-        fillFromTableKH();
-        tblKH.setRowSelectionInterval(indexKH, indexKH);
+        lastKH();
     }//GEN-LAST:event_btnLastKHActionPerformed
 
     private void btnChiTietDHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChiTietDHActionPerformed
@@ -2392,20 +2371,7 @@ public class AdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnChiTietDHActionPerformed
 
     private void BtnSuaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSuaKHActionPerformed
-        KhachHang kh = new KhachHang();
-        kh.setMaKH(txtMaKH.getText());
-        kh.setMatKhau(txtMatKhauKH.getText());
-        kh.setNgaySinh(XDate.toDate(txtNgaySinhKH.getText(), "dd/MM/yyyy"));
-        kh.setNgayDangKy(XDate.toDate(txtNgayDK.getText(), "dd/MM/yyyy"));
-        kh.setTenKH(txtTenKH.getText());
-        if (rdoNamKH.isSelected()) {
-            kh.setGioiTinh(true);
-        } else {
-            kh.setGioiTinh(false);
-        }
-        khDao.update(kh);
-        MsgBox.alert(null, "Sửa thông tin khách hàng thành công");
-        loadToTableKH();
+        updateKH();
     }//GEN-LAST:event_BtnSuaKHActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -2872,8 +2838,62 @@ public class AdminFrame extends javax.swing.JFrame {
             rdoNuKH.setSelected(true);
         }
     }
-    // End Khach hang code
 
+    private void updateKH() {
+        KhachHang kh = new KhachHang();
+        kh.setMaKH(txtMaKH.getText());
+        kh.setMatKhau(txtMatKhauKH.getText());
+        kh.setNgaySinh(XDate.toDate(txtNgaySinhKH.getText(), "dd/MM/yyyy"));
+        kh.setNgayDangKy(XDate.toDate(txtNgayDK.getText(), "dd/MM/yyyy"));
+        kh.setTenKH(txtTenKH.getText());
+        if (rdoNamKH.isSelected()) {
+            kh.setGioiTinh(true);
+        } else {
+            kh.setGioiTinh(false);
+        }
+        khDao.update(kh);
+        MsgBox.alert(null, "Sửa thông tin khách hàng thành công");
+        loadToTableKH();
+    }
+
+    private void nextKH() {
+        if (indexKH == khList.size() - 1) {
+            MsgBox.alert(null, "Bạn đang ở cuối danh sách khách hàng");
+            return;
+        }
+        indexKH++;
+        fillFromTableKH();
+        tblKH.setRowSelectionInterval(indexKH, indexKH);
+    }
+
+    private void prevKH() {
+        if (indexKH == 0) {
+            MsgBox.alert(null, "Bạn đang ở đầu danh sách khách hàng");
+            return;
+        } else if (indexKH == -1) {
+            indexKH++;
+            fillFromTableKH();
+            tblKH.setRowSelectionInterval(indexKH, indexKH);
+            return;
+        }
+        indexKH--;
+        fillFromTableKH();
+        tblKH.setRowSelectionInterval(indexKH, indexKH);
+    }
+
+    private void firstKH() {
+        indexKH = 0;
+        fillFromTableKH();
+        tblKH.setRowSelectionInterval(indexKH, indexKH);
+    }
+
+    private void lastKH() {
+        indexKH = khList.size() - 1;
+        fillFromTableKH();
+        tblKH.setRowSelectionInterval(indexKH, indexKH);
+    }
+
+    // End Khach hang code
     // Begin SanPham code
     private void loadToTableSP() {
         DefaultTableModel model = (DefaultTableModel) tblSP.getModel();
@@ -3258,8 +3278,8 @@ public class AdminFrame extends javax.swing.JFrame {
             hdTableModel.addRow(row);
         }
     }
-    
-    private void initHD(){
+
+    private void initHD() {
         txtMaHD.setFocusable(false);
         txtMaNVpnlDSHD.setFocusable(false);
         txtNgayLapHDpnlDSHD.setFocusable(false);

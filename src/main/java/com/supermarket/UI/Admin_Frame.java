@@ -1,10 +1,68 @@
 package com.supermarket.UI;
 
+import com.supermarket.DAO.ChiTietDonHangDAO;
+import com.supermarket.DAO.ChiTietHoaDonDAO;
+import com.supermarket.DAO.ChungLoaiDAO;
+import com.supermarket.DAO.DonHangDAO;
+import com.supermarket.DAO.HoaDonDAO;
+import com.supermarket.DAO.KhachHangDAO;
+import com.supermarket.DAO.NhanVienDAO;
+import com.supermarket.DAO.SanPhamDAO;
+import com.supermarket.ENTITY.CLockThread;
+import com.supermarket.ENTITY.ChiTietHoaDon;
+import com.supermarket.ENTITY.ChungLoai;
+import com.supermarket.ENTITY.DonHang;
+import com.supermarket.ENTITY.HoaDon;
+import com.supermarket.ENTITY.KhachHang;
+import com.supermarket.ENTITY.NhanVien;
+import com.supermarket.ENTITY.SanPham;
+import com.supermarket.UTILS.MsgBox;
+import com.supermarket.UTILS.XDate;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Admin_Frame extends javax.swing.JFrame {
 
+    private int index = 0;
+    private int indexSP = -1;
+    private int indexKH = -1;
+    private int indexCL = -1;
+    private int indexHD = -1;
+    private int indexNV = -1;
+
+    //Biến LIST
+    private List<SanPham> spList = new ArrayList<>();
+    private List<KhachHang> khList = new ArrayList<>();
+    private List<ChungLoai> clList = new ArrayList<>();
+    private List<NhanVien> nvList = new ArrayList<>();
+    private List<HoaDon> hdList = new ArrayList<>();
+
+    //Biến DAO
+    private KhachHangDAO khDao = new KhachHangDAO();
+    private SanPhamDAO spDao = new SanPhamDAO();
+    private ChungLoaiDAO clDao = new ChungLoaiDAO();
+    private DonHangDAO dhDao = new DonHangDAO();
+    private HoaDonDAO hdDao = new HoaDonDAO();
+    private ChiTietDonHangDAO dhctDao = new ChiTietDonHangDAO();
+    private NhanVienDAO nvDao = new NhanVienDAO();
+
     public Admin_Frame() {
         initComponents();
+        setLocationRelativeTo(null);
+//        new ChaoJDialog(this, true).setVisible(true);
+//        new DangNhapJDialog(this, true).setVisible(true);
+        clockRun();
+        loadToTableSP();
+        fillCboSP();
+        loadToTableKH();
+        loadToTableCL();
+        loadToTableDH();
+        loadToTableNV();
+        loadToTableHD();
     }
 
     @SuppressWarnings("unchecked")
@@ -109,19 +167,19 @@ public class Admin_Frame extends javax.swing.JFrame {
         lblTitle_KH = new javax.swing.JLabel();
         pnlMa_KH = new javax.swing.JPanel();
         lblMa_KH = new javax.swing.JLabel();
-        txtMa_KH = new javax.swing.JLabel();
+        txtMaKH = new javax.swing.JLabel();
         pnlInfor_KH = new javax.swing.JPanel();
         lblTen_KH = new javax.swing.JLabel();
-        txtTen_KH = new javax.swing.JTextField();
+        txtTenKH = new javax.swing.JTextField();
         lblMatKhau_KH = new javax.swing.JLabel();
-        txtMatKhau_KH = new javax.swing.JTextField();
+        txtMatKhauKH = new javax.swing.JTextField();
         lblNgaySinh_KH = new javax.swing.JLabel();
-        txtNgaySinh_KH = new javax.swing.JTextField();
+        txtNgaySinhKH = new javax.swing.JTextField();
         lblGioiTinh_KH = new javax.swing.JLabel();
-        rdoNam_KH = new javax.swing.JRadioButton();
-        rdoNu_KH = new javax.swing.JRadioButton();
+        rdoNamKH = new javax.swing.JRadioButton();
+        rdoNuKH = new javax.swing.JRadioButton();
         lblNgayDangKy_KH = new javax.swing.JLabel();
-        txtNgayDangKy_KH = new javax.swing.JTextField();
+        txtNgayDK = new javax.swing.JTextField();
         pnlPic_KH = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         btnSua_KH = new javax.swing.JButton();
@@ -131,7 +189,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         btnNext_KH = new javax.swing.JButton();
         btnLast_KH = new javax.swing.JButton();
         scroll_KH = new javax.swing.JScrollPane();
-        tbl_KH = new javax.swing.JTable();
+        tblKH = new javax.swing.JTable();
         pnl_HoaDon = new javax.swing.JPanel();
         pnl_Sub_HD = new javax.swing.JPanel();
         pnlTitle_HD = new javax.swing.JPanel();
@@ -1365,9 +1423,9 @@ public class Admin_Frame extends javax.swing.JFrame {
         lblMa_KH.setForeground(new java.awt.Color(255, 255, 169));
         lblMa_KH.setText("Mã khách hàng:");
 
-        txtMa_KH.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        txtMa_KH.setForeground(new java.awt.Color(255, 146, 64));
-        txtMa_KH.setText("KH001");
+        txtMaKH.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        txtMaKH.setForeground(new java.awt.Color(255, 146, 64));
+        txtMaKH.setText("KH001");
 
         javax.swing.GroupLayout pnlMa_KHLayout = new javax.swing.GroupLayout(pnlMa_KH);
         pnlMa_KH.setLayout(pnlMa_KHLayout);
@@ -1377,7 +1435,7 @@ public class Admin_Frame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblMa_KH)
                 .addGap(18, 18, 18)
-                .addComponent(txtMa_KH, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addComponent(txtMaKH, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlMa_KHLayout.setVerticalGroup(
@@ -1386,7 +1444,7 @@ public class Admin_Frame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(pnlMa_KHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMa_KH)
-                    .addComponent(txtMa_KH)))
+                    .addComponent(txtMaKH)))
         );
 
         pnlInfor_KH.setBackground(new java.awt.Color(61, 61, 61));
@@ -1395,47 +1453,47 @@ public class Admin_Frame extends javax.swing.JFrame {
         lblTen_KH.setForeground(new java.awt.Color(255, 255, 169));
         lblTen_KH.setText("Tên khách hàng:");
 
-        txtTen_KH.setBackground(new java.awt.Color(255, 146, 64));
-        txtTen_KH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txtTen_KH.setForeground(new java.awt.Color(255, 255, 169));
+        txtTenKH.setBackground(new java.awt.Color(255, 146, 64));
+        txtTenKH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtTenKH.setForeground(new java.awt.Color(255, 255, 169));
 
         lblMatKhau_KH.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblMatKhau_KH.setForeground(new java.awt.Color(255, 255, 169));
         lblMatKhau_KH.setText("Mật khẩu:");
 
-        txtMatKhau_KH.setBackground(new java.awt.Color(255, 146, 64));
-        txtMatKhau_KH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txtMatKhau_KH.setForeground(new java.awt.Color(255, 255, 169));
+        txtMatKhauKH.setBackground(new java.awt.Color(255, 146, 64));
+        txtMatKhauKH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtMatKhauKH.setForeground(new java.awt.Color(255, 255, 169));
 
         lblNgaySinh_KH.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblNgaySinh_KH.setForeground(new java.awt.Color(255, 255, 169));
         lblNgaySinh_KH.setText("Ngày sinh:");
 
-        txtNgaySinh_KH.setBackground(new java.awt.Color(255, 146, 64));
-        txtNgaySinh_KH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txtNgaySinh_KH.setForeground(new java.awt.Color(255, 255, 169));
+        txtNgaySinhKH.setBackground(new java.awt.Color(255, 146, 64));
+        txtNgaySinhKH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtNgaySinhKH.setForeground(new java.awt.Color(255, 255, 169));
 
         lblGioiTinh_KH.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblGioiTinh_KH.setForeground(new java.awt.Color(255, 255, 169));
         lblGioiTinh_KH.setText("Giới tính:");
 
-        rdoNam_KH.setBackground(new java.awt.Color(61, 61, 61));
-        rdoGioiTinh_KH.add(rdoNam_KH);
-        rdoNam_KH.setForeground(new java.awt.Color(255, 255, 169));
-        rdoNam_KH.setText("Nam");
+        rdoNamKH.setBackground(new java.awt.Color(61, 61, 61));
+        rdoGioiTinh_KH.add(rdoNamKH);
+        rdoNamKH.setForeground(new java.awt.Color(255, 255, 169));
+        rdoNamKH.setText("Nam");
 
-        rdoNu_KH.setBackground(new java.awt.Color(61, 61, 61));
-        rdoGioiTinh_KH.add(rdoNu_KH);
-        rdoNu_KH.setForeground(new java.awt.Color(255, 255, 169));
-        rdoNu_KH.setText("Nữ");
+        rdoNuKH.setBackground(new java.awt.Color(61, 61, 61));
+        rdoGioiTinh_KH.add(rdoNuKH);
+        rdoNuKH.setForeground(new java.awt.Color(255, 255, 169));
+        rdoNuKH.setText("Nữ");
 
         lblNgayDangKy_KH.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblNgayDangKy_KH.setForeground(new java.awt.Color(255, 255, 169));
         lblNgayDangKy_KH.setText("Ngày đăng ký:");
 
-        txtNgayDangKy_KH.setBackground(new java.awt.Color(255, 146, 64));
-        txtNgayDangKy_KH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txtNgayDangKy_KH.setForeground(new java.awt.Color(255, 255, 169));
+        txtNgayDK.setBackground(new java.awt.Color(255, 146, 64));
+        txtNgayDK.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtNgayDK.setForeground(new java.awt.Color(255, 255, 169));
 
         javax.swing.GroupLayout pnlInfor_KHLayout = new javax.swing.GroupLayout(pnlInfor_KH);
         pnlInfor_KH.setLayout(pnlInfor_KHLayout);
@@ -1453,14 +1511,14 @@ public class Admin_Frame extends javax.swing.JFrame {
                     .addComponent(lblTen_KH, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInfor_KHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtTen_KH, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
-                    .addComponent(txtMatKhau_KH, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
-                    .addComponent(txtNgaySinh_KH)
-                    .addComponent(txtNgayDangKy_KH)
+                    .addComponent(txtTenKH, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                    .addComponent(txtMatKhauKH, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                    .addComponent(txtNgaySinhKH)
+                    .addComponent(txtNgayDK)
                     .addGroup(pnlInfor_KHLayout.createSequentialGroup()
-                        .addComponent(rdoNam_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rdoNamKH, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rdoNu_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(rdoNuKH, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnlInfor_KHLayout.setVerticalGroup(
@@ -1469,24 +1527,24 @@ public class Admin_Frame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlInfor_KHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTen_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTen_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfor_KHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMatKhau_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMatKhau_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMatKhauKH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfor_KHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNgaySinh_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNgaySinh_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNgaySinhKH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfor_KHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblGioiTinh_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rdoNam_KH)
-                    .addComponent(rdoNu_KH))
+                    .addComponent(rdoNamKH)
+                    .addComponent(rdoNuKH))
                 .addGap(18, 18, 18)
                 .addGroup(pnlInfor_KHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNgayDangKy_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNgayDangKy_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNgayDK, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1519,6 +1577,11 @@ public class Admin_Frame extends javax.swing.JFrame {
         btnSua_KH.setText("Sửa");
         btnSua_KH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSua_KH.setFocusable(false);
+        btnSua_KH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSua_KHActionPerformed(evt);
+            }
+        });
 
         pnlNavigation_KH.setBackground(new java.awt.Color(61, 61, 61));
         pnlNavigation_KH.setLayout(new java.awt.GridLayout(1, 4, 20, 0));
@@ -1571,10 +1634,10 @@ public class Admin_Frame extends javax.swing.JFrame {
         });
         pnlNavigation_KH.add(btnLast_KH);
 
-        tbl_KH.setBackground(new java.awt.Color(255, 146, 64));
-        tbl_KH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tbl_KH.setForeground(new java.awt.Color(61, 61, 61));
-        tbl_KH.setModel(new javax.swing.table.DefaultTableModel(
+        tblKH.setBackground(new java.awt.Color(255, 146, 64));
+        tblKH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tblKH.setForeground(new java.awt.Color(61, 61, 61));
+        tblKH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -1601,9 +1664,14 @@ public class Admin_Frame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbl_KH.setSelectionBackground(new java.awt.Color(255, 255, 169));
-        tbl_KH.setSelectionForeground(new java.awt.Color(61, 61, 61));
-        scroll_KH.setViewportView(tbl_KH);
+        tblKH.setSelectionBackground(new java.awt.Color(255, 255, 169));
+        tblKH.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tblKH.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblKHMousePressed(evt);
+            }
+        });
+        scroll_KH.setViewportView(tblKH);
 
         javax.swing.GroupLayout pnl_Sub_KHLayout = new javax.swing.GroupLayout(pnl_Sub_KH);
         pnl_Sub_KH.setLayout(pnl_Sub_KHLayout);
@@ -2755,19 +2823,19 @@ public class Admin_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLast_NVActionPerformed
 
     private void btnFirst_KHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst_KHActionPerformed
-        // TODO add your handling code here:
+        firstKH();
     }//GEN-LAST:event_btnFirst_KHActionPerformed
 
     private void btnPrevioust_KHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevioust_KHActionPerformed
-        // TODO add your handling code here:
+        prevKH();
     }//GEN-LAST:event_btnPrevioust_KHActionPerformed
 
     private void btnNext_KHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext_KHActionPerformed
-        // TODO add your handling code here:
+        nextKH();
     }//GEN-LAST:event_btnNext_KHActionPerformed
 
     private void btnLast_KHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast_KHActionPerformed
-        // TODO add your handling code here:
+        lastKH();
     }//GEN-LAST:event_btnLast_KHActionPerformed
 
     private void btnFirst_HDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst_HDActionPerformed
@@ -2835,8 +2903,17 @@ public class Admin_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_SPMousePressed
 
     private void tabsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabsMouseClicked
-        
+
     }//GEN-LAST:event_tabsMouseClicked
+
+    private void btnSua_KHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua_KHActionPerformed
+        updateKH();
+    }//GEN-LAST:event_btnSua_KHActionPerformed
+
+    private void tblKHMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKHMousePressed
+        indexKH = tblKH.getSelectedRow();
+        fillFromTableKH();
+    }//GEN-LAST:event_tblKHMousePressed
 
     /**
      * @param args the command line arguments
@@ -3017,9 +3094,9 @@ public class Admin_Frame extends javax.swing.JFrame {
     private javax.swing.JPanel pnl_ThongKe;
     private javax.swing.ButtonGroup rdoGioiTinh_KH;
     private javax.swing.ButtonGroup rdoGioiTinh_NV;
-    private javax.swing.JRadioButton rdoNam_KH;
+    private javax.swing.JRadioButton rdoNamKH;
     private javax.swing.JRadioButton rdoNam_NV;
-    private javax.swing.JRadioButton rdoNu_KH;
+    private javax.swing.JRadioButton rdoNuKH;
     private javax.swing.JRadioButton rdoNu_NV;
     private javax.swing.JScrollPane scrollMieuTa_CL;
     private javax.swing.JScrollPane scroll_CL;
@@ -3030,10 +3107,10 @@ public class Admin_Frame extends javax.swing.JFrame {
     private javax.swing.JScrollPane scroll_TK;
     private javax.swing.JScrollPane sroll_DH;
     private javax.swing.JTabbedPane tabs;
+    private javax.swing.JTable tblKH;
     private javax.swing.JTable tbl_CL;
     private javax.swing.JTable tbl_DH;
     private javax.swing.JTable tbl_HD;
-    private javax.swing.JTable tbl_KH;
     private javax.swing.JTable tbl_SP;
     private javax.swing.JTable tbl_TK;
     private javax.swing.JLabel txtBanItNhat_TK;
@@ -3041,30 +3118,563 @@ public class Admin_Frame extends javax.swing.JFrame {
     private javax.swing.JLabel txtDoanhThu_TK;
     private javax.swing.JTextField txtGia_SP;
     private javax.swing.JTextField txtHoTen_NV;
+    private javax.swing.JLabel txtMaKH;
     private javax.swing.JTextField txtMaKH_DH;
     private javax.swing.JTextField txtMaNV_HD;
     private javax.swing.JTextField txtMa_CL;
     private javax.swing.JLabel txtMa_DH;
     private javax.swing.JLabel txtMa_HD;
-    private javax.swing.JLabel txtMa_KH;
     private javax.swing.JTextField txtMa_NV;
     private javax.swing.JTextField txtMa_SP;
-    private javax.swing.JTextField txtMatKhau_KH;
+    private javax.swing.JTextField txtMatKhauKH;
     private javax.swing.JTextField txtMatKhau_NV;
     private javax.swing.JTextArea txtMieuTa_CL;
     private javax.swing.JLabel txtNam_TK;
-    private javax.swing.JTextField txtNgayDangKy_KH;
+    private javax.swing.JTextField txtNgayDK;
     private javax.swing.JTextField txtNgayDatHang_DH;
     private javax.swing.JTextField txtNgayLap_HD;
-    private javax.swing.JTextField txtNgaySinh_KH;
+    private javax.swing.JTextField txtNgaySinhKH;
     private javax.swing.JTextField txtNgaySinh_NV;
     private javax.swing.JTextField txtSoLuong_SP;
+    private javax.swing.JTextField txtTenKH;
     private javax.swing.JTextField txtTen_CL;
-    private javax.swing.JTextField txtTen_KH;
     private javax.swing.JTextField txtTen_SP;
     private javax.swing.JTextField txtTim_SP;
     private javax.swing.JLabel txtTongTien_DH;
     private javax.swing.JLabel txtTongTien_HD;
     // End of variables declaration//GEN-END:variables
 
+    // Begin Khach hang code
+    private void loadToTableKH() {
+        DefaultTableModel khTableModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        khTableModel.setColumnIdentifiers(new Object[]{"Mã khách hàng", "Mật khẩu", "Tên khách hàng", "Giới tính", "Ngày đăng ký", "Ngày sinh"});
+        khList = khDao.selectAll();
+        for (KhachHang kh : khList) {
+            if (kh.isGioiTinh() == true) {
+                khTableModel.addRow(new Object[]{kh.getMaKH(), kh.getMatKhau(), kh.getTenKH(), "Nam", XDate.toString(kh.getNgayDangKy(), "dd/MM/yyyy"), XDate.toString(kh.getNgaySinh(), "dd/MM/yyyy")});
+            } else {
+                khTableModel.addRow(new Object[]{kh.getMaKH(), kh.getMatKhau(), kh.getTenKH(), "Nữ", XDate.toString(kh.getNgayDangKy(), "dd/MM/yyyy"), XDate.toString(kh.getNgaySinh(), "dd/MM/yyyy")});
+
+            }
+        }
+        tblKH.setModel(khTableModel);
+    }
+
+    private void fillFromTableKH() {
+        txtMaKH.setText(khList.get(indexKH).getMaKH());
+        txtNgaySinhKH.setText(XDate.toString(khList.get(indexKH).getNgaySinh(), "dd/MM/yyyy"));
+        txtTenKH.setText(khList.get(indexKH).getTenKH());
+        txtMatKhauKH.setText(khList.get(indexKH).getMatKhau());
+        txtNgayDK.setText(XDate.toString(khList.get(indexKH).getNgayDangKy(), "dd/MM/yyyy"));
+        if (khList.get(indexKH).isGioiTinh() == true) {
+            rdoNamKH.setSelected(true);
+        } else {
+            rdoNuKH.setSelected(true);
+        }
+    }
+
+    private void updateKH() {
+        KhachHang kh = new KhachHang();
+        kh.setMaKH(txtMaKH.getText());
+        kh.setMatKhau(txtMatKhauKH.getText());
+        kh.setNgaySinh(XDate.toDate(txtNgaySinhKH.getText(), "dd/MM/yyyy"));
+        kh.setNgayDangKy(XDate.toDate(txtNgayDK.getText(), "dd/MM/yyyy"));
+        kh.setTenKH(txtTenKH.getText());
+        if (rdoNamKH.isSelected()) {
+            kh.setGioiTinh(true);
+        } else {
+            kh.setGioiTinh(false);
+        }
+        khDao.update(kh);
+        MsgBox.alert(null, "Sửa thông tin khách hàng thành công");
+        loadToTableKH();
+    }
+
+    private void nextKH() {
+        if (indexKH == khList.size() - 1) {
+            MsgBox.alert(null, "Bạn đang ở cuối danh sách khách hàng");
+            return;
+        }
+        indexKH++;
+        fillFromTableKH();
+        tblKH.setRowSelectionInterval(indexKH, indexKH);
+    }
+
+    private void prevKH() {
+        if (indexKH == 0) {
+            MsgBox.alert(null, "Bạn đang ở đầu danh sách khách hàng");
+            return;
+        } else if (indexKH == -1) {
+            indexKH++;
+            fillFromTableKH();
+            tblKH.setRowSelectionInterval(indexKH, indexKH);
+            return;
+        }
+        indexKH--;
+        fillFromTableKH();
+        tblKH.setRowSelectionInterval(indexKH, indexKH);
+    }
+
+    private void firstKH() {
+        indexKH = 0;
+        fillFromTableKH();
+        tblKH.setRowSelectionInterval(indexKH, indexKH);
+    }
+
+    private void lastKH() {
+        indexKH = khList.size() - 1;
+        fillFromTableKH();
+        tblKH.setRowSelectionInterval(indexKH, indexKH);
+    }
+    // End Khach hang code
+
+    // Begin SanPham code
+    private void loadToTableSP() {
+        DefaultTableModel model = (DefaultTableModel) tblSP.getModel();
+        model.setRowCount(0);
+        String keyword = txtTimSP.getText();
+        spList = spDao.selectByKeyword(keyword);
+        for (SanPham sp : spList) {
+            Object[] row = {
+                sp.getMaSP(),
+                sp.getTenSP(),
+                sp.getSoLuong(),
+                sp.getGiaThanh(),
+                sp.getMaCL()
+            };
+            model.addRow(row);
+        }
+    }
+
+    private void editSP() {
+        String maSP = (String) tblSP.getValueAt(this.index, 0);
+        tblSP.setRowSelectionInterval(index, index);
+        SanPham sp = spDao.selectById(maSP);
+        if (sp != null) {
+            setFormSP(sp);
+        }
+    }
+
+    private void setFormSP(SanPham sp) {
+        txtMaSP.setText(sp.getMaSP());
+        txtTenSP.setText(sp.getTenSP());
+        txtSoLuong.setText(String.valueOf(sp.getSoLuong()));
+        txtGia.setText(String.valueOf(sp.getGiaThanh()));
+        cboChungLoai.setToolTipText(sp.getMaCL());
+        cboChungLoai.setSelectedItem(clDao.selectById(sp.getMaCL()));
+    }
+
+    private void fillFromTableSP(int index) {
+        tblCL.setRowSelectionAllowed(true);
+        txtMaSP.setText(spList.get(index).getMaSP());
+        txtTenSP.setText(spList.get(index).getTenSP());
+        txtSoLuong.setText(String.valueOf(spList.get(index).getSoLuong()));
+        txtGia.setText(String.valueOf(spList.get(index).getGiaThanh()));
+        cboChungLoai.setToolTipText(spList.get(index).getMaCL());
+        cboChungLoai.setSelectedItem(clDao.selectById(spList.get(index).getMaCL()));
+        tblSP.setRowSelectionInterval(indexSP, indexSP);
+    }
+
+    private void fillCboSP() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboChungLoai.getModel();
+        model.removeAllElements();
+        List<ChungLoai> list = clDao.selectAll();
+        for (ChungLoai cl : list) {
+            model.addElement(cl);
+        }
+    }
+
+    private void clearFormSP() {
+        SanPham sp = new SanPham();
+        sp.setMaSP(sp.getMaSP());
+        sp.setTenSP(sp.getTenSP());
+        sp.setSoLuong(sp.getSoLuong());
+        sp.setGiaThanh(sp.getGiaThanh());
+        ChungLoai cl = (ChungLoai) cboChungLoai.getSelectedItem();
+        sp.setMaCL(cl.getMaCL());
+        setFormSP(sp);
+        index = -1;
+    }
+
+    private SanPham getFromSP() {
+        SanPham sp = new SanPham();
+        sp.setMaSP(txtMaSP.getText());
+        sp.setTenSP(txtTenSP.getText());
+        sp.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+        sp.setGiaThanh(Float.parseFloat(txtGia.getText()));
+        ChungLoai cl = (ChungLoai) cboChungLoai.getSelectedItem();
+        sp.setMaCL(cl.getMaCL());
+        return sp;
+    }
+    // End SanPham code
+
+    //Start Code Chủng Loại
+    private void loadToTableCL() {
+        DefaultTableModel clTableModel = (DefaultTableModel) tblCL.getModel();
+        clTableModel.setRowCount(0);
+        clList = clDao.selectAll();
+        for (ChungLoai cl : clList) {
+            Object[] row = {
+                cl.getMaCL(),
+                cl.getTenCL(),
+                cl.getMieuTa(),};
+            clTableModel.addRow(row);
+        }
+        btnThemCL.setEnabled(false);
+    }
+
+    private void fillFromTableCL(int index) {
+        tblCL.setRowSelectionAllowed(true);
+        txtMaCL.setText(clList.get(index).getMaCL());
+        txtTenCL.setText(clList.get(index).getTenCL());
+        txtMieuTa.setText(clList.get(index).getMieuTa());
+        tblCL.setRowSelectionInterval(index, index);
+        btnThemCL.setEnabled(false);
+    }
+
+    private void clearCL() {
+        txtMaCL.setText("");
+        txtTenCL.setText("");
+        txtMieuTa.setText("");
+        btnThemCL.setEnabled(true);
+        btnSuaCL.setEnabled(false);
+        btnXoaCL.setEnabled(false);
+        tblCL.setRowSelectionAllowed(false);
+        indexCL = -1;
+    }
+
+    private void insertCL() {
+        ChungLoai clitem = new ChungLoai(txtMaCL.getText(), txtTenCL.getText(), txtMieuTa.getText());
+        clDao.insert(clitem);
+        loadToTableCL();
+        for (ChungLoai cl : clList) {
+            if (txtMaCL.getText().equals(cl.getMaCL())) {
+                indexCL = clList.indexOf(cl);
+                fillFromTableCL(indexCL);
+                break;
+            }
+        }
+        btnSuaCL.setEnabled(true);
+        btnXoaCL.setEnabled(true);
+    }
+
+    private void updateCL() {
+        ChungLoai clitem = new ChungLoai(txtMaCL.getText(), txtTenCL.getText(), txtMieuTa.getText());
+        clDao.update(clitem);
+        loadToTableCL();
+        for (ChungLoai cl : clList) {
+            if (txtMaCL.getText().equals(cl.getMaCL())) {
+                indexCL = clList.indexOf(cl);
+                fillFromTableCL(indexCL);
+                break;
+            }
+        }
+        fillCboSP();
+    }
+
+    private void deleteCL() {
+        clDao.delete(txtMaCL.getText());
+        loadToTableCL();
+    }
+
+    private void firstCL() {
+        indexCL = 0;
+        tblCL.setRowSelectionAllowed(true);
+        fillFromTableCL(0);
+    }
+
+    private void nextCL() {
+        tblCL.setRowSelectionAllowed(true);
+        indexCL++;
+        if (indexCL > clList.size() - 1) {
+            indexCL = 0;
+        }
+        fillFromTableCL(indexCL);
+    }
+
+    private void previousCL() {
+        tblCL.setRowSelectionAllowed(true);
+        indexCL--;
+        if (indexCL < 0) {
+            indexCL = clList.size() - 1;
+        }
+        fillFromTableCL(indexCL);
+    }
+
+    private void lastCL() {
+        tblCL.setRowSelectionAllowed(true);
+        indexCL = clList.size() - 1;
+        fillFromTableCL(indexCL);
+    }
+
+    private boolean checkCL() {
+        if (txtMaCL.getText().length() == 0 || txtMaCL.getText().length() > 10) {
+            txtMaCL.setBackground(Color.yellow);
+            txtMaCL.setFocusable(false);
+            txtTenCL.setFocusable(false);
+            txtMieuTa.setFocusable(false);
+            return false;
+        } else {
+            txtMaCL.setBackground(Color.white);
+        }
+
+        if (txtTenCL.getText().length() == 0 || txtTenCL.getText().length() > 50) {
+            txtTenCL.setBackground(Color.yellow);
+            txtTenCL.setFocusable(false);
+            return false;
+        } else {
+            txtTenCL.setBackground(Color.white);
+        }
+
+        if (txtMieuTa.getText().length() == 0 || txtMieuTa.getText().length() > 100) {
+            txtMieuTa.setBackground(Color.yellow);
+            txtMieuTa.setFocusable(false);
+            return false;
+        } else {
+            txtMieuTa.setBackground(Color.white);
+        }
+        return true;
+    }
+
+    //End Code Chủng Loại
+    private void loadToTableDH() {
+        DefaultTableModel model = (DefaultTableModel) tblDH.getModel();
+        model.setRowCount(0);
+        List<DonHang> list = dhDao.selectAll();
+        for (DonHang dh : list) {
+            Object[] row = {
+                dh.getMaDH(),
+                dh.getNgayDatHang(),
+                dh.getMaKH(),
+                dh.getTongTien()
+            };
+            model.addRow(row);
+        }
+    }
+
+    private void editDH() {
+        String maDH = (String) tblDH.getValueAt(this.index, 0);
+        DonHang dh = dhDao.selectById(maDH);
+        if (dh != null) {
+            setFormDH(dh);
+        }
+    }
+
+    private void setFormDH(DonHang dh) {
+        txtMaDH.setText(dh.getMaDH());
+        txtMaKH.setText(dh.getMaKH());
+        txtNgayDatHang.setText(String.valueOf(dh.getNgayDatHang()));
+        txtTongTien.setText(String.valueOf(dh.getTongTien()));
+    }
+
+    private void clearFormDH() {
+        DonHang dh = new DonHang();
+        dh.setMaDH(dh.getMaDH());
+        dh.setNgayDatHang(dh.getNgayDatHang());
+        dh.setMaKH(dh.getMaKH());
+    }
+
+    //BEGIN NHANVIEN
+    private void loadToTableNV() {
+        DefaultTableModel model = (DefaultTableModel) tblNVBH.getModel();
+        model.setRowCount(0);
+        try {
+            nvList = nvDao.selectAll();
+            for (NhanVien nv : nvList) {
+                Object[] row = {
+                    nv.getMaNV(),
+                    nv.getMatKhau(),
+                    nv.getHoTen(),
+                    nv.isGioiTinh() ? "nữ" : "nam",
+                    XDate.toString(nv.getNgaySinh(), "dd/MM/YYYY"),
+                    nv.isVaiTro() ? "admin" : "nhanvien"
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+
+    private void setNhanVien(NhanVien nv) {
+        txtMaNV.setText(nv.getMaNV());
+        txtMatKhau.setText(nv.getMatKhau());
+        txtHoTen.setText(nv.getHoTen());
+        rdoNuNV.setSelected(nv.isGioiTinh());
+        rdoNamNV.setSelected(!nv.isGioiTinh());
+//        rdoAdmin.setSelected(nv.isVaiTro());
+//        rdoNhanvien.setSelected(!nv.isVaiTro());
+        txtNgaySinh.setText(XDate.toString(nv.getNgaySinh(), "dd/MM/YYYY"));
+    }
+
+    private NhanVien getNhanVien() {
+        NhanVien model = new NhanVien();
+        model.setMaNV(txtMaNV.getText());
+        model.setMatKhau(new String(txtMatKhau.getPassword()));
+        model.setHoTen(txtHoTen.getText());
+        model.setNgaySinh(XDate.toDate(txtNgaySinh.getText(), "dd/MM/YYYY"));
+        model.setGioiTinh(rdoNuNV.isSelected());
+        //model.setVaiTro(rdoAdmin.isSelected());
+        return model;
+    }
+
+    private void editNV() {
+        try {
+            String manv = (String) tblNVBH.getValueAt(this.indexNV, 0);
+            NhanVien model = nvDao.selectById(manv);
+            if (model != null) {
+                setNhanVien(model);
+                //System.out.println(model.getNgaySinh());
+            }
+        } catch (Exception e) {
+            System.out.println("Lỗi truy vấn" + e.toString());
+        }
+    }
+
+    private void newNhanVien() {
+        txtMaNV.setText(null);
+        txtMatKhau.setText(null);
+        txtHoTen.setText(null);
+        txtNgaySinh.setText(null);
+        index = -1;
+        btnThemNVBH.setEnabled(true);
+        btnSuaNVBH.setEnabled(false);
+        btnXoaNVBH.setEnabled(false);
+    }
+
+    private void savẹNhanvien() {
+        NhanVien model = getNhanVien();
+        try {
+            nvDao.insert(model);
+            newNhanVien();
+            loadToTableNV();
+            MsgBox.alert(this, "Thêm thành công");
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            JOptionPane.showMessageDialog(this, "Thêm thất bại!", "", 0);
+        }
+    }
+
+    private void updateNhanvien() {
+        NhanVien model = getNhanVien();
+        try {
+            nvDao.update(model);
+            loadToTableNV();
+            MsgBox.alert(this, "Cập nhật thành công");
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            JOptionPane.showMessageDialog(this, "Cập nhật thất bại!", "", 0);
+        }
+    }
+
+    private void deleteNhanvien() {
+        if (MsgBox.confirm(this, "Bạn thực sự muốn xoá người này")) {
+            String manv = txtMaNV.getText();
+            try {
+                nvDao.delete(manv);
+                newNhanVien();
+                loadToTableNV();
+                MsgBox.alert(this, "Xoá thành công");
+            } catch (Exception e) {
+                System.out.println(e.toString());
+                JOptionPane.showMessageDialog(this, "Xoá thất bại!", "", 0);
+            }
+        }
+    }
+
+    private boolean admin() {
+        if (nvList.get(index).isVaiTro() == true) {
+            JOptionPane.showMessageDialog(this, "Không được xoá Admin!", "", 0);
+            return false;
+        }
+        return true;
+    }
+
+    private void clockRun() {
+        CLockThread cl = new CLockThread(lblClock);
+        Thread t = new Thread(cl);
+        t.start();
+    }
+
+    //start HoaDon
+    private void loadToTableHD() {
+        initHD();
+        DefaultTableModel hdTableModel = (DefaultTableModel) tblHD.getModel();
+        hdTableModel.setRowCount(0);
+        hdList = hdDao.selectAll();
+        for (HoaDon hd : hdList) {
+            Object[] row = {
+                hd.getMaHD(),
+                hd.getNgayLapHD(),
+                hd.getMaNV(),
+                hd.getTongTien()
+            };
+            hdTableModel.addRow(row);
+        }
+    }
+
+    private void initHD() {
+        txtMaHD.setFocusable(false);
+        txtMaNVpnlDSHD.setFocusable(false);
+        txtNgayLapHDpnlDSHD.setFocusable(false);
+        txtTongTienpnlDSHD.setFocusable(false);
+    }
+
+    private void fillFromTableHD(int index) {
+        txtMaHD.setText(hdList.get(index).getMaHD());
+        txtMaNVpnlDSHD.setText(hdList.get(index).getMaNV());
+        txtNgayLapHDpnlDSHD.setText(String.valueOf(hdList.get(index).getNgayLapHD()));
+        txtTongTienpnlDSHD.setText(String.valueOf(hdList.get(index).getTongTien()));
+        tblHD.setRowSelectionInterval(index, index);
+    }
+
+    private void deleteHD() {
+        hdDao.delete(txtMaHD.getText());
+        loadToTableHD();
+    }
+
+    private void firstHD() {
+        indexHD = 0;
+        fillFromTableHD(0);
+    }
+
+    private void nextHD() {
+        indexHD++;
+        if (indexHD > hdList.size() - 1) {
+            indexHD = 0;
+        }
+        fillFromTableHD(indexHD);
+    }
+
+    private void previousHD() {
+        indexHD--;
+        if (indexHD < 0) {
+            indexHD = hdList.size() - 1;
+        }
+        fillFromTableHD(indexHD);
+    }
+
+    private void lastHD() {
+        indexHD = hdList.size() - 1;
+        fillFromTableHD(indexHD);
+    }
+
+    private void openFrameCTHD() {
+        String mahd = txtMaHD.getText();
+        if (!(mahd.length() == 0)) {
+            ChiTietHoaDon cthd = new ChiTietHoaDonDAO().selectById(mahd);
+            ChiTietHoaDonFrame CTHDFrame = new ChiTietHoaDonFrame(cthd.getMaHD());
+            this.setVisible(false);
+            CTHDFrame.setVisible(true);
+        } else {
+            MsgBox.alert(this, "Vui Lòng Chọn 1 HD Để Xem Chi Tiết !");
+        }
+    }
+    //end HoaDon
+}
 }
