@@ -2344,7 +2344,7 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="40" green="92" red="ff" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="KH001"/>
+                            <Property name="text" type="java.lang.String" value="KH000"/>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -3151,7 +3151,7 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="40" green="92" red="ff" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="2500.000"/>
+                            <Property name="text" type="java.lang.String" value="00000.000"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblDonViGia_HD">
@@ -3395,6 +3395,9 @@
                               <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_HDMousePressed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -3749,7 +3752,7 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="40" green="92" red="ff" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="2500.000"/>
+                            <Property name="text" type="java.lang.String" value="0000.000"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblDonViGia_DH">
@@ -4300,7 +4303,7 @@
                               <Color blue="40" green="92" red="ff" type="rgb"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="SP0015"/>
+                            <Property name="text" type="java.lang.String" value="SP0000"/>
                           </Properties>
                         </Component>
                       </SubComponents>

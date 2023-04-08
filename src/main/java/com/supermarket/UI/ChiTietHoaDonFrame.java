@@ -57,14 +57,19 @@ public class ChiTietHoaDonFrame extends javax.swing.JFrame {
         tblCT = new javax.swing.JTable();
 
         setTitle("Hóa đơn chi tiết");
+        setAlwaysOnTop(true);
         setMinimumSize(new java.awt.Dimension(1085, 542));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1085, 542));
         setResizable(false);
 
         pnl_Sub.setBackground(new java.awt.Color(61, 61, 61));
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnBackMousePressed(evt);
+            }
+        });
 
         pnlPic.setBackground(new java.awt.Color(61, 61, 61));
 
@@ -373,6 +378,10 @@ public class ChiTietHoaDonFrame extends javax.swing.JFrame {
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLastActionPerformed
+
+    private void btnBackMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMousePressed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnBackMousePressed
 
     public static void main(String args[]) {
         try {

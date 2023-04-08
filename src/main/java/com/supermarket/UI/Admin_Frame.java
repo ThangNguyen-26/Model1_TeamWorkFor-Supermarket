@@ -1451,7 +1451,7 @@ public class Admin_Frame extends javax.swing.JFrame {
 
         txtMa_KH.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtMa_KH.setForeground(new java.awt.Color(255, 146, 64));
-        txtMa_KH.setText("KH001");
+        txtMa_KH.setText("KH000");
 
         javax.swing.GroupLayout pnlMa_KHLayout = new javax.swing.GroupLayout(pnlMa_KH);
         pnlMa_KH.setLayout(pnlMa_KHLayout);
@@ -1849,7 +1849,7 @@ public class Admin_Frame extends javax.swing.JFrame {
 
         txtTongTien_HD.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtTongTien_HD.setForeground(new java.awt.Color(255, 146, 64));
-        txtTongTien_HD.setText("2500.000");
+        txtTongTien_HD.setText("00000.000");
 
         lblDonViGia_HD.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDonViGia_HD.setForeground(new java.awt.Color(255, 146, 64));
@@ -2021,6 +2021,11 @@ public class Admin_Frame extends javax.swing.JFrame {
         tbl_HD.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_HD.setSelectionForeground(new java.awt.Color(61, 61, 61));
         tbl_HD.getTableHeader().setReorderingAllowed(false);
+        tbl_HD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbl_HDMousePressed(evt);
+            }
+        });
         scroll_HD.setViewportView(tbl_HD);
 
         javax.swing.GroupLayout pnl_Sub_HDLayout = new javax.swing.GroupLayout(pnl_Sub_HD);
@@ -2182,7 +2187,7 @@ public class Admin_Frame extends javax.swing.JFrame {
 
         txtTongTien_DH.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtTongTien_DH.setForeground(new java.awt.Color(255, 146, 64));
-        txtTongTien_DH.setText("2500.000");
+        txtTongTien_DH.setText("0000.000");
 
         lblDonViGia_DH.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblDonViGia_DH.setForeground(new java.awt.Color(255, 146, 64));
@@ -2502,7 +2507,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         txtBanItNhat_TK.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtBanItNhat_TK.setForeground(new java.awt.Color(255, 146, 64));
         txtBanItNhat_TK.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtBanItNhat_TK.setText("SP0015");
+        txtBanItNhat_TK.setText("SP0000");
 
         javax.swing.GroupLayout pnlInfor_TKLayout = new javax.swing.GroupLayout(pnlInfor_TK);
         pnlInfor_TK.setLayout(pnlInfor_TKLayout);
@@ -3005,6 +3010,12 @@ public class Admin_Frame extends javax.swing.JFrame {
         indexTK = tbl_TK.getSelectedRow();
         fillFromThongKe();
     }//GEN-LAST:event_tbl_TKMousePressed
+
+    private void tbl_HDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_HDMousePressed
+        if (evt.getClickCount() == 2) {
+            openFrameCTHD();
+        }
+    }//GEN-LAST:event_tbl_HDMousePressed
 
     /**
      * @param args the command line arguments
@@ -3892,7 +3903,6 @@ public class Admin_Frame extends javax.swing.JFrame {
         if (!(mahd.length() == 0)) {
             ChiTietHoaDon cthd = new ChiTietHoaDonDAO().selectById(mahd);
             ChiTietHoaDonFrame CTHDFrame = new ChiTietHoaDonFrame(cthd.getMaHD());
-            this.setVisible(false);
             CTHDFrame.setVisible(true);
         } else {
             MsgBox.alert(this, "Vui Lòng Chọn 1 HD Để Xem Chi Tiết !");
