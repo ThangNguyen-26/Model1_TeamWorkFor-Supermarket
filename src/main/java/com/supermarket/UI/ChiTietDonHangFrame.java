@@ -449,7 +449,6 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
         float tongTien = 0;
         for (ChiTietDonHang ctdh : ctdhList) {
             Object[] row = {
-                ctdh.getMaDH(),
                 ctdh.getMaSP(),
                 ctdh.getSoLuong(),
                 ctdh.getThanhTien()

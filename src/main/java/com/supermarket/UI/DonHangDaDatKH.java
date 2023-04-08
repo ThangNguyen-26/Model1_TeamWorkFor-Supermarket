@@ -10,13 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class DonHangDaDatKH extends javax.swing.JFrame {
 
     private String maKh;
     private List<DonHang> listDH = new ArrayList<>();
-    private int rowNumber;
+    private int index;
 
     public DonHangDaDatKH() {
         initComponents();
@@ -27,7 +28,7 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
         initComponents();
         this.maKh = maKh;
         init();
-        this.setTitle("Đơn hàng đã đặt của khách hàng "+this.maKh);
+        this.setTitle("Đơn hàng đã đặt của khách hàng " + this.maKh);
     }
 
     @SuppressWarnings("unchecked")
@@ -50,6 +51,7 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
         txtMaDH = new javax.swing.JLabel();
         lblTongTien = new javax.swing.JLabel();
         txtTongTien = new javax.swing.JLabel();
+        lblMeo_HD = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Danh sách đơn hàng đã đặt");
@@ -98,6 +100,9 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
             }
         });
         tblDSDHDD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDSDHDDMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tblDSDHDDMousePressed(evt);
             }
@@ -145,17 +150,17 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
         txtMaKH.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtMaKH.setForeground(new java.awt.Color(255, 146, 64));
         txtMaKH.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtMaKH.setText("KH0049");
+        txtMaKH.setText("KHxxx");
 
         txtNgayDatHang.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtNgayDatHang.setForeground(new java.awt.Color(255, 146, 64));
         txtNgayDatHang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtNgayDatHang.setText("23/03/2023");
+        txtNgayDatHang.setText("dd/MM/yyyy");
 
         txtMaDH.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtMaDH.setForeground(new java.awt.Color(255, 146, 64));
         txtMaDH.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtMaDH.setText("DH0284");
+        txtMaDH.setText("DHxxx");
 
         lblTongTien.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblTongTien.setForeground(new java.awt.Color(255, 255, 169));
@@ -165,7 +170,7 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
         txtTongTien.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtTongTien.setForeground(new java.awt.Color(255, 146, 64));
         txtTongTien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtTongTien.setText("5.6000");
+        txtTongTien.setText("000");
 
         javax.swing.GroupLayout pnlInforLayout = new javax.swing.GroupLayout(pnlInfor);
         pnlInfor.setLayout(pnlInforLayout);
@@ -174,22 +179,22 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
             .addGroup(pnlInforLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInforLayout.createSequentialGroup()
+                    .addGroup(pnlInforLayout.createSequentialGroup()
                         .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(lblNgayDatHang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblMaKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblMaDH, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtNgayDatHang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                            .addComponent(txtMaDH, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtMaKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, Short.MAX_VALUE))
                     .addGroup(pnlInforLayout.createSequentialGroup()
-                        .addComponent(lblTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(lblTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(36, 36, 36)))
+                .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtTongTien, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                    .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtNgayDatHang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                        .addComponent(txtMaDH, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtMaKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlInforLayout.setVerticalGroup(
             pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,12 +213,16 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
                         .addComponent(txtNgayDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTongTien, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
+
+        lblMeo_HD.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
+        lblMeo_HD.setForeground(new java.awt.Color(255, 255, 169));
+        lblMeo_HD.setText("Mẹo: Double click để xem thông tin chi tiết, nhé!");
 
         javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
         pnlMain.setLayout(pnlMainLayout);
@@ -224,15 +233,20 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(pnlMainLayout.createSequentialGroup()
-                        .addComponent(pnlPic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnlMainLayout.createSequentialGroup()
                         .addComponent(lblTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnMHChinh, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26))))
+                        .addGap(26, 26, 26))
+                    .addGroup(pnlMainLayout.createSequentialGroup()
+                        .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlMainLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(lblMeo_HD))
+                            .addGroup(pnlMainLayout.createSequentialGroup()
+                                .addComponent(pnlPic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pnlInfor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnlMainLayout.setVerticalGroup(
             pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,8 +259,10 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlInfor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(lblMeo_HD)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -270,8 +286,15 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMHChinhActionPerformed
 
     private void tblDSDHDDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSDHDDMousePressed
-        this.rowNumber = tblDSDHDD.getSelectedRow();
+        this.index = tblDSDHDD.getSelectedRow();
+        fillFromTable();
     }//GEN-LAST:event_tblDSDHDDMousePressed
+
+    private void tblDSDHDDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSDHDDMouseClicked
+        boolean bl = MsgBox.confirm(null, "Bạn có muốn xem chi tiết đơn hàng "+ listDH.get(index).getMaDH() + " không ?" );
+        if(bl == true )
+        new ChiTietDonHangFrame(listDH.get(index).getMaDH()).setVisible(true);
+    }//GEN-LAST:event_tblDSDHDDMouseClicked
 
     public static void main(String args[]) {
         try {
@@ -302,6 +325,7 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblMaDH;
     private javax.swing.JLabel lblMaKH;
+    private javax.swing.JLabel lblMeo_HD;
     private javax.swing.JLabel lblNgayDatHang;
     private javax.swing.JLabel lblPic;
     private javax.swing.JLabel lblTitle;
@@ -322,25 +346,28 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
     }
 
     private void loadToTable() {
-        DefaultTableModel model = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        model.setColumnIdentifiers(new Object[]{"Mã đơn hàng", "Ngày đặt hàng"});
+        DefaultTableModel model = (DefaultTableModel) tblDSDHDD.getModel();
+        model.setRowCount(0);
         try {
             ResultSet rs = JdbcHelper.query("select * from DONHANG WHERE MAKH LIKE ?", maKh);
             while (rs.next()) {
                 DonHang dh = new DonHang(rs.getString(2), rs.getDate(3), maKh);
+                double tongTien = (Double) JdbcHelper.value("SELECT SUM(THANHTIEN) FROM CHITIETDONHANG WHERE MADH LIKE ? ", dh.getMaDH());
                 listDH.add(dh);
-                model.addRow(new Object[]{dh.getMaDH(), XDate.toString(dh.getNgayDatHang(), "dd/MM/yyyy")});
+                model.addRow(new Object[]{dh.getMaDH(), XDate.toString(dh.getNgayDatHang(), "dd/MM/yyyy"), dh.getMaKH(), tongTien});
             }
             rs.getStatement().getConnection().close();
         } catch (SQLException ex) {
             Logger.getLogger(DonHangDaDatKH.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
+
         tblDSDHDD.setModel(model);
+    }
+
+    private void fillFromTable() {
+        txtMaDH.setText(listDH.get(index).getMaDH());
+        txtMaKH.setText(listDH.get(index).getMaKH());
+        txtNgayDatHang.setText((String) tblDSDHDD.getValueAt(index, 1));
+        txtTongTien.setText(Double.toString(((Double) tblDSDHDD.getValueAt(index, 3))));
     }
 }
