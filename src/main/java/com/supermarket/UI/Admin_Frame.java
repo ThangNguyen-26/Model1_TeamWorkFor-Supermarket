@@ -482,7 +482,7 @@ public class Admin_Frame extends javax.swing.JFrame {
             pnlPic_SPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPic_SPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblPic_SP, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                .addComponent(lblPic_SP, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -635,6 +635,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         });
         tbl_SP.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_SP.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_SP.getTableHeader().setReorderingAllowed(false);
         tbl_SP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tbl_SPMousePressed(evt);
@@ -683,7 +684,7 @@ public class Admin_Frame extends javax.swing.JFrame {
                     .addComponent(pnlMainBtn_SP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnlNavigation_SP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scroll_SP, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(scroll_SP, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnl_SanPhamLayout = new javax.swing.GroupLayout(pnl_SanPham);
@@ -822,7 +823,7 @@ public class Admin_Frame extends javax.swing.JFrame {
             pnlPic_CLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPic_CLLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblPic_CL, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                .addComponent(lblPic_CL, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -968,6 +969,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         });
         tbl_CL.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_CL.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_CL.getTableHeader().setReorderingAllowed(false);
         tbl_CL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tbl_CLMousePressed(evt);
@@ -1013,7 +1015,7 @@ public class Admin_Frame extends javax.swing.JFrame {
                     .addComponent(pnlMainBtn_CL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnlNavigation_CL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scroll_CL, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(scroll_CL, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnl_ChungLoaiLayout = new javax.swing.GroupLayout(pnl_ChungLoai);
@@ -1189,7 +1191,7 @@ public class Admin_Frame extends javax.swing.JFrame {
             pnlPic_NVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPic_NVLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblPic_NV, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                .addComponent(lblPic_NV, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1335,6 +1337,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         });
         tbl_NV.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_NV.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_NV.getTableHeader().setReorderingAllowed(false);
         tbl_NV.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tbl_NVMousePressed(evt);
@@ -1380,7 +1383,7 @@ public class Admin_Frame extends javax.swing.JFrame {
                     .addComponent(pnlMainBtn_NV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnlNavigation_NV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scroll_NV, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(scroll_NV, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnl_NhanVienLayout = new javax.swing.GroupLayout(pnl_NhanVien);
@@ -1583,7 +1586,7 @@ public class Admin_Frame extends javax.swing.JFrame {
             pnlPic_KHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPic_KHLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1683,6 +1686,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         });
         tbl_KH.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_KH.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_KH.getTableHeader().setReorderingAllowed(false);
         tbl_KH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tbl_KHMousePressed(evt);
@@ -1729,7 +1733,7 @@ public class Admin_Frame extends javax.swing.JFrame {
                     .addComponent(pnlNavigation_KH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSua_KH))
                 .addGap(7, 7, 7)
-                .addComponent(scroll_KH, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(scroll_KH, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnl_KhachHangLayout = new javax.swing.GroupLayout(pnl_KhachHang);
@@ -2009,6 +2013,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         });
         tbl_HD.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_HD.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_HD.getTableHeader().setReorderingAllowed(false);
         scroll_HD.setViewportView(tbl_HD);
 
         javax.swing.GroupLayout pnl_Sub_HDLayout = new javax.swing.GroupLayout(pnl_Sub_HD);
@@ -2059,7 +2064,7 @@ public class Admin_Frame extends javax.swing.JFrame {
                         .addComponent(btnXoa_HD)
                         .addComponent(lblMeo_HD)))
                 .addGap(7, 7, 7)
-                .addComponent(scroll_HD, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(scroll_HD, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnl_HoaDonLayout = new javax.swing.GroupLayout(pnl_HoaDon);
@@ -2340,6 +2345,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         });
         tbl_DH.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_DH.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_DH.getTableHeader().setReorderingAllowed(false);
         tbl_DH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tbl_DHMousePressed(evt);
@@ -2393,7 +2399,7 @@ public class Admin_Frame extends javax.swing.JFrame {
                         .addComponent(btnXoa_DH)
                         .addComponent(lblMeo_DH)))
                 .addGap(7, 7, 7)
-                .addComponent(sroll_DH, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(sroll_DH, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnl_DonHangLayout = new javax.swing.GroupLayout(pnl_DonHang);
@@ -2406,7 +2412,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         );
         pnl_DonHangLayout.setVerticalGroup(
             pnl_DonHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
+            .addGap(0, 540, Short.MAX_VALUE)
             .addGroup(pnl_DonHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnl_DonHangLayout.createSequentialGroup()
                     .addComponent(pnl_Sub_DH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2448,7 +2454,7 @@ public class Admin_Frame extends javax.swing.JFrame {
             pnlPic_TKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPic_TKLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblPic_TK, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                .addComponent(lblPic_TK, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2532,7 +2538,7 @@ public class Admin_Frame extends javax.swing.JFrame {
                 .addGroup(pnlInfor_TKLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblBanItNhat_TK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtBanItNhat_TK, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pnlNavigation_TK.setBackground(new java.awt.Color(61, 61, 61));
@@ -2622,6 +2628,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         tbl_TK.setGridColor(new java.awt.Color(102, 255, 51));
         tbl_TK.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_TK.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_TK.getTableHeader().setReorderingAllowed(false);
         scroll_TK.setViewportView(tbl_TK);
 
         javax.swing.GroupLayout pnl_Sub_TKLayout = new javax.swing.GroupLayout(pnl_Sub_TK);
@@ -2655,7 +2662,7 @@ public class Admin_Frame extends javax.swing.JFrame {
                         .addComponent(pnlNavigation_TK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pnlPic_TK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scroll_TK, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(scroll_TK, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnl_ThongKeLayout = new javax.swing.GroupLayout(pnl_ThongKe);
