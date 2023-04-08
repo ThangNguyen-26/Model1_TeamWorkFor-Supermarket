@@ -3274,7 +3274,7 @@ public class Admin_Frame extends javax.swing.JFrame {
 
     private void nextKH() {
         if (indexKH == khList.size() - 1) {
-            MsgBox.alert(null, "Bạn đang ở cuối danh sách khách hàng");
+            firstKH();
             return;
         }
         indexKH++;
@@ -3284,7 +3284,7 @@ public class Admin_Frame extends javax.swing.JFrame {
 
     private void prevKH() {
         if (indexKH == 0) {
-            MsgBox.alert(null, "Bạn đang ở đầu danh sách khách hàng");
+            lastKH();
             return;
         } else if (indexKH == -1) {
             indexKH++;
