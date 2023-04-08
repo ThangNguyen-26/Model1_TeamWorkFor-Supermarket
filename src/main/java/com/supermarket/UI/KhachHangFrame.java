@@ -90,32 +90,44 @@ public class KhachHangFrame extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(1000, 600));
 
+        pnlMain.setBackground(new java.awt.Color(61, 61, 61));
         pnlMain.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlMain.setPreferredSize(new java.awt.Dimension(960, 570));
 
         lblDatHang.setFont(new java.awt.Font("Barlow Condensed", 1, 25)); // NOI18N
+        lblDatHang.setForeground(new java.awt.Color(255, 255, 169));
         lblDatHang.setText("ĐẶT HÀNG");
 
         lblClock.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblClock.setForeground(new java.awt.Color(255, 255, 169));
         lblClock.setText("11:30:30PM");
 
         lblTenSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTenSP.setForeground(new java.awt.Color(255, 255, 169));
         lblTenSP.setText("Tên sản phẩm");
 
+        txtTenSP.setBackground(new java.awt.Color(255, 146, 64));
         txtTenSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtTenSP.setForeground(new java.awt.Color(255, 255, 169));
         txtTenSP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTenSP.setFocusable(false);
 
         lblSoLuong.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblSoLuong.setForeground(new java.awt.Color(255, 255, 169));
         lblSoLuong.setText("Số lượng");
 
+        txtSoLuong.setBackground(new java.awt.Color(255, 146, 64));
         txtSoLuong.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtSoLuong.setForeground(new java.awt.Color(255, 255, 169));
         txtSoLuong.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lblTenCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTenCL.setForeground(new java.awt.Color(255, 255, 169));
         lblTenCL.setText("Tên chủng loại");
 
+        cboCL.setBackground(new java.awt.Color(255, 146, 64));
         cboCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cboCL.setForeground(new java.awt.Color(255, 255, 169));
         cboCL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cboCL.setFocusable(false);
         cboCL.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +136,9 @@ public class KhachHangFrame extends javax.swing.JFrame {
             }
         });
 
+        btnLamMoiSP.setBackground(new java.awt.Color(255, 146, 64));
         btnLamMoiSP.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnLamMoiSP.setForeground(new java.awt.Color(255, 255, 169));
         btnLamMoiSP.setText("Làm mới");
         btnLamMoiSP.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnLamMoiSP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -135,7 +149,9 @@ public class KhachHangFrame extends javax.swing.JFrame {
             }
         });
 
+        btnThem.setBackground(new java.awt.Color(255, 146, 64));
         btnThem.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnThem.setForeground(new java.awt.Color(255, 255, 169));
         btnThem.setText("Thêm vào đơn hàng");
         btnThem.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnThem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -146,7 +162,9 @@ public class KhachHangFrame extends javax.swing.JFrame {
             }
         });
 
+        btnLamMoiDH.setBackground(new java.awt.Color(255, 146, 64));
         btnLamMoiDH.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnLamMoiDH.setForeground(new java.awt.Color(255, 255, 169));
         btnLamMoiDH.setText("Làm mới đơn hàng");
         btnLamMoiDH.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnLamMoiDH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -157,7 +175,9 @@ public class KhachHangFrame extends javax.swing.JFrame {
             }
         });
 
+        btnDSDatHang.setBackground(new java.awt.Color(255, 146, 64));
         btnDSDatHang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnDSDatHang.setForeground(new java.awt.Color(255, 255, 169));
         btnDSDatHang.setText("DS Đặt hàng");
         btnDSDatHang.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnDSDatHang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -168,7 +188,9 @@ public class KhachHangFrame extends javax.swing.JFrame {
             }
         });
 
+        btnDangXuat.setBackground(new java.awt.Color(255, 146, 64));
         btnDangXuat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnDangXuat.setForeground(new java.awt.Color(255, 255, 169));
         btnDangXuat.setText("Đăng xuất");
         btnDangXuat.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnDangXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -179,9 +201,11 @@ public class KhachHangFrame extends javax.swing.JFrame {
             }
         });
 
-        pnlHoaDon.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Đơn hàng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        pnlHoaDon.setBackground(new java.awt.Color(61, 61, 61));
+        pnlHoaDon.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 169)), "Đơn hàng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 169))); // NOI18N
         pnlHoaDon.setToolTipText("");
 
+        tblDonHang.setBackground(new java.awt.Color(255, 146, 64));
         tblDonHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -217,13 +241,15 @@ public class KhachHangFrame extends javax.swing.JFrame {
             pnlHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHoaDonLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         lblDSSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDSSP.setForeground(new java.awt.Color(255, 255, 169));
         lblDSSP.setText("Danh sách sản phẩm");
 
+        tblDSSP.setBackground(new java.awt.Color(255, 146, 64));
         tblDSSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -259,6 +285,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblDSSP);
 
         lblTongHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblTongHoaDon.setForeground(new java.awt.Color(255, 255, 169));
         lblTongHoaDon.setText("Tổng đơn hàng");
 
         lblTong.setFont(new java.awt.Font("Segoe UI", 1, 35)); // NOI18N
@@ -266,7 +293,9 @@ public class KhachHangFrame extends javax.swing.JFrame {
         lblTong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTong.setText("000");
 
+        btnDatHang.setBackground(new java.awt.Color(255, 146, 64));
         btnDatHang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnDatHang.setForeground(new java.awt.Color(255, 255, 169));
         btnDatHang.setText("Đặt hàng");
         btnDatHang.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnDatHang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -277,9 +306,12 @@ public class KhachHangFrame extends javax.swing.JFrame {
             }
         });
 
-        lblChiTiet.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblChiTiet.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblChiTiet.setForeground(new java.awt.Color(255, 255, 169));
+        lblChiTiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/information.png"))); // NOI18N
         lblChiTiet.setText("Thông tin chi tiết");
         lblChiTiet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblChiTiet.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
         pnlMain.setLayout(pnlMainLayout);
@@ -321,28 +353,28 @@ public class KhachHangFrame extends javax.swing.JFrame {
                             .addGroup(pnlMainLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(pnlMainLayout.createSequentialGroup()
-                                            .addComponent(lblTenCL)
-                                            .addGap(39, 39, 39)
-                                            .addComponent(cboCL, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(btnLamMoiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(16, 16, 16))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
-                                            .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(lblChiTiet)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(17, 17, 17)))
+                                    .addGroup(pnlMainLayout.createSequentialGroup()
+                                        .addComponent(lblTenCL)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(cboCL, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnLamMoiSP, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(16, 16, 16))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
                                         .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(btnDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblTong, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(116, 116, 116))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblTongHoaDon)
-                                .addGap(141, 141, 141))))))
+                                            .addComponent(lblChiTiet)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(17, 17, 17))))
+                            .addGroup(pnlMainLayout.createSequentialGroup()
+                                .addGap(195, 195, 195)
+                                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(btnDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblTong, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblTongHoaDon)
+                                        .addGap(25, 25, 25))))))))
         );
         pnlMainLayout.setVerticalGroup(
             pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,13 +413,13 @@ public class KhachHangFrame extends javax.swing.JFrame {
                         .addGap(1, 1, 1)
                         .addComponent(pnlHoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlMainLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                         .addComponent(lblTongHoaDon)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblTong)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDatHang, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
+                        .addGap(32, 32, 32)
                         .addComponent(lblChiTiet)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()

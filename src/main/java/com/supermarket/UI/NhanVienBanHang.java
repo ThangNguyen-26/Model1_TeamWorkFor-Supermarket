@@ -240,11 +240,16 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(1000, 600));
 
+        pnlMain.setBackground(new java.awt.Color(61, 61, 61));
         pnlMain.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlMain.setPreferredSize(new java.awt.Dimension(960, 570));
 
-        btnDangXuat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnDangXuat.setBackground(new java.awt.Color(255, 146, 64));
+        btnDangXuat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnDangXuat.setForeground(new java.awt.Color(255, 255, 169));
+        btnDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/log-out.png"))); // NOI18N
         btnDangXuat.setText("Đăng xuất");
+        btnDangXuat.setToolTipText("");
         btnDangXuat.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnDangXuat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDangXuat.setFocusable(false);
@@ -255,15 +260,20 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         });
 
         lblQuayThanhToan.setFont(new java.awt.Font("Barlow Condensed", 1, 25)); // NOI18N
+        lblQuayThanhToan.setForeground(new java.awt.Color(255, 255, 169));
         lblQuayThanhToan.setText("QUẦY THANH TOÁN");
 
         lblClock.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblClock.setForeground(new java.awt.Color(255, 255, 169));
         lblClock.setText("11:30:30PM");
 
         lblTenSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTenSP.setForeground(new java.awt.Color(255, 255, 169));
         lblTenSP.setText("Tên sản phẩm");
 
+        txtTenSP.setBackground(new java.awt.Color(255, 146, 64));
         txtTenSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtTenSP.setForeground(new java.awt.Color(255, 255, 169));
         txtTenSP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTenSP.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtTenSP.setEnabled(false);
@@ -274,13 +284,19 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         });
 
         lblSoLuong.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblSoLuong.setForeground(new java.awt.Color(255, 255, 169));
         lblSoLuong.setText("Số lượng");
 
+        txtSoLuong.setBackground(new java.awt.Color(255, 146, 64));
         txtSoLuong.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtSoLuong.setForeground(new java.awt.Color(255, 255, 169));
         txtSoLuong.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btnThemHD.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnThemHD.setBackground(new java.awt.Color(255, 146, 64));
+        btnThemHD.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnThemHD.setForeground(new java.awt.Color(255, 255, 169));
         btnThemHD.setText("Thêm vào hoá đơn");
+        btnThemHD.setToolTipText("");
         btnThemHD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnThemHD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThemHD.setFocusable(false);
@@ -290,8 +306,11 @@ public class NhanVienBanHang extends javax.swing.JFrame {
             }
         });
 
-        btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnXoa.setBackground(new java.awt.Color(255, 146, 64));
+        btnXoa.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnXoa.setForeground(new java.awt.Color(255, 255, 169));
         btnXoa.setText("Làm mới");
+        btnXoa.setToolTipText("");
         btnXoa.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnXoa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnXoa.setFocusable(false);
@@ -302,8 +321,13 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         });
 
         lblTenCL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTenCL.setForeground(new java.awt.Color(255, 255, 169));
         lblTenCL.setText("Tên chủng loại");
 
+        cbbCL.setBackground(new java.awt.Color(255, 146, 64));
+        cbbCL.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        cbbCL.setForeground(new java.awt.Color(255, 255, 169));
+        cbbCL.setToolTipText("");
         cbbCL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cbbCL.setFocusable(false);
         cbbCL.addActionListener(new java.awt.event.ActionListener() {
@@ -312,8 +336,11 @@ public class NhanVienBanHang extends javax.swing.JFrame {
             }
         });
 
-        btnMoi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnMoi.setBackground(new java.awt.Color(255, 146, 64));
+        btnMoi.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnMoi.setForeground(new java.awt.Color(255, 255, 169));
         btnMoi.setText("Làm mới");
+        btnMoi.setToolTipText("");
         btnMoi.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnMoi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMoi.setFocusable(false);
@@ -324,8 +351,11 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         });
 
         lblDSSP.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDSSP.setForeground(new java.awt.Color(255, 255, 169));
         lblDSSP.setText("Danh sách sản phẩm");
 
+        tblDSSP.setBackground(new java.awt.Color(255, 146, 64));
+        tblDSSP.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tblDSSP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -352,9 +382,12 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblDSSP);
 
-        pnlHoaDon.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Hóa đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        pnlHoaDon.setBackground(new java.awt.Color(61, 61, 61));
+        pnlHoaDon.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 169)), "Hóa đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 169))); // NOI18N
         pnlHoaDon.setToolTipText("");
 
+        tblDonHang.setBackground(new java.awt.Color(255, 146, 64));
+        tblDonHang.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tblDonHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -394,16 +427,20 @@ public class NhanVienBanHang extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        lblTongHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblTongHoaDon.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblTongHoaDon.setForeground(new java.awt.Color(255, 255, 169));
         lblTongHoaDon.setText("Tổng hoá đơn");
 
         lblTong.setFont(new java.awt.Font("Segoe UI", 1, 35)); // NOI18N
-        lblTong.setForeground(new java.awt.Color(255, 0, 51));
+        lblTong.setForeground(new java.awt.Color(255, 146, 64));
         lblTong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTong.setText("000");
 
-        btnIn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnIn.setBackground(new java.awt.Color(255, 146, 64));
+        btnIn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnIn.setForeground(new java.awt.Color(255, 255, 169));
         btnIn.setText("In hoá đơn");
+        btnIn.setToolTipText("");
         btnIn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnIn.setFocusable(false);
@@ -413,10 +450,13 @@ public class NhanVienBanHang extends javax.swing.JFrame {
             }
         });
 
-        lblChiTiet.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblChiTiet.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblChiTiet.setForeground(new java.awt.Color(255, 255, 169));
+        lblChiTiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/information.png"))); // NOI18N
         lblChiTiet.setText("Thông tin chi tiết");
         lblChiTiet.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblChiTiet.setFocusable(false);
+        lblChiTiet.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
         pnlMain.setLayout(pnlMainLayout);
@@ -495,7 +535,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(pnlMainLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                         .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblTenSP))
@@ -519,7 +559,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
                         .addComponent(lblTong)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnIn, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                         .addComponent(lblChiTiet)))
                 .addContainerGap())
         );
