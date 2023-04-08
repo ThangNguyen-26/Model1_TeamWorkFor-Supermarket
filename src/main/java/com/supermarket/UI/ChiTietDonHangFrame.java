@@ -25,7 +25,8 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
     public ChiTietDonHangFrame(String madh) {
         initComponents();
         this.maDH = madh;
-        this.setTitle("Chi Tiết Đơn Hàng Của Mã DH "+"'" + this.maDH + "'");
+        
+//        this.setTitle("Chi Tiết Đơn Hàng Của Mã DH " + "'" + this.maDH + "'");
         init();
     }
 
@@ -299,6 +300,11 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
         tblCT.setGridColor(new java.awt.Color(0, 0, 0));
         tblCT.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tblCT.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tblCT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblCTMousePressed(evt);
+            }
+        });
         scroll.setViewportView(tblCT);
 
         javax.swing.GroupLayout pnl_SubLayout = new javax.swing.GroupLayout(pnl_Sub);
@@ -338,9 +344,7 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
                             .addGroup(pnl_SubLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(pnlMaDH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnl_SubLayout.createSequentialGroup()
-                                .addComponent(btnBack)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnBack))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pnlPic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)))
@@ -376,6 +380,10 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLastActionPerformed
+
+    private void tblCTMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCTMousePressed
+
+    }//GEN-LAST:event_tblCTMousePressed
 
     public static void main(String args[]) {
         try {
@@ -449,41 +457,6 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
             model.addRow(row);
             tongTien += ctdh.getThanhTien();
         }
-        lblTongTien.setText(String.valueOf(tongTien));
+        txtTongTien.setText(String.valueOf(tongTien));
     }
-    
-    private void fillToForm(int index){
-        txtMaDH.setText(ctdhList.get(index).getMaDH());
-        txtMaSP.setText(ctdhList.get(index).getMaSP());
-        txtSoLuong.setText(String.valueOf(ctdhList.get(index).getSoLuong()));
-        txtThanhTien.setText(String.valueOf(ctdhList.get(index).getThanhTien()));
-        tblCT.setRowSelectionInterval(index, index);
-    }
-    
-    private void first() {
-        index = 0;
-        fillToForm(0);
-    }
-
-    private void next() {
-        index++;
-        if (index > ctdhList.size() - 1) {
-            index = 0;
-        }
-        fillToForm(index);
-    }
-
-    private void previous() {
-        index--;
-        if (index < 0) {
-            index = ctdhList.size() - 1;
-        }
-        fillToForm(index);
-    }
-
-    private void last() {
-        index = ctdhList.size() - 1;
-        fillToForm(index);
-    }
-    
 }
