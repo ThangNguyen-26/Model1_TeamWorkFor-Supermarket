@@ -17,7 +17,6 @@ public class XDate {
             formater.applyPattern(pattern);
             return formater.parse(date);
         }catch(ParseException ex){    
-            ex.printStackTrace();
             MsgBox.alert(null, "Bạn phải nhập đúng định dạng ngày/tháng/năm");
         } catch (Exception e) {
             throw new RuntimeException(e);

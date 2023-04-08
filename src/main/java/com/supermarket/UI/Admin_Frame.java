@@ -22,6 +22,7 @@ import com.supermarket.UTILS.MsgBox;
 import com.supermarket.UTILS.XDate;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -2955,7 +2956,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_tabsMouseClicked
 
     private void btnSua_KHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua_KHActionPerformed
-        updateKH();
+        if(checkKH())updateKH();
     }//GEN-LAST:event_btnSua_KHActionPerformed
 
     private void tbl_KHMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_KHMousePressed
@@ -3320,6 +3321,32 @@ public class Admin_Frame extends javax.swing.JFrame {
         indexKH = khList.size() - 1;
         fillFromTableKH();
         tbl_KH.setRowSelectionInterval(indexKH, indexKH);
+    }
+    
+    private boolean checkKH(){
+        boolean check = true; 
+        
+        if(indexKH==-1){
+            MsgBox.alert(null, "Bạn chưa chọn khách hàng để sửa");
+            return false;
+        }
+        
+        if(txtTen_KH.getText().trim().length()==0){
+            MsgBox.alert(null, "Bạn không được để trống tên khách hàng");
+            check = false;
+        }
+        
+        if(txtMatKhau_KH.getText().trim().length()==0){
+            MsgBox.alert(null, "Bạn không được để trống mật mã khách hàng");
+            check = false;
+        }
+        
+        if(txtNgaySinh_KH.getText().trim().length()==0){
+            MsgBox.alert(null, "Bạn không được để trống ngày sinh");
+            check = false;
+        }
+     
+        return check;
     }
     // End Khach hang code
 
