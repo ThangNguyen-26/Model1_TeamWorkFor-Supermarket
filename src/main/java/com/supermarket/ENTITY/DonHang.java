@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.supermarket.ENTITY;
 
 import java.util.Date;
 
-/**
- *
- * @author hoang
- */
 public class DonHang {
 
     private String maDH;
@@ -64,5 +56,4 @@ public class DonHang {
     public void setTongTien(float tongTien) {
         this.tongTien = tongTien;
     }
-
 }

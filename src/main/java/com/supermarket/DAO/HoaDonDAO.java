@@ -20,7 +20,6 @@ public class HoaDonDAO extends HeThongDAO<HoaDon, String> {
 
     @Override
     public void update(HoaDon entity) {
-        //Không có chức năng cập nhật hóa đơn
     }
 
     @Override
@@ -72,5 +71,4 @@ public class HoaDonDAO extends HeThongDAO<HoaDon, String> {
         }
         return hoaDonList;
     }
-
 }

@@ -16,6 +16,4 @@ public class SanPhamExtend extends SanPham{
     public void setTenCl(String tenCl) {
         this.tenCl = tenCl;
     }
-    
-    
 }

@@ -30,7 +30,6 @@ public class KhachHangDAO extends HeThongDAO<KhachHang, String> {
 
     @Override
     public void delete(String entity) {
-        // không có xoá khách hàng vì làm vậy không khác gì đuổi khách
     }
 
     @Override

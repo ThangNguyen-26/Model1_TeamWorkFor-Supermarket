@@ -15,17 +15,14 @@ public class SanPhamExtendDao extends HeThongDAO<SanPhamExtend, String>{
 
     @Override
     public void insert(SanPhamExtend entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void update(SanPhamExtend entity) {
-        
+    public void update(SanPhamExtend entity) {  
     }
 
     @Override
     public void delete(String entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -36,7 +33,7 @@ public class SanPhamExtendDao extends HeThongDAO<SanPhamExtend, String>{
 
     @Override
     public SanPhamExtend selectById(String key) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return null;
     }
 
     @Override

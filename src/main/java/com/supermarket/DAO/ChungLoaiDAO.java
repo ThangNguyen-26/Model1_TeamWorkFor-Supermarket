@@ -1,20 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.supermarket.DAO;
 
 import com.supermarket.ENTITY.ChungLoai;
-import com.supermarket.ENTITY.KhachHang;
 import com.supermarket.UTILS.JdbcHelper;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.util.List;
 
-/**
- *
- * @author trinh duy bao
- */
 public class ChungLoaiDAO extends HeThongDAO<ChungLoai, String>{
     String insert = "insert into CHUNGLOAI values(?,?,?)";
     String update = "update CHUNGLOAI set TENCL = ?, MIEUTA = ? where MACL = ?";
@@ -68,6 +59,4 @@ public class ChungLoaiDAO extends HeThongDAO<ChungLoai, String>{
         }
         return list;
     }
-    
-    
 }

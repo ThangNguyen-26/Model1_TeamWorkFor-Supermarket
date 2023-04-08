@@ -1,6 +1,5 @@
 package com.supermarket.DAO;
 
-import com.supermarket.ENTITY.DonHang;
 import com.supermarket.ENTITY.ChiTietDonHang;
 import com.supermarket.UTILS.JdbcHelper;
 import java.sql.ResultSet;
@@ -62,5 +61,4 @@ public class ChiTietDonHangDAO extends HeThongDAO<ChiTietDonHang, String> {
     public List<ChiTietDonHang> selectByKeyword(String keyword) {
         return this.selectSql("SELECT * FROM CHITIETDONHANG WHERE MADH LIKE ?",  keyword );
     }
-    
 }

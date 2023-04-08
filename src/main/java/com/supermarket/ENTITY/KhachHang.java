@@ -2,10 +2,6 @@ package com.supermarket.ENTITY;
 
 import java.util.Date;
 
-/**
- *
- * @author trinh duy bao
- */
 public class KhachHang {
     private String maKH;
     private String matKhau;

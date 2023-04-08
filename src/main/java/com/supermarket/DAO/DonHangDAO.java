@@ -1,20 +1,11 @@
 package com.supermarket.DAO;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 import com.supermarket.ENTITY.DonHang;
-import com.supermarket.ENTITY.SanPham;
 import com.supermarket.UTILS.JdbcHelper;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author hoang
- */
 public class DonHangDAO extends HeThongDAO<DonHang, String> {
 
     String delete = "DELETE DONHANG WHERE MADH = ?";
@@ -37,8 +28,7 @@ public class DonHangDAO extends HeThongDAO<DonHang, String> {
 
     @Override
     public void update(DonHang entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+     }
 
     @Override
     public void delete(String entity) {

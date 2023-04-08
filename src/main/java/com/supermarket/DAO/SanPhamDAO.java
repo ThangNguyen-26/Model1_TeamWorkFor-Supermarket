@@ -1,9 +1,5 @@
 package com.supermarket.DAO;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 import com.supermarket.ENTITY.SanPham;
 import com.supermarket.UTILS.JdbcHelper;
 import java.sql.ResultSet;
@@ -11,10 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author hoang
- */
 public class SanPhamDAO extends HeThongDAO<SanPham, String> {
 
     String insert = "INSERT INTO SANPHAM VALUES (?,?,?,?,?)";
@@ -78,9 +70,6 @@ public class SanPhamDAO extends HeThongDAO<SanPham, String> {
     }
 
     public List<SanPham> selectByKeyword(String keyword) {
-        
         return this.selectSql("SELECT * FROM SANPHAM WHERE TENSP LIKE ?", "%" + keyword + "%");
-        
     }
-
 }

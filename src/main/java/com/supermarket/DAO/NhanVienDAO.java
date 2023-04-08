@@ -68,5 +68,4 @@ public class NhanVienDAO extends HeThongDAO<NhanVien, String> {
         }
         return list;
     }
-
 }
