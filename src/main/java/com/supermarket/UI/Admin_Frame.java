@@ -1514,6 +1514,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         txtNgayDangKy_KH.setBackground(new java.awt.Color(255, 146, 64));
         txtNgayDangKy_KH.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtNgayDangKy_KH.setForeground(new java.awt.Color(255, 255, 169));
+        txtNgayDangKy_KH.setFocusable(false);
 
         javax.swing.GroupLayout pnlInfor_KHLayout = new javax.swing.GroupLayout(pnlInfor_KH);
         pnlInfor_KH.setLayout(pnlInfor_KHLayout);
