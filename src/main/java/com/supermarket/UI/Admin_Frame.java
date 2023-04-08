@@ -3381,6 +3381,74 @@ public class Admin_Frame extends javax.swing.JFrame {
         this.indexSP = -1;
     }
 
+    private void firstSP() {
+        indexSP = 0;
+        fillFromTableSP(indexSP);
+    }
+
+    private void prevSP() {
+        tbl_SP.setRowSelectionAllowed(true);
+        indexSP--;
+        if (indexSP < 0) {
+            indexSP = spList.size() - 1;
+        }
+        tbl_SP.setRowSelectionInterval(indexSP, indexSP);
+        fillFromTableSP(indexSP);
+    }
+
+    private void nextSP() {
+        indexSP++;
+        if (indexSP > spList.size() - 1) {
+            indexSP = 0;
+        }
+        tbl_SP.setRowSelectionInterval(indexSP, indexSP);
+        fillFromTableSP(indexSP);
+    }
+
+    private void lastSP() {
+        indexSP = tbl_SP.getRowCount() - 1;
+        fillFromTableSP(indexSP);
+    }
+
+    private void themSP() {
+        SanPham model = getFromSP();
+        try {
+            spDao.insert(model);
+            loadToTableSP();
+            clearFormSP();
+            MsgBox.alert(this, "Thêm sản phẩm thành công.");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Sản phẩm đã tồn tại!");
+        }
+    }
+
+    private void suaSP() {
+        SanPham model = getFromSP();
+        try {
+            spDao.update(model);
+            loadToTableSP();
+            MsgBox.alert(this, "Cập nhật sản phẩm thành công.");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Cập nhật sản phẩm thất bại!" + e.toString());
+        }
+    }
+
+    private void xoaSP() {
+
+        if (MsgBox.confirm(this, "Bạn muốn xóa sản phẩm này chứ?")) {
+            String maSP = txtMa_SP.getText();
+            String tenSP = txtTen_SP.getText();
+            try {
+                spDao.delete(maSP);
+                loadToTableSP();
+                clearFormSP();
+                MsgBox.alert(this, "Xóa sản phẩm \"" + tenSP + "\" thành công.");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Sản phẩm không thể xóa do lỗi \n" + e.toString());
+            }
+        }
+    }
+
     // End SanPham code
     //Start Code Chủng Loại
     private void loadToTableCL() {
@@ -3747,75 +3815,5 @@ public class Admin_Frame extends javax.swing.JFrame {
         }
     }
     //end HoaDon
-
-    private void firstSP() {
-        indexSP = 0;
-        fillFromTableSP(indexSP);
-    }
-
-    private void prevSP() {
-        tbl_SP.setRowSelectionAllowed(true);
-        indexSP--;
-        if (indexSP < 0) {
-            indexSP = spList.size() - 1;
-        }
-        tbl_SP.setRowSelectionInterval(indexSP, indexSP);
-        fillFromTableSP(indexSP);
-    }
-
-    private void nextSP() {
-        indexSP++;
-        if (indexSP > spList.size() - 1) {
-            indexSP = 0;
-        }
-        tbl_SP.setRowSelectionInterval(indexSP, indexSP);
-        fillFromTableSP(indexSP);
-    }
-
-    private void lastSP() {
-        indexSP = tbl_SP.getRowCount() - 1;
-        fillFromTableSP(indexSP);
-    }
-
-    private void themSP() {
-        SanPham model = getFromSP();
-        try {
-            spDao.insert(model);
-            loadToTableSP();
-            clearFormSP();
-            MsgBox.alert(this, "Thêm sản phẩm thành công.");
-        } catch (Exception e) {
-            MsgBox.alert(this, "Sản phẩm đã tồn tại!");
-        }
-    }
-
-    private void suaSP() {
-        SanPham model = getFromSP();
-        try {
-            spDao.update(model);
-            loadToTableSP();
-            MsgBox.alert(this, "Cập nhật sản phẩm thành công.");
-        } catch (Exception e) {
-            MsgBox.alert(this, "Cập nhật sản phẩm thất bại!" + e.toString());
-        }
-    }
-
-    private void xoaSP() {
-        
-        if (MsgBox.confirm(this, "Bạn muốn xóa sản phẩm này chứ?")) {
-            String maSP = txtMa_SP.getText();
-            String tenSP = txtTen_SP.getText();
-            try {
-                spDao.delete(maSP);
-                loadToTableSP();
-                clearFormSP();
-                MsgBox.alert(this, "Xóa sản phẩm \"" + tenSP + "\" thành công.");
-            } catch (Exception e) {
-                MsgBox.alert(this, "Sản phẩm không thể xóa do lỗi \n" + e.toString());
-            }
-        }
-    }
-
-
 
 }
