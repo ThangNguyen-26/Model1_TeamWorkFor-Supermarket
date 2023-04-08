@@ -3890,10 +3890,10 @@ public class Admin_Frame extends javax.swing.JFrame {
     }
     
     private void fillFromThongKe(){
-        txtNam_TK.setText((String) tbl_TK.getValueAt(indexTK, 0));
-        txtDoanhThu_TK.setText((String) tbl_TK.getValueAt(indexTK, 1));
-        txtBanNhieuNhat_TK.setText((String) tbl_TK.getValueAt(indexTK, 2));
-        txtBanItNhat_TK.setText((String) tbl_TK.getValueAt(indexTK, 3));
+        txtNam_TK.setText(Integer.toString((Integer)tbl_TK.getValueAt(indexTK, 0)));
+        txtDoanhThu_TK.setText(Double.toString((Double)tbl_TK.getValueAt(indexTK, 1)));
+        txtBanNhieuNhat_TK.setText(Integer.toString((Integer)tbl_TK.getValueAt(indexTK, 2)));
+        txtBanItNhat_TK.setText(Integer.toString((Integer)tbl_TK.getValueAt(indexTK, 3)));
 //        txtNam_TK.setText(XDate.toString(tkList.get(indexTK).getNam(), "yyyy"));
 //        txtDoanhThu_TK.setText(String.valueOf(tkList.get(indexTK).getTongtien()));
 //        txtBanNhieuNhat_TK.setText(tkList.get(indexTK).getNhieunhat());
