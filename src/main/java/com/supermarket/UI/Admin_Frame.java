@@ -2844,15 +2844,21 @@ public class Admin_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLast_CLActionPerformed
 
     private void btnThem_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem_NVActionPerformed
-        savẹNhanvien();
+        if (kiemtra()) {
+            savẹNhanvien();
+        }
     }//GEN-LAST:event_btnThem_NVActionPerformed
 
     private void btnSua_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua_NVActionPerformed
-        updateNhanvien();
+        if (kiemtra()) {
+            updateNhanvien();
+        }
     }//GEN-LAST:event_btnSua_NVActionPerformed
 
     private void btnXoa_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa_NVActionPerformed
-        deleteNhanvien();
+        if (kiemtra() && admin()) {
+            deleteNhanvien();
+        }
     }//GEN-LAST:event_btnXoa_NVActionPerformed
 
     private void btnMoi_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoi_NVActionPerformed
@@ -3801,6 +3807,18 @@ public class Admin_Frame extends javax.swing.JFrame {
     private boolean admin() {
         if (nvList.get(indexNV).isVaiTro() == true) {
             JOptionPane.showMessageDialog(this, "Không được xoá Admin!", "", 0);
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean kiemtra(){
+        if (txtMa_NV.getText().equals("") && txtMatKhau_NV.getText().equals("") && txtHoTen_NV.getText().equals("") && txtNgaySinh_NV.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin!", "", 0);
+            return false;
+        }
+        if (txtMa_NV.getText().equals("") || txtMatKhau_NV.getText().equals("") || txtHoTen_NV.getText().equals("") || txtNgaySinh_NV.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng không để trống thông tin!", "", 0);
             return false;
         }
         return true;

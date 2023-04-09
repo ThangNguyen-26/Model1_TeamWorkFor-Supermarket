@@ -71,6 +71,30 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
         }
     }
     
+    private boolean kiemtra(){
+        if (txtTenDangNhap.getText().equals("") && txtMatKhauCu.getText().equals("") && txtMatKhauMoi.getText().equals("") && txtNhapLaiMKM.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin", "", 0);
+            return false;
+        }
+        if (txtTenDangNhap.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Nhập tên đăng nhập!", "", 0);
+            return false;
+        }
+        if (txtMatKhauCu.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Nhập mật khẩu cũ!", "", 0);
+            return false;
+        }
+        if (txtMatKhauMoi.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Nhập mật khẩu mới!", "", 0);
+            return false;
+        }
+        if (txtNhapLaiMKM.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Nhập lại mật khẩu!", "", 0);
+            return false;
+        }
+        return true;
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -283,7 +307,9 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void btnDoiMKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMKActionPerformed
-        doiMatKhau();
+        if (kiemtra()) {
+            doiMatKhau();
+        }
     }//GEN-LAST:event_btnDoiMKActionPerformed
 
     public static void main(String args[]) {
