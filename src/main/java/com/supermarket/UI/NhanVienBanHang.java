@@ -9,6 +9,7 @@ import com.supermarket.DAO.SanPhamExtendDao;
 import com.supermarket.ENTITY.CLockThread;
 import com.supermarket.ENTITY.SanPhamExtend;
 import com.supermarket.ENTITY.ChungLoai;
+import com.supermarket.ENTITY.BillThanhToan;
 import com.supermarket.ENTITY.HoaDon;
 import com.supermarket.ENTITY.ChiTietHoaDon;
 import com.supermarket.UTILS.JdbcHelper;
@@ -33,7 +34,8 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     DefaultTableModel model = new DefaultTableModel(new Object[]{"Tên sản phẩm", "Giá", "Số lượng", "Thành tiền"}, 0);
     int index;
     float tongTien;
-    String manv;
+    String manv, maHD;
+    List<BillThanhToan> billThanhToan = new ArrayList<>();
 
     public NhanVienBanHang() {
 //        MsgBox.alert(null, "Bạn phải đăng nhập trước");
@@ -160,6 +162,8 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         cbbCL.setSelectedIndex(0);
         tongTien += thanhtien;
         lblTong.setText(Float.toString(tongTien));
+        BillThanhToan bill = new BillThanhToan(tensp, giathanh, Integer.valueOf(soluong), thanhtien);
+        billThanhToan.add(bill);
     }
 
     private boolean loadSoLuongSP() {
@@ -172,6 +176,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
             hd.setMaNV(manv);
             String maHD = (String) JdbcHelper.value("select MAHD from HOADON order by MAHD desc");
             hd.setMaHD(maHD);
+            this.maHD = maHD;
             //MsgBox.alert(null, maHD);
             hdDao.insert(hd);
             //MsgBox.alert(null, "Test thêm hóa đơn");
@@ -607,10 +612,12 @@ public class NhanVienBanHang extends javax.swing.JFrame {
             txtSoLuong.setText(null);
             model.setRowCount(0);
             //spbought.removeAll(spbought);
-            tongTien = 0;
             lblTong.setText("000");
             loadTableSP();
-            JOptionPane.showMessageDialog(this, "In hoá đơn thành công");
+            BillThanhToanFrame billFrame = new BillThanhToanFrame(billThanhToan, maHD, manv, tongTien);
+            tongTien = 0;
+            billFrame.setVisible(true);
+            //JOptionPane.showMessageDialog(this, "In hoá đơn thành công");
         };
 
     }//GEN-LAST:event_btnInActionPerformed
