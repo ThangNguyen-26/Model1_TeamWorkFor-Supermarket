@@ -3012,6 +3012,8 @@ public class Admin_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_TKMousePressed
 
     private void tbl_HDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_HDMousePressed
+        indexHD = tbl_HD.getSelectedRow();
+        fillFromTableHD(indexHD);
         if (evt.getClickCount() == 2) {
             openFrameCTHD();
         }

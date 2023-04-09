@@ -3,6 +3,7 @@ package com.supermarket.UI;
 import com.supermarket.DAO.ChiTietHoaDonDAO;
 import com.supermarket.ENTITY.CLockThread;
 import com.supermarket.ENTITY.ChiTietHoaDon;
+import com.supermarket.UTILS.MsgBox;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +25,7 @@ public class ChiTietHoaDonFrame extends javax.swing.JFrame {
         this.maHD = mahd;
         this.setTitle("Chi Tiết Hoá Đơn Của Mã HD "+"'" + this.maHD + "'");
         init();
+        txtMaHD.setText(this.maHD);
     }
     
 
@@ -308,6 +310,11 @@ public class ChiTietHoaDonFrame extends javax.swing.JFrame {
         tblCT.setGridColor(new java.awt.Color(0, 0, 0));
         tblCT.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tblCT.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tblCT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblCTMousePressed(evt);
+            }
+        });
         scroll.setViewportView(tblCT);
 
         javax.swing.GroupLayout pnl_SubLayout = new javax.swing.GroupLayout(pnl_Sub);
@@ -383,6 +390,12 @@ public class ChiTietHoaDonFrame extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnBackMousePressed
 
+    private void tblCTMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCTMousePressed
+        index = tblCT.getSelectedRow();
+        MsgBox.alert(null, Integer.toString(index));
+        fillToForm(index);
+    }//GEN-LAST:event_tblCTMousePressed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -450,7 +463,6 @@ public class ChiTietHoaDonFrame extends javax.swing.JFrame {
         float tongTien = 0;
         for (ChiTietHoaDon cthd : cthdList) {
             Object[] row = {
-                cthd.getMaHD(),
                 cthd.getMaSP(),
                 cthd.getSoLuong(),
                 cthd.getThanhTien()
@@ -458,7 +470,7 @@ public class ChiTietHoaDonFrame extends javax.swing.JFrame {
             cthdTableModel.addRow(row);
             tongTien += cthd.getThanhTien();
         }
-        lblTongTien.setText(String.valueOf(tongTien));
+        txtTongTien.setText(String.valueOf(tongTien));
     }
     
     private void fillToForm(int index){
