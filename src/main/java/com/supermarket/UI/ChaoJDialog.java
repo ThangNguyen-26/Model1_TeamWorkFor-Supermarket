@@ -90,6 +90,7 @@ private void condition() {
                     progressBar.setValue(value + 10);
                 } else {
                     ChaoJDialog.this.dispose();
+                    new DangNhapJDialog(null, rootPaneCheckingEnabled).setVisible(true);
                 }
             }
         };

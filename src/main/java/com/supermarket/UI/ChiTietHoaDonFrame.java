@@ -139,7 +139,7 @@ public class ChiTietHoaDonFrame extends javax.swing.JFrame {
         txtMaSP.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtMaSP.setForeground(new java.awt.Color(255, 146, 64));
         txtMaSP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtMaSP.setText("SP0005");
+        txtMaSP.setText("SPxxxx");
 
         lblSoLuong.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblSoLuong.setForeground(new java.awt.Color(255, 255, 169));
@@ -149,7 +149,7 @@ public class ChiTietHoaDonFrame extends javax.swing.JFrame {
         txtSoLuong.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtSoLuong.setForeground(new java.awt.Color(255, 146, 64));
         txtSoLuong.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtSoLuong.setText("157");
+        txtSoLuong.setText("0");
 
         lblThanhTien.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblThanhTien.setForeground(new java.awt.Color(255, 255, 169));
@@ -159,7 +159,7 @@ public class ChiTietHoaDonFrame extends javax.swing.JFrame {
         txtThanhTien.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtThanhTien.setForeground(new java.awt.Color(255, 146, 64));
         txtThanhTien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtThanhTien.setText("57470.000");
+        txtThanhTien.setText("000");
 
         lblTongTien.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         lblTongTien.setForeground(new java.awt.Color(255, 255, 169));
@@ -371,19 +371,19 @@ public class ChiTietHoaDonFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
-        // TODO add your handling code here:
+        first();
     }//GEN-LAST:event_btnFirstActionPerformed
 
     private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
-        // TODO add your handling code here:
+        previous();
     }//GEN-LAST:event_btnPreviousActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        // TODO add your handling code here:
+        next();
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
-        // TODO add your handling code here:
+        last();
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void btnBackMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMousePressed
@@ -392,8 +392,7 @@ public class ChiTietHoaDonFrame extends javax.swing.JFrame {
 
     private void tblCTMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCTMousePressed
         index = tblCT.getSelectedRow();
-        MsgBox.alert(null, Integer.toString(index));
-        //fillToForm(index);
+        fillToForm(index);
     }//GEN-LAST:event_tblCTMousePressed
 
     public static void main(String args[]) {
@@ -469,6 +468,7 @@ public class ChiTietHoaDonFrame extends javax.swing.JFrame {
             };
             cthdTableModel.addRow(row);
             tongTien += cthd.getThanhTien();
+            
         }
         txtTongTien.setText(String.valueOf(tongTien));
     }

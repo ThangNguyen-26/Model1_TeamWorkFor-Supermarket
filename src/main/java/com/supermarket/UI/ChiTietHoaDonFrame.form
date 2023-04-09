@@ -297,7 +297,7 @@
                   <Color blue="40" green="92" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="SP0005"/>
+                <Property name="text" type="java.lang.String" value="SPxxxx"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblSoLuong">
@@ -323,7 +323,7 @@
                   <Color blue="40" green="92" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="157"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblThanhTien">
@@ -349,7 +349,7 @@
                   <Color blue="40" green="92" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="57470.000"/>
+                <Property name="text" type="java.lang.String" value="000"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblTongTien">
