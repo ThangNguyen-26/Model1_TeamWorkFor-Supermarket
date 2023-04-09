@@ -393,7 +393,7 @@ public class ChiTietHoaDonFrame extends javax.swing.JFrame {
     private void tblCTMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCTMousePressed
         index = tblCT.getSelectedRow();
         MsgBox.alert(null, Integer.toString(index));
-        fillToForm(index);
+        //fillToForm(index);
     }//GEN-LAST:event_tblCTMousePressed
 
     public static void main(String args[]) {

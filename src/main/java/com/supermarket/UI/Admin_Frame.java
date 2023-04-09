@@ -2992,7 +2992,6 @@ public class Admin_Frame extends javax.swing.JFrame {
         if (evt.getClickCount() == 2) {
             String madh = txtMa_DH.getText();
             ChiTietDonHang dhct = dhctDao.selectById(madh);
-            this.setVisible(false);
             ChiTietDonHangFrame frameDHCT = new ChiTietDonHangFrame(dhct.getMaDH());
             frameDHCT.setVisible(true);
         }
