@@ -2,8 +2,10 @@ package com.supermarket.UI;
 import com.supermarket.ENTITY.BillThanhToan;
 import com.supermarket.UTILS.XDate;
 import java.util.ArrayList;
+import com.supermarket.UTILS.XDate;
 
 import java.util.List;
+import javax.security.auth.x500.X500Principal;
 import javax.swing.table.DefaultTableModel;
 
 public class BillThanhToanFrame extends javax.swing.JDialog {
@@ -50,6 +52,7 @@ public class BillThanhToanFrame extends javax.swing.JDialog {
         txtThuNgan.setText(tenNV);
         txtTong.setText(String.valueOf(tongTien));
         txtTra.setText(String.valueOf(tongTien));
+        txtNgayBan.setText(XDate.now().toString());
     }
 
     
@@ -87,7 +90,6 @@ public class BillThanhToanFrame extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(150, 100));
-        setResizable(false);
 
         pnl_Bill.setBackground(new java.awt.Color(255, 255, 255));
 
