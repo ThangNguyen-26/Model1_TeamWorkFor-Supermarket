@@ -486,11 +486,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         } else {
             nhoMatKhau();
             if (nv.isVaiTro() == false) {
-                this.setVisible(false);
+                this.dispose();
                 NhanVienBanHang b = new NhanVienBanHang(nv.getMaNV());
                 b.setVisible(true);
             } else {
-                this.setVisible(false);
+                this.dispose();
                 Admin_Frame a = new Admin_Frame();
                 a.setVisible(true);
             }
