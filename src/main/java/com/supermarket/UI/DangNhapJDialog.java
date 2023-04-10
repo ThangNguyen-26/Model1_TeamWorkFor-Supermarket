@@ -20,7 +20,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     private String mk = null;
     private NhanVienDAO nvDAO = new NhanVienDAO();
     private KhachHangDAO khDAO = new KhachHangDAO();
-    private File file = new File("src/main/java/com/supermarket/UTILS/save.txt");
+    private File file = new File("src/SaveFile/save.txt");
 
     public DangNhapJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -29,12 +29,13 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         init();
     }
 
-    public DangNhapJDialog(java.awt.Frame parent, boolean modal, String tk, String mk) {
-        file.delete();
+    public DangNhapJDialog(java.awt.Frame parent, boolean modal, String tk, String mk) {     
         this.tk = tk;
         this.mk = mk;
         initComponents();
         initCombox();
+        file.delete();
+        init();
         cboVaiTro.setSelectedIndex(1);
         txtTenDangNhap.setText(tk);
         txtMatKhau.setText(mk);
@@ -231,12 +232,12 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                     .addGroup(pnlInforLayout.createSequentialGroup()
                         .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pnlInforLayout.createSequentialGroup()
-                                .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblTenDangNhap, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                                    .addComponent(lblMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(lblMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(24, 24, 24))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInforLayout.createSequentialGroup()
-                                .addComponent(lblVaiTro, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblTenDangNhap, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblVaiTro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtMatKhau)
@@ -251,15 +252,15 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                 .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboVaiTro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblVaiTro))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTenDangNhap))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMatKhau))
-                .addGap(20, 20, 20)
+                .addGap(8, 8, 8)
                 .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkNhoMatKhau)
                     .addComponent(LblDoiMatKhau)
@@ -448,7 +449,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
-        }
+        } 
     }
 
     private void EnterBtnLogin(KeyEvent k) {

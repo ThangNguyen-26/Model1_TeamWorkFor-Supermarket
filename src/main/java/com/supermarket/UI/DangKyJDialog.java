@@ -10,11 +10,14 @@ import com.supermarket.ENTITY.KhachHang;
 import static com.supermarket.UTILS.XDate.now;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DangKyJDialog extends javax.swing.JDialog {
 
     KhachHangDAO dao = new KhachHangDAO();
     List<KhachHang> khachHangList = new ArrayList();
+    private Date ngaySinh;
 
     public DangKyJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -49,6 +52,7 @@ public class DangKyJDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Đăng kí");
+        setUndecorated(true);
         setResizable(false);
 
         pnl_DangKy.setBackground(new java.awt.Color(61, 61, 61));
@@ -217,7 +221,7 @@ public class DangKyJDialog extends javax.swing.JDialog {
                 .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNgaySinh))
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(pnlBtns, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -261,29 +265,25 @@ public class DangKyJDialog extends javax.swing.JDialog {
     private void btnDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyActionPerformed
         boolean check = check();
         if (check == true) {
-            Date birthDay = XDate.toDate(txtNgaySinh.getText(), "dd/MM/yyyy");
-            if (birthDay != null) {
-                int age = XDate.now().getYear() - birthDay.getYear();
-                if (age >= 18) {
-                    KhachHang kh = new KhachHang();
-                    kh.setMaKH(txtTenDangNhap.getText());
-                    kh.setTenKH(txtHoVaTen.getText());
-                    kh.setMatKhau(txtMatKhau.getText());
-                    if (rdoNam.isSelected() == true) {
-                        kh.setGioiTinh(true);
-                    } else {
-                        kh.setGioiTinh(false);
-                    }
-                    kh.setNgaySinh(birthDay);
-                    kh.setNgayDangKy(now());
-                    dao.insert(kh);
-                    MsgBox.alert(null, "tạo tài khoản thành công");
-                    this.setVisible(false);
-                    new DangNhapJDialog(null, rootPaneCheckingEnabled, kh.getTenKH(),kh.getMatKhau()).setVisible(true);
-                }else{
-                    MsgBox.alert(null, "Bạn chưa đủ 18 tuổi để tạo tài khoản");
+            int age = XDate.now().getYear() - ngaySinh.getYear();
+            if (age >= 18) {
+                KhachHang kh = new KhachHang();
+                kh.setMaKH(txtTenDangNhap.getText());
+                kh.setTenKH(txtHoVaTen.getText());
+                kh.setMatKhau(txtMatKhau.getText());
+                if (rdoNam.isSelected() == true) {
+                    kh.setGioiTinh(true);
+                } else {
+                    kh.setGioiTinh(false);
                 }
-
+                kh.setNgaySinh(ngaySinh);
+                kh.setNgayDangKy(now());
+                dao.insert(kh);
+                MsgBox.alert(null, "Đăng ký thành công");
+                this.setVisible(false);
+                new DangNhapJDialog(null, rootPaneCheckingEnabled, kh.getMaKH(), kh.getMatKhau()).setVisible(true);
+            } else {
+                MsgBox.alert(null, "Bạn chưa đủ 18 tuổi để tạo tài khoản");
             }
         }
     }//GEN-LAST:event_btnDangKyActionPerformed
@@ -383,7 +383,14 @@ public class DangKyJDialog extends javax.swing.JDialog {
         if (txtNgaySinh.getText().trim().length() == 0) {
             MsgBox.alert(null, "Bạn chưa nhập ngày sinh");
             check = false;
-        } 
+        } else {
+            try {
+                ngaySinh = XDate.toDate(txtNgaySinh.getText(), "dd/MM/yyyy","Đăng ký");
+            } catch (Exception ex) {
+                MsgBox.alert(null, "Bạn phải nhập ngày sinh theo định dạng ngày/tháng/năm");
+                check = false;
+            }
+        }
         return check;
     }
 }

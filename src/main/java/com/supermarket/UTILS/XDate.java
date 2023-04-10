@@ -23,6 +23,11 @@ public class XDate {
         } 
         return null;
     }
+    
+    public static Date toDate(String date, String pattern, String Sth) throws Exception{               
+        formater.applyPattern(pattern);
+        return formater.parse(date);      
+    }
 
     public static String toString(Date date, String pattern) {
         formater.applyPattern(pattern);
