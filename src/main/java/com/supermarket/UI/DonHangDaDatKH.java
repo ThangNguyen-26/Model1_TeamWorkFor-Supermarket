@@ -99,9 +99,6 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
             }
         });
         tblDSDHDD.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDSDHDDMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tblDSDHDDMousePressed(evt);
             }
@@ -286,14 +283,12 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
 
     private void tblDSDHDDMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSDHDDMousePressed
         this.index = tblDSDHDD.getSelectedRow();
-        fillFromTable();
+        if(evt.getClickCount()==2){
+            new ChiTietDonHangFrame(listDH.get(index).getMaDH()).setVisible(true);
+        }else{
+            fillFromTable();
+        }   
     }//GEN-LAST:event_tblDSDHDDMousePressed
-
-    private void tblDSDHDDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSDHDDMouseClicked
-        boolean bl = MsgBox.confirm(null, "Bạn có muốn xem chi tiết đơn hàng "+ listDH.get(index).getMaDH() + " không ?" );
-        if(bl == true )
-        new ChiTietDonHangFrame(listDH.get(index).getMaDH()).setVisible(true);
-    }//GEN-LAST:event_tblDSDHDDMouseClicked
 
     public static void main(String args[]) {
         try {
