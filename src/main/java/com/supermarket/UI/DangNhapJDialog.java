@@ -20,7 +20,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     private String mk = null;
     private NhanVienDAO nvDAO = new NhanVienDAO();
     private KhachHangDAO khDAO = new KhachHangDAO();
-    private File file = new File("src/SaveFile/save.txt");
+    private File file = new File("src/main/resources/SaveFile/save.txt");
 
     public DangNhapJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
