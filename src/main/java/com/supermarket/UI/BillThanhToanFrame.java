@@ -1,5 +1,6 @@
 package com.supermarket.UI;
 import com.supermarket.ENTITY.BillThanhToan;
+import com.supermarket.UTILS.XDate;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class BillThanhToanFrame extends javax.swing.JDialog {
         this.tenNV = tenNV;
         this.tongTien = tongTien;
         this.setTitle("Ma HD " + this.maHD);
+        txtNgayBan.setText(XDate.toString(XDate.now(), "dd/MM/yyyy"));
         init();
     }
     
@@ -83,7 +85,7 @@ public class BillThanhToanFrame extends javax.swing.JDialog {
         lblDonVi = new javax.swing.JLabel();
         lblCamOn = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(150, 100));
         setResizable(false);
 
