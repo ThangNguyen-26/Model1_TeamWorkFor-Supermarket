@@ -77,6 +77,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         pnlTimKiem_SP = new javax.swing.JPanel();
         txtTim_SP = new javax.swing.JTextField();
         btnTim_SP = new javax.swing.JButton();
+        btnReset_SP = new javax.swing.JButton();
         pnlInfor = new javax.swing.JPanel();
         lblMa_SP = new javax.swing.JLabel();
         txtMa_SP = new javax.swing.JTextField();
@@ -315,7 +316,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         pnlTitle_SPLayout.setVerticalGroup(
             pnlTitle_SPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTitle_SPLayout.createSequentialGroup()
-                .addContainerGap(9, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTitle_SP)
                 .addContainerGap())
         );
@@ -336,24 +337,38 @@ public class Admin_Frame extends javax.swing.JFrame {
             }
         });
 
+        btnReset_SP.setBackground(new java.awt.Color(255, 146, 64));
+        btnReset_SP.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnReset_SP.setForeground(new java.awt.Color(255, 255, 169));
+        btnReset_SP.setText("Reset");
+        btnReset_SP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReset_SPActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlTimKiem_SPLayout = new javax.swing.GroupLayout(pnlTimKiem_SP);
         pnlTimKiem_SP.setLayout(pnlTimKiem_SPLayout);
         pnlTimKiem_SPLayout.setHorizontalGroup(
             pnlTimKiem_SPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTimKiem_SPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtTim_SP, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTim_SP, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnTim_SP)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTim_SP, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addComponent(btnReset_SP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlTimKiem_SPLayout.setVerticalGroup(
             pnlTimKiem_SPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTimKiem_SPLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlTimKiem_SPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnTim_SP, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(txtTim_SP))
+                .addContainerGap()
+                .addGroup(pnlTimKiem_SPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnReset_SP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlTimKiem_SPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtTim_SP, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                        .addComponent(btnTim_SP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -471,7 +486,7 @@ public class Admin_Frame extends javax.swing.JFrame {
             pnlPic_SPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPic_SPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblPic_SP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblPic_SP, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlPic_SPLayout.setVerticalGroup(
@@ -681,7 +696,7 @@ public class Admin_Frame extends javax.swing.JFrame {
                     .addComponent(pnlMainBtn_SP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnlNavigation_SP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scroll_SP, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                .addComponent(scroll_SP, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnl_SanPhamLayout = new javax.swing.GroupLayout(pnl_SanPham);
@@ -3039,6 +3054,22 @@ public class Admin_Frame extends javax.swing.JFrame {
         btnThem_SP.setEnabled(false);
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnReset_SPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReset_SPActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tbl_SP.getModel();
+        model.setRowCount(0);
+        spList = spDao.selectAll();
+        for (SanPham sp : spList) {
+            Object[] row = {
+                sp.getMaSP(),
+                sp.getTenSP(),
+                sp.getSoLuong(),
+                sp.getGiaThanh(),
+                sp.getMaCL()
+            };
+            model.addRow(row);
+        }
+    }//GEN-LAST:event_btnReset_SPActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3100,6 +3131,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     private javax.swing.JButton btnPrevious_TK;
     private javax.swing.JButton btnPrevioust_HD;
     private javax.swing.JButton btnPrevioust_KH;
+    private javax.swing.JButton btnReset_SP;
     private javax.swing.JButton btnSua_CL;
     private javax.swing.JButton btnSua_KH;
     private javax.swing.JButton btnSua_NV;
