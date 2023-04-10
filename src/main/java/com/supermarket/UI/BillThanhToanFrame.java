@@ -52,7 +52,6 @@ public class BillThanhToanFrame extends javax.swing.JDialog {
         txtThuNgan.setText(tenNV);
         txtTong.setText(String.valueOf(tongTien));
         txtTra.setText(String.valueOf(tongTien));
-        txtNgayBan.setText(XDate.now().toString());
     }
 
     
@@ -125,7 +124,7 @@ public class BillThanhToanFrame extends javax.swing.JDialog {
                 .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlInforLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDiaChi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblDiaChi, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                     .addComponent(lblDiaChiTT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblHotline, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlInforLayout.createSequentialGroup()

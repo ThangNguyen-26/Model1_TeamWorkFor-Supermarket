@@ -164,6 +164,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         lblTong.setText(Float.toString(tongTien));
         BillThanhToan bill = new BillThanhToan(tensp, giathanh, Integer.valueOf(soluong), thanhtien);
         billThanhToan.add(bill);
+        txtSoLuong.setText("");
     }
 
     private boolean loadSoLuongSP() {
@@ -174,11 +175,11 @@ public class NhanVienBanHang extends javax.swing.JFrame {
             HoaDon hd = new HoaDon();
             hd.setNgayLapHD(XDate.now());
             hd.setMaNV(manv);
-            String maHD = (String) JdbcHelper.value("select MAHD from HOADON order by MAHD desc");
-            hd.setMaHD(maHD);
+            hdDao.insert(hd);
+            String maHD = (String) JdbcHelper.value("select top 1 MAHD from HOADON order by MAHD desc");
+            //hd.setMaHD(maHD);
             this.maHD = maHD;
             //MsgBox.alert(null, maHD);
-            hdDao.insert(hd);
             //MsgBox.alert(null, "Test thêm hóa đơn");
             for (int i = 0; i < tblDonHang.getRowCount(); i++) {
                 try {
@@ -616,6 +617,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
             loadTableSP();
             BillThanhToanFrame billFrame = new BillThanhToanFrame(billThanhToan, maHD, manv, tongTien);
             tongTien = 0;
+            billThanhToan.clear();
             billFrame.setVisible(true);
             //JOptionPane.showMessageDialog(this, "In hoá đơn thành công");
         };
@@ -623,6 +625,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInActionPerformed
 
     private void tblDSSPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSSPMousePressed
+        index = tblDSSP.getSelectedRow();
         fillFromtable();
     }//GEN-LAST:event_tblDSSPMousePressed
 
