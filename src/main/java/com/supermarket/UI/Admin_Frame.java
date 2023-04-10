@@ -20,7 +20,7 @@ import com.supermarket.ENTITY.NhanVien;
 import com.supermarket.ENTITY.SanPham;
 import com.supermarket.UTILS.MsgBox;
 import com.supermarket.UTILS.XDate;
-import java.awt.Color;
+import com.supermarket.UTILS.XImage;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +30,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class Admin_Frame extends javax.swing.JFrame {
 
-//    private int index = 0;
     private int indexSP = -1;
     private int indexKH = -1;
     private int indexCL = -1;
@@ -44,33 +43,23 @@ public class Admin_Frame extends javax.swing.JFrame {
     private List<SanPham> spList = new ArrayList<>();
     private List<KhachHang> khList = new ArrayList<>();
     private List<ChungLoai> clList = new ArrayList<>();
+    private List<DonHang> dhList = new ArrayList<>();
     private List<NhanVien> nvList = new ArrayList<>();
     private List<HoaDon> hdList = new ArrayList<>();
 
     //Biến DAO
-    private KhachHangDAO khDao = new KhachHangDAO();
-    private SanPhamDAO spDao = new SanPhamDAO();
-    private ChungLoaiDAO clDao = new ChungLoaiDAO();
-    private DonHangDAO dhDao = new DonHangDAO();
-    private HoaDonDAO hdDao = new HoaDonDAO();
-    private ChiTietDonHangDAO dhctDao = new ChiTietDonHangDAO();
-    private NhanVienDAO nvDao = new NhanVienDAO();
-    private ThongKeDAO tkDao = new ThongKeDAO();
+    private final KhachHangDAO khDao = new KhachHangDAO();
+    private final SanPhamDAO spDao = new SanPhamDAO();
+    private final ChungLoaiDAO clDao = new ChungLoaiDAO();
+    private final DonHangDAO dhDao = new DonHangDAO();
+    private final HoaDonDAO hdDao = new HoaDonDAO();
+    private final ChiTietDonHangDAO dhctDao = new ChiTietDonHangDAO();
+    private final NhanVienDAO nvDao = new NhanVienDAO();
+    private final ThongKeDAO tkDao = new ThongKeDAO();
 
     public Admin_Frame() {
         initComponents();
-        setLocationRelativeTo(null);
-//        new ChaoJDialog(this, true).setVisible(true);
-//        new DangNhapJDialog(this, true).setVisible(true);
-        clockRun();
-        loadToTableSP();
-        fillCboSP();
-        loadToTableKH();
-        loadToTableCL();
-        loadToTableDH();
-        loadToTableNV();
-        loadToTableHD();
-        loadToTableTK();
+        init();
     }
 
     @SuppressWarnings("unchecked")
@@ -277,9 +266,15 @@ public class Admin_Frame extends javax.swing.JFrame {
         lblClock = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Hệ thống quản lý siêu thị | Nhóm 5 (UDPM)");
         setBackground(new java.awt.Color(61, 61, 61));
         setMaximizedBounds(new java.awt.Rectangle(1100, 600, 600, 600));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         pnlContainer.setBackground(new java.awt.Color(61, 61, 61));
 
@@ -290,14 +285,6 @@ public class Admin_Frame extends javax.swing.JFrame {
         tabs.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tabs.setOpaque(true);
         tabs.setPreferredSize(new java.awt.Dimension(1100, 552));
-        tabs.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabsMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                tabsMouseEntered(evt);
-            }
-        });
 
         pnl_SanPham.setForeground(new java.awt.Color(205, 255, 255));
         pnl_SanPham.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -379,6 +366,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         txtMa_SP.setBackground(new java.awt.Color(255, 146, 64));
         txtMa_SP.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtMa_SP.setForeground(new java.awt.Color(255, 255, 169));
+        txtMa_SP.setFocusable(false);
 
         lblTen_SP.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblTen_SP.setForeground(new java.awt.Color(255, 255, 169));
@@ -395,6 +383,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         txtSoLuong_SP.setBackground(new java.awt.Color(255, 146, 64));
         txtSoLuong_SP.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtSoLuong_SP.setForeground(new java.awt.Color(255, 255, 169));
+        txtSoLuong_SP.setText("0");
 
         lblGia_SP.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblGia_SP.setForeground(new java.awt.Color(255, 255, 169));
@@ -403,6 +392,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         txtGia_SP.setBackground(new java.awt.Color(255, 146, 64));
         txtGia_SP.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtGia_SP.setForeground(new java.awt.Color(255, 255, 169));
+        txtGia_SP.setText("0.0");
 
         lblChungLoai_SP.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblChungLoai_SP.setForeground(new java.awt.Color(255, 255, 169));
@@ -501,7 +491,6 @@ public class Admin_Frame extends javax.swing.JFrame {
         btnThem_SP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addition.png"))); // NOI18N
         btnThem_SP.setText("Thêm");
         btnThem_SP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnThem_SP.setFocusable(false);
         btnThem_SP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThem_SPActionPerformed(evt);
@@ -639,8 +628,10 @@ public class Admin_Frame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbl_SP.setGridColor(new java.awt.Color(0, 0, 0));
         tbl_SP.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_SP.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_SP.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbl_SP.getTableHeader().setReorderingAllowed(false);
         tbl_SP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -973,8 +964,10 @@ public class Admin_Frame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbl_CL.setGridColor(java.awt.Color.black);
         tbl_CL.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_CL.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_CL.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbl_CL.getTableHeader().setReorderingAllowed(false);
         tbl_CL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -1341,8 +1334,10 @@ public class Admin_Frame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbl_NV.setGridColor(java.awt.Color.black);
         tbl_NV.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_NV.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_NV.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbl_NV.getTableHeader().setReorderingAllowed(false);
         tbl_NV.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -1691,8 +1686,10 @@ public class Admin_Frame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbl_KH.setGridColor(java.awt.Color.black);
         tbl_KH.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_KH.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_KH.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbl_KH.getTableHeader().setReorderingAllowed(false);
         tbl_KH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -2018,8 +2015,10 @@ public class Admin_Frame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbl_HD.setGridColor(java.awt.Color.black);
         tbl_HD.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_HD.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_HD.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbl_HD.getTableHeader().setReorderingAllowed(false);
         tbl_HD.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -2356,8 +2355,10 @@ public class Admin_Frame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbl_DH.setGridColor(java.awt.Color.black);
         tbl_DH.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_DH.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_DH.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbl_DH.getTableHeader().setReorderingAllowed(false);
         tbl_DH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -2633,9 +2634,10 @@ public class Admin_Frame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbl_TK.setGridColor(new java.awt.Color(102, 255, 51));
+        tbl_TK.setGridColor(java.awt.Color.black);
         tbl_TK.setSelectionBackground(new java.awt.Color(255, 255, 169));
         tbl_TK.setSelectionForeground(new java.awt.Color(61, 61, 61));
+        tbl_TK.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbl_TK.getTableHeader().setReorderingAllowed(false);
         tbl_TK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -2773,7 +2775,9 @@ public class Admin_Frame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThem_SPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem_SPActionPerformed
-        themSP();
+        if (checkSP()) {
+            themSP();
+        }
     }//GEN-LAST:event_btnThem_SPActionPerformed
 
     private void btnSua_SPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua_SPActionPerformed
@@ -2785,6 +2789,11 @@ public class Admin_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoa_SPActionPerformed
 
     private void btnMoi_SPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoi_SPActionPerformed
+        btnSua_SP.setEnabled(false);
+        btnXoa_SP.setEnabled(false);
+        btnMoi_SP.setEnabled(false);
+        btnThem_SP.setEnabled(true);
+        tbl_SP.setRowSelectionAllowed(false);
         clearFormSP();
     }//GEN-LAST:event_btnMoi_SPActionPerformed
 
@@ -2814,7 +2823,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         if (checkCL()) {
             if (checkSuaTenCL()) {
                 updateCL();
-            }else{
+            } else {
                 checkTenChungLoai();
                 updateCL();
             }
@@ -2848,19 +2857,19 @@ public class Admin_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLast_CLActionPerformed
 
     private void btnThem_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem_NVActionPerformed
-        if (kiemtra()) {
+        if (checkNV()) {
             savẹNhanvien();
         }
     }//GEN-LAST:event_btnThem_NVActionPerformed
 
     private void btnSua_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua_NVActionPerformed
-        if (kiemtra()) {
+        if (checkNV()) {
             updateNhanvien();
         }
     }//GEN-LAST:event_btnSua_NVActionPerformed
 
     private void btnXoa_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa_NVActionPerformed
-        if (kiemtra() && admin()) {
+        if (checkNV() && admin()) {
             deleteNhanvien();
         }
     }//GEN-LAST:event_btnXoa_NVActionPerformed
@@ -2878,7 +2887,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrevious_NVActionPerformed
 
     private void btnNext_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext_NVActionPerformed
-        NextNV();
+        nextNV();
     }//GEN-LAST:event_btnNext_NVActionPerformed
 
     private void btnLast_NVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast_NVActionPerformed
@@ -2922,53 +2931,50 @@ public class Admin_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoa_HDActionPerformed
 
     private void btnFirst_DHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst_DHActionPerformed
-        // TODO add your handling code here:
+        firstDH();
     }//GEN-LAST:event_btnFirst_DHActionPerformed
 
     private void btnPrevious_DHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevious_DHActionPerformed
-        // TODO add your handling code here:
+        previousDH();
     }//GEN-LAST:event_btnPrevious_DHActionPerformed
 
     private void btnNext_DHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext_DHActionPerformed
-        // TODO add your handling code here:
+        nextDH();
     }//GEN-LAST:event_btnNext_DHActionPerformed
 
     private void btnLast_DHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast_DHActionPerformed
-        // TODO add your handling code here:
+        lastDH();
     }//GEN-LAST:event_btnLast_DHActionPerformed
 
     private void btnXoa_DHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa_DHActionPerformed
-
+        xoaDH();
     }//GEN-LAST:event_btnXoa_DHActionPerformed
 
     private void btnFirst_TKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst_TKActionPerformed
-        FirstTK();
+        firstTK();
     }//GEN-LAST:event_btnFirst_TKActionPerformed
 
     private void btnPrevious_TKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevious_TKActionPerformed
-        PrevTK();
+        prevTK();
     }//GEN-LAST:event_btnPrevious_TKActionPerformed
 
     private void btnNext_TKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext_TKActionPerformed
-        NextTK();
+        nextTK();
     }//GEN-LAST:event_btnNext_TKActionPerformed
 
     private void btnLast_TKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast_TKActionPerformed
-        LastTK();
+        lastTK();
     }//GEN-LAST:event_btnLast_TKActionPerformed
 
-    private void tabsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabsMouseEntered
-
-    }//GEN-LAST:event_tabsMouseEntered
-
     private void tbl_SPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_SPMousePressed
+        btnSua_SP.setEnabled(true);
+        btnXoa_SP.setEnabled(true);
+        btnMoi_SP.setEnabled(true);
+        btnThem_SP.setEnabled(false);
+        tbl_SP.setRowSelectionAllowed(true);
         indexSP = tbl_SP.rowAtPoint(evt.getPoint());
         editSP();
     }//GEN-LAST:event_tbl_SPMousePressed
-
-    private void tabsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabsMouseClicked
-
-    }//GEN-LAST:event_tabsMouseClicked
 
     private void btnSua_KHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua_KHActionPerformed
         if (checkKH())
@@ -3028,6 +3034,10 @@ public class Admin_Frame extends javax.swing.JFrame {
             openFrameCTHD();
         }
     }//GEN-LAST:event_tbl_HDMousePressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        btnThem_SP.setEnabled(false);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -3258,6 +3268,12 @@ public class Admin_Frame extends javax.swing.JFrame {
     private javax.swing.JLabel txtTongTien_HD;
     // End of variables declaration//GEN-END:variables
 
+    private void clockRun() {
+        CLockThread cl = new CLockThread(lblClock);
+        Thread t = new Thread(cl);
+        t.start();
+    }
+
     // Begin Khach hang code
     private void loadToTableKH() {
         DefaultTableModel khTableModel = new DefaultTableModel() {
@@ -3373,7 +3389,33 @@ public class Admin_Frame extends javax.swing.JFrame {
     }
     // End Khach hang code
 
-    // Begin SanPham code
+    // Begin San pham code
+    private boolean checkSP() {
+        if (txtMa_SP.getText().length() == 0 || txtMa_SP.getText().length() > 10) {
+            MsgBox.alert(this, "Không Được Để Trống Mã SP");
+            txtMa_SP.requestFocus();
+            return false;
+        }
+
+        if (txtTen_SP.getText().length() == 0 || txtTen_SP.getText().length() > 50) {
+            MsgBox.alert(this, "Không Được Để Trống Tên SP");
+            txtTen_SP.requestFocus();
+            return false;
+        }
+
+        if (txtSoLuong_SP.getText().equals("0")) {
+            MsgBox.alert(this, "Vui lòng nhập số lượng");
+            txtSoLuong_SP.requestFocus();
+            return false;
+        }
+        if (txtGia_SP.getText().equals("0.0")) {
+            MsgBox.alert(this, "Vui lòng nhập đơn giá");
+            txtGia_SP.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
     private void loadToTableSP() {
         DefaultTableModel model = (DefaultTableModel) tbl_SP.getModel();
         model.setRowCount(0);
@@ -3532,8 +3574,99 @@ public class Admin_Frame extends javax.swing.JFrame {
         }
     }
 
-    // End SanPham code
-    //Start Code Chủng Loại
+    // End San pham code
+    // Begin Don hang code
+    private void loadToTableDH() {
+        DefaultTableModel model = (DefaultTableModel) tbl_DH.getModel();
+        model.setRowCount(0);
+        dhList = dhDao.selectAll();
+        for (DonHang dh : dhList) {
+            Object[] row = {
+                dh.getMaDH(),
+                dh.getNgayDatHang(),
+                dh.getMaKH(),
+                dh.getTongTien()
+            };
+            model.addRow(row);
+        }
+    }
+
+    private void editDH() {
+        String maDH = (String) tbl_DH.getValueAt(this.indexDH, 0);
+        DonHang dh = dhDao.selectById(maDH);
+        if (dh != null) {
+            setFormDH(dh);
+        }
+    }
+
+    private void setFormDH(DonHang dh) {
+        txtMa_DH.setText(dh.getMaDH());
+        txtMaKH_DH.setText(dh.getMaKH());
+        txtNgayDatHang_DH.setText(String.valueOf(dh.getNgayDatHang()));
+        txtTongTien_DH.setText(String.valueOf(dh.getTongTien()));
+    }
+
+    private void clearFormDH() {
+        DonHang dh = new DonHang();
+        dh.setMaDH(dh.getMaDH());
+        dh.setNgayDatHang(dh.getNgayDatHang());
+        dh.setMaKH(dh.getMaKH());
+    }
+
+    private void nextDH() {
+        indexDH++;
+        if (indexDH > dhList.size() - 1) {
+            indexDH = 0;
+        }
+        tbl_DH.setRowSelectionInterval(indexDH, indexDH);
+        fillFromTableDH(indexDH);
+    }
+
+    private void previousDH() {
+        tbl_DH.setRowSelectionAllowed(true);
+        indexDH--;
+        if (indexDH < 0) {
+            indexDH = dhList.size() - 1;
+        }
+        tbl_DH.setRowSelectionInterval(indexDH, indexDH);
+        fillFromTableDH(indexDH);
+    }
+
+    private void lastDH() {
+        indexDH = tbl_DH.getRowCount() - 1;
+        fillFromTableDH(indexDH);
+    }
+
+    private void firstDH() {
+        indexDH = 0;
+        fillFromTableDH(indexDH);
+    }
+
+    private void fillFromTableDH(int index) {
+        tbl_DH.setRowSelectionAllowed(true);
+        txtMa_DH.setText(dhList.get(index).getMaDH());
+        txtMaKH_DH.setText(dhList.get(index).getMaKH());
+        txtNgayDatHang_DH.setText(XDate.toString(dhList.get(index).getNgayDatHang(), "dd/MM/YYYY"));
+        txtTongTien_DH.setText(String.valueOf(dhList.get(index).getTongTien()));
+        tbl_DH.setRowSelectionInterval(indexDH, indexDH);
+    }
+
+    private void xoaDH() {
+        if (MsgBox.confirm(this, "Bạn muốn xóa sản phẩm này chứ?")) {
+            String maDH = txtMa_DH.getText();
+            try {
+                dhDao.delete(maDH);
+                loadToTableDH();
+                clearFormDH();
+                MsgBox.alert(this, "Xóa đơn hàng \"" + maDH + "\" thành công.");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Đơn hàng không thể xóa do lỗi \n" + e.toString());
+            }
+        }
+    }
+
+    // End Don hang code
+    // Begin Chung loai code
     private void loadToTableCL() {
         DefaultTableModel clTableModel = (DefaultTableModel) tbl_CL.getModel();
         clTableModel.setRowCount(0);
@@ -3674,45 +3807,8 @@ public class Admin_Frame extends javax.swing.JFrame {
         return true;
     }
 
-    //End Code Chủng Loại
-    private void loadToTableDH() {
-        DefaultTableModel model = (DefaultTableModel) tbl_DH.getModel();
-        model.setRowCount(0);
-        List<DonHang> list = dhDao.selectAll();
-        for (DonHang dh : list) {
-            Object[] row = {
-                dh.getMaDH(),
-                dh.getNgayDatHang(),
-                dh.getMaKH(),
-                dh.getTongTien()
-            };
-            model.addRow(row);
-        }
-    }
-
-    private void editDH() {
-        String maDH = (String) tbl_DH.getValueAt(this.indexDH, 0);
-        DonHang dh = dhDao.selectById(maDH);
-        if (dh != null) {
-            setFormDH(dh);
-        }
-    }
-
-    private void setFormDH(DonHang dh) {
-        txtMa_DH.setText(dh.getMaDH());
-        txtMaKH_DH.setText(dh.getMaKH());
-        txtNgayDatHang_DH.setText(String.valueOf(dh.getNgayDatHang()));
-        txtTongTien_DH.setText(String.valueOf(dh.getTongTien()));
-    }
-
-    private void clearFormDH() {
-        DonHang dh = new DonHang();
-        dh.setMaDH(dh.getMaDH());
-        dh.setNgayDatHang(dh.getNgayDatHang());
-        dh.setMaKH(dh.getMaKH());
-    }
-
-    //BEGIN NHANVIEN
+    // End Chung loai code
+    // Begin Nhan vien code
     private void loadToTableNV() {
         DefaultTableModel model = (DefaultTableModel) tbl_NV.getModel();
         model.setRowCount(0);
@@ -3828,7 +3924,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         return true;
     }
 
-    private boolean kiemtra() {
+    private boolean checkNV() {
         ngaySinh = XDate.toDate(txtNgaySinh_NV.getText(), "dd/MM/yyyy");
         int age = XDate.now().getYear() - ngaySinh.getYear();
         if (age < 18) {
@@ -3844,12 +3940,6 @@ public class Admin_Frame extends javax.swing.JFrame {
             return false;
         }
         return true;
-    }
-
-    private void clockRun() {
-        CLockThread cl = new CLockThread(lblClock);
-        Thread t = new Thread(cl);
-        t.start();
     }
 
     private void FirstNV() {
@@ -3870,7 +3960,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         editNV();
     }
 
-    private void NextNV() {
+    private void nextNV() {
         indexNV++;
         if (indexNV > tbl_NV.getRowCount() - 1) {
             indexNV = 0;
@@ -3878,7 +3968,8 @@ public class Admin_Frame extends javax.swing.JFrame {
         editNV();
     }
 
-    //start HoaDon
+    // End Nhan vien code
+    // Begin Hoa don code
     private void loadToTableHD() {
         initHD();
         DefaultTableModel hdTableModel = (DefaultTableModel) tbl_HD.getModel();
@@ -3952,8 +4043,8 @@ public class Admin_Frame extends javax.swing.JFrame {
         }
     }
 
-    //end HoaDon
-    //Begin Thống kê
+    // End Hoa don code
+    // Begin Thong ke code
     private void loadToTableTK() {
         DefaultTableModel model = (DefaultTableModel) tbl_TK.getModel();
         model.setRowCount(0);
@@ -3975,17 +4066,17 @@ public class Admin_Frame extends javax.swing.JFrame {
         tbl_TK.setRowSelectionInterval(indexTK, indexTK);
     }
 
-    private void FirstTK() {
+    private void firstTK() {
         indexTK = 0;
         fillFromThongKe();
     }
 
-    private void LastTK() {
+    private void lastTK() {
         indexTK = tbl_TK.getRowCount() - 1;
         fillFromThongKe();
     }
 
-    private void NextTK() {
+    private void nextTK() {
         indexTK++;
         if (indexTK > tbl_TK.getRowCount() - 1) {
             indexTK = 0;
@@ -3993,11 +4084,26 @@ public class Admin_Frame extends javax.swing.JFrame {
         fillFromThongKe();
     }
 
-    private void PrevTK() {
+    private void prevTK() {
         indexTK--;
         if (indexTK < 0) {
             indexTK = tbl_NV.getRowCount() - 1;
         }
         fillFromThongKe();
+    }
+    // End Thong ke code
+
+    private void init() {
+        this.setIconImage(XImage.getAppIcon());
+        setLocationRelativeTo(null);
+        clockRun();
+        loadToTableSP();
+        fillCboSP();
+        loadToTableKH();
+        loadToTableCL();
+        loadToTableDH();
+        loadToTableNV();
+        loadToTableHD();
+        loadToTableTK();
     }
 }
