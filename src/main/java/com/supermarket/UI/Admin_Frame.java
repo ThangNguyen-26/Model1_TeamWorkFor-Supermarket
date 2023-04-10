@@ -1909,7 +1909,7 @@ public class Admin_Frame extends javax.swing.JFrame {
             pnlPic_HDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPic_HDLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblPic_HD, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+                .addComponent(lblPic_HD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlPic_HDLayout.setVerticalGroup(
@@ -2032,7 +2032,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         pnl_Sub_HD.setLayout(pnl_Sub_HDLayout);
         pnl_Sub_HDLayout.setHorizontalGroup(
             pnl_Sub_HDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scroll_HD)
+            .addComponent(scroll_HD, javax.swing.GroupLayout.DEFAULT_SIZE, 957, Short.MAX_VALUE)
             .addGroup(pnl_Sub_HDLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnl_Sub_HDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2076,7 +2076,8 @@ public class Admin_Frame extends javax.swing.JFrame {
                         .addComponent(btnXoa_HD)
                         .addComponent(lblMeo_HD)))
                 .addGap(7, 7, 7)
-                .addComponent(scroll_HD, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
+                .addComponent(scroll_HD, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout pnl_HoaDonLayout = new javax.swing.GroupLayout(pnl_HoaDon);
@@ -2253,7 +2254,7 @@ public class Admin_Frame extends javax.swing.JFrame {
             pnlPic_DHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPic_DHLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblPic_DH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblPic_DH, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2411,7 +2412,7 @@ public class Admin_Frame extends javax.swing.JFrame {
                         .addComponent(btnXoa_DH)
                         .addComponent(lblMeo_DH)))
                 .addGap(7, 7, 7)
-                .addComponent(sroll_DH, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                .addComponent(sroll_DH, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnl_DonHangLayout = new javax.swing.GroupLayout(pnl_DonHang);
@@ -2426,9 +2427,7 @@ public class Admin_Frame extends javax.swing.JFrame {
             pnl_DonHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 540, Short.MAX_VALUE)
             .addGroup(pnl_DonHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnl_DonHangLayout.createSequentialGroup()
-                    .addComponent(pnl_Sub_DH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addComponent(pnl_Sub_DH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabs.addTab("QUẢN LÝ ĐƠN HÀNG", pnl_DonHang);
