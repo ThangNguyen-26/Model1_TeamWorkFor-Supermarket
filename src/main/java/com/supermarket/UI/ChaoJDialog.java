@@ -6,6 +6,8 @@ import javax.swing.Timer;
 
 public class ChaoJDialog extends javax.swing.JDialog {
 
+    private Timer t;
+    
     public ChaoJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -89,12 +91,14 @@ private void condition() {
                 if (value < 100) {
                     progressBar.setValue(value + 10);
                 } else {
+                    t.stop();
                     ChaoJDialog.this.dispose();
                     new DangNhapJDialog(null, rootPaneCheckingEnabled).setVisible(true);
                 }
             }
         };
-        new Timer(200, listener).start();
+        t = new Timer(200, listener);
+        t.start();
     }
     private void init() {
         this.setLocationRelativeTo(null);
