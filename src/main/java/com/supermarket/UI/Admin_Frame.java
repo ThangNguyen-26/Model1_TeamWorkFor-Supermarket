@@ -45,7 +45,6 @@ public class Admin_Frame extends javax.swing.JFrame {
     private List<ChungLoai> clList = new ArrayList<>();
     private List<NhanVien> nvList = new ArrayList<>();
     private List<HoaDon> hdList = new ArrayList<>();
-    
 
     //Biến DAO
     private KhachHangDAO khDao = new KhachHangDAO();
@@ -2811,8 +2810,13 @@ public class Admin_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThem_CLActionPerformed
 
     private void btnSua_CLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua_CLActionPerformed
-        if (checkCL() && checkTenChungLoai()) {
-            updateCL();
+        if (checkCL()) {
+            if (checkSuaTenCL()) {
+                updateCL();
+            }else{
+                checkTenChungLoai();
+                updateCL();
+            }
         }
     }//GEN-LAST:event_btnSua_CLActionPerformed
 
@@ -2966,7 +2970,8 @@ public class Admin_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_tabsMouseClicked
 
     private void btnSua_KHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua_KHActionPerformed
-        if(checkKH())updateKH();
+        if (checkKH())
+            updateKH();
     }//GEN-LAST:event_btnSua_KHActionPerformed
 
     private void tbl_KHMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_KHMousePressed
@@ -3339,30 +3344,30 @@ public class Admin_Frame extends javax.swing.JFrame {
         fillFromTableKH();
         tbl_KH.setRowSelectionInterval(indexKH, indexKH);
     }
-    
-    private boolean checkKH(){
-        boolean check = true; 
-        
-        if(indexKH==-1){
+
+    private boolean checkKH() {
+        boolean check = true;
+
+        if (indexKH == -1) {
             MsgBox.alert(null, "Bạn chưa chọn khách hàng để sửa");
             return false;
         }
-        
-        if(txtTen_KH.getText().trim().length()==0){
+
+        if (txtTen_KH.getText().trim().length() == 0) {
             MsgBox.alert(null, "Bạn không được để trống tên khách hàng");
             check = false;
         }
-        
-        if(txtMatKhau_KH.getText().trim().length()==0){
+
+        if (txtMatKhau_KH.getText().trim().length() == 0) {
             MsgBox.alert(null, "Bạn không được để trống mật mã khách hàng");
             check = false;
         }
-        
-        if(txtNgaySinh_KH.getText().trim().length()==0){
+
+        if (txtNgaySinh_KH.getText().trim().length() == 0) {
             MsgBox.alert(null, "Bạn không được để trống ngày sinh");
             check = false;
         }
-     
+
         return check;
     }
     // End Khach hang code
@@ -3642,17 +3647,12 @@ public class Admin_Frame extends javax.swing.JFrame {
         }
         return true;
     }
-    
-    private boolean checkSuaTenCL(){
-        if (txtTen_CL.getText().equals(clList.get(indexCL))) {
-                return true;
-            }
-        for (ChungLoai cl : clList) {
-            if (txtTen_CL.getText().equals(cl.getTenCL())) {
-                indexCL = clList.indexOf(cl);
-            } 
+
+    private boolean checkSuaTenCL() {
+        if (txtTen_CL.getText().equals(clList.get(indexCL).getTenCL())) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     private boolean checkCL() {
@@ -3826,8 +3826,8 @@ public class Admin_Frame extends javax.swing.JFrame {
         }
         return true;
     }
-    
-    private boolean kiemtra(){
+
+    private boolean kiemtra() {
         if (txtMa_NV.getText().equals("") && txtMatKhau_NV.getText().equals("") && txtHoTen_NV.getText().equals("") && txtNgaySinh_NV.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin!", "", 0);
             return false;
@@ -3844,30 +3844,32 @@ public class Admin_Frame extends javax.swing.JFrame {
         Thread t = new Thread(cl);
         t.start();
     }
-    
-    private void FirstNV(){
+
+    private void FirstNV() {
         indexNV = 0;
         editNV();
     }
-    private void LastNV(){
+
+    private void LastNV() {
         indexNV = tbl_NV.getRowCount() - 1;
         editNV();
     }
-    private void PrevNV(){
+
+    private void PrevNV() {
         indexNV--;
         if (indexNV < 0) {
             indexNV = tbl_NV.getRowCount() - 1;
         }
         editNV();
     }
-    private void NextNV(){
+
+    private void NextNV() {
         indexNV++;
         if (indexNV > tbl_NV.getRowCount() - 1) {
             indexNV = 0;
         }
         editNV();
     }
-    
 
     //start HoaDon
     private void loadToTableHD() {
@@ -3942,6 +3944,7 @@ public class Admin_Frame extends javax.swing.JFrame {
             MsgBox.alert(this, "Vui Lòng Chọn 1 HD Để Xem Chi Tiết !");
         }
     }
+
     //end HoaDon
     //Begin Thống kê
     private void loadToTableTK() {
@@ -3956,34 +3959,34 @@ public class Admin_Frame extends javax.swing.JFrame {
             System.out.println(e.toString());
         }
     }
-    
-    private void fillFromThongKe(){
-        txtNam_TK.setText(Integer.toString((Integer)tbl_TK.getValueAt(indexTK, 0)));
-        txtDoanhThu_TK.setText(Double.toString((Double)tbl_TK.getValueAt(indexTK, 1)));
-        txtBanNhieuNhat_TK.setText(Integer.toString((Integer)tbl_TK.getValueAt(indexTK, 2)));
-        txtBanItNhat_TK.setText(Integer.toString((Integer)tbl_TK.getValueAt(indexTK, 3)));
+
+    private void fillFromThongKe() {
+        txtNam_TK.setText(Integer.toString((Integer) tbl_TK.getValueAt(indexTK, 0)));
+        txtDoanhThu_TK.setText(Double.toString((Double) tbl_TK.getValueAt(indexTK, 1)));
+        txtBanNhieuNhat_TK.setText(Integer.toString((Integer) tbl_TK.getValueAt(indexTK, 2)));
+        txtBanItNhat_TK.setText(Integer.toString((Integer) tbl_TK.getValueAt(indexTK, 3)));
         tbl_TK.setRowSelectionInterval(indexTK, indexTK);
     }
-    
-    private void FirstTK(){
+
+    private void FirstTK() {
         indexTK = 0;
         fillFromThongKe();
     }
-    
-    private void LastTK(){
+
+    private void LastTK() {
         indexTK = tbl_TK.getRowCount() - 1;
         fillFromThongKe();
     }
-    
-    private void NextTK(){
+
+    private void NextTK() {
         indexTK++;
         if (indexTK > tbl_TK.getRowCount() - 1) {
             indexTK = 0;
         }
         fillFromThongKe();
     }
-    
-    private void PrevTK(){
+
+    private void PrevTK() {
         indexTK--;
         if (indexTK < 0) {
             indexTK = tbl_NV.getRowCount() - 1;
