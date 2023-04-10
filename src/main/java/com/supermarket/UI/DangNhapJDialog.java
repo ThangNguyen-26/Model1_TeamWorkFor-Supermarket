@@ -321,9 +321,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_cboVaiTroActionPerformed
 
     private void txtTenDangNhapMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTenDangNhapMousePressed
-        txtTenDangNhap.setBackground(Color.white);
-        txtTenDangNhap.setFocusable(true);
-        txtTenDangNhap.requestFocus();
+        
     }//GEN-LAST:event_txtTenDangNhapMousePressed
 
     private void txtTenDangNhapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenDangNhapKeyPressed
@@ -332,9 +330,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_txtTenDangNhapKeyPressed
 
     private void txtMatKhauMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMatKhauMousePressed
-        txtMatKhau.setBackground(Color.white);
-        txtMatKhau.setFocusable(true);
-        txtMatKhau.requestFocus();
+        
     }//GEN-LAST:event_txtMatKhauMousePressed
 
     private void txtMatKhauKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatKhauKeyPressed
@@ -429,8 +425,6 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     private void init() {
         this.setLocationRelativeTo(null);
         lblDangKy.setVisible(false);
-        txtTenDangNhap.setFocusable(false);
-        txtMatKhau.setFocusable(false);
         try {
             if (file.exists()) {
                 Scanner scan = new Scanner(file);
@@ -518,15 +512,10 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     private boolean check() {
         if (txtTenDangNhap.getText().length() == 0) {
             MsgBox.alert(this, "Vui lòng nhập tên đăng nhập !");
-            txtTenDangNhap.setBackground(Color.yellow);
-            txtTenDangNhap.setFocusable(false);
-            txtMatKhau.setFocusable(false);
             return false;
         }
         if (txtMatKhau.getText().length() == 0) {
             MsgBox.alert(this, "Vui lòng nhập mật khẩu !");
-            txtMatKhau.setBackground(Color.yellow);
-            txtTenDangNhap.setFocusable(false);
             return false;
         }
         return true;

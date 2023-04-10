@@ -2913,7 +2913,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLast_HDActionPerformed
 
     private void btnXoa_HDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa_HDActionPerformed
-
+        deleteHD();
     }//GEN-LAST:event_btnXoa_HDActionPerformed
 
     private void btnFirst_DHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst_DHActionPerformed
@@ -3542,6 +3542,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         btnThem_CL.setEnabled(false);
         btnSua_CL.setEnabled(false);
         btnXoa_CL.setEnabled(false);
+        txtMa_CL.setFocusable(false);
     }
 
     private void fillFromTableCL(int index) {
@@ -3560,6 +3561,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         btnSua_CL.setEnabled(false);
         btnXoa_CL.setEnabled(false);
         tbl_CL.setRowSelectionAllowed(false);
+        txtMa_CL.setFocusable(true);
         indexCL = -1;
     }
 
@@ -3590,6 +3592,8 @@ public class Admin_Frame extends javax.swing.JFrame {
                 break;
             }
         }
+        btnSua_CL.setEnabled(true);
+        btnXoa_CL.setEnabled(true);
         resetFormSP();
     }
 
@@ -3632,9 +3636,21 @@ public class Admin_Frame extends javax.swing.JFrame {
     private boolean checkTenChungLoai() {
         for (ChungLoai cl : clList) {
             if (txtTen_CL.getText().equals(cl.getTenCL())) {
-                MsgBox.alert(this, "Trùng Tên Chủng Loại !");
+                MsgBox.alert(this, "Không Được Thêm Vì Trùng Tên Chủng Loại !");
                 return false;
             }
+        }
+        return true;
+    }
+    
+    private boolean checkSuaTenCL(){
+        if (txtTen_CL.getText().equals(clList.get(indexCL))) {
+                return true;
+            }
+        for (ChungLoai cl : clList) {
+            if (txtTen_CL.getText().equals(cl.getTenCL())) {
+                indexCL = clList.indexOf(cl);
+            } 
         }
         return true;
     }
