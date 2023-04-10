@@ -31,7 +31,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     HoaDonDAO hdDao = new HoaDonDAO();
     List<SanPhamExtend> SPlist = new ArrayList<>();
     List<String> spbought = new ArrayList<>();
-    DefaultTableModel model = new DefaultTableModel(new Object[]{"Tên sản phẩm", "Giá", "Số lượng", "Thành tiền"}, 0);
+    DefaultTableModel modelHD = new DefaultTableModel(new Object[]{"Tên sản phẩm", "Giá", "Số lượng", "Thành tiền"}, 0);
     int index;
     float tongTien;
     String manv, maHD;
@@ -43,7 +43,6 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         initComponents();
         init();
         this.manv = "LoneWolf";
-
     }
 
     public NhanVienBanHang(String manv) {
@@ -51,160 +50,6 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         init();
         this.manv = manv;
         this.setTitle("Màn Hình Nhân Viên " + this.manv);
-    }
-
-    private void fillComboSP() {
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cbbCL.getModel();
-        model.addElement("Tất cả");
-        List<ChungLoai> clmodel = clDao.selectAll();
-        try {
-            for (ChungLoai cl : clmodel) {
-                model.addElement(cl.getTenCL());
-            }
-
-        } catch (Exception e) {
-            System.out.println("Truy Vấn thất bại" + e.toString());
-        }
-
-    }
-
-    private void loadTableSP() {
-        DefaultTableModel model = (DefaultTableModel) tblDSSP.getModel();
-        model.setRowCount(0);
-
-        try {
-            SPlist = spDao.selectAll();
-            for (SanPhamExtend sp : SPlist) {
-                Object[] row = {
-                    sp.getMaSP(),
-                    sp.getTenSP(),
-                    sp.getSoLuong(),
-                    sp.getGiaThanh(),
-                    sp.getTenCl()
-                };
-                model.addRow(row);
-            }
-        } catch (Exception e) {
-            System.out.println("Truy vấn thất bại" + e.toString());
-        }
-    }
-
-    private void loadTheocombo() {
-        DefaultTableModel model = (DefaultTableModel) tblDSSP.getModel();
-        model.setRowCount(0);
-        String tencl = (String) cbbCL.getSelectedItem();
-        try {
-            SPlist = spDao.selectAll();
-            for (SanPhamExtend sp : SPlist) {
-                if (sp.getTenCl().equalsIgnoreCase(tencl)) {
-                    Object[] row = {
-                        sp.getMaSP(),
-                        sp.getTenSP(),
-                        sp.getSoLuong(),
-                        sp.getGiaThanh(),
-                        sp.getTenCl()
-                    };
-                    model.addRow(row);
-                } else if (tencl.equalsIgnoreCase("Tất cả")) {
-                    loadTableSP();
-                }
-                tblDSSP.setModel(model);
-            }
-        } catch (Exception e) {
-            System.out.println("Truy vấn thất bại" + e.toString());
-        }
-    }
-
-    private void fillFromtable() {
-        index = tblDSSP.getSelectedRow();
-        String tensp = SPlist.get(index).getTenSP();
-        txtTenSP.setText(tensp);
-    }
-
-    public void kiemtraSoLuong() {
-        if (txtTenSP.getText().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm trước", "", 0);
-            return;
-        }
-        if (txtSoLuong.getText().equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng trước khi thêm đơn hàng!", "", 0);
-            return;
-        }
-        try {
-            int soluong = Integer.parseInt(txtSoLuong.getText());
-            if (soluong > 0) {
-                if (soluong > SPlist.get(index).getSoLuong()) {
-                    JOptionPane.showMessageDialog(this, "Số lượng bán ra không được lớn hơn số lượng có trong kho!", "", 0);
-                    return;
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Số lượng không được nhập số âm!", "", 0);
-                return;
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng!", "", 0);
-            return;
-        }
-    }
-
-    private void loadToTableDH() {
-        tblDonHang.setModel(model);
-    }
-
-    private void add() {
-        String tensp = (String) tblDSSP.getValueAt(index, 1);
-        float giathanh = (float) tblDSSP.getValueAt(index, 3);
-        String soluong = txtSoLuong.getText();
-        float thanhtien = giathanh * Float.parseFloat(soluong);
-        model.addRow(new Object[]{tensp, giathanh, soluong, thanhtien});
-        spbought.add(tensp);
-        loadTableSP();
-        cbbCL.setSelectedIndex(0);
-        tongTien += thanhtien;
-        lblTong.setText(Float.toString(tongTien));
-        BillThanhToan bill = new BillThanhToan(tensp, giathanh, Integer.valueOf(soluong), thanhtien);
-        billThanhToan.add(bill);
-        txtSoLuong.setText("");
-    }
-
-    private boolean loadSoLuongSP() {
-        if (tblDonHang.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(this, "Bạn chưa có sản phẩm nào!", "", 0);
-            return false;
-        } else {
-            HoaDon hd = new HoaDon();
-            hd.setNgayLapHD(XDate.now());
-            hd.setMaNV(manv);
-            hdDao.insert(hd);
-            String maHD = (String) JdbcHelper.value("select top 1 MAHD from HOADON order by MAHD desc");
-            //hd.setMaHD(maHD);
-            this.maHD = maHD;
-            //MsgBox.alert(null, maHD);
-            //MsgBox.alert(null, "Test thêm hóa đơn");
-            for (int i = 0; i < tblDonHang.getRowCount(); i++) {
-                try {
-                    ChiTietHoaDon hdct = new ChiTietHoaDon();
-                    String tensp = (String) tblDonHang.getValueAt(i, 0);
-                    //MsgBox.alert(null, "tensp");
-                    int soluong = Integer.parseInt((String) tblDonHang.getValueAt(i, 2));
-                    //MsgBox.alert(null, "soluong");
-                    float thanhtien = (Float) tblDonHang.getValueAt(i, 3);
-                    //MsgBox.alert(null, "Thành tiền");
-                    hdct.setMaHD(maHD);
-                    hdct.setSoLuong(soluong);
-                    hdct.setThanhTien(thanhtien);
-                    hdct.setMaSP((String) JdbcHelper.value("select MASP from SANPHAM where TENSP = ?", tensp));
-                    cthdDAO.insert(hdct);
-                    JdbcHelper.update("UPDATE SANPHAM SET SOLUONG -= ? WHERE TENSP = ?", soluong, tensp);
-                } catch (Exception e) {
-                    System.out.println("lỗi" + e.toString());
-                    return false;
-                }
-            }
-            MsgBox.alert(this, "Thêm hoá đơn thành công");
-            return true;
-        }
-
     }
 
     @SuppressWarnings("unchecked")
@@ -589,16 +434,18 @@ public class NhanVienBanHang extends javax.swing.JFrame {
 
     private void cbbCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbCLActionPerformed
         loadTheocombo();
+        clearTextField();
     }//GEN-LAST:event_cbbCLActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-        loadTableSP();
-        cbbCL.setSelectedIndex(0);
+        resetDSSP();
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnThemHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemHDActionPerformed
         kiemtraSoLuong();
         add();
+        resetDSSP();
+        clearTextField();
     }//GEN-LAST:event_btnThemHDActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -611,7 +458,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
             cbbCL.setSelectedIndex(0);
             txtTenSP.setText(null);
             txtSoLuong.setText(null);
-            model.setRowCount(0);
+            modelHD.setRowCount(0);
             //spbought.removeAll(spbought);
             lblTong.setText("000");
             loadTableSP();
@@ -697,5 +544,193 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         fillComboSP();
         loadTableSP();
         loadToTableDH();
+    }
+
+    private void fillComboSP() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cbbCL.getModel();
+        model.addElement("Tất cả");
+        List<ChungLoai> clmodel = clDao.selectAll();
+        try {
+            for (ChungLoai cl : clmodel) {
+                model.addElement(cl.getTenCL());
+            }
+
+        } catch (Exception e) {
+            System.out.println("Truy Vấn thất bại" + e.toString());
+        }
+
+    }
+
+    private void loadTableSP() {
+        DefaultTableModel model = (DefaultTableModel) tblDSSP.getModel();
+        model.setRowCount(0);
+        List<SanPhamExtend> spList = new ArrayList<>();
+        try {
+            spList = spDao.selectAll();
+            for (SanPhamExtend sp : spList) {
+                boolean brought = false;
+                for (String str : spbought) {
+                    if (sp.getTenSP().equals(str)) {
+                        brought = true;
+                        break;
+                    }
+                }
+                if (brought == false) {
+                    Object[] row = {
+                        sp.getMaSP(),
+                        sp.getTenSP(),
+                        sp.getSoLuong(),
+                        sp.getGiaThanh(),
+                        sp.getTenCl()
+                    };
+                    model.addRow(row);
+                }
+            }
+            tblDSSP.setModel(model);
+        } catch (Exception e) {
+            System.out.println("Truy vấn thất bại" + e.toString());
+        }
+    }
+
+    private void loadTheocombo() {
+        DefaultTableModel model = (DefaultTableModel) tblDSSP.getModel();
+        model.setRowCount(0);
+        String tencl = (String) cbbCL.getSelectedItem();
+        List<SanPhamExtend> spList = new ArrayList<>();
+        try {
+            if (tencl.equals("Tất cả")) {
+                loadTableSP();
+                return;
+            }
+            spList = spDao.selectAll();
+            for (SanPhamExtend sp : spList) {
+                if (sp.getTenCl().equalsIgnoreCase(tencl)) {
+                    boolean brought = false;
+                    for (String str : spbought) {
+                        if (sp.getTenCl().equals(str)) {
+                            brought = true;
+                            break;
+                        }
+                    }
+                    if (brought == false) {
+                        Object[] row = {
+                            sp.getMaSP(),
+                            sp.getTenSP(),
+                            sp.getSoLuong(),
+                            sp.getGiaThanh(),
+                            sp.getTenCl()
+                        };
+                        model.addRow(row);
+                    }
+                }
+            }
+            tblDSSP.setModel(model);
+        } catch (Exception e) {
+            System.out.println("Truy vấn thất bại" + e.toString());
+        }
+    }
+
+    private void fillFromtable() {
+        String tensp = (String) tblDSSP.getValueAt(index, 1);
+        txtTenSP.setText(tensp);
+    }
+
+    public void kiemtraSoLuong() {
+        if (txtTenSP.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn sản phẩm trước", "", 0);
+            return;
+        }
+        if (txtSoLuong.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng trước khi thêm đơn hàng!", "", 0);
+            return;
+        }
+        try {
+            int soluong = Integer.parseInt(txtSoLuong.getText());
+            int soLuongHangConLai = (Integer) tblDSSP.getValueAt(index, 2);
+            if (soluong > 0) {
+                if (soluong > soLuongHangConLai) {
+                    JOptionPane.showMessageDialog(this, "Số lượng bán ra không được lớn hơn số lượng có trong kho!", "", 0);
+                    return;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Số lượng không được nhập số âm!", "", 0);
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng!", "", 0);
+            return;
+        }
+    }
+
+    private void loadToTableDH() {
+        tblDonHang.setModel(modelHD);
+    }
+
+    private void add() {
+        String tensp = (String) tblDSSP.getValueAt(index, 1);
+        float giathanh = (float) tblDSSP.getValueAt(index, 3);
+        String soluong = txtSoLuong.getText();
+        float thanhtien = giathanh * Float.parseFloat(soluong);
+        modelHD.addRow(new Object[]{tensp, giathanh, soluong, thanhtien});
+        loadTableSP();
+        cbbCL.setSelectedIndex(0);
+        tongTien += thanhtien;
+        lblTong.setText(Float.toString(tongTien));
+        BillThanhToan bill = new BillThanhToan(tensp, giathanh, Integer.valueOf(soluong), thanhtien);
+        billThanhToan.add(bill);
+        spbought.add(tensp);
+        resetDSSP();
+        clearTextField();
+    }
+
+    private boolean loadSoLuongSP() {
+        if (tblDonHang.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Bạn chưa có sản phẩm nào!", "", 0);
+            return false;
+        } else {
+            HoaDon hd = new HoaDon();
+            hd.setNgayLapHD(XDate.now());
+            hd.setMaNV(manv);
+            hdDao.insert(hd);
+            String maHD = (String) JdbcHelper.value("select top 1 MAHD from HOADON order by MAHD desc");
+            //hd.setMaHD(maHD);
+            this.maHD = maHD;
+            //MsgBox.alert(null, maHD);
+            //MsgBox.alert(null, "Test thêm hóa đơn");
+            for (int i = 0; i < tblDonHang.getRowCount(); i++) {
+                try {
+                    ChiTietHoaDon hdct = new ChiTietHoaDon();
+                    String tensp = (String) tblDonHang.getValueAt(i, 0);
+                    //MsgBox.alert(null, "tensp");
+                    int soluong = Integer.parseInt((String) tblDonHang.getValueAt(i, 2));
+                    //MsgBox.alert(null, "soluong");
+                    float thanhtien = (Float) tblDonHang.getValueAt(i, 3);
+                    //MsgBox.alert(null, "Thành tiền");
+                    hdct.setMaHD(maHD);
+                    hdct.setSoLuong(soluong);
+                    hdct.setThanhTien(thanhtien);
+                    hdct.setMaSP((String) JdbcHelper.value("select MASP from SANPHAM where TENSP = ?", tensp));
+                    cthdDAO.insert(hdct);
+                    JdbcHelper.update("UPDATE SANPHAM SET SOLUONG -= ? WHERE TENSP = ?", soluong, tensp);
+                } catch (Exception e) {
+                    System.out.println("lỗi" + e.toString());
+                    return false;
+                }
+            }
+            MsgBox.alert(this, "Thêm hoá đơn thành công");
+            return true;
+        }
+
+    }
+
+    private void clearTextField() {
+        txtTenSP.setText("");
+        txtSoLuong.setText("");
+    }
+
+    private void resetDSSP() {
+        loadTableSP();
+        cbbCL.setSelectedIndex(0);
+        clearTextField();
     }
 }
