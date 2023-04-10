@@ -38,6 +38,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     private int indexDH = -1;
     private int indexNV = -1;
     private int indexTK = -1;
+    private Date ngaySinh;
 
     //Biến LIST
     private List<SanPham> spList = new ArrayList<>();
@@ -3828,6 +3829,12 @@ public class Admin_Frame extends javax.swing.JFrame {
     }
 
     private boolean kiemtra() {
+        ngaySinh = XDate.toDate(txtNgaySinh_NV.getText(), "dd/MM/yyyy");
+        int age = XDate.now().getYear() - ngaySinh.getYear();
+        if (age < 18) {
+            JOptionPane.showMessageDialog(this, "Bạn chưa đủ 18 tuổi!", "", 0);
+            return false;
+        }
         if (txtMa_NV.getText().equals("") && txtMatKhau_NV.getText().equals("") && txtHoTen_NV.getText().equals("") && txtNgaySinh_NV.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin!", "", 0);
             return false;
