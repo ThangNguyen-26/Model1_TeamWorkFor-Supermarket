@@ -12,6 +12,7 @@ import com.supermarket.ENTITY.SanPhamExtend;
 import com.supermarket.UTILS.JdbcHelper;
 import com.supermarket.UTILS.MsgBox;
 import com.supermarket.UTILS.XDate;
+import com.supermarket.UTILS.XImage;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -537,6 +538,7 @@ public class KhachHangFrame extends javax.swing.JFrame {
 
     private void init() {
         this.setLocationRelativeTo(null);
+        this.setIconImage(XImage.getAppIcon());
         loadToCbo();
         loadToTableSP();
         loadToTableDH();

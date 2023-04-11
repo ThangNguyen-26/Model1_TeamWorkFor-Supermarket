@@ -4,6 +4,7 @@ import com.supermarket.DAO.ChiTietHoaDonDAO;
 import com.supermarket.ENTITY.CLockThread;
 import com.supermarket.ENTITY.ChiTietHoaDon;
 import com.supermarket.UTILS.MsgBox;
+import com.supermarket.UTILS.XImage;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -448,6 +449,7 @@ public class ChiTietHoaDonFrame extends javax.swing.JFrame {
 
     private void init() {
         this.setLocationRelativeTo(null);
+        this.setIconImage(XImage.getAppIcon());
         loadToTableCTHD();
         txtMaHD.setFocusable(false);
         txtMaSP.setFocusable(false);

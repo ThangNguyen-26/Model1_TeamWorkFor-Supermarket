@@ -8,6 +8,7 @@ import static java.awt.Color.yellow;
 import java.util.Date;
 import com.supermarket.ENTITY.KhachHang;
 import static com.supermarket.UTILS.XDate.now;
+import com.supermarket.UTILS.XImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -344,6 +345,7 @@ public class DangKyJDialog extends javax.swing.JDialog {
 
     private void init() {
         this.setLocationRelativeTo(null);
+        this.setIconImage(XImage.getAppIcon());
     }
 
     private boolean check() {

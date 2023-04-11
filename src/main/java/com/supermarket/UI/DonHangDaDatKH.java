@@ -4,6 +4,7 @@ import com.supermarket.ENTITY.DonHang;
 import com.supermarket.UTILS.JdbcHelper;
 import com.supermarket.UTILS.MsgBox;
 import com.supermarket.UTILS.XDate;
+import com.supermarket.UTILS.XImage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -336,6 +337,7 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
 
     private void init() {
         this.setLocationRelativeTo(null);
+        this.setIconImage(XImage.getAppIcon());
         loadToTable();
     }
 

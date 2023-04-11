@@ -3,6 +3,7 @@ package com.supermarket.UI;
 import com.supermarket.DAO.ChiTietDonHangDAO;
 import com.supermarket.ENTITY.ChiTietDonHang;
 import com.supermarket.UTILS.MsgBox;
+import com.supermarket.UTILS.XImage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -450,6 +451,7 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
 
     private void init() {
         this.setLocationRelativeTo(null);
+        this.setIconImage(XImage.getAppIcon());
         loadToTable();
         txtMaDH.setText(maDH);
         for(int i = 0; i<tblCT.getSelectedRow();i++){

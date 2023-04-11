@@ -5,6 +5,7 @@ import com.supermarket.DAO.KhachHangDAO;
 import com.supermarket.ENTITY.NhanVien;
 import com.supermarket.ENTITY.KhachHang;
 import com.supermarket.UTILS.MsgBox;
+import com.supermarket.UTILS.XImage;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.io.BufferedWriter;
@@ -424,6 +425,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
     private void init() {
         this.setLocationRelativeTo(null);
+        this.setIconImage(XImage.getAppIcon());
         lblDangKy.setVisible(false);
         try {
             if (file.exists()) {

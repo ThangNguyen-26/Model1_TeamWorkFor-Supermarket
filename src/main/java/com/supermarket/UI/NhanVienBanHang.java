@@ -13,6 +13,7 @@ import com.supermarket.ENTITY.ChiTietHoaDon;
 import com.supermarket.UTILS.JdbcHelper;
 import com.supermarket.UTILS.MsgBox;
 import com.supermarket.UTILS.XDate;
+import com.supermarket.UTILS.XImage;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -527,6 +528,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
 
     private void init() {
         this.setLocationRelativeTo(null);
+        this.setIconImage(XImage.getAppIcon());
         CLockThread cl = new CLockThread(lblClock);
         Thread t = new Thread(cl);
         t.start();

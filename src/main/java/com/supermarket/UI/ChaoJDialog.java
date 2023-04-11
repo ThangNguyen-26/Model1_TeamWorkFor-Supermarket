@@ -1,5 +1,6 @@
 package com.supermarket.UI;
 
+import com.supermarket.UTILS.XImage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
@@ -102,6 +103,7 @@ private void condition() {
     }
     private void init() {
         this.setLocationRelativeTo(null);
+        this.setIconImage(XImage.getAppIcon());
         condition();
     }
 }

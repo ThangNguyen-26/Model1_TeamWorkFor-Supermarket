@@ -4,6 +4,7 @@ import com.supermarket.DAO.KhachHangDAO;
 import com.supermarket.ENTITY.NhanVien;
 import com.supermarket.ENTITY.KhachHang;
 import com.supermarket.UTILS.MsgBox;
+import com.supermarket.UTILS.XImage;
 import javax.swing.JOptionPane;
 
 public class DoiMatKhauJDialog extends javax.swing.JDialog {
@@ -364,5 +365,6 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
 
     private void init() {
         this.setLocationRelativeTo(null);
+        this.setIconImage(XImage.getAppIcon());
     }
 }

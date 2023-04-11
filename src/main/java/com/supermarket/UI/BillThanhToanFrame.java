@@ -3,6 +3,7 @@ import com.supermarket.ENTITY.BillThanhToan;
 import com.supermarket.UTILS.XDate;
 import java.util.ArrayList;
 import com.supermarket.UTILS.XDate;
+import com.supermarket.UTILS.XImage;
 
 import java.util.List;
 import javax.security.auth.x500.X500Principal;
@@ -33,6 +34,7 @@ public class BillThanhToanFrame extends javax.swing.JDialog {
     
     private void init(){
         this.setLocationRelativeTo(null);
+        this.setIconImage(XImage.getAppIcon());
         loadToTable();
     }
     
