@@ -467,6 +467,8 @@ public class KhachHangFrame extends javax.swing.JFrame {
 
     private void btnDatHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatHangActionPerformed
         order();
+        this.setVisible(false);
+        new DonHangDaDatKH(maKh, "Vừa mua hàng").setVisible(true);
     }//GEN-LAST:event_btnDatHangActionPerformed
 
     private void btnDSDatHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDSDatHangActionPerformed

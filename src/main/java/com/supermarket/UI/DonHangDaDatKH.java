@@ -30,6 +30,16 @@ public class DonHangDaDatKH extends javax.swing.JFrame {
         init();
         this.setTitle("Đơn hàng đã đặt của khách hàng " + this.maKh);
     }
+    
+    public DonHangDaDatKH(String maKh, String str) {
+        initComponents();
+        this.maKh = maKh;
+        init();
+        this.setTitle("Đơn hàng đã đặt của khách hàng " + this.maKh);
+        index = tblDSDHDD.getRowCount()-1;
+        tblDSDHDD.setRowSelectionInterval(index, index);
+        fillFromTable();
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

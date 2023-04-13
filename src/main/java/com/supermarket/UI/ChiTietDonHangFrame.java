@@ -457,7 +457,6 @@ public class ChiTietDonHangFrame extends javax.swing.JFrame {
         for(int i = 0; i<tblCT.getSelectedRow();i++){
             tongTien+= (Float)tblCT.getValueAt(i, 2);
         }
-        lblThanhTien.setText(Float.toString(tongTien));
     }
 
     private void loadToTable() {
