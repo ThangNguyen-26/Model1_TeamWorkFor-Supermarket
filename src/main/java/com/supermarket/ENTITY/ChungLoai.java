@@ -17,7 +17,7 @@ public class ChungLoai {
     public ChungLoai() {
     }
     
-    @Override
+    /*@Override
     public String toString() {
         return this.tenCL;
     }
@@ -26,7 +26,7 @@ public class ChungLoai {
     public boolean equals(Object obj) {
         ChungLoai other = (ChungLoai) obj;
         return other.getMaCL().equals(this.getMaCL());
-    }
+    }*/
 
     public ChungLoai(String maCL, String tenCL, String mieuTa) {
         this.maCL = maCL;

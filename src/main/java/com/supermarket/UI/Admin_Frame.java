@@ -18,6 +18,7 @@ import com.supermarket.ENTITY.HoaDon;
 import com.supermarket.ENTITY.KhachHang;
 import com.supermarket.ENTITY.NhanVien;
 import com.supermarket.ENTITY.SanPham;
+import com.supermarket.UTILS.JdbcHelper;
 import com.supermarket.UTILS.MsgBox;
 import com.supermarket.UTILS.XDate;
 import com.supermarket.UTILS.XImage;
@@ -3355,6 +3356,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         khDao.update(kh);
         MsgBox.alert(null, "Sửa thông tin khách hàng thành công");
         loadToTableKH();
+        tbl_KH.setRowSelectionInterval(indexKH, indexKH);
     }
 
     private void nextKH() {
@@ -3451,6 +3453,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     private void loadToTableSP() {
         DefaultTableModel model = (DefaultTableModel) tbl_SP.getModel();
         model.setRowCount(0);
+        spList.removeAll(spList);
         String keyword = txtTim_SP.getText();
         spList = spDao.selectByKeyword(keyword);
         for (SanPham sp : spList) {
@@ -3459,7 +3462,7 @@ public class Admin_Frame extends javax.swing.JFrame {
                 sp.getTenSP(),
                 sp.getSoLuong(),
                 sp.getGiaThanh(),
-                sp.getMaCL()
+                (String)JdbcHelper.value("SELECT TENCL FROM SANPHAM sp INNER JOIN CHUNGLOAI cl ON sp.MACL = cl.MACL WHERE MASP LIKE ? ", sp.getMaSP())
             };
             model.addRow(row);
         }
@@ -3479,8 +3482,9 @@ public class Admin_Frame extends javax.swing.JFrame {
         txtTen_SP.setText(sp.getTenSP());
         txtSoLuong_SP.setText(String.valueOf(sp.getSoLuong()));
         txtGia_SP.setText(String.valueOf(sp.getGiaThanh()));
-        cboChungLoai_SP.setToolTipText(sp.getMaCL());
-        cboChungLoai_SP.setSelectedItem(clDao.selectById(sp.getMaCL()));
+        /*cboChungLoai_SP.setToolTipText(sp.getMaCL());
+        cboChungLoai_SP.setSelectedItem(clDao.selectById(sp.getMaCL()));*/
+        cboChungLoai_SP.setSelectedItem(tbl_SP.getValueAt(indexSP, 4));
     }
 
     private void fillFromTableSP(int index) {
@@ -3497,21 +3501,19 @@ public class Admin_Frame extends javax.swing.JFrame {
     private void fillCboSP() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboChungLoai_SP.getModel();
         model.removeAllElements();
+        model.addElement(null);
         List<ChungLoai> list = clDao.selectAll();
         for (ChungLoai cl : list) {
-            model.addElement(cl);
+            model.addElement(cl.getTenCL());
         }
     }
 
     private void clearFormSP() {
-        SanPham sp = new SanPham();
-        sp.setMaSP(sp.getMaSP());
-        sp.setTenSP(sp.getTenSP());
-        sp.setSoLuong(sp.getSoLuong());
-        sp.setGiaThanh(sp.getGiaThanh());
-        ChungLoai cl = (ChungLoai) cboChungLoai_SP.getSelectedItem();
-        sp.setMaCL(cl.getMaCL());
-        setFormSP(sp);
+        txtMa_SP.setText("");
+        txtTen_SP.setText("");
+        txtSoLuong_SP.setText("");
+        txtGia_SP.setText("");
+        cboChungLoai_SP.setSelectedIndex(0);
         indexSP = -1;
     }
 
@@ -3684,7 +3686,7 @@ public class Admin_Frame extends javax.swing.JFrame {
     }
 
     private void xoaDH() {
-        if (MsgBox.confirm(this, "Bạn muốn xóa sản phẩm này chứ?")) {
+        if (MsgBox.confirm(this, "Bạn muốn xóa đơn hàng này chứ?")) {
             String maDH = txtMa_DH.getText();
             try {
                 dhDao.delete(maDH);
@@ -3886,6 +3888,7 @@ public class Admin_Frame extends javax.swing.JFrame {
 
     private void editNV() {
         try {
+            tbl_NV.setRowSelectionAllowed(true);
             String manv = (String) tbl_NV.getValueAt(this.indexNV, 0);
             NhanVien model = nvDao.selectById(manv);
             if (model != null) {
@@ -3906,6 +3909,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         btnThem_NV.setEnabled(true);
         btnSua_NV.setEnabled(false);
         btnXoa_NV.setEnabled(false);
+        tbl_NV.setRowSelectionAllowed(false);
     }
 
     private void savẹNhanvien() {
@@ -3957,18 +3961,16 @@ public class Admin_Frame extends javax.swing.JFrame {
     }
 
     private boolean checkNV() {
+        
+        if (txtMa_NV.getText().equals("") || txtMatKhau_NV.getText().equals("") || txtHoTen_NV.getText().equals("") || txtNgaySinh_NV.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng không để trống thông tin!", "", 0);
+            return false;
+        }
+        
         ngaySinh = XDate.toDate(txtNgaySinh_NV.getText(), "dd/MM/yyyy");
         int age = XDate.now().getYear() - ngaySinh.getYear();
         if (age < 18) {
             JOptionPane.showMessageDialog(this, "Bạn chưa đủ 18 tuổi!", "", 0);
-            return false;
-        }
-        if (txtMa_NV.getText().equals("") && txtMatKhau_NV.getText().equals("") && txtHoTen_NV.getText().equals("") && txtNgaySinh_NV.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin!", "", 0);
-            return false;
-        }
-        if (txtMa_NV.getText().equals("") || txtMatKhau_NV.getText().equals("") || txtHoTen_NV.getText().equals("") || txtNgaySinh_NV.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng không để trống thông tin!", "", 0);
             return false;
         }
         return true;
