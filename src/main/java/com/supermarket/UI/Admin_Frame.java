@@ -2809,6 +2809,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         btnXoa_SP.setEnabled(false);
         btnMoi_SP.setEnabled(false);
         btnThem_SP.setEnabled(true);
+        txtMa_SP.setFocusable(true);
         tbl_SP.setRowSelectionAllowed(false);
         clearFormSP();
     }//GEN-LAST:event_btnMoi_SPActionPerformed
@@ -2987,6 +2988,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         btnXoa_SP.setEnabled(true);
         btnMoi_SP.setEnabled(true);
         btnThem_SP.setEnabled(false);
+        txtMa_SP.setFocusable(false);
         tbl_SP.setRowSelectionAllowed(true);
         indexSP = tbl_SP.rowAtPoint(evt.getPoint());
         editSP();
@@ -3523,8 +3525,7 @@ public class Admin_Frame extends javax.swing.JFrame {
         sp.setTenSP(txtTen_SP.getText());
         sp.setSoLuong(Integer.parseInt(txtSoLuong_SP.getText()));
         sp.setGiaThanh(Float.parseFloat(txtGia_SP.getText()));
-        ChungLoai cl = (ChungLoai) cboChungLoai_SP.getSelectedItem();
-        sp.setMaCL(cl.getMaCL());
+        sp.setMaCL((String) JdbcHelper.value("SELECT MACL FROM CHUNGLOAI WHERE TENCL LIKE ?", (String)cboChungLoai_SP.getSelectedItem()));
         return sp;
     }
 
